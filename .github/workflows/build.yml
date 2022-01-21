@@ -86,7 +86,7 @@ jobs:
     - name: Build
       run: msbuild dqt-web-portal/src/Dqt.Dynamics/Dqt.dynamics/Dqt.Dynamics.csproj -t:build -property:Configuration=Release
 
-    - name: Export DQT
+    - name: Export unmanaged solution
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{ steps.CRM_EXP.outputs.CRM_URL }}
@@ -94,15 +94,13 @@ jobs:
         client-secret: ${{ steps.CRM_EXP.outputs.CRM_APP_SECRET  }}
         tenant-id: ${{ steps.CRM_EXP.outputs.CRM_TENANT_ID  }}
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        managed: true
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_unmanaged.zip
 
-    - name: Unpack solution
+    - name: Unpack unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_unmanaged.zip
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-type: managed
 
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@0.4.0
@@ -117,30 +115,46 @@ jobs:
         ls dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\
         ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}
 
-    - name: copy-item dlls
-      run: Copy-Item "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll" -Destination "${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}"
+    # - name: cp dlls
+    #   run: cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\Dqt.Dynamics.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
-    - name: cp dlls
-      run: cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\Microsoft.Crm.Sdk.Proxy.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+    # - name: list items
+    #   run: ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
-    - name: list items
-      run: ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
-
-    - name: pack solution
+    - name: pack unmanaged solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-file: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
-        solution-type: managed
+
+    - name: Import unmanaged and packed solution
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ steps.CRM_EXP.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM_EXP.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM_EXP.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM_EXP.outputs.CRM_TENANT_ID  }}
+        solution-file: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
+
+    - name: Export managed solution
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ steps.CRM_EXP.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM_EXP.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM_EXP.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM_EXP.outputs.CRM_TENANT_ID  }}
+        solution-name: ${{ github.event.inputs.solution_name }}
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        managed: true
 
     - name: list packed contents
-      run: ls ${{ github.event.inputs.solution_folder_packed }}
+      run: ls ${{ github.event.inputs.solution_exported_folder}}
 
     - name: Publish crm artifact
       uses: actions/upload-artifact@v2
       with:
         name: drop-crm
-        path: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
+        path: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
 
   # import:
   #   name: Import
