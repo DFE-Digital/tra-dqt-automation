@@ -95,7 +95,6 @@ jobs:
         solution-name: ${{ github.event.inputs.solution_name }}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         managed: true
-        working-directory: crm
 
     - name: Unpack solution
       uses: microsoft/powerplatform-actions/unpack-solution@v0
