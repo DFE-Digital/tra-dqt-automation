@@ -114,7 +114,9 @@ jobs:
     - name: cp dlls
       run: |
         ls dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\
+        ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}
         Get-ChildItem -Path "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*" -Include *.dll -Recurse | Copy-Item -Destination ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+        cp -R dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
     - name: pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
