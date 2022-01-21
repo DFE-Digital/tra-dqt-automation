@@ -112,12 +112,19 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
 
-    - name: cp dlls
+    - name: list
       run: |
         ls dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\
         ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}
-        Copy-Item "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll" -Destination "${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}"
-        cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\Microsoft.Crm.Sdk.Proxy.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+
+    - name: copy-item dlls
+      run: Copy-Item "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll" -Destination "${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}"
+
+    - name: cp dlls
+      run: cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\Microsoft.Crm.Sdk.Proxy.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+
+    - name: list items
+      run: ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
     - name: pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
@@ -125,6 +132,9 @@ jobs:
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-file: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
         solution-type: managed
+
+    - name: list packed contents
+      run: ls ${{ github.event.inputs.solution_folder_packed }}
 
     - name: Publish crm artifact
       uses: actions/upload-artifact@v2
