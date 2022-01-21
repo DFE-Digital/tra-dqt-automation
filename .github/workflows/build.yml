@@ -35,7 +35,7 @@ on:
       solution_target_folder:
        description: 'folder name to be created and checked in *do not change*'
        required: true
-       default: solutions/
+       default: src/Dqt.Dynamics/Dqt.Dynamics/solutions/
 
 jobs:
   export:
@@ -43,6 +43,10 @@ jobs:
     runs-on: windows-latest
     environment: ${{ github.event.inputs.export_environment }}
     steps:
+    - name: gitConfig
+      run: |
+        git config --global core.longpaths true
+
     - uses: actions/checkout@v2
 
     - name: Checkout
