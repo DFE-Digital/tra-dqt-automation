@@ -20,6 +20,7 @@ on:
       dll_folder:
         description: 'path to the folder where dlls are found in the solution'
         required: true
+        default: DqtDynamics-7620A51E-4D12-4C91-B83C-51A6F130D367
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
@@ -115,8 +116,8 @@ jobs:
       run: |
         ls dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\
         ls ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}
-        Get-ChildItem -Path "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*" -Include *.dll -Recurse | Copy-Item -Destination ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
-        cp -R dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+        Copy-Item "dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll" -Destination "${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}"
+        cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\Microsoft.Crm.Sdk.Proxy.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
     - name: pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
