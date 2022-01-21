@@ -7,7 +7,7 @@ on:
         description: 'CRM environment from where you want to export solution'
         required: true
         default: Build
-        type: environement
+        type: environment
       import_environment:
         description: 'CRM environment to import the solution'
         required: true
@@ -17,63 +17,122 @@ on:
         description: 'CRM solution you want to export and import'
         required: true
         default: DummyforCICDpipeline
+      dll_folder:
+        description: 'path to the folder where dlls are found in the solution'
+        required: true
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+      solution_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+      solution_folder_packed:
+        description: 'staging the packed solution to be created as artefact *do not change*'
+        required: true
+        default: out/packed/
+      solution_target_folder:
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
 
 jobs:
   export:
     name: Export
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: ${{ github.event.inputs.export_environment }}
     steps:
     - uses: actions/checkout@v2
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        repository: DFE-Digital/dqt-web-portal
+        path: './dqt-web-portal'
+        token: ${{ secrets.PAT_DQT_WEB_PORTAL }}
+
+    - name: gitConfig
+      run: |
+        git config --global core.longpaths true
 
     - uses: Azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-      id: CRM
+      id: CRM_EXP
       with:
         keyvault: ${{ secrets.KEYVAULT_NAME }}
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - name: setDate
-      run: |
-        echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      with:
+        nuget-version: latest
 
-    - name: Create Directory
-      run: |
-        mkdir crm
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore nuget packages
+      run: nuget restore dqt-web-portal/src/Dqt.Dynamics/Dqt.Dynamics.sln
+
+    - name: Build
+      run: msbuild dqt-web-portal/src/Dqt.Dynamics/Dqt.dynamics/Dqt.Dynamics.csproj -t:build -property:Configuration=Release
 
     - name: Export DQT
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        environment-url: ${{ steps.CRM_EXP.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM_EXP.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM_EXP.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM_EXP.outputs.CRM_TENANT_ID  }}
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: '${{ github.event.inputs.solution_name }}_${{ env.DATE }}.zip'
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         managed: true
-        working-directory: 'crm'
+        working-directory: crm
+
+    - name: Unpack solution
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      with:
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-type: managed
+
+    - name: branch-solution, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@0.4.0
+      with:
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        allow-empty-commit: true
+
+    - name: cp dlls
+      run: |
+        cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+
+
+    - name: pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-file: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
+        solution-type: managed
 
     - name: Publish crm artifact
       uses: actions/upload-artifact@v2
       with:
         name: drop-crm
-        path: crm
+        path: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
 
   import:
     name: Import
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: export
     environment: ${{ github.event.inputs.import_environment }}
     steps:
     - uses: actions/checkout@v2
-
-    - name: setDate
-      run: |
-        echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
 
     - uses: actions/download-artifact@master
       with:
@@ -97,4 +156,4 @@ jobs:
         app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
         client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
         tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: '${{ github.event.inputs.solution_name }}_${{ env.DATE }}.zip'
+        solution-file: '${{ github.event.inputs.solution_name }}.zip'
