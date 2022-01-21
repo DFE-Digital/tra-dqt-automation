@@ -35,7 +35,7 @@ on:
       solution_target_folder:
        description: 'folder name to be created and checked in *do not change*'
        required: true
-       default: src/Dqt.Dynamics/Dqt.Dynamics/solutions/
+       default: solutions
 
 jobs:
   export:
@@ -113,7 +113,7 @@ jobs:
 
     - name: cp dlls
       run: |
-        cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
+        cp dqt-web-portal\src\Dqt.Dynamics\Dqt.dynamics\bin\Release\*.dll ${{ github.event.inputs.solution_folder}}${{ github.event.inputs.solution_name }}/PluginAssemblies/${{ github.event.inputs.dll_folder }}
 
 
     - name: pack solution
@@ -129,34 +129,34 @@ jobs:
         name: drop-crm
         path: ${{ github.event.inputs.solution_folder_packed}}/${{ github.event.inputs.solution_name }}_packed.zip
 
-  import:
-    name: Import
-    runs-on: windows-latest
-    needs: export
-    environment: ${{ github.event.inputs.import_environment }}
-    steps:
-    - uses: actions/checkout@v2
+  # import:
+  #   name: Import
+  #   runs-on: windows-latest
+  #   needs: export
+  #   environment: ${{ github.event.inputs.import_environment }}
+  #   steps:
+  #   - uses: actions/checkout@v2
 
-    - uses: actions/download-artifact@master
-      with:
-        name: drop-crm
+  #   - uses: actions/download-artifact@master
+  #     with:
+  #       name: drop-crm
 
-    - uses: Azure/login@v1
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #   - uses: Azure/login@v1
+  #     with:
+  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-      id: CRM
-      with:
-        keyvault: ${{ secrets.KEYVAULT_NAME }}
-        secret: CRM
-        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
+  #   - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+  #     id: CRM
+  #     with:
+  #       keyvault: ${{ secrets.KEYVAULT_NAME }}
+  #       secret: CRM
+  #       key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - name: Import DQT
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: '${{ github.event.inputs.solution_name }}.zip'
+  #   - name: Import DQT
+  #     uses: microsoft/powerplatform-actions/import-solution@v0
+  #     with:
+  #       environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+  #       app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+  #       client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+  #       tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+  #       solution-file: '${{ github.event.inputs.solution_name }}.zip'
