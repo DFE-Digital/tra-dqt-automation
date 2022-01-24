@@ -22,7 +22,7 @@ jobs:
 
     - uses: actions/checkout@v2
       with:
-        ref: dev
+        ref: Test
 
     - name: pack unmanaged solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
