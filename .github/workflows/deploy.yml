@@ -25,14 +25,14 @@ jobs:
         ref: dev
 
     - name: pack unmanaged solution
-        uses: microsoft/powerplatform-actions/pack-solution@v0
-        with:
-          solution-folder: ${{ env.solution_folder }}/${{ env.solution_name }}
-          solution-file: ${{ env.solution_name }}.zip
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-folder: ${{ env.solution_folder }}/${{ env.solution_name }}
+        solution-file: ${{ env.solution_name }}.zip
 
     - uses: Azure/login@v1
       with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
       id: CRM
@@ -70,36 +70,36 @@ jobs:
           name: drop-crm
           path: ${{ env.solution_exported_folder}}/${{ env.solution_name }}_managed.zip
 
-    import_test:
-      name: Import to Test
-      runs-on: windows-latest
-      env:
-        solution_name: DummyforCICD
-      needs: deploy_build
-      environment: Test
-      steps:
-      - uses: actions/checkout@v2
+  import_test:
+    name: Import to Test
+    runs-on: windows-latest
+    env:
+      solution_name: DummyforCICD
+    needs: deploy_build
+    environment: Test
+    steps:
+    - uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@master
-        with:
-          name: drop-crm
+    - uses: actions/download-artifact@master
+      with:
+        name: drop-crm
 
-      - uses: Azure/login@v1
-        with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: Azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-        id: CRM
-        with:
-          keyvault: ${{ secrets.KEYVAULT_NAME }}
-          secret: CRM
-          key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
+    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      id: CRM
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: CRM
+        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-      - name: Import managed solution
-        uses: microsoft/powerplatform-actions/import-solution@v0
-        with:
-          environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-          app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-          client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-          tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-          solution-file: '${{ env.solution_name }}_managed.zip'
+    - name: Import managed solution
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        solution-file: '${{ env.solution_name }}_managed.zip'
