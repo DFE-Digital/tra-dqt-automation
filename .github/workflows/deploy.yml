@@ -103,4 +103,3 @@ jobs:
         client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
         tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
         solution-file: '${{ env.solution_name }}_managed.zip'
-        managed: true
