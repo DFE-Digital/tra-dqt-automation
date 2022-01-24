@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-  branches:
+    branches:
     - master
     - dev
 
@@ -41,34 +41,34 @@ jobs:
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-      - name: Import unmanaged and packed solution
-        uses: microsoft/powerplatform-actions/import-solution@v0
-        with:
-          environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-          app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-          client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-          tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-          solution-file: ${{ env.solution_name }}.zip
+    - name: Import unmanaged and packed solution
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        solution-file: ${{ env.solution_name }}.zip
 
-      - name: Export managed solution
-        uses: microsoft/powerplatform-actions/export-solution@v0
-        with:
-          environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-          app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-          client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-          tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-          solution-name: ${{ env.solution_name }}
-          solution-output-file: ${{ env.solution_exported_folder }}/${{ env.solution_name }}_managed.zip
-          managed: true
+    - name: Export managed solution
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        solution-name: ${{ env.solution_name }}
+        solution-output-file: ${{ env.solution_exported_folder }}/${{ env.solution_name }}_managed.zip
+        managed: true
 
-      - name: list packed contents
-        run: ls ${{ env.solution_exported_folder}}
+    - name: list packed contents
+      run: ls ${{ env.solution_exported_folder}}
 
-      - name: Publish crm artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: drop-crm
-          path: ${{ env.solution_exported_folder}}/${{ env.solution_name }}_managed.zip
+    - name: Publish crm artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: drop-crm
+        path: ${{ env.solution_exported_folder}}/${{ env.solution_name }}_managed.zip
 
   import_test:
     name: Import to Test
