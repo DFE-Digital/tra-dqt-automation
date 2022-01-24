@@ -3,27 +3,38 @@ name: Build
 on:
   workflow_dispatch:
     inputs:
-      export_environment:
+      environment:
         description: 'CRM environment from where you want to export solution'
         required: true
         default: Build
-        type: environement
-      import_environment:
-        description: 'CRM environment to import the solution'
-        required: true
-        default: Test
         type: environment
       solution_name:
         description: 'CRM solution you want to export and import'
         required: true
-        default: DummyforCICDpipeline
+        default: DQT20
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+      solution_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+      solution_target_folder:
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions
 
 jobs:
   export:
-    name: Export
-    runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.export_environment }}
+    name: Export solution
+    runs-on: windows-latest
+    environment: ${{ github.event.inputs.environment }}
     steps:
+    - name: gitConfig
+      run: |
+        git config --global core.longpaths true
+
     - uses: actions/checkout@v2
 
     - uses: Azure/login@v1
@@ -37,15 +48,7 @@ jobs:
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - name: setDate
-      run: |
-        echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
-
-    - name: Create Directory
-      run: |
-        mkdir crm
-
-    - name: Export DQT
+    - name: Export unmanaged solution
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{ steps.CRM.outputs.CRM_URL }}
@@ -53,48 +56,18 @@ jobs:
         client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
         tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: '${{ github.event.inputs.solution_name }}_${{ env.DATE }}.zip'
-        managed: true
-        working-directory: 'crm'
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
 
-    - name: Publish crm artifact
-      uses: actions/upload-artifact@v2
+    - name: Unpack unmanaged solution
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        name: drop-crm
-        path: crm
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
 
-  import:
-    name: Import
-    runs-on: ubuntu-latest
-    needs: export
-    environment: ${{ github.event.inputs.import_environment }}
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: setDate
-      run: |
-        echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
-
-    - uses: actions/download-artifact@master
+    - name: branch-solution, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@0.4.0
       with:
-        name: drop-crm
-
-    - uses: Azure/login@v1
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-      id: CRM
-      with:
-        keyvault: ${{ secrets.KEYVAULT_NAME }}
-        secret: CRM
-        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
-
-    - name: Import DQT
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: '${{ github.event.inputs.solution_name }}_${{ env.DATE }}.zip'
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        allow-empty-commit: true
