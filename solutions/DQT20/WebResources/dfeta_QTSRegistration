@@ -1,0 +1,96 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (qtsregistration) {
+
+                /* Uses Common.js javascript file*/
+
+                qtsregistration.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_qtsdate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_qtsdate'); });
+                        formContext.getAttribute('dfeta_teacherstatusid').addOnChange(function () { qtsregistration.OnChangeTeacherStatus(executionContext,false); });
+                        formContext.getControl('dfeta_qtsdate').setDisabled(true);
+
+                        this.OnChangeTeacherStatus(executionContext,true);
+
+                        formContext.getAttribute('dfeta_eytsdate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_eytsdate'); });
+                        formContext.getAttribute('dfeta_earlyyearsstatusid').addOnChange(function () { qtsregistration.OnChangeEarlyYearsStatus(executionContext,false); });
+
+                        formContext.getControl('dfeta_eytsdate').setDisabled(true);
+
+                        this.OnChangeEarlyYearsStatus(executionContext,true);
+
+                        if (formContext.ui.getFormType() == 1/*Create Form*/) {
+                            formContext.getAttribute('dfeta_requestedbyid').setValue(null);
+                            console.log('Create Form dfeta_requestedbyid is set to null');
+                        }
+                    }
+                }
+
+                qtsregistration.OnChangeTeacherStatus = function (executionContext, onFormLoad) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var teacherStatus = formContext.getAttribute('dfeta_teacherstatusid').getValue();
+                        console.log(teacherStatus);
+                        if (teacherStatus != null) {
+                            DFE.Dqt.WebResources.Common.RetrieveRecordById("dfeta_teacherstatuses", teacherStatus[0].id, "dfeta_teacherstatusid,dfeta_qtsdaterequired", function (item) {
+                                if (item != null && item.dfeta_qtsdaterequired == true) {
+                                    formContext.getAttribute('dfeta_qtsdate').setRequiredLevel('required');
+                                    formContext.getControl('dfeta_qtsdate').setDisabled(false);
+                                    console.log('dfeta_teacherstatusid,dfeta_qtsdaterequired item.dfeta_qtsdaterequired == true');
+                                }
+                                else {
+                                    formContext.getAttribute('dfeta_qtsdate').setRequiredLevel('none');
+                                    formContext.getControl('dfeta_qtsdate').setDisabled(true);
+
+                                    console.log('dfeta_qtsdate: none; dfeta_qtsdate: true');
+
+                                    if (!onFormLoad) {
+                                        formContext.getAttribute('dfeta_qtsdate').setValue(null);
+                                        formContext.getAttribute('dfeta_qtsdate').setSubmitMode('always');
+
+                                        console.log('dfeta_qtsdate: null; dfeta_qtsdate: always');
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+
+                qtsregistration.OnChangeEarlyYearsStatus = function (executionContext, onFormLoad) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var earlyYearsStatus = formContext.getAttribute('dfeta_earlyyearsstatusid').getValue();
+
+                        if (earlyYearsStatus != null) {
+                            DFE.Dqt.WebResources.Common.RetrieveRecordById("dfeta_earlyyearsstatuses", earlyYearsStatus[0].id, "dfeta_earlyyearsstatusid,dfeta_eytsdaterequired", function (item) {
+
+                                if (item != null && item.dfeta_eytsdaterequired == true) {
+                                    formContext.getAttribute('dfeta_eytsdate').setRequiredLevel('required');
+                                    formContext.getControl('dfeta_eytsdate').setDisabled(false);
+
+                                    console.log('dfeta_earlyyearsstatusid,dfeta_eytsdaterequired: item.dfeta_eytsdaterequired == true');
+                                }
+                                else {
+                                    formContext.getAttribute('dfeta_eytsdate').setRequiredLevel('none');
+                                    formContext.getControl('dfeta_eytsdate').setDisabled(true);
+
+                                    console.log('dfeta_eytsdate:none; dfeta_eytsdate:true');
+
+                                    if (!onFormLoad) {
+                                        formContext.getAttribute('dfeta_eytsdate').setValue(null);
+                                        formContext.getAttribute('dfeta_eytsdate').setSubmitMode('always');
+
+                                        console.log('dfeta_eytsdate: null; dfeta_eytsdate: always');
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            })(webResources.QTSRegistration = webResources.QTSRegistration || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

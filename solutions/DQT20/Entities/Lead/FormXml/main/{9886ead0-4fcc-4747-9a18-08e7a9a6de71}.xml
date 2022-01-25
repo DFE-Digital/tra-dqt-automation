@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{9886ead0-4fcc-4747-9a18-08e7a9a6de71}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form showImage="true" shownavigationbar="true" maxWidth="1900" solutionaction="Modified">
+      <hiddencontrols>
+        <data id="statecode" datafieldname="statecode" classid="{5546E6CD-394C-4bee-94A8-4425E17EF6C6}" solutionaction="Removed" />
+      </hiddencontrols>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{2c26e8f7-026f-4d3e-9262-6523e9accb2b}" IsUserDefined="0" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="name" showlabel="false" showbar="false" id="{5a43a4e9-5370-4ee7-9f71-9ef915467f90}" IsUserDefined="0" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell colspan="2" id="{f5abdb46-bdc6-4196-ab85-352a02d457b1}" ordinalvalue="10000" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{8837d622-f436-4781-9a62-a7090e462fd1}" ordinalvalue="10001" solutionaction="Removed" />
+                      <cell id="{4f4173e8-4588-4a7f-8973-e6fadf28b2b7}" ordinalvalue="10016" solutionaction="Modified">
+                        <labels>
+                          <label description="Telephone" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c1e4f775-e881-4325-a22b-0e3203ec3f90}" ordinalvalue="10002" solutionaction="Modified">
+                        <labels>
+                          <label description="Forename" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{71a28a3f-f1b6-45e8-b6b0-4c820c0a7f97}" ordinalvalue="20004" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{e93f7539-ba2f-423d-ba9e-64559c5846dd}" ordinalvalue="10006" solutionaction="Modified">
+                        <labels>
+                          <label description="Last Name" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{3fbcf35b-a2fc-40f0-8830-d05bf15fec09}" ordinalvalue="20006" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{9baf61b5-6db3-4404-a5cb-e9120c846e12}" ordinalvalue="10007" solutionaction="Removed" />
+                      <cell id="{90b84274-9c76-4446-a492-4a73240d5fd1}" ordinalvalue="20008" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{fe0f5b16-6f30-43fb-bec1-9d64e9a7e50a}" ordinalvalue="10009" solutionaction="Removed" />
+                      <cell id="{c29a0157-b97a-4ec3-a928-6f15d32b5443}" ordinalvalue="20010" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{dcca19b7-d09e-43d1-b9d2-e46b4c12a282}" ordinalvalue="10011" solutionaction="Removed" />
+                      <cell id="{545566e9-8f44-4e62-b53c-7ec22a445b8d}" ordinalvalue="20012" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{3a7bde9a-c4f5-4fcf-a6f0-b506947ed04f}" ordinalvalue="10013" solutionaction="Removed" />
+                      <cell id="{dc72a1b9-01f8-45df-b5f5-0dbc3cada61a}" ordinalvalue="20014" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{2d97e985-1b8c-31e4-74cd-896947db34d1}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="Title" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_title" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_title" disabled="false" />
+                      </cell>
+                      <cell id="{7cc847ae-b71e-e9d3-b6a4-c91989993822}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
+                        <labels>
+                          <label description="MR Reference" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_applicantid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_applicantid" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{10973e1e-b132-cdda-b33c-ce175e39c6b4}" showlabel="true" locklevel="0" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="Nationality" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_nationalityid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_nationalityid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ec951dd0-271e-e037-cea3-b4017a614938}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Middle Name" languagecode="1033" />
+                        </labels>
+                        <control id="middlename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="middlename" disabled="false" />
+                      </cell>
+                      <cell id="{c0413508-7a64-38ce-d1d7-bd5eb1c14258}" showlabel="false" ordinalvalue="20005" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6eb57b6d-2c04-5eee-c9a5-37ad55e27d03}" showlabel="false" ordinalvalue="20007" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e1c4646b-cccb-4e9e-7c0d-b1bc8326e20c}" showlabel="true" locklevel="0" ordinalvalue="10008" solutionaction="Added">
+                        <labels>
+                          <label description="Previous surname" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_previoussurname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_previoussurname" disabled="false" />
+                      </cell>
+                      <cell id="{a2719dd3-8784-e9c4-1705-d2317a0ecd35}" showlabel="false" ordinalvalue="20009" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2a292d86-6c5c-a704-d991-959e26e3ed03}" showlabel="true" locklevel="0" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="Gender" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_gender" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_gender" disabled="false" />
+                      </cell>
+                      <cell id="{341dccd5-7642-d10a-9959-a42ad0a76912}" showlabel="false" ordinalvalue="20011" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2e269ba8-1ada-98dd-0c2d-9deb2c6732ce}" showlabel="true" locklevel="0" ordinalvalue="10012" solutionaction="Added">
+                        <labels>
+                          <label description="Date of Birth" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_dateofbirth" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_dateofbirth" disabled="false" />
+                      </cell>
+                      <cell id="{ae471a73-1c9c-3a95-36e2-6bdbcd9e7b73}" showlabel="false" ordinalvalue="20013" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7b14740c-49e4-b8c1-7792-21b1eddd180b}" showlabel="true" locklevel="0" ordinalvalue="10014" solutionaction="Added">
+                        <labels>
+                          <label description="NI Number" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_ninumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_ninumber" disabled="false" />
+                      </cell>
+                      <cell id="{95738db6-c695-30a5-d7e5-69219c45b32b}" showlabel="false" ordinalvalue="20015" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{06c5bc1e-3647-c612-57c9-0c073eab366b}" showlabel="false" ordinalvalue="20017" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5301b8b9-80d2-77c3-05da-5294bddd06e2}" showlabel="true" locklevel="0" ordinalvalue="10018" solutionaction="Added">
+                        <labels>
+                          <label description="Email" languagecode="1033" />
+                        </labels>
+                        <control id="emailaddress1" classid="{ADA2203E-B4CD-49be-9DDF-234642B43B52}" datafieldname="emailaddress1" disabled="false" />
+                      </cell>
+                      <cell id="{567e1a82-ee76-b389-08cc-051248dca710}" showlabel="false" ordinalvalue="20019" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d04197ea-cc7b-a052-b0c8-d77936934465}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10020" solutionaction="Added">
+                        <labels>
+                          <label description="Company Name" languagecode="1033" />
+                        </labels>
+                        <control id="companyname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="companyname" disabled="false" uniqueid="{4d858e47-d745-9234-982b-c3c0e2b3da53}" />
+                      </cell>
+                      <cell id="{2a348d14-58bc-9784-6a56-811b1cdd45aa}" showlabel="false" ordinalvalue="20021" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="address" showlabel="true" showbar="true" id="{e5d01544-1a3e-481f-803c-59b3fbaa54c9}" IsUserDefined="0" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{953c6b4f-4aba-4180-87e5-9d43cc8cb597}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Address line 1" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{ce675cdb-f381-45c8-92e5-da12dfa0a504}" ordinalvalue="20001" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{d20999d7-74ce-476e-8701-b279f0a4565f}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Address line 2" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{d5d0131a-754e-4b88-9490-5d831d638ef8}" ordinalvalue="20005" solutionaction="Modified">
+                        <labels>
+                          <label description="Postcode" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{75c9a302-de32-41a9-9c88-0f394165e41b}" ordinalvalue="10004" solutionaction="Removed" />
+                      <cell id="{7b8c1346-c8d4-426a-aa04-847c012d1f8e}" ordinalvalue="20005" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{29d49ccd-f962-4076-9b7a-eecbd1528bff}" ordinalvalue="10006" solutionaction="Removed" />
+                      <cell id="{bb9177b7-a507-4fab-ba29-7fbb408c867b}" ordinalvalue="20007" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{78075c20-ca43-55d9-6e91-973c09dc78d0}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
+                        <labels>
+                          <label description="County" languagecode="1033" />
+                        </labels>
+                        <control id="address1_county" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_county" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{18067ec0-50c3-4191-6d05-c4d6c7c09a82}" showlabel="true" locklevel="0" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_countryid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_countryid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{44b8eb6a-0c65-1110-dc0e-18107c3cdd26}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="City" languagecode="1033" />
+                        </labels>
+                        <control id="address1_city" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_city" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="description" showlabel="true" showbar="true" id="{2be84c3a-e676-40d0-9235-e9df8ed51132}" IsUserDefined="0" height="auto" ordinalvalue="2" solutionaction="Removed" />
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="details" id="{efe71f58-9794-4dd7-a20b-1bd9b76d17fd}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
+        <tab name="notes and activities" id="{6296BEFE-3D2F-40ee-80C7-D84FB71EB13C}" IsUserDefined="0" expanded="false" ordinalvalue="1" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="activities" showlabel="true" showbar="true" id="{598f3bcb-4ca1-4632-afd9-befda20904dd}" IsUserDefined="0" height="auto" ordinalvalue="0">
+                  <rows />
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="administration" id="{3b298b0f-ce9e-4c1b-846e-f0da12a270c4}" IsUserDefined="0" expanded="true" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Modified">
+          <labels>
+            <label description="Admin" languagecode="1033" solutionaction="Modified" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="internal information" showlabel="false" showbar="false" id="{168630c1-8a8a-4c90-babe-125d6f98231f}" IsUserDefined="0" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{32e9d8bb-94e0-4dcf-b479-7ccb27136dd2}" showlabel="true" locklevel="1" ordinalvalue="10002" solutionaction="Modified">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="true" solutionaction="Modified">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{b21ecc50-d63e-4ddd-bcbc-3e9901ef111c}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Modified">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="true" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b365e0d9-c495-ca3b-031b-e64777a9ec0d}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="Override Duplicate Detection" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_overwriteduplicatedetection" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_overwriteduplicatedetection" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a8096117-1c12-daa5-d9bc-2338c5ccd32a}" showlabel="false" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="contact methods" showlabel="true" showbar="true" id="{7fe525d3-3673-4a96-b9b1-ec2b6de424b5}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
+                <section name="marketing information" showlabel="true" showbar="true" locklevel="0" id="{f1ebe00b-8f2d-4622-bceb-f47e2b9219ef}" IsUserDefined="0" layout="varheight" columns="11" ordinalvalue="2" solutionaction="Removed" />
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab id="{251deca1-a596-46da-a09b-ca04aa264544}" name="conflictstab" group="solutionconflictstab" ordinalvalue="3" solutionaction="Added">
+          <labels>
+            <label description="Conflicts Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section id="{c2299852-85e8-4575-b90e-68b13b0b6336}" name="conflictssection" group="solutionconflictssection" ordinalvalue="0">
+                  <labels>
+                    <label description="Conflicts Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{315d8996-5394-44f4-83a1-58ede9c7a318}" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{869c309c-4dba-41b3-83f7-5cd57a6b9989}" showlabel="false" ordinalvalue="20001">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <events>
+        <event name="onload" application="false" active="false" solutionaction="Modified">
+          <InternalHandlers solutionaction="Removed" />
+          <Handlers solutionaction="Added">
+            <Handler functionName="DFE.Dqt.WebResources.Applicant.Form_OnLoad" libraryName="dfeta_Applicant" handlerUniqueId="{68e3c59e-c14a-2806-72c4-0c53d68052d7}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false" solutionaction="Modified">
+          <InternalHandlers solutionaction="Removed" />
+          <Handlers solutionaction="Added">
+            <Handler functionName="DFE.Dqt.WebResources.Applicant.Form_OnSave" libraryName="dfeta_Applicant" handlerUniqueId="{704d4799-16b2-bde9-79b2-cb5d31ee9db5}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <header id="{7cd72c36-6344-4e64-b476-e4ca7796c834}" celllabelposition="Top">
+        <rows>
+          <row>
+            <cell id="{6c75c836-91d0-827c-3a24-06938d1b8cbc}" ordinalvalue="10000" solutionaction="Removed" />
+            <cell id="{74683b38-69ab-3be7-b5cd-6bcb85136693}" ordinalvalue="20001" solutionaction="Removed" />
+            <cell id="{72aa6ca2-a299-d6e5-380e-66ac1760839e}" ordinalvalue="30002" solutionaction="Removed" />
+          </row>
+          <row>
+            <cell id="{b4663dbd-07b3-e896-1d00-ad4b286d55c2}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+              <labels>
+                <label description="MR Reference" languagecode="1033" />
+              </labels>
+              <control id="header_dfeta_applicantid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_applicantid" disabled="true" />
+            </cell>
+            <cell id="{3789d4bd-4a30-b827-ed52-68ec2cd10cd7}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="true" />
+            </cell>
+            <cell id="{3633d461-4ddd-a10d-5cd3-5cd06c77c1da}" showlabel="true" locklevel="0" ordinalvalue="30002" solutionaction="Added">
+              <labels>
+                <label description="Route" languagecode="1033" />
+              </labels>
+              <control id="header_dfeta_route" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_route" disabled="true" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <clientresources solutionaction="Removed" />
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem RelationshipName="Lead_ActivityPointers" Id="navActivities" Icon="/_imgs/ico_18_act.gif" Area="Info" Sequence="12" solutionaction="Modified">
+            <Titles solutionaction="Added">
+              <Title LCID="1033" Text="Activities" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="Lead_ActivityPointers" Id="navActivityHistory" TitleResourceId="Tab_Label_History" Icon="/_imgs/ico_18_history.gif" ViewId="21E2B905-6FDB-470d-8517-AD69B4C01268" Sequence="20" Area="Info" solutionaction="Modified">
+            <Titles solutionaction="Added">
+              <Title LCID="1033" Text="Closed Activities" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navCampaignsInSFA" Id="navCampaignsInSFA" Sequence="10" Area="Marketing" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Campaigns" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="listlead_association" Area="Marketing" Id="navListsInSFA" Sequence="11" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Marketing Lists" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="leadcompetitors_association" Sequence="40" Area="Sales" Id="navComp" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Competitors" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas solutionaction="Added">
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="c" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries solutionaction="Added">
+        <Library name="dfeta_application_insights.js" libraryUniqueId="{69dcc884-5006-a2c7-8464-17c6b9421a37}" />
+        <Library name="dfeta_Applicant" libraryUniqueId="{b6705585-558d-21d7-994e-de97249d3525}" />
+      </formLibraries>
+      <controlDescriptions solutionaction="Added" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

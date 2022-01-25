@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{49fd0049-f06b-4130-90df-f50c34111df7}</savedqueryid>
+    <queryapi>BulkOperation.RetrieveTargetedLeadsForMiniCampaign</queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="300" />
+          <cell name="subject" width="200" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="companyname" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <columnsetxml>
+      <columnset version="3.0">
+        <column>fullname</column>
+        <column>createdon</column>
+        <column>statuscode</column>
+        <column>subject</column>
+        <column>leadid</column>
+        <descend>createdon</descend>
+      </columnset>
+    </columnsetxml>
+    <querytype>2</querytype>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Lead BulkOperation View" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Display Leads BulkOperation View." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>dfeta_DQT</UniqueName>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="62" schemaName="dfeta_DQT" />
+    <AppModuleComponent type="60" id="{351c4635-47a7-e911-8199-000d3af92e18}" />
+    <AppModuleComponent type="1" schemaName="activitypointer" />
+    <AppModuleComponent type="1" schemaName="dfeta_sanction" />
+    <AppModuleComponent type="1" schemaName="dfeta_sanctioncode" />
+    <AppModuleComponent type="1" schemaName="lead" />
+    <AppModuleComponent type="60" id="{9886ead0-4fcc-4747-9a18-08e7a9a6de71}" />
+    <AppModuleComponent type="1" schemaName="dfeta_autonumber" />
+    <AppModuleComponent type="1" schemaName="dfeta_businesseventaudit" />
+    <AppModuleComponent type="1" schemaName="campaign" />
+    <AppModuleComponent type="1" schemaName="incident" />
+    <AppModuleComponent type="60" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
+    <AppModuleComponent type="60" id="{f658c846-f74c-459b-b591-b97558958106}" />
+    <AppModuleComponent type="1" schemaName="dfeta_country" />
+    <AppModuleComponent type="1" schemaName="dfeta_countrystate" />
+    <AppModuleComponent type="1" schemaName="dfeta_dbschildrensbarredlist" />
+    <AppModuleComponent type="1" schemaName="dfeta_disability" />
+    <AppModuleComponent type="1" schemaName="dfeta_document" />
+    <AppModuleComponent type="1" schemaName="dfeta_earlyyearsstatus" />
+    <AppModuleComponent type="1" schemaName="dfeta_ethnicity" />
+    <AppModuleComponent type="1" schemaName="dfeta_hequalification" />
+    <AppModuleComponent type="1" schemaName="dfeta_hesubject" />
+    <AppModuleComponent type="1" schemaName="dfeta_hesaukprnmapping" />
+    <AppModuleComponent type="1" schemaName="dfeta_initiativecode" />
+    <AppModuleComponent type="1" schemaName="dfeta_integrationtransaction" />
+    <AppModuleComponent type="1" schemaName="msdyn_iotalert" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittqualification" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittsubject" />
+    <AppModuleComponent type="1" schemaName="dfeta_legacyaudit" />
+    <AppModuleComponent type="1" schemaName="list" />
+    <AppModuleComponent type="1" schemaName="dfeta_mqestablishment" />
+    <AppModuleComponent type="1" schemaName="dfeta_mrapplication" />
+    <AppModuleComponent type="1" schemaName="account" />
+    <AppModuleComponent type="1" schemaName="dfeta_organisationcategory" />
+    <AppModuleComponent type="1" schemaName="contact" />
+    <AppModuleComponent type="1" schemaName="dfeta_prdeclinestatusreason" />
+    <AppModuleComponent type="1" schemaName="product" />
+    <AppModuleComponent type="1" schemaName="queueitem" />
+    <AppModuleComponent type="1" schemaName="bulkoperation" />
+    <AppModuleComponent type="1" schemaName="dfeta_schooldirectinitiative" />
+    <AppModuleComponent type="1" schemaName="dfeta_serviceannouncement" />
+    <AppModuleComponent type="1" schemaName="dfeta_specialism" />
+    <AppModuleComponent type="1" schemaName="task" />
+    <AppModuleComponent type="1" schemaName="dfeta_teacherstatus" />
+    <AppModuleComponent type="1" schemaName="dfeta_temporaryqueries" />
+    <AppModuleComponent type="1" schemaName="dfeta_tsstcohorts" />
+    <AppModuleComponent type="1" schemaName="dfeta_tsstsubjects" />
+    <AppModuleComponent type="1" schemaName="dfeta_webactivitylog" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="DQT" languagecode="1033" />
+  </LocalizedNames>
+</AppModule>

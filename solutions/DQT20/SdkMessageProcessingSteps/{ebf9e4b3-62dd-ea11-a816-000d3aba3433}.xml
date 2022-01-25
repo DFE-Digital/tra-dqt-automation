@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.AutoFill.AutoFillAttributePlugin: Create of dfeta_qtsregistration" SdkMessageProcessingStepId="{ebf9e4b3-62dd-ea11-a816-000d3aba3433}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>9ebdbb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.AutoFill.AutoFillAttributePlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>60bdc44b-04c9-431e-947a-aa254ba0c198</PluginTypeId>
+  <PrimaryEntity>dfeta_qtsregistration</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Configuration>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;!-- dfeta_qtsregistration config --&gt;
+&lt;AutoFillPluginConfiguration xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'&gt;
+  &lt;InputAttributes&gt;
+    &lt;Attribute xsi:type="PrimaryKeyAttribute" name="dfeta_qtsregistrationid" /&gt;
+  &lt;/InputAttributes&gt;
+  &lt;OutputAttribute xsi:type="LookupAttribute" name="dfeta_personid"&gt;
+    &lt;Entity name="contact"&gt;
+      &lt;Attribute xsi:type="EntityReferenceAttribute" name="dfeta_qtsregistrationid" entityName="dfeta_qtsregistration" /&gt;
+    &lt;/Entity&gt;
+  &lt;/OutputAttribute&gt;
+&lt;/AutoFillPluginConfiguration&gt;</Configuration>
+  <FilteringAttributes></FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>40</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages />
+</SdkMessageProcessingStep>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fc71d030-7a82-4b51-bde8-29b24b7abf9d}</savedqueryid>
+    <queryapi>ListMember.RetrieveByObject</queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="300" />
+          <cell name="subject" width="200" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="companyname" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <columnsetxml>
+      <columnset version="3.0">
+        <column>fullname</column>
+        <column>createdon</column>
+        <column>statuscode</column>
+        <column>subject</column>
+        <column>leadid</column>
+        <descend>createdon</descend>
+      </columnset>
+    </columnsetxml>
+    <querytype>2</querytype>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Lead List Member View" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Displays information about related leads in the Members subgrid of the Marketing Lists." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

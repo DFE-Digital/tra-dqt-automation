@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{04ae0720-1eb0-e311-940e-00155d3681cd}</WebResourceId>
+  <Name>dfeta_XrmServiceToolkit</Name>
+  <DisplayName>XrmServiceToolkit</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.1.19</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/dfeta_XrmServiceToolkit04AE0720-1EB0-E311-940E-00155D3681CD</FileName>
+</WebResource>

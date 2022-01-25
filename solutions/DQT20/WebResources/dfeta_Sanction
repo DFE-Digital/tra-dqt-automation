@@ -1,0 +1,73 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (sanction) {
+                sanction.OnChangeSanctionEndDate = function (executionContext,startDate, endDate) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var startDateVal = formContext.getAttribute(startDate).getValue();
+                        var endDateVal = formContext.getAttribute(endDate).getValue();
+
+                        if (endDateVal != null) {
+                            endDateVal.setHours(0, 0, 0, 0);
+                            if (startDateVal != null)
+                                startDateVal.setHours(0, 0, 0, 0);
+
+                            if (endDateVal < startDateVal) {
+                                var alertStrings = { confirmButtonLabel: "Yes", text: 'End Date cannot be before Start Date.', title: "Date Warning" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                        formContext.getAttribute(endDate).setValue(null);
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                                //alert('End Date cannot be before Start Date.')
+                                //formContext.getAttribute(endDate).setValue(null);
+                            }
+                        }
+                    }
+                }
+
+                sanction.Form_OnSave = function (executionContext) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var spent = formContext.getAttribute('dfeta_spent').getValue();
+                        var endDateVal = formContext.getAttribute('dfeta_enddate').getValue();
+
+                        //Rule : When removing a sanction without clicking ‘yes’ radio button, but end date added. Error message should be displayed. “Need to confirm ‘yes’ sanction spent by clicking ‘yes’ radio button"
+                        if (!spent && (endDateVal != null)) {
+                            //alert('Need to confirm "yes" alert spent by clicking "yes" radio button');
+                            sanction.showAlert('Need to confirm "yes" alert spent by clicking "yes" radio button', 'Warning');
+                            executionContext.getEventArgs().preventDefault();
+                        }
+                        //Rule:  When removing a sanction without putting in an end date, but clicking ‘yes’ radio button. Error message should be displayed. “Enter sanction end date”.
+                        if (spent && (endDateVal == null)) {
+                            //alert('Enter alert end date');
+                            sanction.showAlert('Enter alert end date', 'Date Warning');
+                            executionContext.getEventArgs().preventDefault();
+                        }
+                    }
+                }
+                sanction.showAlert = function(alertMessage, alertTitle)
+                {
+                    var alertStrings = { confirmButtonLabel: "Yes", text: alertMessage, title: alertTitle };
+                    var alertOptions = { height: 120, width: 260 };
+                    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                        function success(result) {
+                            console.log("Alert dialog closed");
+                            //formContext.getAttribute(endDate).setValue(null);
+                        },
+                        function (error) {
+                            console.log(error.message);
+                        }
+                    );
+                }
+            })(webResources.Sanction = webResources.Sanction || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});
