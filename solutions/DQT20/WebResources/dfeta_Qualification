@@ -1,0 +1,136 @@
+
+
+/* Uses Common.js javascript file*/
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (qualification) {
+
+                var QualificationType = {
+                    HE: 389040000,
+                    NPQH: 389040001,
+                    MQ: 389040002,
+                    HLTA: 389040003,
+                    NPQSL: 389040004,
+                    NPQML: 389040005,
+                    NPQEL: 389040006
+                }
+
+                qualification.Date_OnChange = function (executionContext, fieldName) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var value = formContext.getAttribute(fieldName).getValue();
+                        var today = new Date();
+
+                        if (value > today) {
+                            alert('The Date Cannot be set to a date in the future');
+                            formContext.getAttribute(fieldName).setValue(null);
+                        }
+
+                    }
+                }
+
+                qualification.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        if (formContext.ui.getFormType() == 1/*Create Form*/) {
+                            formContext.getAttribute('dfeta_type').addOnChange(function () { qualification.OnChangeType(executionContext,false); });
+
+                            formContext.getControl('dfeta_type').setDisabled(false);
+                            formContext.getAttribute('dfeta_type').setSubmitMode('always');
+                        }
+
+                        qualification.OnChangeType(executionContext,true);
+                    }
+                }
+
+                qualification.OnChangeType = function (executionContext, onFormLoad) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_HE', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQH', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_MQ', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_HLTA', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQSL', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQML', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQEL', false);
+
+
+                        var type = formContext.getAttribute('dfeta_type').getValue();
+                        switch (type) {
+                            case QualificationType.HE:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_HE', true);
+                                break;
+
+                            case QualificationType.NPQH:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQH', true);
+                                break;
+
+                            case QualificationType.MQ:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_MQ', true);
+                                break;
+
+                            case QualificationType.HLTA:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_HLTA', true);
+                                break;
+
+                            case QualificationType.NPQML:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQML', true);
+                                break;
+
+                            case QualificationType.NPQSL:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQSL', true);
+                                break;
+
+                            case QualificationType.NPQEL:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQEL', true);
+                                break;
+
+                            default:
+                                if (!onFormLoad) {
+                                    var alertStrings = { confirmButtonLabel: "Yes", text: 'Invalid selection', title: "Warning" };
+                                    var alertOptions = { height: 120, width: 260 };
+                                    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                        function success(result) {
+                                            console.log("Alert dialog closed");
+                                        },
+                                        function (error) {
+                                            console.log(error.message);
+                                        }
+                                    );
+                                    //alert('Invalid selection');
+                                    return false;
+                                }
+                                break;
+                        }
+
+                        if (!onFormLoad) {
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_he_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqh_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_mq_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_hlta_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqml_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqsl_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqel_');
+
+                        }
+                    }
+                }
+
+                qualification.ClearDataFields = function (executionContext, fieldPrefix) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.data.entity.attributes.forEach(function (item, index) {
+                            if (item.getName().indexOf(fieldPrefix) == 0) {
+                                //item.setRequiredLevel('none');
+                                item.setSubmitMode('always');
+                                item.setValue(null);
+                            }
+                        });
+                    }
+                }
+            })(webResources.Qualification = webResources.Qualification || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

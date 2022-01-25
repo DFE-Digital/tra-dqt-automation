@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{f1d79832-211f-44ad-b1ce-c0414b39c535}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_inductionperiodid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_startdate" width="125" />
+          <cell name="dfeta_enddate" width="125" />
+          <cell name="dfeta_numberofterms" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_inductionperiod">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_startdate" descending="false" />
+          <attribute name="dfeta_startdate" />
+          <attribute name="dfeta_numberofterms" />
+          <attribute name="dfeta_enddate" />
+          <attribute name="dfeta_inductionperiodid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Induction Period Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

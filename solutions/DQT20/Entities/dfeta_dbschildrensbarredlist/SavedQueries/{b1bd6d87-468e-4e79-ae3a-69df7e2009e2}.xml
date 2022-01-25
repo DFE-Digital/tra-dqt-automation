@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b1bd6d87-468e-4e79-ae3a-69df7e2009e2}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="dfeta_trn" select="1" icon="1" preview="0">
+        <row name="dfeta_dbschildrensbarredlist" id="dfeta_dbschildrensbarredlistid">
+          <cell name="dfeta_trn" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="dfeta_firstname" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="dfeta_lastname" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="dfeta_birthdate" width="100" />
+          <cell name="dfeta_ninumber" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_dbschildrensbarredlist">
+          <attribute name="dfeta_dbschildrensbarredlistid" />
+          <attribute name="dfeta_trn" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="dfeta_lastname" descending="false" />
+          <attribute name="dfeta_ninumber" />
+          <attribute name="dfeta_lastname" />
+          <attribute name="dfeta_firstname" />
+          <attribute name="dfeta_birthdate" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="DBS Children's Barred List Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

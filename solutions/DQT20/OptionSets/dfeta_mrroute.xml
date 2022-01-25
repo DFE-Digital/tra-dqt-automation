@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="dfeta_mrroute" localizedName="MR Route" description="Mutual Recognition - Route" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.5.1.57</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="MR Route" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="Mutual Recognition - Route" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="389040002">
+      <labels>
+        <label description="EEA" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="389040000">
+      <labels>
+        <label description="Scotland" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="389040001">
+      <labels>
+        <label description="Northern Ireland" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="389040003">
+      <labels>
+        <label description="OTT" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

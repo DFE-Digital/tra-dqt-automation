@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{4c7f5e8c-14ff-ea11-a813-000d3aba3433}</WebResourceId>
+  <Name>dfeta_application_insights.js</Name>
+  <DisplayName>dfeta_application_insights.js</DisplayName>
+  <Description>Collect client -side application telemetry for form loads and custom js</Description>
+  <LanguageCode>1033</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.10</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"/&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/dfeta_application_insightsjs4C7F5E8C-14FF-EA11-A813-000D3ABA3433</FileName>
+</WebResource>

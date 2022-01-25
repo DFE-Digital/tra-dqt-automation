@@ -1,0 +1,49 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (mremployment) {
+                /* Uses Common.js javascript file*/
+
+                var MRRoute = {
+                    SC: 389040000,
+                    NI: 389040001,
+                    EEA: 389040002,
+                    OTT: 389040003,
+                }
+
+
+                mremployment.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_mrapplicationid').addOnChange(function () { mremployment.OnChangeMRApplication(executionContext,false); });
+
+                        mremployment.OnChangeMRApplication(executionContext,true);
+                    }
+                }
+
+                mremployment.OnChangeMRApplication = function (executionContext,onFormLoad) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var mrApp = formContext.getAttribute('dfeta_mrapplicationid').getValue();
+
+                        if (mrApp != null && mrApp.length > 0) {
+                            DFE.Dqt.WebResources.Common.RetrieveRecordById("dfeta_mrapplications", mrApp[0].id, "dfeta_mrapplicationid,dfeta_route", function (item) {
+                                if (item != null && item.dfeta_route != null && item.dfeta_route == MRRoute.NI) {
+                                    formContext.getControl('dfeta_ni_headteachername').setVisible(true);
+                                }
+                                else {
+                                    if (!onFormLoad) {
+                                        formContext.getAttribute('dfeta_ni_headteachername').setValue(null);
+                                        formContext.getAttribute('dfeta_ni_headteachername').setSubmitMode('always');
+                                    }
+                                    formContext.getControl('dfeta_ni_headteachername').setVisible(false);
+                                }
+                            });
+                        }
+                    }
+                }
+            })(webResources.MREmployment = webResources.MREmployment || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{06d852a3-f8a6-42f4-8435-2d110060d04d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_webactivitylogid">
+          <cell name="dfeta_username" width="100" />
+          <cell name="dfeta_saorgid" width="100" />
+          <cell name="dfeta_description" width="100" />
+          <cell name="dfeta_status" width="100" />
+          <cell name="dfeta_timestamp" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="dfeta_webactivitylog">
+          <attribute name="dfeta_username" />
+          <attribute name="dfeta_timestamp" />
+          <attribute name="dfeta_status" />
+          <attribute name="dfeta_description" />
+          <order attribute="dfeta_timestamp" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="dfeta_timestamp" operator="last-x-weeks" value="1" />
+          </filter>
+          <attribute name="dfeta_saorgid" />
+          <attribute name="dfeta_webactivitylogid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.5.01.57</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Web Activity Logs" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

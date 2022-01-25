@@ -1,0 +1,424 @@
+/* Uses Common.js javascript file*/
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (mrapplication) {
+                var prevMRRoute = null;
+
+                var MRRoute = {
+                    SC: 389040000,
+                    NI: 389040001,
+                    EEA: 389040002,
+                    OTT: 389040003,
+                }
+
+                var ApplicationType = {
+                    Establishment: 389040000,
+                    TemporaryProvision: 389040001,
+                }
+
+                var ActiveCountryViews = {
+                    MR: "{27975501-51D3-E211-8FA7-000C290E5708}",
+                    OTT: "{7AB12DC0-86B1-E211-8967-000C290E5708}",
+                    EEA: "{9B22DCA6-86B1-E211-8967-000C290E5708}",
+                    SC: "{1CF1B8AB-B0E4-E211-A75F-000C290E5708}",
+                    NI: "{084088BD-B0E4-E211-A75F-000C290E5708}"
+                }
+
+                var FormType = {
+                    Create: 1,
+                    Update: 2,
+                    ReadOnly: 3,
+                    Disabled: 4,
+                }
+
+                mrapplication.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_sc_qtsdatedecision').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_sc_qtsdatedecision'); });
+                        formContext.getAttribute('dfeta_ni_qtsdatedecision').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_ni_qtsdatedecision'); });
+                        formContext.getAttribute('dfeta_startdate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_startdate'); });
+                        formContext.getAttribute('dfeta_enddate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_enddate'); });
+                        formContext.getAttribute('dfeta_eea_applicationtype').addOnChange(function () { mrapplication.OnChangeApplicationType(executionContext,false); });
+                        formContext.getAttribute('dfeta_noneea_countryid').addOnChange(mrapplication.OnChangeNonEEACountry);
+                        formContext.getAttribute('dfeta_route').addOnChange(function () { mrapplication.OnChangeMRRoute(executionContext,false); });
+                        formContext.getAttribute('dfeta_eea_assessment1').addOnChange(function () { mrapplication.OnChangeAssessment1(executionContext); });
+                        formContext.getAttribute('dfeta_eea_assessment2').addOnChange(function () { mrapplication.OnChangeAssessment2(executionContext); });
+                        formContext.getAttribute('dfeta_declinereason1').addOnChange(function () { mrapplication.OnChangeApplicationDeclineReasons(executionContext, false); });
+                        formContext.getAttribute('dfeta_declinereason2').addOnChange(function () { mrapplication.OnChangeApplicationDeclineReasons(executionContext, false); });
+                        //formContext.getAttribute('dfeta_dateoffirstassessment').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext, 'dfeta_dateoffirstassessment'); });
+                        formContext.getAttribute('dfeta_dateoffirstassessment').addOnChange(function () { mrapplication.OnChangeDateOfFirstAssessment(executionContext, false); });
+
+                        mrapplication.OnChangeApplicationType(executionContext,true);
+                        mrapplication.OnChangeMRRoute(executionContext,true);
+                        mrapplication.ShowApplicantLeadOrContact(executionContext);
+                        mrapplication.OnChangeApplicationDeclineReasons(executionContext, true);
+                    }
+                }
+
+                mrapplication.ShowApplicantLeadOrContact = function (executionContext) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var person = formContext.getAttribute('dfeta_personid');
+                        var lead = formContext.getAttribute('dfeta_applicantid');
+                        if (person != null && lead != null) {
+                            if (lead.getValue() != null && person.getValue() == null) {
+                                formContext.getControl('dfeta_applicantid').setVisible(true);
+                                formContext.getAttribute('dfeta_personid').setRequiredLevel('none');
+                            }
+                            else {
+                                formContext.getControl('dfeta_personid').setVisible(true);
+                            }
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeApplicationType = function (executionContext,onFormLoad) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var appType = formContext.getAttribute('dfeta_eea_applicationtype').getValue();
+
+                        switch (appType) {
+                            case ApplicationType.TemporaryProvision:
+                                formContext.getControl('dfeta_eea_declarationdate').setVisible(true);
+                                formContext.getAttribute('dfeta_eea_declarationdate').setRequiredLevel('required');
+
+                                formContext.getControl('dfeta_eea_declarationrenewalreviewdate').setVisible(true);
+                                formContext.getAttribute('dfeta_eea_declarationrenewalreviewdate').setRequiredLevel('required');
+                                break;
+
+                            case ApplicationType.Establishment:
+                            default:
+                                formContext.getAttribute('dfeta_eea_declarationdate').setRequiredLevel('none');
+                                formContext.getControl('dfeta_eea_declarationdate').setVisible(false);
+
+                                formContext.getAttribute('dfeta_eea_declarationrenewalreviewdate').setRequiredLevel('none');
+                                formContext.getControl('dfeta_eea_declarationrenewalreviewdate').setVisible(false);
+
+                                if (!onFormLoad) {
+                                    formContext.getAttribute('dfeta_eea_declarationdate').setValue(null);
+                                    formContext.getAttribute('dfeta_eea_declarationdate').setSubmitMode('always');
+
+                                    formContext.getAttribute('dfeta_eea_declarationrenewalreviewdate').setValue(null);
+                                    formContext.getAttribute('dfeta_eea_declarationrenewalreviewdate').setSubmitMode('always');
+                                }
+                                break;
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeNonEEACountry = function (executionContext) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var nonEEACountry = formContext.getAttribute('dfeta_noneea_countryid').getValue();
+                        if (nonEEACountry != null) {
+                            formContext.getControl('dfeta_noneea_countrystateid').setDisabled(false);
+                        }
+                        else {
+                            if (formContext.getAttribute('dfeta_noneea_countrystateid').getValue() != null) {
+                                formContext.getAttribute('dfeta_noneea_countrystateid').setValue(null);
+                                formContext.getAttribute('dfeta_noneea_countrystateid').setSubmitMode('always');
+                            }
+                            formContext.getControl('dfeta_noneea_countrystateid').setDisabled(true);
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeMRRoute = function (executionContext,onFormLoad) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_sc', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_ni', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_eea', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_noneea', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_qualification', 'section_employment', true);/*show employment sub-grid*/
+                        formContext.getControl("dfeta_countryid").setDisabled(false);
+
+                        var mrRoute = formContext.getAttribute('dfeta_route').getValue();
+                        if (!onFormLoad) {
+                            if (prevMRRoute != mrRoute) {
+                                switch (prevMRRoute) {
+                                    case MRRoute.SC:
+                                        mrapplication.ClearDataFields(executionContext,'dfeta_sc_');
+                                        break;
+
+                                    case MRRoute.NI:
+                                        mrapplication.ClearDataFields(executionContext,'dfeta_ni_');
+                                        break;
+
+                                    case MRRoute.EEA:
+                                        mrapplication.ClearDataFields(executionContext,'dfeta_eea_');
+                                        mrapplication.OnChangeApplicationType(executionContext,onFormLoad);
+                                        break;
+
+                                    case MRRoute.OTT:
+                                        mrapplication.ClearDataFields(executionContext,'dfeta_noneea_');
+                                        break;
+                                }
+                            }
+                        }
+
+                        if (!onFormLoad) {
+                            formContext.getAttribute('dfeta_countryid').setValue(null);
+                            formContext.getAttribute('dfeta_countryid').setSubmitMode('always');
+                        }
+
+                        prevMRRoute = mrRoute;
+                        switch (mrRoute) {
+
+                            case MRRoute.SC:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_sc', true);
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_qualification', 'section_employment', false);/*hide employment sub-grid*/
+                                formContext.getControl("dfeta_countryid").setDefaultView(ActiveCountryViews.SC);
+
+                                if (!onFormLoad) {
+                                    DFE.Dqt.WebResources.Common.RetrieveRecordsByFilter("dfeta_countries", "dfeta_value eq 'XH'", "dfeta_countryid,dfeta_name", function (item) {
+                                        if (item != null && item.value != null && item.value.length > 0) {
+                                            var scLookup = [];
+                                            scLookup[0] = {};
+                                            scLookup[0].id = item.value[0].dfeta_countryid;
+                                            scLookup[0].name = item.value[0].dfeta_name;
+                                            scLookup[0].entityType = 'dfeta_country';
+
+                                            formContext.getAttribute('dfeta_countryid').setValue(scLookup);
+
+                                        }
+                                    });
+                                }
+                                break;
+
+                            case MRRoute.NI:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_ni', true);
+                                formContext.getControl("dfeta_countryid").setDefaultView(ActiveCountryViews.NI);
+
+                                if (!onFormLoad) {
+                                    DFE.Dqt.WebResources.Common.RetrieveRecordsByFilter("dfeta_countries", "dfeta_value eq 'XG'", "dfeta_countryid,dfeta_name", function (item) {
+                                        if (item != null && item.value != null && item.value.length > 0) {
+                                            var scLookup = [];
+                                            scLookup[0] = {};
+                                            scLookup[0].id = item.value[0].dfeta_countryid;
+                                            scLookup[0].name = item.value[0].dfeta_name;
+                                            scLookup[0].entityType = 'dfeta_country';
+
+                                            formContext.getAttribute('dfeta_countryid').setValue(scLookup);
+                                        }
+                                    });
+                                }
+                                break;
+
+                            case MRRoute.EEA:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_eea', true);
+                                formContext.getControl("dfeta_countryid").setDefaultView(ActiveCountryViews.EEA);
+
+                                formContext.getAttribute('dfeta_eea_applicationtype').setRequiredLevel('required');
+
+                                formContext.getControl('dfeta_completedinduction').setVisible(false);
+                                formContext.getControl('dfeta_eea_eligibility').setVisible(false);
+                                formContext.getControl('dfeta_eea_eligibilityconfirmed').setVisible(false);
+                                formContext.getControl('dfeta_qtsawarded').setVisible(false);
+                                formContext.getControl('dfeta_confirmationemailsent').setVisible(false);
+                                formContext.getControl('dfeta_eea_fiadditioninformationreceived').setVisible(false);
+                                formContext.getControl('dfeta_eea_ficontact').setVisible(false);
+                                formContext.getControl('dfeta_eea_declineschecked').setVisible(false);
+
+                                DFE.Dqt.WebResources.Common.RemovePicklistOption(executionContext,'dfeta_eea_assessment2', 389040005);
+
+                                if (!onFormLoad) {
+                                    formContext.getAttribute('dfeta_eea_applicationtype').setValue(ApplicationType.Establishment);
+                                    formContext.getAttribute('dfeta_eea_applicationtype').setSubmitMode('always');
+                                }
+                                break;
+
+                            case MRRoute.OTT:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_application', 'section_noneea', true);
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext,'tab_qualification', 'section_employment', false);/*hide employment sub-grid*/
+                                formContext.getControl("dfeta_countryid").setDefaultView(ActiveCountryViews.OTT);
+
+                                formContext.getAttribute('dfeta_noneea_countryid').setRequiredLevel('required');
+                                break;
+
+                            default:
+                                formContext.getControl("dfeta_countryid").setDefaultView(ActiveCountryViews.MR);
+                                formContext.getControl("dfeta_countryid").setDisabled(true);
+                                break;
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeAssessment1 = function (executionContext) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_eea_assessor1id').setValue(null);;   // set assessor1 to null
+                        try {
+                            assessment1 = formContext.getAttribute('dfeta_eea_assessment1').getSelectedOption().value;
+                        }
+                        catch (e) {
+                            assessment1 = null;                      // error occurs where Unassigned Value is selected
+                        }
+                        finally {
+                            if (assessment1 != null) {
+                                var scLookup = [];
+                                scLookup[0] = {};
+                                scLookup[0].id = formContext.context.getUserId();
+                                scLookup[0].name = DFE.Dqt.WebResources.Common.CurrentUserFullName();
+                                scLookup[0].entityType = 'systemuser';
+                                formContext.getAttribute('dfeta_eea_assessor1id').setValue(scLookup);
+                            }
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeAssessment2 = function (executionContext) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_eea_assessor2id').setValue(null);   // set assessor2 to null
+                        try {
+                            assessment2 = formContext.getAttribute('dfeta_eea_assessment2').getSelectedOption().value;
+                        }
+                        catch (e) {
+                            assessment2 = null;                      // error occurs where Unassigned Value is selected
+                        }
+                        finally {
+                            if (assessment2 != null) {
+                                var scLookup = [];
+                                scLookup[0] = {};
+                                scLookup[0].id = formContext.context.getUserId();
+                                scLookup[0].name = DFE.Dqt.WebResources.Common.CurrentUserFullName();
+                                scLookup[0].entityType = 'systemuser';
+
+                                formContext.getAttribute('dfeta_eea_assessor2id').setValue(scLookup);
+                            }
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeApplicationDeclineReasons = function (executionContext, onFormLoad) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+
+                        if (onFormLoad && (formContext.ui.getFormType() == FormType.Update)) {
+                            //Check the applicant record is disqualified and declined
+                            var MRApplicationId = Xrm.Page.data.entity.getId();
+                            var applicantId = getWebAPIData("dfeta_mrapplications", "dfeta_applicantid", "dfeta_mrapplicationid eq " + MRApplicationId, "");
+
+                            if (applicantId != null && applicantId.value.length > 0) {
+                                var applicantId = applicantId.value[0]['_dfeta_applicantid_value'];
+                                var applicantEntity = getWebAPIData("leads", "statecode,statuscode", "leadid eq " + applicantId, "");
+
+                                if (applicantEntity != null && applicantEntity.value.length > 0) {
+                                    var stateCode = applicantEntity.value[0]['statecode'];
+                                    var statusCode = applicantEntity.value[0]['statuscode'];
+                                }
+                            }
+
+                            if (stateCode == 2 && statusCode == 4) { //Disqualified and Declined
+                                formContext.getAttribute('dfeta_declinereason1').setRequiredLevel('required');
+                            }
+                            else {
+                                formContext.getAttribute('dfeta_declinereason1').setRequiredLevel('none');
+                            }
+                        }
+                        else {
+                            var declineReason1 = formContext.getAttribute('dfeta_declinereason1').getValue();
+                            var declineReason2 = formContext.getAttribute('dfeta_declinereason2').getValue();
+
+                            if (declineReason1 != null && declineReason2 != null) {
+                                declineReason1 = declineReason1[0].name;
+                                declineReason2 = declineReason2[0].name;
+                                if (declineReason1 == declineReason2) {
+                                    formContext.getAttribute('dfeta_declinereason2').setValue(null);
+                                    var alertStrings = {
+                                        confirmButtonLabel: "Ok", text: "You have selected '" + declineReason2 + "' as the secondary decline reason.\n" + "-" + "\nDecline reason 2 must not match decline reason 1.", title: "Information - Decline Reasons"
+                                    };
+                                    var alertOptions = { height: 250, width: 300 };
+
+                                    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                mrapplication.OnChangeDateOfFirstAssessment = function (executionContext, onFormLoad) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+
+                        var dateOfFirstAssessment = formContext.getAttribute('dfeta_dateoffirstassessment').getValue();
+                        if (dateOfFirstAssessment != null) {
+                            createdOn = formContext.getAttribute('createdon').getValue();  
+   
+                            var day = createdOn.getDate();
+                            var month = createdOn.getMonth();
+                            var year = createdOn.getFullYear();
+                            var dateApplicationCreated = new Date(year, month, day);
+
+                            if (dateOfFirstAssessment < dateApplicationCreated) {
+                                var alertStrings = { confirmButtonLabel: "OK", text: 'The date of first assessment cannot be prior the application was created - ' + dateApplicationCreated.toLocaleDateString(), title: "Date Warning" };
+                                var alertOptions = { height: 120, width: 300 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        formContext.getAttribute('dfeta_dateoffirstassessment').setValue(null);
+                                        formContext.getAttribute('dfeta_dateoffirstassessment').setSubmitMode('always');
+                                        formContext.getControl('dfeta_dateoffirstassessment').setFocus();
+                                    },
+                                );
+                            }
+                            else
+                                return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext, 'dfeta_dateoffirstassessment');
+                        }
+                    }
+                }
+
+                mrapplication.ClearDataFields = function (executionContext,fieldPrefix) {
+                    if (executionContext != null && executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.data.entity.attributes.forEach(function (item, index) {
+                            if (item.getName().indexOf(fieldPrefix) == 0) {
+                                item.setRequiredLevel('none');
+                                item.setSubmitMode('always');
+                                item.setValue(null);
+                            }
+                        });
+                    }
+                }
+
+                function getWebAPIData(sEntityName, sColumns, sFilter, sOrderBy) {
+                    var globalContext = Xrm.Utility.getGlobalContext();
+                    var serverUrl = globalContext.getClientUrl();
+                    var OData_Endpoint = "/api/data/v9.2";
+                    var fullUrl = serverUrl + OData_Endpoint + "/" + sEntityName + "?";
+
+                    if (sColumns) {
+                        fullUrl += "$select=" + sColumns;
+                    }
+                    if (sFilter) {
+                        fullUrl += "&$filter=" + sFilter;
+                    }
+                    if (sOrderBy) {
+                        fullUrl += "&$orderby=" + sOrderBy;
+                    }
+
+                    try {
+                        var retrieveRecordsReq = new XMLHttpRequest();
+                        retrieveRecordsReq.open("GET", fullUrl, false);
+                        retrieveRecordsReq.setRequestHeader("OData-MaxVersion", "4.0");
+                        retrieveRecordsReq.setRequestHeader("OData-Version", "4.0");
+                        retrieveRecordsReq.setRequestHeader("Accept", "application/json");
+                        retrieveRecordsReq.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                        retrieveRecordsReq.send();
+
+                        var data = JSON.parse(retrieveRecordsReq.responseText);
+
+                        return data;
+                    }
+                    catch (ex) {
+                        var alertStrings = { confirmButtonLabel: "Ok", text: "Error: getWebAPIData - Data Set =" + sEntityName + "; select = " + sColumns + "; filter = " + sFilter + "; Error = " + ex.message, title: "Error" };
+                        var alertOptions = { height: 120, width: 260 };
+                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                    }
+                }
+            })(webResources.MRApplication = webResources.MRApplication || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});
