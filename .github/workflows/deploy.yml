@@ -72,6 +72,7 @@ jobs:
     runs-on: windows-latest
     needs: deploy_build
     strategy:
+      max-parallel: 1
       matrix:
         environment: [Test, preprod, prod]
     env:
