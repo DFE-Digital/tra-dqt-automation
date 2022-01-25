@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     env:
       solution_folder: solutions
-      solution_name: DQT20
+      solution_name: DummyforCICD
       solution_exported_folder: out/exported/
     environment: Build
     steps:
@@ -75,7 +75,7 @@ jobs:
       matrix:
         environment: [Test, preprod, prod]
     env:
-      solution_name: DQT20
+      solution_name: DummyforCICD
     environment: ${{ matrix.environment }}
     steps:
     - uses: actions/checkout@v2
