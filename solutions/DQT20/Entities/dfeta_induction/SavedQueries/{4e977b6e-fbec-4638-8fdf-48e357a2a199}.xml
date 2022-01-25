@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4e977b6e-fbec-4638-8fdf-48e357a2a199}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="dfeta_induction" id="dfeta_inductionid">
+          <cell name="dfeta_startdate" width="125" />
+          <cell name="dfeta_completiondate" width="125" />
+          <cell name="dfeta_inductionstatus" width="200" />
+          <cell name="a_50f04242c1e7e211b057000c29770442.dfeta_trn" width="150" disableSorting="1" />
+          <cell name="a_50f04242c1e7e211b057000c29770442.birthdate" width="150" disableSorting="1" />
+          <cell name="dfeta_name" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_induction">
+          <order attribute="dfeta_startdate" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_startdate" />
+          <attribute name="dfeta_inductionstatus" />
+          <attribute name="dfeta_completiondate" />
+          <link-entity alias="a_50f04242c1e7e211b057000c29770442" name="contact" from="contactid" to="dfeta_personid" link-type="outer" visible="false">
+            <attribute name="dfeta_trn" />
+            <attribute name="birthdate" />
+          </link-entity>
+          <attribute name="dfeta_name" />
+          <attribute name="dfeta_inductionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Induction Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.PopulateAutoNumberPlugin: Update of contact" SdkMessageProcessingStepId="{fee77157-8cdc-ea11-a816-000d3aba3433}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.PopulateAutoNumberPlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>1769d475-3399-44ec-800f-e12af1c97265</PluginTypeId>
+  <PrimaryEntity>contact</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Configuration>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;Settings&gt;
+  &lt;setting name="AutoNumberLockId"&gt;
+    &lt;value&gt;bba798b5-ee5b-eb11-a812-000d3ab3d5b4&lt;/value&gt;
+  &lt;/setting&gt;
+&lt;/Settings&gt;</Configuration>
+  <FilteringAttributes>dfeta_trnallocaterequest</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>0</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>20</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages>
+    <SdkMessageProcessingStepImage Name="preImage">
+      <SdkMessageProcessingStepImageId>{c2d9266c-8cdc-ea11-a816-000d3aba3433}</SdkMessageProcessingStepImageId>
+      <Attributes>dfeta_trn</Attributes>
+      <EntityAlias>preImage</EntityAlias>
+      <ImageType>0</ImageType>
+      <MessagePropertyName>Target</MessagePropertyName>
+      <IsCustomizable>1</IsCustomizable>
+    </SdkMessageProcessingStepImage>
+  </SdkMessageProcessingStepImages>
+</SdkMessageProcessingStep>

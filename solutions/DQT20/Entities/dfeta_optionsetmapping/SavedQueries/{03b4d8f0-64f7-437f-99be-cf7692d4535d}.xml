@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{03b4d8f0-64f7-437f-99be-cf7692d4535d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_optionsetmappingname" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_optionsetmappingid">
+          <cell name="dfeta_optionsetmappingname" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_optionsetmapping">
+          <attribute name="dfeta_optionsetmappingid" />
+          <attribute name="dfeta_optionsetmappingname" />
+          <attribute name="createdon" />
+          <order attribute="dfeta_optionsetmappingname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.1.19</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="OptionSet Mapping Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

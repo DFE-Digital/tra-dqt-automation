@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{262fd3fc-886c-4cc4-ab70-683104fd05df}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="dfeta_sanction" id="dfeta_sanctionid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_startdate" width="125" />
+          <cell name="dfeta_enddate" width="125" />
+          <cell name="dfeta_spent" width="125" />
+          <cell name="a_87f04242c1e7e211b057000c29770442.dfeta_trn" width="150" disableSorting="1" />
+          <cell name="a_87f04242c1e7e211b057000c29770442.birthdate" width="150" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_sanction">
+          <order attribute="dfeta_enddate" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_startdate" />
+          <attribute name="dfeta_spent" />
+          <attribute name="dfeta_enddate" />
+          <attribute name="dfeta_name" />
+          <link-entity alias="a_87f04242c1e7e211b057000c29770442" name="contact" from="contactid" to="dfeta_personid" link-type="outer" visible="false">
+            <attribute name="dfeta_trn" />
+            <attribute name="birthdate" />
+          </link-entity>
+          <attribute name="dfeta_sanctionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Alert Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a5ee4074-a516-48b5-8744-cfcde95bf44f}</formid>
+    <IntroducedVersion>1.0.1.19</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{306ec76e-0f01-456d-9524-d73beb9eaa0d}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{345452a1-997c-4b95-85d5-a94a992a3eae}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b4cc7e32-6c45-4c00-bc41-52088f3ffaa4}" colspan="2">
+                        <labels>
+                          <label description="OptionSet Mapping Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_optionsetmappingname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_optionsetmappingname" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d354acc-cb51-a621-9d9d-40a4588b58d1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="CRM Code" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_crmcode" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="dfeta_crmcode" disabled="false" />
+                      </cell>
+                      <cell id="{ce2b7925-e62a-2a68-ed7e-d90c2e738798}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Export Code" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_exportcode" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_exportcode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{e9bab56a-8085-4230-9075-777ea39d92e6}">
+        <rows>
+          <row>
+            <cell id="{acedcffe-3ce9-4161-ae49-979325a30b30}">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="footer_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

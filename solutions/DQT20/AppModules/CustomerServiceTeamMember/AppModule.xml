@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>CustomerServiceTeamMember</UniqueName>
+  <IntroducedVersion>9.1.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="62" schemaName="CustomerServiceTeamMember" />
+    <AppModuleComponent type="1" schemaName="activitypointer" />
+    <AppModuleComponent type="60" id="{a4640db1-4962-4e79-92c6-690e627924d7}" />
+    <AppModuleComponent type="1" schemaName="dfeta_sanction" />
+    <AppModuleComponent type="60" id="{ef4b4b0f-8b61-474d-b06a-8248577b08ee}" />
+    <AppModuleComponent type="1" schemaName="incident" />
+    <AppModuleComponent type="1" schemaName="dfeta_employment" />
+    <AppModuleComponent type="60" id="{209f0fcd-3693-4be4-aae8-2a2a36ee0ebe}" />
+    <AppModuleComponent type="1" schemaName="dfeta_hequalification" />
+    <AppModuleComponent type="60" id="{2449022a-7a85-4a57-a235-e374ffc50b5e}" />
+    <AppModuleComponent type="1" schemaName="dfeta_hesubject" />
+    <AppModuleComponent type="60" id="{195c9955-bc7f-49b4-b64f-a3c5d890d35a}" />
+    <AppModuleComponent type="1" schemaName="dfeta_induction" />
+    <AppModuleComponent type="60" id="{eda42192-25ed-498c-b649-ff95be5379a9}" />
+    <AppModuleComponent type="1" schemaName="dfeta_inductionperiod" />
+    <AppModuleComponent type="60" id="{d1032b97-6aba-4764-9743-d0b02e7b11b2}" />
+    <AppModuleComponent type="1" schemaName="dfeta_initialteachertraining" />
+    <AppModuleComponent type="60" id="{b31f66a0-6d4a-41c8-9c33-3a4be5dbe8a2}" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittqualification" />
+    <AppModuleComponent type="60" id="{f71b2828-206f-4a2f-8605-05a45ac0f459}" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittsubject" />
+    <AppModuleComponent type="60" id="{d3453ba5-9f77-4c8a-8c68-7cb03eefceff}" />
+    <AppModuleComponent type="1" schemaName="account" />
+    <AppModuleComponent type="60" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
+    <AppModuleComponent type="1" schemaName="contact" />
+    <AppModuleComponent type="60" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" />
+    <AppModuleComponent type="1" schemaName="dfeta_previousname" />
+    <AppModuleComponent type="60" id="{032a126f-10f7-4030-ada1-1b5933bae6ed}" />
+    <AppModuleComponent type="1" schemaName="dfeta_qtsregistration" />
+    <AppModuleComponent type="60" id="{75614ce8-5cbb-4016-9f9c-03c98d8cf38e}" />
+    <AppModuleComponent type="1" schemaName="dfeta_qualification" />
+    <AppModuleComponent type="60" id="{279d12a2-f37b-45aa-9db6-5f35a7cece39}" />
+    <AppModuleComponent type="1" schemaName="dfeta_teacherstatus" />
+    <AppModuleComponent type="60" id="{f9bdc385-41f3-4715-b0bb-f0bd28f9addc}" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{3dac4d9e-568c-e611-80d4-00155d42a122}" />
+    <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" />
+    <Role id="{669f83dd-db08-e311-8cce-000c29770442}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="DQT Team Member" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Enable employees to self-serve by searching for knowledge articles and creating cases​." languagecode="1033" />
+  </Descriptions>
+</AppModule>
