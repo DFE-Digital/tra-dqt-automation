@@ -11,7 +11,7 @@ on:
       solution_name:
         description: 'CRM solution you want to export and import'
         required: true
-        default: DummyforCICD
+        default: DQT20
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
@@ -27,7 +27,7 @@ on:
 
 jobs:
   export:
-    name: Export
+    name: Export solution
     runs-on: windows-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
@@ -71,4 +71,4 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-
+        

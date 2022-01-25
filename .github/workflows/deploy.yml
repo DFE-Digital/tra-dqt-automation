@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-    - master
+    - main
     - Test
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     env:
       solution_folder: solutions
-      solution_name: DummyforCICD
+      solution_name: DQT20
       solution_exported_folder: out/exported/
     environment: Build
     steps:
@@ -23,8 +23,8 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: Test
-
-    - name: pack unmanaged solution
+        
+    - name: Pack unmanaged solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ env.solution_folder }}/${{ env.solution_name }}
@@ -61,22 +61,21 @@ jobs:
         solution-output-file: ${{ env.solution_exported_folder }}/${{ env.solution_name }}_managed.zip
         managed: true
 
-    - name: list packed contents
-      run: ls ${{ env.solution_exported_folder}}
-
     - name: Publish crm artifact
       uses: actions/upload-artifact@v2
       with:
         name: drop-crm
         path: ${{ env.solution_exported_folder}}/${{ env.solution_name }}_managed.zip
 
-  import_test:
-    name: Import to Test
+  import:
+    name: Import to ${{ matrix.environment }}
     runs-on: windows-latest
+    strategy:
+      matrix:
+        environment: [Test, preprod, prod]
     env:
-      solution_name: DummyforCICD
-    needs: deploy_build
-    environment: Test
+      solution_name: DQT20
+    environment: ${{ matrix.environment }}
     steps:
     - uses: actions/checkout@v2
 
