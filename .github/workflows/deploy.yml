@@ -70,6 +70,7 @@ jobs:
   import:
     name: Import to ${{ matrix.environment }}
     runs-on: windows-latest
+    needs: deploy_build
     strategy:
       matrix:
         environment: [Test, preprod, prod]
