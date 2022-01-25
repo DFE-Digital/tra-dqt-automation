@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{f7ba26ee-3f8e-4cf2-8e02-0b4bbcd16da8}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="300" />
+          <cell name="subject" width="200" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="companyname" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="lead">
+          <attribute name="fullname" />
+          <attribute name="createdon" />
+          <attribute name="statuscode" />
+          <attribute name="subject" />
+          <attribute name="leadid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="createdon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Lead Associated View" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Displays information about related leads in the detail form of any associated lead record." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{333b0ce1-c380-e211-90f7-00155d89bb01}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="150" />
+          <cell name="ownerid" width="100" />
+          <cell name="statecode" width="100" />
+          <cell name="companyname" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="lead">
+          <order attribute="fullname" descending="false" />
+          <attribute name="fullname" />
+          <attribute name="ownerid" />
+          <attribute name="statecode" />
+          <attribute name="leadid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Campaign Leads" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Displays Leads for the Campaign record." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

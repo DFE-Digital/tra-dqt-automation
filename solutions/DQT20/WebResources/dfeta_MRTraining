@@ -1,0 +1,50 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (mrtraining) {
+                var MRRoute = {
+                    EEA: "EEA",
+                    SC: "Scotland",
+                    NI: "Northern Ireland",
+                    OTT: "OTT"
+                }
+
+                var eeaEstablishment = "Other EU Establishment";
+                var eeaEstablishmentId = "3ac818a5-c9ae-e311-b8ed-005056822391";
+
+                mrtraining.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null & executionContext != undefined) {
+                        var formContext = executionContext.getFormContext();
+                        var formType = formContext.ui.getFormType();
+
+                        var lookupObj = formContext.getAttribute('dfeta_mrapplicationid');
+
+                        if (lookupObj != null) {
+                            var lookupObjValue = lookupObj.getValue();
+
+                            if (lookupObjValue != null) {
+                                var lookupTextValue = lookupObjValue[0].name;
+                            }
+                        }
+
+                        switch (lookupTextValue) {
+                            case MRRoute.EEA:
+                                var establishment = formContext.getAttribute('dfeta_establishmentid').getValue();
+                                if (establishment == null) {
+                                    formContext.getAttribute('dfeta_establishmentid').setValue([{ id:eeaEstablishmentId, name: eeaEstablishment, entityType: 'account' }]);
+                                }
+                                break;
+                            case MRRoute.SC:
+                                break;
+                            case MRRoute.NI:
+                                break;
+                            case MRRoute.OTT:
+                                break;
+                        }
+                    }
+                }
+            })(webResources.MRTraining = webResources.MRTraining || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

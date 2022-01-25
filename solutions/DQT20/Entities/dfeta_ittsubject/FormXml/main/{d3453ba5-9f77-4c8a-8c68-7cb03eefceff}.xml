@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{d3453ba5-9f77-4c8a-8c68-7cb03eefceff}</formid>
+    <IntroducedVersion>0.0.0.19</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{3a260e5b-d1cb-40b4-9f11-ed61ecd295ec}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{4ceebe8b-d85d-4d77-966a-41f5cac6e80c}" name="section_general" columns="1" locklevel="0" labelwidth="80" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c7b28dcc-577a-4cde-8801-1ecb7a6c0d77}" colspan="1">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7e516e06-2772-3462-0026-576c26427e7d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Value" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_value" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_value" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cd67214c-6103-47e7-33e9-24cb4b334743}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Restricted use if post-QTS?" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_restrictedpostqts" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_restrictedpostqts" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="section_other" showlabel="false" showbar="false" locklevel="0" id="{d40bae2a-d0da-b23b-e04e-533395aaa73a}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="80" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{172a02bc-69b7-2240-35dc-1d4b74b584d6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="View Order" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_vieworder" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="dfeta_vieworder" disabled="false" />
+                      </cell>
+                      <cell id="{950dad93-adce-d8b8-dc20-b81a07dae78e}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{01d54981-b5d3-458b-ab72-ac89a74486cf}">
+        <rows>
+          <row>
+            <cell id="{ba16d0e1-3e4f-42f7-bcbb-3a015cd92cfd}">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="footer_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

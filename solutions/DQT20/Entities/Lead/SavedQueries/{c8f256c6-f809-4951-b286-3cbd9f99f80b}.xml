@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c8f256c6-f809-4951-b286-3cbd9f99f80b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="200" />
+          <cell name="subject" width="200" />
+          <cell name="statuscode" width="200" />
+          <cell name="createdon" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="lead">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="subject" />
+          <attribute name="statuscode" />
+          <attribute name="createdon" />
+          <link-entity name="bulkoperationlog" from="regardingobjectid" to="leadid" alias="Logs">
+            <filter>
+              <condition attribute="errornumber" operator="eq" value="0" />
+            </filter>
+          </link-entity>
+          <attribute name="leadid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Selected Leads Campaigns" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Selected Leads for Campaigns and Quick Campaigns." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

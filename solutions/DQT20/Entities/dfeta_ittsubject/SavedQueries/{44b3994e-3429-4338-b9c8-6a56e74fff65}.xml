@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{44b3994e-3429-4338-b9c8-6a56e74fff65}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_ittsubjectid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_value" width="125" />
+          <cell name="dfeta_vieworder" width="125" />
+          <cell name="dfeta_restrictedpostqts" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_ittsubject">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_vieworder" descending="false" />
+          <order attribute="dfeta_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_value" />
+          <attribute name="dfeta_vieworder" />
+          <attribute name="dfeta_restrictedpostqts" />
+          <attribute name="dfeta_ittsubjectid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active ITT Subjects" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

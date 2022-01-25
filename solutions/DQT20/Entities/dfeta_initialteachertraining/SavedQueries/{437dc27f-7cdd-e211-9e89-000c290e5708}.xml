@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{437dc27f-7cdd-e211-9e89-000c290e5708}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" preview="1" icon="1">
+        <row name="result" id="dfeta_initialteachertrainingid">
+          <cell name="a_141202edc5b0e21186e5000c290e5708.fullname" width="300" disableSorting="1" />
+          <cell name="a_141202edc5b0e21186e5000c290e5708.dfeta_trn" width="150" disableSorting="1" />
+          <cell name="a_141202edc5b0e21186e5000c290e5708.birthdate" width="150" disableSorting="1" />
+          <cell name="dfeta_programmetype" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="dfeta_initialteachertraining">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity name="contact" from="contactid" to="dfeta_personid" visible="false" link-type="outer" alias="a_141202edc5b0e21186e5000c290e5708">
+            <attribute name="fullname" />
+            <attribute name="dfeta_trn" />
+            <attribute name="birthdate" />
+          </link-entity>
+          <order attribute="dfeta_programmetype" descending="false" />
+          <attribute name="dfeta_programmetype" />
+          <attribute name="dfeta_initialteachertrainingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Organisation's Active ITT" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

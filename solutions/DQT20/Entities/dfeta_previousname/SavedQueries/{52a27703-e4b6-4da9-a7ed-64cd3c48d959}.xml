@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{52a27703-e4b6-4da9-a7ed-64cd3c48d959}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_previousnameid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_type" width="150" />
+          <cell name="dfeta_changedon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_previousname">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_changedon" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <attribute name="dfeta_type" />
+          <attribute name="dfeta_changedon" />
+          <attribute name="dfeta_previousnameid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Previous Names" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
