@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - main
+    - Test
 
 jobs:
   deploy_build:
@@ -20,6 +21,8 @@ jobs:
         git config --global core.longpaths true
 
     - uses: actions/checkout@v2
+      with:
+        ref: Test
 
     - name: Pack unmanaged solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
