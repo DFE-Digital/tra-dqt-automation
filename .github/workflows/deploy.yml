@@ -64,13 +64,15 @@ jobs:
         name: drop-crm
         path: ${{ env.solution_exported_folder}}/${{ env.solution_name }}_managed.zip
 
-  import_test:
-    name: Import to Test
+  import:
+    name: Import to ${{ matrix.environment }}
     runs-on: windows-latest
+    strategy:
+      matrix:
+        environment: [Test, preprod, prod]
     env:
       solution_name: DQT20
-    needs: deploy_build
-    environment: Test
+    environment: ${{ matrix.environment }}
     steps:
     - uses: actions/checkout@v2
 
@@ -81,74 +83,6 @@ jobs:
     - uses: Azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-      id: CRM
-      with:
-        keyvault: ${{ secrets.KEYVAULT_NAME }}
-        secret: CRM
-        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
-
-    - name: Import managed solution
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: '${{ env.solution_name }}_managed.zip'
-
-  import_preprod:
-    name: Import to Preprod
-    runs-on: windows-latest
-    env:
-      solution_name: DQT20
-    needs: import_test
-    environment: preprod
-    steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/download-artifact@master
-      with:
-        name: drop-crm
-
-    - uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
-      id: CRM
-      with:
-        keyvault: ${{ secrets.KEYVAULT_NAME }}
-        secret: CRM
-        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
-
-    - name: Import managed solution
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: '${{ env.solution_name }}_managed.zip'
-
-  import_prod:
-    name: Import to Prod
-    runs-on: windows-latest
-    env:
-      solution_name: DQT20
-    needs: import_preprod
-    environment: prod
-    steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/download-artifact@master
-      with:
-        name: drop-crm
-
-    - uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
       id: CRM
