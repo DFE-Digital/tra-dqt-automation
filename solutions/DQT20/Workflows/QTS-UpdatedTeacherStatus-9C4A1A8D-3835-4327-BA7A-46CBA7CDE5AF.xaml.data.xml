@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{9c4a1a8d-3835-4327-ba7a-46cba7cde5af}" Name="QTS - Updated (Teacher Status)" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/QTS-UpdatedTeacherStatus-9C4A1A8D-3835-4327-BA7A-46CBA7CDE5AF.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnUpdateAttributeList>dfeta_teacherstatusid</TriggerOnUpdateAttributeList>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>0</StateCode>
+  <StatusCode>1</StatusCode>
+  <IsTransacted>0</IsTransacted>
+  <IntroducedVersion>1.5.01.57</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>dfeta_qtsregistration</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="QTS - Updated (Teacher Status)" />
+  </LocalizedNames>
+</Workflow>

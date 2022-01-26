@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{c137bd8b-d8df-4ad9-b4f1-5fc269239589}" Name="ProfileAmendRequest - StatusChanged" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/ProfileAmendRequest-StatusChanged-C137BD8B-D8DF-4AD9-B4F1-5FC269239589.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnUpdateAttributeList>statecode</TriggerOnUpdateAttributeList>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>0</StateCode>
+  <StatusCode>1</StatusCode>
+  <IsTransacted>0</IsTransacted>
+  <IntroducedVersion>1.5.01.57</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>dfeta_profileamendrequest</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="ProfileAmendRequest - StatusChanged" />
+  </LocalizedNames>
+</Workflow>

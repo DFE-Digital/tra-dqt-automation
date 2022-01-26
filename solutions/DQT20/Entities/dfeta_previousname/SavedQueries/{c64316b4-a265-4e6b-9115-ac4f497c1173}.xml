@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{c64316b4-a265-4e6b-9115-ac4f497c1173}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_previousnameid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_type" width="150" />
+          <cell name="dfeta_changedon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_previousname">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_changedon" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="dfeta_name" operator="like" value="{0}" />
+          </filter>
+          <attribute name="dfeta_type" />
+          <attribute name="dfeta_changedon" />
+          <attribute name="dfeta_previousnameid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.5.01.57</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Previous Names" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

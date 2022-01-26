@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{a2610502-616d-4e61-b46a-415d655b41f4}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_autonumberlockid">
+          <cell name="dfeta_entityname" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="dfeta_fieldname" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="dfeta_lock" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="modifiedby" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="modifiedon" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_autonumberlock">
+          <order attribute="dfeta_entityname" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="modifiedon" />
+          <attribute name="modifiedby" />
+          <attribute name="dfeta_lock" />
+          <attribute name="dfeta_fieldname" />
+          <attribute name="dfeta_entityname" />
+          <attribute name="dfeta_autonumberlockid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.0.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Auto Number Locks" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

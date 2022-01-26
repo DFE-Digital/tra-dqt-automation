@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FieldSecurityProfiles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FieldSecurityProfile name="DfE QTS Member" fieldsecurityprofileid="{337eea24-815c-e511-8f3f-005056822b0d}">
+    <FieldPermissions />
+  </FieldSecurityProfile>
+</FieldSecurityProfiles>

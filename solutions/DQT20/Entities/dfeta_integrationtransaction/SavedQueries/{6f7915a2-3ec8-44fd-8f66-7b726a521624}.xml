@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6f7915a2-3ec8-44fd-8f66-7b726a521624}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_id" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_integrationtransactionid">
+          <cell name="dfeta_id" width="150" />
+          <cell name="dfeta_interface" width="200" />
+          <cell name="dfeta_enddate" width="150" />
+          <cell name="dfeta_startdate" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_integrationtransaction">
+          <attribute name="dfeta_id" />
+          <order attribute="dfeta_id" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_interface" />
+          <attribute name="dfeta_startdate" />
+          <attribute name="dfeta_enddate" />
+          <attribute name="dfeta_integrationtransactionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Integration Transactions" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
