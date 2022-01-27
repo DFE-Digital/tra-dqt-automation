@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{afe23d8a-6651-474d-b8ee-90210a8231f6}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="300" />
+          <cell name="subject" width="200" />
+          <cell name="ownerid" width="100" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="companyname" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="lead">
+          <attribute name="leadid" />
+          <attribute name="ownerid" />
+          <attribute name="fullname" />
+          <attribute name="subject" />
+          <attribute name="statuscode" />
+          <attribute name="createdon" />
+          <order attribute="fullname" descending="false" />
+          <filter type="and">
+            <condition attribute="createdon" operator="olderthan-x-months" value="6" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Leads: Older Than 6 Months" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

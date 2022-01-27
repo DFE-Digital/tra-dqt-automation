@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{fd748b2d-a3d1-457d-9dce-60b3795fb24a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="result" id="dfeta_sanctioncodeid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_value" width="100" />
+          <cell name="dfeta_allreports" width="125" />
+          <cell name="dfeta_individualteacherreport" width="125" />
+          <cell name="dfeta_prohibitedteacherreport" width="125" />
+          <cell name="dfeta_inductionfailreport" width="125" />
+          <cell name="dfeta_gtcsanctionreport" width="125" />
+          <cell name="dfeta_othereeamemberstatereport" width="125" />
+          <cell name="dfeta_section128barringdirectionreport" width="125" />
+          <cell name="dfeta_restrictportalalertsharing" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_sanctioncode">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_value" />
+          <attribute name="dfeta_gtcsanctionreport" />
+          <attribute name="dfeta_inductionfailreport" />
+          <attribute name="dfeta_allreports" />
+          <attribute name="dfeta_individualteacherreport" />
+          <attribute name="dfeta_prohibitedteacherreport" />
+          <attribute name="dfeta_othereeamemberstatereport" />
+          <attribute name="dfeta_section128barringdirectionreport" />
+          <attribute name="dfeta_restrictportalalertsharing" />
+          <attribute name="dfeta_sanctioncodeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Alert Codes" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

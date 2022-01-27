@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4e7f2c8a-c480-4997-b3eb-f7f87819db1a}</savedqueryid>
+    <layoutxml>
+      <grid name="dfeta_prdeclinestatusreasons" jump="dfeta_name" select="1" icon="1" preview="0">
+        <row name="dfeta_prdeclinestatusreason" id="dfeta_prdeclinestatusreasonid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_value" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_prdeclinestatusreason">
+          <attribute name="dfeta_prdeclinestatusreasonid" />
+          <attribute name="dfeta_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="dfeta_name" descending="false" />
+          <attribute name="dfeta_value" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>2.0.1.8</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="PR Decline Status Reason Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
