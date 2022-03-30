@@ -1,9 +1,0 @@
-﻿<template><text><![CDATA[<p>This Microsoft Dynamics CRM duplication-detection task completed successfully.</p>
-					<p>Name: ]]></text><slugs><slug><entity>asyncoperation</entity><attribute>name</attribute></slug><default>[Duplicate Detection task]</default></slugs><text><![CDATA[</p>
-					<p>Started: ]]></text><slugs><slug><entity>asyncoperation</entity><attribute>createdon</attribute></slug><default /></slugs><text><![CDATA[</p>
-					<p>To view and manage duplicates, do one of the following:</p>
-					<p>Click <A name="slugAnchorTag"  href="#" >https://awesome.crm11.dynamics.com/tools/asyncoperation/edit.aspx?id=]]></text><slugs><slug><entity>asyncoperation</entity><attribute>asyncoperationid</attribute></slug><default /></slugs><text><![CDATA[</A></p>
-					<p>or</p>
-					<p>Log on to Microsoft Dynamics CRM and navigate to Duplicate Detection page and double-click the name of the task.</p>
-					<p></p>]]></text></template>
-				
