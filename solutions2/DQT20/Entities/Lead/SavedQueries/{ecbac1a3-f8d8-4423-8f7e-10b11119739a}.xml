@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{ecbac1a3-f8d8-4423-8f7e-10b11119739a}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" preview="0" icon="1">
+        <row name="result" id="leadid">
+          <cell name="fullname" width="300" />
+          <cell name="emailaddress1" width="200" />
+          <cell name="telephone1" width="100" />
+          <cell name="subject" width="200" />
+          <cell name="companyname" width="100" />
+          <cell name="statuscode" width="100" />
+          <cell name="fax" ishidden="1" width="100" />
+          <cell name="address1_fax" ishidden="1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="lead">
+          <attribute name="subject" />
+          <attribute name="fullname" />
+          <attribute name="companyname" />
+          <attribute name="statuscode" />
+          <attribute name="telephone1" />
+          <attribute name="emailaddress1" />
+          <attribute name="createdon" />
+          <attribute name="leadid" />
+          <attribute name="fax" />
+          <attribute name="address1_fax" />
+          <filter type="and">
+            <condition attribute="statecode" operator="ne" value="2" />
+          </filter>
+          <order attribute="fullname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Lead Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

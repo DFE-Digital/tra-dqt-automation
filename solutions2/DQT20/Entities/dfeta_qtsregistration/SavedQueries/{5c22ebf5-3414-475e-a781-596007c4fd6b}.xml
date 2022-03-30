@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{5c22ebf5-3414-475e-a781-596007c4fd6b}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="dfeta_name" select="1" icon="1" preview="0">
+        <row name="dfeta_qtsregistration" id="dfeta_qtsregistrationid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_qtsdate" width="100" />
+          <cell name="dfeta_earlyyearsstatusid" width="300" />
+          <cell name="dfeta_eytsdate" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_qtsregistration">
+          <attribute name="dfeta_qtsregistrationid" />
+          <attribute name="dfeta_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="dfeta_qtsdate" descending="true" />
+          <attribute name="dfeta_qtsdate" />
+          <attribute name="dfeta_eytsdate" />
+          <attribute name="dfeta_earlyyearsstatusid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="QTS Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

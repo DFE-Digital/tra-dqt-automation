@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ed3b9a92-46ae-4c85-aeee-fecee54251e8}</formid>
+    <IntroducedVersion>1.5.01.57</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{0722e9d3-9af2-423e-a612-9924ce6a2409}" IsUserDefined="1" name="tab_general" locklevel="0" expanded="true" showlabel="true">
+          <labels>
+            <label description="Request Details" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{cbbb75ad-277a-41ec-a452-5d2cf1b70bc9}" name="section_general" columns="11" locklevel="0" labelwidth="80" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{80212e61-0d2d-3cbb-cda4-4b3157846a52}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Request Type" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_requesttype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_requesttype" disabled="false" />
+                      </cell>
+                      <cell id="{08ad74e1-6b16-720a-9414-0645c53d3092}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Requested By" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_requestedbyid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_requestedbyid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{24ead8e7-1537-6775-1324-1aeb2a83b3a1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="New Name / DOB" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newnameordob" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_newnameordob" disabled="false" />
+                      </cell>
+                      <cell id="{610c3583-8695-a049-e9b8-e7218788538b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date of request" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_requestedon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_requestedon" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="{3a4c5c52-5b6d-74e6-e112-473953589dda}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Caseworker Updates" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" showlabel="false" showbar="false" locklevel="0" id="{c25ea303-9eb9-bbc5-1172-5c8beed2bb56}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="80" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{123a0b6d-8399-9486-38c7-9e5acdd53793}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                      <cell id="{9a02388e-5423-4679-c171-4467e145879d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Completed By" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_completedbyid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_completedbyid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e56ba230-6869-d338-976e-5cba714106b8}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{993d5a15-8c1d-c33c-5dcc-31792ee71d2e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Completed On" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_completedon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_completedon" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_2" showlabel="false" showbar="false" locklevel="0" id="{040879e7-155e-aac3-e1c0-ee064a7c4d58}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="80" celllabelalignment="Left" celllabelposition="Top">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8a341b4d-d703-8bcb-94c6-2cb6d1618050}" showlabel="true" locklevel="0" colspan="1" rowspan="4">
+                        <labels>
+                          <label description="Decision Reason" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_decisionreason" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="dfeta_decisionreason" disabled="false" />
+                      </cell>
+                    </row>
+                    <row></row>
+                    <row></row>
+                    <row></row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_admin" id="{286149e8-b3e9-aeb9-513b-b5d015b95a13}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
+          <labels>
+            <label description="Admin" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{8e1c6dd9-772e-b1ca-e473-b5b48ad9bd66}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="80" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{95f7e543-0565-424c-9acf-319f63724722}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_name" />
+                      </cell>
+                      <cell id="{f4008577-3b77-4a1c-8e5f-ac5499ba7009}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{2617482a-69f7-4928-983c-a08e6114fb97}">
+        <rows>
+          <row>
+            <cell id="{1b1391c5-2e8a-45bd-8247-dcfae0317b47}">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="footer_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

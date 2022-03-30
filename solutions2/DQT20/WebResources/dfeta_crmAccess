@@ -1,0 +1,613 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (crmaccess) {
+                crmaccess.updateRecord = function (dataSetName, record, id) {
+                    var globalContext = Xrm.Utility.getGlobalContext();
+                    if (globalContext == null)
+                        return;
+                    var result;
+                    var serverDataPath = globalContext.getClientUrl() + "/api/data/v9.1/" + dataSetName + "(" + id + ")";
+                    var request = new XMLHttpRequest();
+                    request.open("PATCH", serverDataPath, false);
+                    request.setRequestHeader("OData-MaxVersion", "4.0");
+                    request.setRequestHeader("OData-Version", "4.0");
+                    request.setRequestHeader("Accept", "application/json;charset=utf-8");
+                    request.setRequestHeader("Content-Type", "application/json;charset=utf-8")
+                    request.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 /*complete*/) {
+                            request.onreadystatechange = null;
+                            if (request.status == 204) {
+
+                            }
+                            else {
+                                //Xrm.Utility.alertDialog(request.statusText);
+                                var alertStrings = { confirmButtonLabel: "Yes", text: request.statusText, title: "Error Occured" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                        }
+                    };
+                    request.send(JSON.stringify(record));
+                }
+
+                crmaccess.deactivateRecord = function (dataSetName, record) {
+                    var globalContext = Xrm.Utility.getGlobalContext();
+                    if (globalContext == null)
+                        return;
+
+                    var result;
+                    var entity = {};
+                    entity.statecode = 1;
+                    entity.statuscode = 2;
+                    var serverDataPath = globalContext.getClientUrl() + "/api/data/v9.1/" + dataSetName + "(" + record + ")";
+                    var request = new XMLHttpRequest();
+                    request.open("PATCH", serverDataPath, false);
+                    request.setRequestHeader("OData-MaxVersion", "4.0");
+                    request.setRequestHeader("OData-Version", "4.0");
+                    request.setRequestHeader("Accept", "application/json;charset=utf-8");
+                    request.setRequestHeader("Content-Type", "application/json;charset=utf-8")
+                    request.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 /*complete*/) {
+                            request.onreadystatechange = null;
+                            if (request.status == 204) {
+
+                            }
+                            else {
+                                //Xrm.Utility.alertDialog(request.statusText);
+                                var alertStrings = { confirmButtonLabel: "Yes", text: request.statusText, title: "Error Occured" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                        }
+                    };
+                    request.send(JSON.stringify(entity));
+                }
+
+
+                crmaccess.RetrieveRecordById = function (dataSetName, id, columns, callback) {
+                    var globalContext = Xrm.Utility.getGlobalContext();
+                    if (globalContext == null)
+                        return;
+
+                    var result;
+                    if (callback == null)
+                        throw new Error("callback method is null");
+                    var serverDataPath = globalContext.getClientUrl() + "/api/data/v9.1/" + dataSetName + "(" + id + ")?$select=" + columns;
+                    var request = new XMLHttpRequest();
+                    request.open("GET", serverDataPath, false);
+                    request.setRequestHeader("OData-MaxVersion", "4.0");
+                    request.setRequestHeader("OData-Version", "4.0");
+                    request.setRequestHeader("Accept", "application/json;charset=utf-8");
+                    request.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 /*complete*/) {
+                            if (request.status == 200) {
+                                result = JSON.parse(this.response);
+                                callback(result);
+                            }
+                            else {
+                                //Xrm.Utility.alertDialog(request.statusText);
+                                var alertStrings = { confirmButtonLabel: "Yes", text: request.statusText, title: "Error Occured" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                        }
+                    };
+                    request.send();
+                    return result;
+                }
+
+                crmaccess.RetrieveRecordsByFilter = function (dataSetName, filter, columns, callback) {
+                    var globalContext = Xrm.Utility.getGlobalContext();
+                    if (globalContext == null)
+                        return;
+
+                    var result;
+                    if (callback == null)
+                        throw new Error("callback method is null");
+
+                    var serverDataPath = globalContext.getClientUrl() + "/api/data/v9.1/" + dataSetName + "?$select=" + columns + "&$filter=" + filter;
+                    var request = new XMLHttpRequest();
+                    request.open("GET", serverDataPath, false);
+                    request.setRequestHeader("OData-MaxVersion", "4.0");
+                    request.setRequestHeader("OData-Version", "4.0");
+                    request.setRequestHeader("Accept", "application/json;charset=utf-8");
+                    request.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 /*complete*/) {
+                            if (request.status == 200) {
+                                result = JSON.parse(this.response);
+                                callback(result);
+                            }
+                            else {
+                                //Xrm.Utility.alertDialog(request.statusText);
+                                var alertStrings = { confirmButtonLabel: "Yes", text: request.statusText, title: "Error Occured" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                        }
+                    };
+                    request.send();
+                    return result;
+                }
+
+
+                crmaccess.getPersonById = function (id) {
+                    var cols = ["firstname", "contactid", "middlename", "fullname", "lastname", "dfeta_title", "gendercode", "birthdate", "dfeta_trn", "dfeta_partyid"
+                        , "dfeta_ninumber", "_dfeta_ethnicityid_value", "dfeta_disability", "_dfeta_disabilityid_value", "dfeta_dateofdeath", "_dfeta_nationalityid_value",
+                        "address1_line1", "address1_line2", "address1_city", "address1_county", "address1_postalcode", "address1_country",
+                        "emailaddress1", "mobilephone", "telephone1", "telephone2", "preferredcontactmethodcode"];
+                    var retrievedContact;
+                    var contactQTS;
+                    var contactInduction;
+                    var viewModelObj;
+                    crmaccess.RetrieveRecordById("contacts", id, cols, function (result) {
+                        var queryOptionsQts = {
+                            entityName: "dfeta_qtsregistrations",
+                            attributes: ["_dfeta_personid_value", "statuscode"],
+                            values: [result.contactid, "1"],
+                            columnSet: ["dfeta_qtsdate", "_dfeta_personid_value", "_dfeta_teacherstatusid_value"]
+                        }
+                        retrievedContact = result;
+
+
+                        crmaccess.RetrieveRecordsByFilter("dfeta_qtsregistrations", "_dfeta_personid_value eq " + retrievedContact.contactid + " and statuscode eq 1", "dfeta_qtsdate,_dfeta_personid_value,_dfeta_teacherstatusid_value", function (item) {
+                            if (item.value.length >= 1) {
+                                contactQTS = item.value[0];
+                            }
+
+
+
+                            var queryOptionsInduction = {
+                                entityName: "dfeta_inductions",
+                                attributes: ["_dfeta_personid_value", "statuscode"],
+                                columnSet: ["dfeta_inductionstatus", "dfeta_startdate", "dfeta_completiondate", "_dfeta_personid_value", "dfeta_appealreceived",
+                                    "dfeta_appealreceivedon", "dfeta_outcome", "dfeta_outcomedate"]
+
+                            };
+                            crmaccess.RetrieveRecordsByFilter("dfeta_inductions", "_dfeta_personid_value eq " + retrievedContact.contactid + " and statuscode eq 1", "dfeta_inductionstatus,dfeta_startdate,dfeta_completiondate,_dfeta_personid_value,dfeta_appealreceived,dfeta_appealreceivedon,dfeta_outcome,dfeta_outcomedate", function (item) {
+                                if (item.value.length >= 1) {
+                                    contactInduction = item.value[0];
+                                }
+
+                                viewModelObj = crmaccess.convertToviewModelObject(retrievedContact, contactQTS, contactInduction);
+
+                            });
+                        });
+                    });
+                    return viewModelObj;
+                }
+
+                crmaccess.convertToviewModelObject = function (crmPerson, qts, induction) {
+                    var ret = new Object();
+                    if (crmPerson.firstname != null) {
+                        ret.firstname = crmPerson.firstname;
+                    }
+                    if (crmPerson.contactid != null) {
+                        ret.contactid = crmPerson.contactid;
+                    }
+                    if (crmPerson.middlename != null) {
+                        ret.middlename = crmPerson.middlename;
+                    }
+                    if (crmPerson.fullname != null) {
+                        ret.fullname = crmPerson.fullname;
+                    }
+                    if (crmPerson.lastname != null) {
+                        ret.lastname = crmPerson.lastname;
+                    }
+                    if (crmPerson.dfeta_title != null) {
+                        ret.dfeta_title = crmPerson["dfeta_title@OData.Community.Display.V1.FormattedValue"];
+                        ret.dfeta_titlecode = crmPerson.dfeta_title;
+                    }
+                    if (crmPerson.gendercode != null) {
+                        ret.gender = crmPerson["gendercode@OData.Community.Display.V1.FormattedValue"];
+                        ret.gendercode = crmPerson.gendercode;
+                    }
+                    if (crmPerson.birthdate != null) {
+                        ret.birthdate = crmPerson["birthdate@OData.Community.Display.V1.FormattedValue"]
+                    }
+
+                    if (crmPerson.dfeta_trn != null) {
+                        ret.dfeta_trn = crmPerson.dfeta_trn;
+                    }
+                    if (crmPerson.dfeta_partyid != null) {
+                        ret.dfeta_partyid = crmPerson.dfeta_partyid;
+                    }
+
+                    if (crmPerson.dfeta_ninumber != null) {
+                        ret.dfeta_ninumber = crmPerson.dfeta_ninumber;
+                    }
+
+                    if (crmPerson._dfeta_ethnicityid_value != null) {
+                        ret.dfeta_ethnicity = crmPerson["_dfeta_ethnicityid_value@OData.Community.Display.V1.FormattedValue"];
+                        ret.dfeta_ethnicityid = crmPerson._dfeta_ethnicityid_value;
+                    }
+                    if (crmPerson._dfeta_disabilityid_value != null) {
+                        ret.dfeta_disability = crmPerson["_dfeta_disabilityid_value@OData.Community.Display.V1.FormattedValue"];
+                        ret.dfeta_disabilitycode = crmPerson._dfeta_disabilityid_value;
+                    }
+                    if (crmPerson.dfeta_disability != null) {
+                        ret.dfeta_disabilityid = crmPerson.dfeta_disability;
+                    }
+                    if (crmPerson.dfeta_dateofdeath != null) {
+                        ret.dfeta_dateofdeath = crmPerson["dfeta_dateofdeath@OData.Community.Display.V1.FormattedValue"];
+                    }
+                    if (crmPerson._dfeta_nationalityid_value != null) {
+                        ret.dfeta_nationality = crmPerson["_dfeta_nationalityid_value@OData.Community.Display.V1.FormattedValue"];
+                        ret.dfeta_nationalityid = crmPerson._dfeta_nationalityid_value;
+                    }
+                    if (crmPerson.address1_line1 != null) {
+                        ret.address1_line1 = crmPerson.address1_line1;
+                    }
+                    if (crmPerson.address1_line2 != null) {
+                        ret.address1_line2 = crmPerson.address1_line2;
+                    }
+                    if (crmPerson.address1_city != null) {
+                        ret.address1_city = crmPerson.address1_city;
+                    }
+                    if (crmPerson.address1_county != null) {
+                        ret.address1_county = crmPerson.address1_county;
+                    }
+                    if (crmPerson.address1_postalcode != null) {
+                        ret.address1_postalcode = crmPerson.address1_postalcode;
+                    }
+                    if (crmPerson.address1_country != null) {
+                        ret.address1_country = crmPerson.address1_country;
+                    }
+                    if (crmPerson.emailaddress1 != null) {
+                        ret.emailaddress1 = crmPerson.emailaddress1;
+                    }
+                    if (crmPerson.mobilephone != null) {
+                        ret.mobilephone = crmPerson.mobilephone;
+                    }
+                    if (crmPerson.telephone1 != null) {
+                        ret.telephone1 = crmPerson.telephone1;
+                    }
+                    if (crmPerson.telephone2 != null) {
+                        ret.telephone2 = crmPerson.telephone2;
+                    }
+                    if (crmPerson.preferredcontactmethodcode != null) {
+                        ret.preferredmethodofcontact = crmPerson["preferredcontactmethodcode@OData.Community.Display.V1.FormattedValue"];
+                        ret.preferredcontactmethodcode = crmPerson.preferredcontactmethodcode;
+                    }
+                    ret.qts = new Object();
+                    if (qts != null) {
+                        if (qts.dfeta_qtsregistrationid != null) {
+                            ret.qts.dfeta_qtsregistrationid = qts.dfeta_qtsregistrationid;
+                        }
+                        if (qts.dfeta_qtsdate != null) {
+                            ret.qts.dfeta_qtsdate = qts["dfeta_qtsdate@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (qts._dfeta_teacherstatusid_value != null) {
+                            ret.qts.dfeta_teacherstatusid = qts["_dfeta_teacherstatusid_value@OData.Community.Display.V1.FormattedValue"];
+                        }
+                    }
+                    ret.induction = new Object();
+                    if (induction != null) {
+                        if (induction.dfeta_inductionid != null) {
+                            ret.induction.dfeta_inductionid = induction.dfeta_inductionid;
+                        }
+                        if (induction.dfeta_inductionstatus != null) {
+                            ret.induction.dfeta_inductionstatus = induction["dfeta_inductionstatus@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_startdate != null) {
+                            ret.induction.dfeta_startdate = induction["dfeta_startdate@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_completiondate != null) {
+                            ret.induction.dfeta_completiondate = induction["dfeta_completiondate@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_appealreceived != null) {
+                            ret.induction.dfeta_appealreceived = induction["dfeta_appealreceived@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_appealreceivedon != null) {
+                            ret.induction.dfeta_appealreceivedon = induction["dfeta_appealreceivedon@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_outcome != null) {
+                            ret.induction.dfeta_outcome = induction["dfeta_outcome@OData.Community.Display.V1.FormattedValue"];
+                        }
+                        if (induction.dfeta_outcomedate != null) {
+                            ret.induction.dfeta_outcomedate = induction["dfeta_outcomedate@OData.Community.Display.V1.FormattedValue"];
+                        }
+                    }
+                    return ret;
+                }
+
+                crmaccess.formattedDate = function (param) {
+                    var delimiter;
+                    var arr;
+
+                    if (param.search("/") >= 0)
+                        delimiter = "/";
+                    else if (param.search("-") >= 0)
+                        delimiter = "-";
+                    else if (param.search(".") >= 0)
+                        delimiter = ".";
+
+                    arr = param.split(delimiter);
+
+                    return (arr[2] + delimiter + arr[1] + delimiter + arr[0]);
+                }
+
+                crmaccess.mergePerson = function (right, left) {
+                    var merge;
+                    var contactid;
+                    var idToDeactivate;
+                    var isLeftMaster = $jq('#rdMaster').is(":checked");
+                    if (isLeftMaster) {
+                        contactid = left.contactid;
+                        merge = {};
+                        idToDeactivate = right.contactid;
+                    }
+                    else {
+                        contactid = right.contactid;
+                        merge = {};
+                        idToDeactivate = left.contactid;
+                    }
+
+                    if ($jq('#rdTitle').is(":checked") && left.dfeta_titlecode != null)
+                        merge["dfeta_title"] = left.dfeta_titlecode;
+                    else
+                        if (!$jq('#rdTitle').is(":checked") && right.dfeta_titlecode != null)
+                            merge["dfeta_title"] = right.dfeta_titlecode;
+
+                    if ($jq('#rdFirstname').is(":checked") && left.firstname != null)
+                        merge["firstname"] = left.firstname;
+                    else
+                        if (!$jq('#rdFirstname').is(":checked") && right.firstname != null)
+                            merge["firstname"] = right.firstname;
+
+                    if ($jq('#rdMiddlename').is(":checked") && left.middlename != null)
+                        merge["middlename"] = left.middlename;
+                    else
+                        if (!$jq('#rdMiddlename').is(":checked") && right.middlename != null)
+                            merge["middlename"] = right.middlename;
+
+                    if ($jq('#rdLastname').is(":checked") && left.lastname != null)
+                        merge["lastname"] = left.lastname;
+                    else
+                        if (!$jq('#rdLastname').is(":checked") && right.lastname != null)
+                            merge["lastname"] = right.lastname;
+
+                    if ($jq('#rdGender').is(":checked") && left.gendercode != null)
+                        merge["gendercode"] = left.gendercode;
+                    else
+                        if (!$jq('#rdGender').is(":checked") && right.gendercode != null)
+                            merge["gendercode"] = right.gendercode;
+
+                    if ($jq('#rdDateofbirth').is(":checked") && left.birthdate != null)
+                        merge["birthdate"] = new Date(crmaccess.formattedDate(left.birthdate));
+                    else
+                        if (!$jq('#rdDateofbirth').is(":checked") && right.birthdate != null)
+                            merge["birthdate"] = new Date(crmaccess.formattedDate(right.birthdate));
+
+                    if ($jq('#rdPartyid').is(":checked") && left.dfeta_partyidid != null)
+                        merge["dfeta_partyid"] = left.dfeta_partyidid;
+                    else
+                        if (!$jq('#rdPartyid').is(":checked") && right.dfeta_partyidid != null)
+                            merge["dfeta_partyid"] = right.dfeta_partyidid;
+
+                    if ($jq('#rdNi').is(":checked") && left.dfeta_ninumber != null)
+                        merge["dfeta_ninumber"] = left.dfeta_ninumber;
+                    else
+                        if (!$jq('#rdNi').is(":checked") && right.dfeta_ninumber != null)
+                            merge["dfeta_ninumber"] = right.dfeta_ninumber;
+
+                    if (left.dfeta_ethnicityid != null && left.dfeta_ethnicityid == "" || right.dfeta_ethnicityid != null && right.dfeta_ethnicityid) {
+                        merge["_dfeta_ethnicityid_value"] = null
+                    }
+                    else {
+                        if ($jq('#rdEthnicity').is(":checked") && left.dfeta_ethnicityid != null && left.dfeta_ethnicityid != "")
+                            merge["_dfeta_ethnicityid_value"] = { id: left.dfeta_ethnicityid, logicalName: "dfeta_ethnicity", type: "EntityReference" };
+                        else
+                            if (!$jq('#rdEthnicity').is(":checked") && right.dfeta_ethnicityid != null && right.dfeta_ethnicityid != "")
+                                merge["_dfeta_ethnicityid_value"] = { id: right.dfeta_ethnicityid, logicalName: "dfeta_ethnicity", type: "EntityReference" };
+                    }
+                    if ($jq('#rdDisability').is(":checked") && left.dfeta_disabilitycode != null)
+                        merge["dfeta_disability"] = left.dfeta_disabilitycode;
+                    else
+                        if (!$jq('#rdDisability').is(":checked") && right.dfeta_disabilitycode != null)
+                            merge["dfeta_disability"] = right.dfeta_disabilitycode;
+
+                    if (left.dfeta_disabilityidid != null && left.dfeta_disabilityidid == "" || right.dfeta_disabilityidid != null && right.dfeta_disabilityidid) {
+                        merge["_dfeta_disabilityid_value"] = null
+                    }
+                    else {
+                        if ($jq('#rdDisability').is(":checked") && left.dfeta_disabilityidid != null && left.dfeta_disabilityidid != "")
+                            merge["_dfeta_disabilityid_value"] = { id: left.dfeta_disabilityidid, logicalName: "dfeta_disability", type: "EntityReference" };
+                        else
+                            if (!$jq('#rdDisability').is(":checked") && right.dfeta_disabilityidid != null && right.dfeta_disabilityidid != "")
+                                merge["_dfeta_disabilityid_value"] = { id: right.dfeta_disabilityidid, logicalName: "dfeta_disability", type: "EntityReference" };
+                    }
+                    if ($jq('#rdDateofdeath').is(":checked") && left.dfeta_dateofdeath != null)
+                        merge["dfeta_dateofdeath"] = new Date(crmaccess.formattedDate(left.dfeta_dateofdeath));
+                    else
+                        if (!$jq('#rdDateofdeath').is(":checked") && right.dfeta_dateofdeath != null)
+                            merge["dfeta_dateofdeath"] = new Date(crmaccess.formattedDate(right.dfeta_dateofdeath));
+
+                    if (left.dfeta_nationalityid != null && left.dfeta_nationalityid == "" || right.dfeta_nationalityid != null && right.dfeta_nationalityid) {
+                        merge["_dfeta_nationalityid_value"] = null
+                    }
+                    else {
+                        if ($jq('#rdNationality').is(":checked") && left.dfeta_nationalityid != null && left.dfeta_nationalityid != "")
+                            merge["_dfeta_nationalityid_value"] = { id: left.dfeta_nationalityid, logicalName: "dfeta_country", type: "EntityReference" };
+                        else
+                            if (!$jq('#rdNationality').is(":checked") && right.dfeta_nationalityid != null && right.dfeta_nationalityid != null)
+                                merge["_dfeta_nationalityid_value"] = { id: right.dfeta_nationalityid, logicalName: "dfeta_country", type: "EntityReference" };
+                    }
+                    if ($jq('#rdAddressline1').is(":checked") && left.address1_line1 != null)
+                        merge["address1_line1"] = left.address1_line1;
+                    else
+                        if (!$jq('#rdAddressline1').is(":checked") && right.address1_line1 != null)
+                            merge["address1_line1"] = right.address1_line1;
+
+                    if ($jq('#rdAddress1line2').is(":checked") && left.address1_line2 != null)
+                        merge["address1_line2"] = left.address1_line2;
+                    else
+                        if (!$jq('#rdAddress1line2').is(":checked") && right.address1_line2 != null)
+                            merge["address1_line2"] = right.address1_line2;
+
+                    if ($jq('#rdCitytown').is(":checked") && left.address1_city != null)
+                        merge["address1_city"] = left.address1_city;
+                    else
+                        if (!$jq('#rdCitytown').is(":checked") && right.address1_city != null)
+                            merge["address1_city"] = right.address1_city;
+
+                    if ($jq('#rdCounty').is(":checked") && left.address1_county != null)
+                        merge["address1_county"] = left.address1_county;
+                    else
+                        if (!$jq('#rdCounty').is(":checked") && right.address1_county != null)
+                            merge["address1_county"] = right.address1_county;
+
+                    if ($jq('#rdPostcode').is(":checked") && left.address1_postalcode != null)
+                        merge["address1_postalcode"] = left.address1_postalcode;
+                    else
+                        if (!$jq('#rdPostcode').is(":checked") && right.address1_postalcode != null)
+                            merge["address1_postalcode"] = right.address1_postalcode;
+
+                    if ($jq('#rdCountry').is(":checked") && left.address1_postalcode != null)
+                        merge["address1_country"] = left.address1_country;
+                    else
+                        if (!$jq('#rdCountry').is(":checked") && right.address1_postalcode != null)
+                            merge["address1_country"] = right.address1_country;
+
+                    if ($jq('#rdEmail').is(":checked") && left.emailaddress1 != null)
+                        merge["emailaddress1"] = left.emailaddress1;
+                    else
+                        if (!$jq('#rdEmail').is(":checked") && right.emailaddress1 != null)
+                            merge["emailaddress1"] = right.emailaddress1;
+
+                    if ($jq('#rdMobilephone').is(":checked") && left.mobilephone != null)
+                        merge["mobilephone"] = left.mobilephone;
+                    else
+                        if (!$jq('#rdMobilephone').is(":checked") && right.mobilephone != null)
+                            merge["mobilephone"] = right.mobilephone;
+
+                    if ($jq('#rdHomephone').is(":checked") && left.telephone1 != null)
+                        merge["telephone1"] = left.telephone1;
+                    else
+                        if (!$jq('#rdHomephone').is(":checked") && right.telephone1 != null)
+                            merge["telephone1"] = right.telephone1;
+
+                    if ($jq('#rdWorkphone').is(":checked") && left.telephone2 != null)
+                        merge["telephone2"] = left.telephone2;
+                    else
+                        if (!$jq('#rdWorkphone').is(":checked") && right.telephone2 != null)
+                            merge["telephone2"] = right.telephone2;
+
+                    if ($jq('#rdPreferredmethodofcontact').is(":checked") && left.preferredcontactmethodcode != null)
+                        merge["preferredcontactmethodcode"] = left.preferredcontactmethodcode;
+                    else
+                        if (!$jq('#rdPreferredmethodofcontact').is(":checked") && right.preferredcontactmethodcode != null)
+                            merge["preferredcontactmethodcode"] = right.preferredcontactmethodcode;
+
+                    if (isLeftMaster && !$jq('#rdQts').is(":checked")) {
+                        crmaccess.dectivateQTS(left.qts);
+                        crmaccess.updateQTS(right.qts, merge.id)
+                    }
+
+                    if (isLeftMaster && $jq('#rdQts').is(":checked")) {
+                        crmaccess.dectivateQTS(right.qts);
+                        crmaccess.updateQTS(left.qts, merge.id)
+                    }
+                    if (isLeftMaster && !$jq('#rdInduction').is(":checked")) {
+                        crmaccess.dectivateIndution(left.induction, left.qts);
+                        crmaccess.updateInduction(right.induction, merge.id)
+                    }
+
+                    if (isLeftMaster && $jq('#rdInduction').is(":checked")) {
+                        crmaccess.dectivateIndution(right.induction, right.qts);
+                        crmaccess.updateInduction(left.induction, merge.id)
+                    }
+                    merge["dfeta_mergeinfo"] = contactid + ";" + idToDeactivate;
+                    crmaccess.updateRecord("contacts", merge, contactid);
+
+                }
+
+                //crmaccess.moveTasks = function(originid, destid) {
+                //    XrmServiceToolkit.Rest.RetrieveMultiple(
+                //        "TaskSet",
+                //        "$select=ActivityId&$filter=RegardingObjectId/Id eq (Guid'" + originid + "')",
+                //        function (results) {
+                //            for (index = 0; index < results.length; ++index) {
+                //                var record = {};
+                //                record.RegardingObjectId = { Id: destid, LogicalName: "contact" };
+                //                XrmServiceToolkit.Rest.Update(
+                //                    results[index].ActivityId,
+                //                    record,
+                //                    "TaskSet",
+                //                    function () { },
+                //                    function (error) { alert(error); },
+                //                    false
+                //                );
+                //            }
+                //        },
+                //        function (error) { alert(error); },
+                //        function onComplete() { },
+                //        false
+                //    );
+                //}
+
+                crmaccess.dectivateQTS = function (qts) {
+                    if (qts != null && qts.dfeta_qtsregistrationid != null && qts.dfeta_qtsregistrationid != "") {
+                        crmaccess.deactivateRecord("dfeta_qtsregistrations", qts.dfeta_qtsregistrationid);
+                    }
+                }
+
+                crmaccess.updateQTS = function (qts, personId) {
+                    if (qts != null && qts.dfeta_qtsregistrationid != null && qts.dfeta_qtsregistrationid != "") {
+                        var record = {};
+                        record._dfeta_personid_value = personId;
+                        crmaccess.updateRecord("dfeta_qtsregistrations", record, qts.dfeta_qtsregistrationid);
+                    }
+                }
+
+                crmaccess.dectivateIndution = function (induction, qts) {
+                    if (induction != null && induction.dfeta_inductionid != null && qts.dfeta_inductionid != "") {
+                        crmaccess.deactivateRecord("dfeta_inductions", induction.dfeta_inductionid);
+                    }
+                }
+
+                crmaccess.updateInduction = function (induction, personId) {
+                    if (induction != null && induction.dfeta_inductionid != null && induction.dfeta_inductionid != "") {
+                        var record = {};
+                        record._dfeta_personid_value = personId;
+                        crmaccess.updateRecord("dfeta_inductions", record, induction.dfeta_inductionid)
+                    }
+                }
+
+            })(webResources.CrmAccess = webResources.CrmAccess || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

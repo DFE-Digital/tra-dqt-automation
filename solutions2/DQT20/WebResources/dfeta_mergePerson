@@ -1,0 +1,603 @@
+<html><head><style type="text/css">P { margin: 0; }</style><meta></head><body onfocusout="parent.setEmailRange();" style="word-wrap: break-word;">﻿
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; CHARSET=utf-8">
+    <title data-bind="text: right.title"></title>
+    <script src="dfeta_json2"></script>
+    <script src="dfeta_jquery"></script>
+
+    <script src="dfeta_knockout"></script>
+    <script src="dfeta_mergePersonViewModel"></script>
+    <script src="dfeta_crmAccess"></script>
+    <script type="text/javascript" src="ClientGlobalContext.js.aspx"></script>
+    <link rel="stylesheet" type="text/css" href="dfeta_mergePersonStyles">
+    <style type="text/css">
+        .auto-style1 {
+            height: 100%;
+        }
+    </style>
+
+
+    <div style="width: 100%; height: 100%; overflow: auto">
+        <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td colspan="2" class="ms-crm-Dialog-Header">
+                    <div class="ms-crm-Dialog-Header-Title" id="DlgHdTitle">Persons Merge</div>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="auto-style1">
+                    <div class="ms-crm-Dialog-Main">
+                        <div id="divWarning" style="height: 99%;">
+                            <table cellspacing="0" cellpadding="0" width="100%" height="100%">
+                                <tbody><tr>
+                                    <td>
+                                        <table height="100%" width="100%" id="tblFind" cellpadding="0" cellspacing="0">
+                                            <tbody><tr>
+                                                <td colspan="3" style="padding-top: 5px">
+                                                    <table cellspacing="0" cellpadding="0" id="crmGrid" class="ms-crm-ListControl">
+                                                        <tbody><tr>
+                                                            <td>
+                                                                <div style="height: 99.9%;">
+                                                                    <table cellspacing="0" cellpadding="0" class="ms-crm-ListArea">
+                                                                        <tbody><tr height="100%" valign="top">
+                                                                            <td>
+                                                                                Master Record
+                                                                            </td>
+                                                                            <td>
+                                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                                    <input type="radio" id="rdMaster" name="master" checked="checked" data-bind="value: left.contactid"><label data-bind="    text: left.fullname">Teacher1</label>
+                                                                                    <br>
+                                                                                    <label>TRN :</label><label data-bind="    text: left.dfeta_trn">TRN</label>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                                    <input type="radio" id="rdSlave" name="master" data-bind="value: right.contactid"><label data-bind="    text: right.fullname">Teacher2</label>
+                                                                                    <br>
+                                                                                    <label>TRN :</label><label data-bind="    text: right.dfeta_trn">TRN</label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class="ms-crm-List-Header">
+                                                                                    Person Details
+                                                                                </div>
+                                                                            </td><td>
+                                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-Header">
+                                                                                    <input type="radio" id="rdSelectLeft" checked="checked" name="selectSide"><label>Select all fields in this section</label>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-Header">
+                                                                                    <input type="radio" id="rdSelectRight" name="selectSide"><label>Select all fields in this section</label>
+                                                                                </div>
+                                                                            </td>
+                                                            
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>Title</td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdTitle" checked="checked" name="title" data-bind="value: left.dfeta_title"><label data-bind="    text: right.dfeta_title">Mr</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdTitleRight" name="title" data-bind="value: left.dfeta_title"><label data-bind="    text: right.dfeta_title">Ms</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>First Name</td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdFirstname" name="fistname" data-bind="value: left.firstname" checked="checked"><label data-bind="    text: left.firstname">Jonh</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="fistname" id="rdFirstnameRight" data-bind="value: right.firstname"><label data-bind="    text: right.firstname">Mary</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>Middle Name</td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdMiddlename" name="middlename" data-bind="value: left.middlename" checked="checked"><label data-bind="    text: left.middlename">Jonh</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="middlename" id="rdMiddlenameRight" data-bind="value: right.middlename"><label data-bind="    text: right.middlename">Mary</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>Last Name</td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="lastname" id="rdLastname" data-bind="value: left.lastname" checked="checked"><label data-bind="    text: left.lastname">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="lastname" id="rdLastnameRight" data-bind="value: right.lastname"><label data-bind="    text: right.lastname">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Gender
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdGender" name="gender" data-bind="value: left.gender" checked="checked"><label data-bind="    text: left.gender">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdGenderRight" name="gender" data-bind="value: right.gender"><label data-bind="    text: right.gender">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Date of Birth
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="dateofbirth" id="rdDateofbirth" data-bind="value: left.birthdate" checked="checked"><label data-bind="    text: left.birthdate">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="dateofbirth" id="rdDateofbirthRight" data-bind="value: right.birthdate"><label data-bind="    text: right.birthdate">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <!--<tr height="100%" valign="top">
+                                                            <td>
+                                                                TRN
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="trn" id="rdTrn" data-bind="value: left.dfeta_trn" checked="checked"><label data-bind="    text: left.dfeta_trn">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="trn" data-bind="value: right.dfeta_trn"><label data-bind="    text: right.dfeta_trn">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>-->
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Party Id
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="partyid" id="rdPartyid" data-bind="value: left.dfeta_partyid" checked="checked"><label data-bind="    text: left.dfeta_partyid">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="partyid" id="rdPartyidRight" data-bind="value: right.dfeta_partyidid"><label data-bind="    text: right.dfeta_partyid">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                NI Number
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdNi" name="ni" data-bind="value: left.dfeta_ninumber" checked="checked"><label data-bind="    text: left.dfeta_ninumber">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="ni" id="rdNiRight" data-bind="value: right.dfeta_ninumber"><label data-bind="    text: right.dfeta_ninumber">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Ethnicity
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" checked="checked" id="rdEthnicity" name="ethnicity" data-bind="value: left.dfeta_ethnicityid"><label data-bind="    text: left.dfeta_ethnicity">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="ethnicity" id="rdEthnicityRight" data-bind="value: right.dfeta_ethnicityid"><label data-bind="    text: right.dfeta_ethnicity">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Disability
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="disability" id="rdDisability" checked="checked" data-bind="value: left.dfeta_disabilitycode"><label data-bind="    text: left.dfeta_disability">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="disability" id="rdDisabilityRight" data-bind="value: right.dfeta_disabilitycode"><label data-bind="    text: right.dfeta_disability">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Disability Details
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdDesabilitydetails" name="disabilitydetails" data-bind="value: left.dfeta_disabilityidid" checked="checked"><label data-bind="    text: left.dfeta_disabilityid">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="disabilitydetails" id="rdDesabilitydetailsRight" data-bind="value: right.dfeta_disabilityidid"><label data-bind="    text: right.dfeta_disabilityid">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Date of Death
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdDateofdeath" name="dateofdeath" data-bind="value: left.dfeta_dateofdeath" checked="checked"><label data-bind="    text: left.dfeta_dateofdeath">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="dateofdeath" id="rdDateofdeathRight" data-bind="value: right.dfeta_dateofdeath"><label data-bind="    text: right.dfeta_dateofdeath">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Nationality
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdNationality" name="nationality" data-bind="value: left.dfeta_nationalityid" checked="checked"><label data-bind="    text: left.dfeta_nationality">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="nationality" id="rdNationalityRight" data-bind="value: right.dfeta_nationalityid"><label data-bind="    text: right.dfeta_nationality">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class="ms-crm-List-Header">
+                                                                    Contact Detalis
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Address Line 1
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdAddressline1" name="addressline1" data-bind="value: left.address1_line1" checked="checked"><label data-bind="    text: left.address1_line1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdAddressline1Right" name="addressline1" data-bind="value: right.address1_line1"><label data-bind="    text: right.address1_line1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Address Line 2
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdAddress1line2" name="address1line2" data-bind="value: left.address1_line2" checked="checked"><label data-bind="    text: left.address1_line2">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="address1line2" id="rdAddress1line2Right" data-bind="value: right.address1_line2"><label data-bind="    text: right.address1_line2">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                City/Town
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="citytown" id="rdCitytown" data-bind="value: left.address1_city" checked="checked"><label data-bind="    text: left.address1_city">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="citytown" id="rdCitytownRight" data-bind="value: right.address1_city"><label data-bind="    text: right.address1_city">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                County
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="county" id="rdCounty" data-bind="value: left.address1_county" checked="checked"><label data-bind="    text: left.address1_county">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="county" id="rdCountyRight" data-bind="value: right.address1_county"><label data-bind="    text: right.address1_county">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Post Code
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="postcode" id="rdPostcode" data-bind="value: left.address1_postalcode" checked="checked"><label data-bind="    text: left.address1_postalcode">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="postcode" id="rdPostcodeRight" data-bind="value: right.address1_postalcode"><label data-bind="    text: right.address1_postalcode">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Country
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="country" id="rdCountry" data-bind="value: left.address1_country" checked="checked"><label data-bind="    text: left.address1_country">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="country" id="rdCountryRight" data-bind="value: right.address1_country"><label data-bind="    text: right.address1_country">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                E-mail
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="email" id="rdEmail" data-bind="value: left.emailaddress1" checked="checked"><label data-bind="    text: left.emailaddress1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="email" id="rdEmailRight" data-bind="value: right.emailaddress1"><label data-bind="    text: right.emailaddress1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Mobile Phone
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="mobilephone" id="rdMobilephone" data-bind="value: left.mobilephone" checked="checked"><label data-bind="    text: left.mobilephone">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="mobilephone" id="rdMobilephoneRight" data-bind="value: right.mobilephone"><label data-bind="    text: right.mobilephone">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Home Phone
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" id="rdHomephone" name="homephone" data-bind="value: left.telephone1" checked="checked"><label data-bind="    text: left.telephone1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="homephone" id="rdHomephoneRight" data-bind="value: right.telephone1"><label data-bind="    text: right.telephone1">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Work Phone
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="workphone" data-bind="value: left.telephone2" id="rdWorkphone" checked="checked"><label data-bind="    text: left.telephone2">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="workphone" id="rdWorkphoneRight" data-bind="value: right.telephone2"><label data-bind="    text: right.telephone2">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Preferred Method of Contact
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="preferredmethodofcontact" data-bind="value: left.preferredcontactmethodcode" id="rdPreferredmethodofcontact" checked="checked"><label data-bind="    text: left.preferredmethodofcontact">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="preferredmethodofcontact" id="rdPreferredmethodofcontactRight" data-bind="value: right.preferredcontactmethodcode"><label data-bind="    text: right.preferredmethodofcontact">Dummy</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class="ms-crm-List-Header">
+                                                                    QTS
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                QTS Details
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="qts" id="rdQts" data-bind="value: left.qts.dfeta_qtsregistrationid" checked="checked">
+                                                                    <div>
+                                                                        <label>Teacher Status : </label>
+                                                                        <label data-bind="text: left.qts.dfeta_teacherstatusid">Dummy</label>
+                                                                        <br>
+                                                                        <label>QTS Date : </label>
+                                                                        <label data-bind="text: left.qts.dfeta_qtsdate">Dummy</label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="qts" id="rdQtsRight" data-bind="value: right.qts.dfeta_qtsregistrationid">
+                                                                    <div>
+                                                                        <label>Teacher Status : </label>
+                                                                        <label data-bind="text: right.qts.dfeta_teacherstatusid">Dummy</label>
+                                                                        <br>
+                                                                        <label>QTS Date : </label>
+                                                                        <label data-bind="text: right.qts.dfeta_qtsdate">Dummy</label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class="ms-crm-List-Header">
+                                                                    Induction
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%" valign="top">
+                                                            <td>
+                                                                Induction Status
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="induction" id="rdInduction" data-bind="value: left.induction.dfeta_inductionid" checked="checked">
+                                                                    <div>
+                                                                        <label>Induction Status : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_inductionstatus">Dummy</label>
+                                                                        <br>
+                                                                        <label>Start Date : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_startdate">Dummy</label>
+                                                                        <br>
+                                                                        <label>Completition Date : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_completiondate">Dummy</label>
+                                                                        <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class=" ms-crm-list-header">
+                                                                            Appeal
+                                                                        </div>
+                                                                        <label>Appeal Received : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_appealreceived">Dummy</label>
+                                                                        <br>
+                                                                        <label>Appeal Received On : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_appealreceivedon">Dummy</label>
+                                                                        <br>
+                                                                        <label>Outcome : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_outcome">Dummy</label>
+                                                                        <br>
+                                                                        <label>Outcome Date : </label>
+                                                                        <label data-bind="text: left.induction.dfeta_outcomedate">Dummy</label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div id="crmGrid_divDataBody" class="ms-crm-List-DataBody">
+                                                                    <input type="radio" name="induction" id="rdInductionRight" data-bind="value: right.induction.dfeta_inductionid">
+                                                                    <div>
+                                                                        <label>Induction Status : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_inductionstatus">Dummy</label>
+                                                                        <br>
+                                                                        <label>Start Date : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_startdate">Dummy</label>
+                                                                        <br>
+                                                                        <label>Completition Date : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_completiondate">Dummy</label>
+                                                                        <div id="fixedrow" style="width: 100%; overflow-x: hidden;" class=" ms-crm-list-header">
+                                                                            Appeal
+                                                                        </div>
+                                                                        <label>Appeal Received : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_appealreceived">Dummy</label>
+                                                                        <br>
+                                                                        <label>Appeal Received On : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_appealreceivedon">Dummy</label>
+                                                                        <br>
+                                                                        <label>Outcome : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_outcome">Dummy</label>
+                                                                        <br>
+                                                                        <label>Outcome Date : </label>
+                                                                        <label data-bind="text: right.induction.dfeta_outcomedate">Dummy</label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="ms-crm-List-StatusBar">
+                                                            <td colspan="3">
+                                                                <table cellspacing="0" cellpadding="0" id="gridStatusBar" class="ms-crm-List-StatusBar">
+                                                                    <tbody><tr>
+                                                                        <td nowrap="" class="ms-crm-List-StatusBar-Label" id="crmGrid_RecordSelectInfo"></td>
+                                                                        <td nowrap="" id="crmGrid_PageInfo" class="ms-crm-List-Paging"></td>
+                                                                    </tr>
+                                                                </tbody></table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody></table>
+                        </div>
+
+                </td>
+            </tr>
+        </tbody></table>
+       
+    
+    <div id="divFillBg" style="display: none; position: absolute; top: 80px; left: 20px; height: 23px; width: 355px; background-color: #ffffff;">
+        &nbsp;
+    </div>
+    <div id="divFill" style="display: none; position: absolute; top: 80px; left: 20px; height: 23px; width: 0px; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#00ff00, EndColorStr=#00cc00);">
+        &nbsp;
+    </div>
+    <div id="divStatus" style="display: none; position: absolute; top: 80px; left: 19px; height: 23px; width: 357px;">
+        <img alt="" src="_imgs/statusbar.gif" height="23" width="357">
+    </div>
+    </td>
+    </tr>
+    <tr>
+        <td class="ms-crm-Dialog-Footer ms-crm-Dialog-Footer-Left">&nbsp;</td>
+        <td class="ms-crm-Dialog-Footer ms-crm-Dialog-Footer-Right">
+            <button id="butBegin" class="ms-crm-Button" data-bind="click: actions.ok">OK</button>&nbsp;
+            <button id="cmdDialogCancel" class="ms-crm-Button" data-bind="click: actions.cancel">Cancel</button>&nbsp;
+
+        </td>
+    </tr>
+    </tbody></table>
+    
+
+
+</td></tr></tbody></table></div></div></td></tr></tbody></table></div></body></html>
