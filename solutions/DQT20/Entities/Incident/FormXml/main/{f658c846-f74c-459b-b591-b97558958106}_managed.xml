@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{f658c846-f74c-459b-b591-b97558958106}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form enablerelatedinformation="true" relatedInformationCollapsed="false" shownavigationbar="true" showImage="false" maxWidth="1900" solutionaction="Modified">
+      <tabs>
+        <tab name="general" verticallayout="true" id="{06a2992a-9cc9-41a5-8f37-d2b2214fdde1}" IsUserDefined="0" ordinalvalue="1" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="overview" showlabel="true" showbar="true" id="{51999b68-4b4c-439b-bb51-1b49edae03a9}" IsUserDefined="0" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell colspan="2" id="{7aebc69c-c3bb-4489-a1f2-9faf3c8b363c}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Case Title" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{82172fc9-a003-4203-87e6-73c8808ae942}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Requested By" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <control id="customerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="customerid" disabled="false">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a9859c32-0cdc-41b5-8e7e-3eb173cab4a8}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Subject" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{7f21a1bc-48b1-4423-860b-0efa5cfa7712}" ordinalvalue="20003" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{0653f522-18a7-41d4-a1ae-56164cb8b300}" ordinalvalue="10004" solutionaction="Removed" />
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{504fce47-f175-41d7-a747-27a0c9963acc}" ordinalvalue="20005" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{2b03e3b7-0206-3835-81d5-2da83d849b1d}" showlabel="false" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{040c9e23-b629-052a-a201-4becd2c7c532}" showlabel="true" locklevel="0" colspan="2" rowspan="2" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="description" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="assignment information" showlabel="true" showbar="true" id="{34d53885-5bbb-4711-a9ab-1b55928fd020}" IsUserDefined="0" ordinalvalue="3" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{dae3e345-a070-4428-be90-ab0a926ca354}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{4a23dbed-e8cc-4a80-b63c-91e40968a6ec}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Modified">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="true" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{4e5d56cd-eb6a-4ec5-9ac2-499a90f87cf5}" ordinalvalue="10002" solutionaction="Removed" />
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{4887a827-87a9-47ac-8cff-84aa1336649d}" ordinalvalue="20003" solutionaction="Removed" />
+                    </row>
+                  </rows>
+                </section>
+                <section name="contract and product information" showlabel="true" showbar="true" id="{af10583d-3e30-4e24-9e5d-d2a84638abe2}" IsUserDefined="0" locklevel="0" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false" ordinalvalue="5" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{e0d2da00-1940-41ec-a875-80032bfd503a}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Contract" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <events solutionaction="Removed" />
+                      </cell>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" id="{be75eccd-45f3-4b40-95a5-69551b1e453a}" ordinalvalue="20001">
+                        <labels>
+                          <label description="Product" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{05ad2293-47dc-4119-a655-4a317a1a7838}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Contract Line" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <events solutionaction="Removed" />
+                      </cell>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" id="{84b93c76-6856-4ab9-ad6a-173c86e9685e}" ordinalvalue="20003">
+                        <labels>
+                          <label description="Serial Number" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{fe76512f-1e10-41e0-bf1b-abc9433d861c}" ordinalvalue="10004">
+                        <labels>
+                          <label description="Service Level" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{45b0b358-578d-4b16-bbd3-981350b17338}" showlabel="false" ordinalvalue="20005" solutionaction="Modified" />
+                    </row>
+                  </rows>
+                </section>
+                <section name="change_birthdate" showlabel="true" showbar="true" locklevel="0" id="{4970ec71-6236-dd1a-3b3e-c4c386cd3ec9}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="Change of Date of Birth" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{69837c41-7814-5547-33d2-890304495007}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="New Date of Birth" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newdateofbirth" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_newdateofbirth" disabled="false" />
+                      </cell>
+                      <cell id="{86b1d8e9-1289-4b89-4037-dc721b93ad1e}" showlabel="false" ordinalvalue="20001">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="change_name" showlabel="true" showbar="true" locklevel="0" id="{803163d7-35a1-b10b-2234-5a5062d54c70}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false" ordinalvalue="2" solutionaction="Added">
+                  <labels>
+                    <label description="Change of Name" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4936adc1-5158-b545-51d9-92cae0118789}" showlabel="true" locklevel="0" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="New Title" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newtitle" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_newtitle" disabled="false" />
+                      </cell>
+                      <cell id="{ce0d1b96-c20b-571d-32dd-0d717d437a25}" showlabel="true" locklevel="0" ordinalvalue="20001">
+                        <labels>
+                          <label description="New Middle Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newmiddlename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_newmiddlename" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{01db044d-2161-cbe4-ab8a-a2dd67c7125d}" showlabel="true" locklevel="0" ordinalvalue="10002">
+                        <labels>
+                          <label description="New First Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newfirstname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_newfirstname" disabled="false" />
+                      </cell>
+                      <cell id="{cd672eb4-721a-5990-6a8a-ce852e30bcc1}" showlabel="true" locklevel="0" ordinalvalue="20003">
+                        <labels>
+                          <label description="New Last Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newlastname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_newlastname" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="change_ni" showlabel="true" showbar="true" locklevel="0" id="{d794c092-0e68-e806-92c0-4a2538980be8}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false" ordinalvalue="4" solutionaction="Added">
+                  <labels>
+                    <label description="Change NI" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4785321a-01c5-e387-1bd8-c7dbe341a33e}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="New NI" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_newni" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_newni" disabled="false" />
+                      </cell>
+                      <cell id="{b3a77173-1d6b-2519-52d7-3c0de0532545}" showlabel="false" ordinalvalue="20001">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="notesandkb" id="{ecec23bf-2417-4bdc-a019-0a6aca6c2500}" IsUserDefined="0" expanded="false" ordinalvalue="2" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="kb article" labelwidth="160" showlabel="true" showbar="true" locklevel="1" id="{e7405683-b295-4b3f-8c52-6fdc8b736a9c}" IsUserDefined="0" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell colspan="2" id="{5fe36484-a978-4069-b390-fe9400809aaa}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Article" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <events solutionaction="Removed" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" showlabel="false" rowspan="8" id="{cd51ce63-1e6c-453f-95db-ffaaa477984f}" ordinalvalue="10001" solutionaction="Modified" />
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_recordwall" id="{e94e6ac4-12db-bc8c-ec81-8b20c5987655}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" labelid="{bd35d5f7-403b-4630-ba7c-4e769ecf739a}" ordinalvalue="0" solutionaction="Added">
+          <labels>
+            <label description="What's New" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_recordwall_section_1" showlabel="false" showbar="false" locklevel="0" id="{ac0addcc-a626-6c98-40ee-b11edac36204}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{b34f2b13-3368-4be9-9212-6ee68d93330b}" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{be13b312-b6ac-83d7-34e1-e90dc1ecbec7}" showlabel="false" colspan="1" auto="false" rowspan="15" labelid="{c6dd5081-bf13-4625-89e3-950d033794f0}" ordinalvalue="10000">
+                        <labels>
+                          <label description="RecordWall" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RecordWall" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>msdyn_/RecordWall.htm</Url>
+                            <PassParameters>true</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="0">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <!--<events>    <event name="tabstatechange" application="false" active="false">      <Handlers>        <Handler functionName="ActivityFeeds.Form.CustomizationUtils.updateRecordWallRenderingState" libraryName="msdyn_/ActivityFeeds.Form.js" handlerUniqueId="{9beb6ce6-2666-8033-a406-3d68d44b9592}" enabled="true" parameters="" passExecutionContext="true" />      </Handlers>    </event>  </events>-->
+        </tab>
+      </tabs>
+      <events>
+        <event name="onload" application="false" active="false" solutionaction="Modified">
+          <InternalHandlers solutionaction="Removed" />
+          <Handlers solutionaction="Added">
+            <Handler functionName="DFE.Dqt.WebResources.DfeCase.Form_OnLoad" libraryName="dfeta_Case" handlerUniqueId="{8b3b51d6-801c-eceb-12e4-c8d45c9b27b0}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="customerid" solutionaction="Removed" />
+        <event name="onchange" application="true" active="true" attribute="contractid" solutionaction="Removed" />
+        <event name="onchange" application="true" active="true" attribute="contractdetailid" solutionaction="Removed" />
+        <event name="onchange" application="true" active="true" attribute="kbarticleid" solutionaction="Removed" />
+      </events>
+      <clientresources solutionaction="Removed" />
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem RelationshipName="Incident_ActivityPointers" Id="navActivities" Icon="/_imgs/ico_18_act.gif" Sequence="10" Area="Info" solutionaction="Modified">
+            <Titles solutionaction="Added">
+              <Title LCID="1033" Text="Activities" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="Incident_ActivityPointers" Id="navActivityHistory" TitleResourceId="Tab_Label_History" Icon="/_imgs/ico_18_history.gif" ViewId="21E2B905-6FDB-470d-8517-AD69B4C01268" Sequence="20" Area="Info" solutionaction="Modified">
+            <Titles solutionaction="Added">
+              <Title LCID="1033" Text="Closed Activities" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas solutionaction="Added">
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions FallbackForm="true" Order="3" solutionaction="Removed" />
+      <formLibraries solutionaction="Added">
+        <!--<Library name="msdyn_/ActivityFeeds.Form.js" libraryUniqueId="{4181da4c-6d13-ba3c-c859-be404e4ee2e3}" />-->
+        <Library name="dfeta_Case" libraryUniqueId="{de9b46cb-b363-a1e0-78b0-1cb0d8281702}" />
+        <Library name="msdyn_/ActivityFeeds.Form.js" libraryUniqueId="{d6e36ae9-3451-6b15-4318-9ce26e20e047}" />
+      </formLibraries>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

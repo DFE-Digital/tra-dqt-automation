@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{3856dad0-580a-4401-aac9-8cf9cee5d1be}</formid>
+    <IntroducedVersion>1.5.01.57</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{2e4fea3e-f218-4f40-90c1-7aa8dfc4c0de}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{6db64f9a-0054-4113-89dc-d24803956eba}" name="{6db64f9a-0054-4113-89dc-d24803956eba}" columns="11" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d28ea51e-fe9f-4c25-9ab6-1ed8530ea37f}" colspan="1" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Text 1" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_text1" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_text1" disabled="false" />
+                      </cell>
+                      <cell id="{67956979-a2c2-3180-9ee7-61a6a49bc651}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Text 2" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_text2" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_text2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1966c98d-ca9a-1445-4dbe-2633ab1be4bd}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Text 3" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_text3" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_text3" disabled="false" />
+                      </cell>
+                      <cell id="{cc82e8ea-6070-4158-10c4-381bd50ce166}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Text 4" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_text4" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_text4" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b479a31b-be3a-055d-d0d2-a2a4e7a33291}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Text 5" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_text5" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_text5" disabled="false" />
+                      </cell>
+                      <cell id="{ed88d983-53aa-4aa8-6c76-b9e9a784cbd1}" showlabel="false" userspacer="true">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{97d4c331-a597-0c17-577e-12d786a1247e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Number 1" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_number1" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="dfeta_number1" disabled="false" />
+                      </cell>
+                      <cell id="{64038a09-6b64-8b07-bbd6-046cbe32e08e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Number 2" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_number2" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="dfeta_number2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5d5d3547-eb23-a4d0-b702-707d1392b504}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Number 3" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_number3" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="dfeta_number3" disabled="false" />
+                      </cell>
+                      <cell id="{75d02801-87ad-dc6c-31e9-32395e3754b2}" showlabel="false" userspacer="true">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b6108bb-e2dd-7a74-4900-3844975e5a64}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date 1" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_date1" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_date1" disabled="false" />
+                      </cell>
+                      <cell id="{6b0c712b-d774-6339-1e58-2ce989486631}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date 2" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_date2" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_date2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c82b8c1c-39e1-a516-6c62-44c0e1d118a8}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date 3" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_date3" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_date3" disabled="false" />
+                      </cell>
+                      <cell id="{5510844a-3811-bc20-373e-dd30353c71ea}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab id="{1cdd20cb-51c1-49db-a60f-5a7a16e51491}" IsUserDefined="0" expanded="false">
+          <labels>
+            <label description="Notes" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" id="{e16eb4d3-ed6b-4e75-a5c6-b42227ed2d99}" IsUserDefined="0" height="auto">
+                  <labels>
+                    <label description="Notes" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell colspan="2" showlabel="false" rowspan="5" auto="true" id="{600cca5e-7f64-404d-b481-9dab739f4b25}">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                      </cell>
+                    </row>
+                    <row></row>
+                    <row></row>
+                    <row></row>
+                    <row height="auto"></row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{9e5e9288-4fc8-42dc-aee6-be0cb1e68aad}">
+        <rows>
+          <row>
+            <cell id="{ab41a69c-fbca-415b-8a9b-b8b60ffb6b88}">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="footer_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{9990f944-1583-4acd-8566-d711e44eb107}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="dfeta_name" select="1" icon="1" preview="1">
+        <row name="dfeta_ittqualification" id="dfeta_ittqualificationid">
+          <cell name="dfeta_name" width="300" />
+          <cell name="dfeta_value" width="125" />
+          <cell name="dfeta_vieworder" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dfeta_ittqualification">
+          <attribute name="dfeta_name" />
+          <order attribute="dfeta_vieworder" descending="false" />
+          <order attribute="dfeta_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dfeta_value" />
+          <attribute name="dfeta_vieworder" />
+          <attribute name="dfeta_ittqualificationid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="ITT Qualification Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

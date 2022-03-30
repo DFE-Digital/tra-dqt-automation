@@ -1,0 +1,26 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (address) {
+
+                address.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('city').addOnChange(address.OnChangeTownCity);
+                    }
+                }
+
+                address.OnChangeTownCity = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var val = formContext.getAttribute('city').getValue();
+
+                        if (val != null & val != undefined)
+                            formContext.getAttribute('city').setValue(val.toUpperCase());
+                    }
+                }
+            })(webResources.Address = webResources.Address || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

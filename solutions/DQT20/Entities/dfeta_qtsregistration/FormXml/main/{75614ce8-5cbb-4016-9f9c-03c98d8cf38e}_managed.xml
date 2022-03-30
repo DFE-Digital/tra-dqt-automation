@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{75614ce8-5cbb-4016-9f9c-03c98d8cf38e}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1900">
+      <tabs>
+        <tab verticallayout="true" id="{e4017b52-052c-46d3-8ba7-6751f87b5a18}" IsUserDefined="1" expanded="true">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{6961c1a7-8d2c-4231-8545-eb760081d1c7}" name="{6961c1a7-8d2c-4231-8545-eb760081d1c7}" columns="11" locklevel="0" labelwidth="100" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7cb65473-2612-d90a-96ee-9c1317b4258c}" showlabel="true" locklevel="0" colspan="2">
+                        <labels>
+                          <label description="Person" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_personid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_personid" disabled="true">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A2D479C5-53E3-4C69-ADDD-802327E67A0D}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{94624465-c177-88e2-cb79-2ccbcc7d1c63}" showlabel="true" colspan="2">
+                        <labels>
+                          <label description="Teacher Status" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_teacherstatusid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_teacherstatusid" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{1D795190-0337-4096-8748-FFB2FFA27C19}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{407c050d-b285-ae68-a2cd-7e627357c1e9}" showlabel="true">
+                        <labels>
+                          <label description="QTS Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_qtsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_qtsdate" disabled="false" />
+                      </cell>
+                      <cell id="{78e15a10-bb5a-4804-2dae-48a3d5797d35}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date of Partial Recognition" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_dateofrecognition" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_dateofrecognition" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4cda8029-1032-8bc9-34b1-168039c84a15}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Skills Test Pass Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_skillstestpassdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_skillstestpassdate" disabled="false" />
+                      </cell>
+                      <cell id="{ed7a8451-0029-7a34-3745-9600bc4ed860}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Certificate Number" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_certificatenumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_certificatenumber" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b5a0ed79-ac90-bec7-9125-a3d179b0c9c9}" showlabel="false" userspacer="true">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{50c1e736-6d94-0e48-3c18-8e0ad1a5acaa}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5e197718-5dd7-a644-3d38-34337abc96b4}" showlabel="true" colspan="2">
+                        <labels>
+                          <label description="Early Years Status" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_earlyyearsstatusid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_earlyyearsstatusid" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{156D03DF-5E7A-48C3-9FF6-F1BD31531290}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7999bd27-a2d5-1054-ee86-aa906e59767d}" showlabel="true">
+                        <labels>
+                          <label description="EYTS Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_eytsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_eytsdate" disabled="false" />
+                      </cell>
+                      <cell id="{33d335c6-774e-5a10-62d8-983b84873cb0}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{434de6ce-a826-4840-b3ed-e3d0e032dd89}" showlabel="false" userspacer="true">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{91175361-8645-3037-bb53-62cd494866d0}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{e3dc5365-2a23-56d1-0229-879810877627}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
+          <labels>
+            <label description="Admin" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{c3b092b9-8914-032d-d689-c8440039be03}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="100" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{9691a36d-f90c-45b9-87a6-d9debafe0f04}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_name" disabled="true" />
+                      </cell>
+                      <cell id="{d540c4f4-d861-4e9f-8278-5cef6a4db79b}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{879de119-b687-3844-e709-4bec7b6de62a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Induction (created)" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_inductionid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_inductionid" disabled="true">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{311FDCC4-B98D-447C-A618-604D63C398A6}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{677da053-79a5-a2d2-d70b-b2a650754736}" showlabel="true" visible="false">
+                        <labels>
+                          <label description="Requested By" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_requestedbyid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_requestedbyid" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A2D479C5-53E3-4C69-ADDD-802327E67A0D}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{e4db15ef-1ab6-40ef-bb22-becd7171d251}">
+        <rows>
+          <row>
+            <cell id="{94190538-b471-4d68-9ec9-8f2f0fb130f5}">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="footer_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem RelationshipName="dfeta_dfeta_qtsregistration_contact" Id="nav_dfeta_dfeta_qtsregistration_contact" Area="Info" Sequence="10001" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Person" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Processes" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="dfeta_application_insights.js" libraryUniqueId="{64e9a83e-9dab-90b4-6673-d493dd385075}" />
+        <Library name="dfeta_QTSRegistration" libraryUniqueId="{4888b02a-9c98-0837-c1c5-de884535c766}" />
+        <Library name="dfeta_Common" libraryUniqueId="{7e28bd53-271b-1ba9-0cb4-d1592cb4c883}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="DFE.Dqt.WebResources.QTSRegistration.Form_OnLoad" libraryName="dfeta_QTSRegistration" handlerUniqueId="{6804d4b0-a936-0a9c-5392-401c93213d2c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

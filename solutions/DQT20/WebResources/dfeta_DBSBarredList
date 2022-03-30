@@ -1,0 +1,71 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (contact) {
+                /* Uses Common.js javascript file*/
+                contact.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        formContext.getAttribute('dfeta_trn').addOnChange(contact.OnChangeTRN);
+                        formContext.getAttribute('dfeta_firstname').addOnChange(function () { return contact.OnChangeName(executionContext,'dfeta_firstname'); });
+                        formContext.getAttribute('dfeta_lastname').addOnChange(function () { return contact.OnChangeName(executionContext,'dfeta_lastname'); });
+                        formContext.getAttribute('dfeta_ninumber').addOnChange(contact.OnChangeNINumber);
+                        formContext.getAttribute('dfeta_birthdate').addOnChange(function () {
+                            return DFE.Dqt.WebResources.Common.DisableFutureDate
+                            
+                                (executionContext,'dfeta_birthdate');
+                        });
+                    }
+                }
+
+                contact.OnChangeTRN = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var TRNRegEx = /^[0-9]+$/;
+
+                        var trn = formContext.getAttribute('dfeta_trn').getValue();
+
+                        if (!TRNRegEx.test(trn)) {
+                            formContext.getAttribute('dfeta_trn').setValue(null);
+                            alert('Please enter a valid Teacher Reference Number.');
+                        }
+                    }
+                }
+
+                contact.OnChangeName = function (executionContext,attributeName) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var NameRegEx = /^[A-Za-z]+$/;
+
+                        var name = formContext.getAttribute(attributeName).getValue();
+
+                        if (!NameRegEx.test(name)) {
+                            formContext.getAttribute(attributeName).setValue(null);
+                            alert('Please enter a valid name.');
+                        }
+                    }
+                }
+
+                contact.OnChangeNINumber = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var NINORegEx = /[ABCEGHJKLMNOPRSTWXYZ][ABCEGHJKLMNPRSTWXYZ][0-9]{6}[A-D ]/i;
+
+                        var nino = formContext.getAttribute('dfeta_ninumber').getValue();
+
+                        if (!NINORegEx.test(nino)) {
+                            formContext.getAttribute('dfeta_ninumber').setValue(null);
+                            alert('Please enter a valid National Insurance Number.');
+                        }
+                        else if (nino.toLowerCase().indexOf('tn') == 0) {
+                            formContext.getAttribute('dfeta_ninumber').setValue(null);
+                            alert('Please enter a valid National Insurance Number. National Insurance Number cannot begin with TN.');
+                        }
+                    }
+                }
+
+            })(webResources.Contact = webResources.Contact || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});

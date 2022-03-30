@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EmailTemplates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <emailtemplate>
+    <templateid>{25249025-91fa-43c1-8c38-1f6bc14221c3}</templateid>
+    <subject></subject>
+    <subjectpresentationxml></subjectpresentationxml>
+    <mimetype></mimetype>
+    <templatetypecode>4700</templatetypecode>
+    <body></body>
+    <title>Duplicate Detection Task Completion Template</title>
+    <description>Use this e-mail template for sending notification to system users on successful completion of duplicate detection task.</description>
+    <presentationxml></presentationxml>
+    <languagecode>1033</languagecode>
+    <generationtypecode>1</generationtypecode>
+    <IntroducedVersion>5.0</IntroducedVersion>
+  </emailtemplate>
+</EmailTemplates>

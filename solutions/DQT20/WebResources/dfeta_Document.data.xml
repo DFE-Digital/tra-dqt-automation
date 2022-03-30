@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{24f98b7d-5f03-e411-8bfd-00155d45ce4c}</WebResourceId>
+  <Name>dfeta_Document</Name>
+  <DisplayName>Document</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>0.0.0.19</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"/&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/dfeta_Document24F98B7D-5F03-E411-8BFD-00155D45CE4C</FileName>
+</WebResource>

@@ -1,0 +1,31 @@
+var DFE;
+(function (dfe) {
+    (function (dqt) {
+        (function (webResources) {
+            (function (document) {
+                document.Form_OnLoad = function (executionContext) {
+                    if (executionContext != null) {
+                        document.ShowApplicantLeadOrContact(executionContext);
+                    }
+                }
+
+                document.ShowApplicantLeadOrContact = function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var person = formContext.getAttribute('dfeta_personid');
+                        var application = formContext.getAttribute('dfeta_mrapplicationid');
+                        if (person != null && application != null) {
+                            if (application.getValue() != null && person.getValue() == null) {
+                                formContext.getControl('dfeta_mrapplicationid').setVisible(true);
+                                formContext.getAttribute('dfeta_personid').setRequiredLevel('none');
+                            }
+                            else {
+                                formContext.getControl('dfeta_personid').setVisible(true);
+                            }
+                        }
+                    }
+                }
+            })(webResources.Document = webResources.Document || {});
+        })(dqt.WebResources = dqt.WebResources || {});
+    })(dfe.Dqt = dfe.Dqt || {});
+})(DFE = DFE || {});
