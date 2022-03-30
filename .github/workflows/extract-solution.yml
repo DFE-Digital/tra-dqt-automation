@@ -1,0 +1,62 @@
+name: Extract solution
+
+on:
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: 'CRM solution to export'
+        required: true
+        default: DQT20
+
+env:
+  EXPORTED_SOLUTION_ZIP: out/exported/${{ github.event.inputs.solution_name }}.zip
+  SOLUTION_PATH: solutions/${{ github.event.inputs.solution_name }}
+
+jobs:
+  export:
+    name: Export solution
+    runs-on: ubuntu-latest
+    environment: build
+    concurrency: extract-solution
+
+    steps:
+    - run: git config --global core.longpaths true
+
+    - uses: actions/checkout@v2
+
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      id: CRM
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: CRM
+        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
+
+    - name: Export unmanaged solution
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        solution-name: ${{ github.event.inputs.solution_name }}
+        solution-output-file: ${{ env.EXPORTED_SOLUTION_ZIP }}
+
+    - name: Unpack unmanaged solution
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      with:
+        solution-file: ${{ env.EXPORTED_SOLUTION_ZIP }}
+        solution-folder: ${{ env.SOLUTION_PATH }}
+
+    - name: Create pull request for changes
+      uses: peter-evans/create-pull-request@v4
+      with:
+        commit-message: 'Update ${{ github.event.inputs.solution_name }}'
+        delete-branch: true
+        title: 'Update ${{ github.event.inputs.solution_name }}'
+        body:
+        add-paths: |
+          ${{ env.SOLUTION_PATH }}
