@@ -8,8 +8,6 @@
   <EntityRelationship Name="bookableresourcebooking_Tasks" />
   <EntityRelationship Name="bookableresourcebookingheader_Tasks" />
   <EntityRelationship Name="bulkoperation_Tasks" />
-  <EntityRelationship Name="business_unit_accounts" unmodified="1" />
-  <EntityRelationship Name="business_unit_contacts" unmodified="1" />
   <EntityRelationship Name="business_unit_dfeta_businesseventaudit" />
   <EntityRelationship Name="business_unit_dfeta_confirmationletter" />
   <EntityRelationship Name="business_unit_dfeta_document" />
@@ -32,7 +30,6 @@
   <EntityRelationship Name="business_unit_dfeta_webactivitylog" />
   <EntityRelationship Name="business_unit_incidents" />
   <EntityRelationship Name="business_unit_leads" />
-  <EntityRelationship Name="business_unit_task_activities" unmodified="1" />
   <EntityRelationship Name="campaign_leads" />
   <EntityRelationship Name="Campaign_Tasks" />
   <EntityRelationship Name="CampaignActivity_Tasks" />
@@ -146,8 +143,6 @@
   <EntityRelationship Name="entitlementtemplate_Tasks" />
   <EntityRelationship Name="equipment_accounts" />
   <EntityRelationship Name="equipment_contacts" />
-  <EntityRelationship Name="incident_master_incident" unmodified="1" />
-  <EntityRelationship Name="incident_parent_incident" unmodified="1" />
   <EntityRelationship Name="Incident_Tasks" />
   <EntityRelationship Name="Invoice_Tasks" />
   <EntityRelationship Name="kbarticle_incidents" />
@@ -330,9 +325,6 @@
   <EntityRelationship Name="product_incidents" />
   <EntityRelationship Name="Quote_Tasks" />
   <EntityRelationship Name="SalesOrder_Tasks" />
-  <EntityRelationship Name="service_accounts" unmodified="1" />
-  <EntityRelationship Name="service_contacts" unmodified="1" />
-  <EntityRelationship Name="service_tasks" unmodified="1" />
   <EntityRelationship Name="site_Tasks" />
   <EntityRelationship Name="sla_account" />
   <EntityRelationship Name="sla_cases" />
@@ -342,7 +334,6 @@
   <EntityRelationship Name="slakpiinstance_incident_firstresponsebykpi" />
   <EntityRelationship Name="slakpiinstance_incident_resolvebykpi" />
   <EntityRelationship Name="socialprofile_cases" />
-  <EntityRelationship Name="subject_incidents" unmodified="1" />
   <EntityRelationship Name="system_user_accounts" />
   <EntityRelationship Name="system_user_contacts" />
   <EntityRelationship Name="system_user_incidents" />
@@ -371,9 +362,6 @@
   <EntityRelationship Name="team_incidents" />
   <EntityRelationship Name="team_task" />
   <EntityRelationship Name="territory_accounts" />
-  <EntityRelationship Name="transactioncurrency_account" unmodified="1" />
-  <EntityRelationship Name="transactioncurrency_contact" unmodified="1" />
-  <EntityRelationship Name="transactioncurrency_lead" unmodified="1" />
   <EntityRelationship Name="user_accounts" />
   <EntityRelationship Name="user_dfeta_businesseventaudit" />
   <EntityRelationship Name="user_dfeta_confirmationletter" />

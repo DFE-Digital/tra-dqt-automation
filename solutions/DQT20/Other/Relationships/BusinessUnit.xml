@@ -1,43 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <EntityRelationship Name="business_unit_accounts" unmodified="1">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
-    <IntroducedVersion>5.0.0.0</IntroducedVersion>
-    <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>Account</ReferencingEntityName>
-    <ReferencedEntityName>BusinessUnit</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>NoCascade</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <CascadeRollupView>NoCascade</CascadeRollupView>
-    <ReferencingAttributeName>OwningBusinessUnit</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="Shows the business unit that the record owner belongs to." languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
-  </EntityRelationship>
-  <EntityRelationship Name="business_unit_contacts" unmodified="1">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
-    <IntroducedVersion>5.0.0.0</IntroducedVersion>
-    <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>Contact</ReferencingEntityName>
-    <ReferencedEntityName>BusinessUnit</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>NoCascade</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <CascadeRollupView>NoCascade</CascadeRollupView>
-    <ReferencingAttributeName>OwningBusinessUnit</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="Unique identifier of the business unit that owns the contact." languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
-  </EntityRelationship>
   <EntityRelationship Name="business_unit_dfeta_businesseventaudit">
     <EntityRelationshipType>OneToMany</EntityRelationshipType>
     <IsCustomizable>1</IsCustomizable>
@@ -451,25 +413,6 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
-  </EntityRelationship>
-  <EntityRelationship Name="business_unit_task_activities" unmodified="1">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
-    <IntroducedVersion>5.0.0.0</IntroducedVersion>
-    <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>Task</ReferencingEntityName>
-    <ReferencedEntityName>BusinessUnit</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>NoCascade</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <CascadeRollupView>NoCascade</CascadeRollupView>
-    <ReferencingAttributeName>OwningBusinessUnit</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="Shows the record owner's business unit." languagecode="1033" />
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>
