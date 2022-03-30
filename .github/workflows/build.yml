@@ -51,6 +51,7 @@ jobs:
       with:
         solution-file: ${{ env.EXPORTED_SOLUTION_ZIP }}
         solution-folder: ${{ env.SOLUTION_PATH }}
+        solution-type: Managed
 
     - name: Create pull request for changes
       uses: peter-evans/create-pull-request@v4
