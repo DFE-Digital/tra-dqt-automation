@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>CustomerServiceTeamMember</UniqueName>
+  <IntroducedVersion>9.1.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="dfeta_sanction" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{ef4b4b0f-8b61-474d-b06a-8248577b08ee}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_employment" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{209f0fcd-3693-4be4-aae8-2a2a36ee0ebe}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_hequalification" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{2449022a-7a85-4a57-a235-e374ffc50b5e}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_hesubject" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{195c9955-bc7f-49b4-b64f-a3c5d890d35a}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_induction" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{eda42192-25ed-498c-b649-ff95be5379a9}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_inductionperiod" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{d1032b97-6aba-4764-9743-d0b02e7b11b2}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_initialteachertraining" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{b31f66a0-6d4a-41c8-9c33-3a4be5dbe8a2}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittqualification" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{f71b2828-206f-4a2f-8605-05a45ac0f459}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_ittsubject" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{d3453ba5-9f77-4c8a-8c68-7cb03eefceff}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="account" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{b053a39a-041a-4356-acef-ddf00182762b}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="contact" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_previousname" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{032a126f-10f7-4030-ada1-1b5933bae6ed}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_qtsregistration" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{75614ce8-5cbb-4016-9f9c-03c98d8cf38e}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_qualification" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{279d12a2-f37b-45aa-9db6-5f35a7cece39}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="dfeta_teacherstatus" solutionaction="Added" />
+    <AppModuleComponent type="60" id="{f9bdc385-41f3-4715-b0bb-f0bd28f9addc}" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="appointment" solutionaction="Removed" />
+    <AppModuleComponent type="1" schemaName="email" solutionaction="Removed" />
+    <AppModuleComponent type="1" schemaName="phonecall" solutionaction="Removed" />
+    <AppModuleComponent type="1" schemaName="serviceappointment" solutionaction="Removed" />
+    <AppModuleComponent type="1" schemaName="task" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{00000000-0000-0000-00aa-000010001902}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{182a7fcf-d011-ea11-a81d-000d3a063867}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{2b5f5a5d-2d23-4fe7-aa58-e77995368ae7}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{36c60cbd-afb1-4217-9211-8189dbf5c07c}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{5b5f75f6-b585-4212-952a-b4cbb64e2627}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{719f8513-077d-482c-9250-cc8acbb79413}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{cc6bc541-36e4-4ceb-8b3f-ab3837236cc1}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{cc98cb1f-6552-4fd8-9e2f-39a1cad2f710}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{f6a2f891-6846-4b21-b922-712695afd65c}" solutionaction="Removed" />
+    <AppModuleComponent type="26" id="{fdfa686a-8230-ea11-a81c-000d3afd5852}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{1bc0ff08-cb08-45d6-8fd4-e49e6b49fe91}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{1ec1872a-23de-4294-9d7f-1b76272a5fd5}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{399945c7-d07f-444e-9e54-d5fa4042290c}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{9e6a8b06-6d14-46e6-bbf5-95c388c6eb7a}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{fb14a378-8b1d-ea11-a81f-000d3ac39f76}" solutionaction="Removed" />
+    <AppModuleComponent type="59" id="{edf35649-5293-de11-97d4-00155da3b01e}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{1d5ad078-3edb-4edc-98c6-c0c21e3125e3}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{230cd27c-0ce0-4b52-9fe5-d7a5ed94ba4e}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{75ec0e60-421b-4e71-8f5d-d8de7e0aa04e}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{9a48370e-8d1d-ea11-a81f-000d3ac39f76}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{b5ca230c-0451-4ad0-afd5-9a9dbeb7f766}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{c7ff9a7d-cf27-4043-9614-c790e267dd2b}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{cdc622ea-2a17-4cc3-9605-44564d56cea7}" solutionaction="Removed" />
+    <AppModuleComponent type="60" id="{d5b4a1b2-de4f-4f86-8768-b0730001e7d1}" solutionaction="Removed" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{3dac4d9e-568c-e611-80d4-00155d42a122}" />
+    <Role id="{350d0832-8e1b-ea11-a81d-000d3a6d6cdc}" solutionaction="Removed" />
+    <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" />
+    <Role id="{669f83dd-db08-e311-8cce-000c29770442}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="DQT Team Member" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Enable employees to self-serve by searching for knowledge articles and creating cases​." languagecode="1033" />
+  </Descriptions>
+</AppModule>

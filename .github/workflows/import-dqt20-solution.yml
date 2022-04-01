@@ -1,0 +1,52 @@
+name: Import DQT20 solution
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'solutions/DQT20/**'
+
+jobs:
+  import:
+    name: Import to ${{ matrix.environment }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+#        environment: [test, preprod, prod]
+        environment: [test]
+    env:
+      SOLUTION_NAME: DQT20
+      SOLUTION_ZIP: out/exported/DQT20.zip
+    environment: ${{ matrix.environment }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: Azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      id: CRM
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: CRM
+        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
+
+    - name: Pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-file: ${{ env.SOLUTION_ZIP }}
+        solution-folder: solutions/${{ env.SOLUTION_NAME }}
+        solution-type: Managed
+
+    - name: Import managed solution
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
+        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
+        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
+        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
+        solution-file: ${{ env.SOLUTION_ZIP }}
