@@ -20,6 +20,7 @@ jobs:
       SOLUTION_NAME: DQT20
       SOLUTION_ZIP: out/exported/DQT20.zip
     environment: ${{ matrix.environment }}
+    concurrency: dqt20-${{ matrix.environment }}
 
     steps:
     - uses: actions/checkout@v2
