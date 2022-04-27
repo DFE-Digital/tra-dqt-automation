@@ -52,6 +52,8 @@
     <RolePrivilege name="prvAppendLead" level="Local" />
     <RolePrivilege name="prvAppendLeadToOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvAppendMailMergeTemplate" level="Global" />
+    <RolePrivilege name="prvAppendmsdyn_salestag" level="Local" />
+    <RolePrivilege name="prvAppendmsdyn_sequencetargetstep" level="Local" />
     <RolePrivilege name="prvAppendNewProcess" level="Global" />
     <RolePrivilege name="prvAppendNote" level="Global" />
     <RolePrivilege name="prvAppendOpportunitySalesProcess" level="Global" />
@@ -107,6 +109,8 @@
     <RolePrivilege name="prvAppendToLead" level="Local" />
     <RolePrivilege name="prvAppendToLeadToOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvAppendToMailMergeTemplate" level="Global" />
+    <RolePrivilege name="prvAppendTomsdyn_salestag" level="Local" />
+    <RolePrivilege name="prvAppendTomsdyn_sequencetarget" level="Local" />
     <RolePrivilege name="prvAppendToNewProcess" level="Global" />
     <RolePrivilege name="prvAppendToNote" level="Global" />
     <RolePrivilege name="prvAppendToOpportunitySalesProcess" level="Global" />
@@ -148,6 +152,8 @@
     <RolePrivilege name="prvAssigndfeta_qualification" level="Local" />
     <RolePrivilege name="prvAssigndfeta_sanction" level="Local" />
     <RolePrivilege name="prvAssignImportFile" level="Basic" />
+    <RolePrivilege name="prvAssignmsdyn_sequencetarget" level="Local" />
+    <RolePrivilege name="prvAssignmsdyn_sequencetargetstep" level="Local" />
     <RolePrivilege name="prvAssignNote" level="Local" />
     <RolePrivilege name="prvAssignReport" level="Local" />
     <RolePrivilege name="prvAssignUserEntityInstanceData" level="Basic" />
@@ -185,6 +191,10 @@
     <RolePrivilege name="prvCreateIncident" level="Basic" />
     <RolePrivilege name="prvCreateLead" level="Basic" />
     <RolePrivilege name="prvCreateLeadToOpportunitySalesProcess" level="Global" />
+    <RolePrivilege name="prvCreatemsdyn_extendedusersetting" level="Basic" />
+    <RolePrivilege name="prvCreatemsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvCreatemsdyn_workqueuestate" level="Basic" />
+    <RolePrivilege name="prvCreatemsdyn_workqueueusersetting" level="Basic" />
     <RolePrivilege name="prvCreateNewProcess" level="Global" />
     <RolePrivilege name="prvCreateNote" level="Basic" />
     <RolePrivilege name="prvCreateOpportunitySalesProcess" level="Global" />
@@ -209,6 +219,7 @@
     <RolePrivilege name="prvDeletedfeta_qualification" level="Local" />
     <RolePrivilege name="prvDeleteExpiredProcess" level="Global" />
     <RolePrivilege name="prvDeleteLeadToOpportunitySalesProcess" level="Global" />
+    <RolePrivilege name="prvDeletemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvDeleteNewProcess" level="Global" />
     <RolePrivilege name="prvDeleteOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvDeletePhoneToCaseProcess" level="Global" />
@@ -290,6 +301,15 @@
     <RolePrivilege name="prvReadLeadToOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvReadLicense" level="Global" />
     <RolePrivilege name="prvReadMailMergeTemplate" level="Global" />
+    <RolePrivilege name="prvReadmsdyn_extendedusersetting" level="Basic" />
+    <RolePrivilege name="prvReadmsdyn_salesaccelerationsettings" level="Global" />
+    <RolePrivilege name="prvReadmsdyn_salestag" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_sequence" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_sequencetarget" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_workqueuerecord" level="Global" />
+    <RolePrivilege name="prvReadmsdyn_workqueuestate" level="Basic" />
+    <RolePrivilege name="prvReadmsdyn_workqueueusersetting" level="Basic" />
     <RolePrivilege name="prvReadNewProcess" level="Global" />
     <RolePrivilege name="prvReadNewsArticle" level="Global" />
     <RolePrivilege name="prvReadNote" level="Global" />
@@ -392,6 +412,11 @@
     <RolePrivilege name="prvWriteLead" level="Local" />
     <RolePrivilege name="prvWriteLeadToOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvWriteMailMergeTemplate" level="Local" />
+    <RolePrivilege name="prvWritemsdyn_extendedusersetting" level="Basic" />
+    <RolePrivilege name="prvWritemsdyn_sequencetarget" level="Local" />
+    <RolePrivilege name="prvWritemsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvWritemsdyn_workqueuestate" level="Basic" />
+    <RolePrivilege name="prvWritemsdyn_workqueueusersetting" level="Basic" />
     <RolePrivilege name="prvWriteNewProcess" level="Global" />
     <RolePrivilege name="prvWriteNote" level="Basic" />
     <RolePrivilege name="prvWriteOpportunitySalesProcess" level="Global" />
