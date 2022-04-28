@@ -170,7 +170,6 @@
                         <labels>
                           <label description="Parent Account" languagecode="1033" />
                         </labels>
-                        <!--<events>  <event name="setadditionalparams" application="true" active="true">    <InternalHandlers>      <Handler functionName="Mscrm.parentaccountid_setadditionalparams" libraryName="Account_main_system_library.js" handlerUniqueId="c5cc10db-58ac-4611-a529-c1ff599707b1" enabled="true" />    </InternalHandlers>  </event></events>-->
                         <control id="parentaccountid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="parentaccountid" />
                       </cell>
                     </row>
@@ -272,9 +271,7 @@
             <column width="100%" id="0">
               <sections>
                 <section name="activities" showlabel="true" showbar="true" id="{690cd22e-026f-4e6a-8e93-74e5c27b4973}" IsUserDefined="0" height="auto" ordinalvalue="0" solutionaction="Removed" />
-                <section name="notes" showlabel="false" showbar="false" id="{2D4972DE-69D5-4518-B3F7-A9683B62E2C0}" IsUserDefined="0" height="auto" columns="11" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0" solutionaction="Modified">
-                  <rows />
-                </section>
+                <section name="notes" showlabel="false" showbar="false" id="{2D4972DE-69D5-4518-B3F7-A9683B62E2C0}" IsUserDefined="0" height="auto" columns="11" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0" solutionaction="Modified" />
               </sections>
             </column>
           </columns>
@@ -316,6 +313,19 @@
                           <label description="DBS Children’s Barred List Access" languagecode="1033" />
                         </labels>
                         <control id="dfeta_dbs_childrensbarredlist_access" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_dbs_childrensbarredlist_access" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{eb1d6a54-7c44-b8c5-6713-c50e489eaeb8}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Restrict Barred Teachers List access" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_restrict_dbs_teacherrecord_access" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_restrict_dbs_teacherrecord_access" disabled="false" />
+                      </cell>
+                      <cell id="{7c770696-db0d-7962-c078-98eae502c66e}" showlabel="false" ordinalvalue="20005" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
