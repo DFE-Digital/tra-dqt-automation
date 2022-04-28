@@ -6,6 +6,7 @@ on:
     - main
     paths:
     - 'solutions/DQT20/**'
+  workflow_dispatch:
 
 jobs:
   import:
