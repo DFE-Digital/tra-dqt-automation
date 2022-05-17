@@ -23,5 +23,6 @@ Each command requires a corresponding piece of code to handle it's action.
 - Click new button
 - Fill in new field name details (name, length etc...)
 - Click save and close
+- Bump version number found under information -> Version field
 - Export solution
 - Check exported solution into source control
