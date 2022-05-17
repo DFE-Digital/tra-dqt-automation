@@ -53,9 +53,18 @@ jobs:
         solution-folder: ${{ env.SOLUTION_PATH }}
         solution-type: Managed
 
+    - name: Read solution version
+      id: version
+      shell: pwsh
+      run: |
+        [xml]$solution = Get-Content (Join-Path $env:SOLUTION_PATH Other Solution.xml) 
+        $version = $solution.ImportExportXml.SolutionManifest.Version
+        Write-Output "::set-output name=number::$version"
+
     - name: Create pull request for changes
       uses: peter-evans/create-pull-request@v4
       with:
+        branch: "v${{ steps.version.outputs.number }}"
         commit-message: 'Update ${{ github.event.inputs.solution_name }} solution'
         delete-branch: true
         title: 'Update ${{ github.event.inputs.solution_name }} solution'
