@@ -744,7 +744,7 @@
         </NavBar>
       </Navigation>
       <controlDescriptions>
-        <controlDescription forControl="{3ff9a528-dd50-4aca-8f10-2e5ed73513ad}" solutionaction="Removed" />
+        <controlDescription forControl="{3FF9A528-DD50-4ACA-8F10-2E5ED73513AD}" solutionaction="Removed" />
       </controlDescriptions>
       <DisplayConditions FallbackForm="true" Order="4" solutionaction="Modified" />
     </form>
