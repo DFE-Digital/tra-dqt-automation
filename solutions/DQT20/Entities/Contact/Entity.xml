@@ -4844,19 +4844,29 @@
               <Description description="Gender of the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" ExternalValue="" Color="">
                 <labels>
                   <label description="Male" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" ExternalValue="" Color="">
                 <labels>
                   <label description="Female" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040000">
+              <option value="389040000" ExternalValue="" Color="">
                 <labels>
                   <label description="Other" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="389040001" ExternalValue="" Color="#0000ff">
+                <labels>
+                  <label description="Not provided" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="389040002" ExternalValue="" Color="#0000ff">
+                <labels>
+                  <label description="Not available" languagecode="1033" />
                 </labels>
               </option>
             </options>
