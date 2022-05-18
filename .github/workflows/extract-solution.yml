@@ -16,7 +16,6 @@ jobs:
   export:
     name: Export solution
     runs-on: ubuntu-latest
-    environment: build
     concurrency: extract-solution
 
     steps:
@@ -26,12 +25,12 @@ jobs:
 
     - uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_DEV }}
 
     - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
       id: CRM
       with:
-        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        keyvault: ${{ secrets.KEY_VAULT_DEV }}
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
