@@ -1,0 +1,42 @@
+name: Run script
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        default: 'build'
+      args:
+        description: 'Arguments to pass to DqtScripts app'
+        required: true
+
+jobs:
+  run-script:
+    name: Run script
+    runs-on: ubuntu-latest
+    concurrency: run-script
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - id: crm
+      uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: CRM
+        key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET
+
+    - uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
+
+    - run: dotnet run -- ${{ github.event.inputs.args }}
+      env:
+        CrmUrl: ${{ steps.crm.outputs.CRM_URL }}
+        CrmClientId: ${{ steps.crm.outputs.CRM_APP_ID }}
+        CrmClientSecret: ${{ steps.crm.outputs.CRM_APP_SECRET }}
+      working-directory: DqtScripts
