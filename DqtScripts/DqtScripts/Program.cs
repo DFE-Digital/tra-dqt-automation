@@ -3,6 +3,7 @@ using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using Azure.Storage.Blobs;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,17 +15,25 @@ await CreateCommandLineBuilder()
         .ConfigureAppConfiguration(config => config
             .AddUserSecrets(typeof(Program).Assembly)
             .AddEnvironmentVariables())
-        .ConfigureServices(services =>
+        .ConfigureServices((hostBuilderContext, services) =>
         {
-            services.AddSingleton<ServiceClient>(sp =>
-            {
-                var configuration = sp.GetRequiredService<IConfiguration>();
+            var configuration = hostBuilderContext.Configuration;
 
-                return new ServiceClient(
+            services.AddSingleton<ServiceClient>(_ =>
+                new ServiceClient(
                     new Uri(configuration["CrmUrl"]),
                     configuration["CrmClientId"],
                     configuration["CrmClientSecret"],
-                    useUniqueInstance: false);
+                    useUniqueInstance: false));
+
+            services.AddSingleton<BlobServiceClient>(_ =>
+                new BlobServiceClient(configuration.GetConnectionString("BlobStorage")));
+
+            services.AddSingleton<BlobContainerClient>(sp =>
+            {
+                var containerName = configuration["BlobContainerName"];
+                var client = sp.GetRequiredService<BlobServiceClient>();
+                return client.GetBlobContainerClient(containerName);
             });
         }))
     .UseDefaults()
