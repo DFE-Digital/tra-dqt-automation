@@ -34,9 +34,9 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - run: dotnet run -- ${{ github.event.inputs.args }}
+    - run: dotnet run -c Release -- ${{ github.event.inputs.args }}
       env:
         CrmUrl: ${{ steps.crm.outputs.CRM_URL }}
         CrmClientId: ${{ steps.crm.outputs.CRM_APP_ID }}
         CrmClientSecret: ${{ steps.crm.outputs.CRM_APP_SECRET }}
-      working-directory: DqtScripts
+      working-directory: DqtScripts/DqtScripts
