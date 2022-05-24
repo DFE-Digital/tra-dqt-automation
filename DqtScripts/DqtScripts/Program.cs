@@ -14,7 +14,7 @@ using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
-await CreateCommandLineBuilder()
+var result = await CreateCommandLineBuilder()
     .UseHost((IHostBuilder host) => host
         .ConfigureAppConfiguration(config => config
             .AddUserSecrets(typeof(Program).Assembly, optional: true)
@@ -58,6 +58,8 @@ await CreateCommandLineBuilder()
     .UseDefaults()
     .Build()
     .InvokeAsync(args);
+
+Environment.Exit(result);
 
 static CommandLineBuilder CreateCommandLineBuilder()
 {
