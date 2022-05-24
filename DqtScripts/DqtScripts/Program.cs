@@ -17,7 +17,7 @@ using Microsoft.Xrm.Sdk.Query;
 await CreateCommandLineBuilder()
     .UseHost((IHostBuilder host) => host
         .ConfigureAppConfiguration(config => config
-            .AddUserSecrets(typeof(Program).Assembly)
+            .AddUserSecrets(typeof(Program).Assembly, optional: true)
             .AddEnvironmentVariables())
         .ConfigureServices((hostBuilderContext, services) =>
         {
