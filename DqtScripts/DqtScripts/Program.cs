@@ -3,6 +3,7 @@ using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using Azure;
 using Azure.Storage.Blobs;
 using CsvHelper;
 using Microsoft.Crm.Sdk.Messages;
@@ -29,14 +30,29 @@ await CreateCommandLineBuilder()
                     configuration["CrmClientSecret"],
                     useUniqueInstance: false));
 
-            services.AddSingleton<BlobServiceClient>(_ =>
-                new BlobServiceClient(configuration.GetConnectionString("BlobStorage")));
-
             services.AddSingleton<BlobContainerClient>(sp =>
             {
                 var containerName = configuration["BlobContainerName"];
-                var client = sp.GetRequiredService<BlobServiceClient>();
-                return client.GetBlobContainerClient(containerName);
+                if (containerName == null)
+                {
+                    throw new Exception("Missing BlobContainerName configuration.");
+                }
+
+                var connectionString = configuration.GetConnectionString("BlobStorage");
+                if (connectionString != null)
+                {
+                    return new BlobContainerClient(connectionString, containerName);
+                }
+
+                var storageAccountUri = configuration["BlobUri"];
+                var sasToken = configuration["BlobSasToken"];
+                if (storageAccountUri != null && sasToken != null)
+                {
+                    var blobContainerUri = new Uri(storageAccountUri.TrimEnd('/') + $"/{containerName}");
+                    return new BlobContainerClient(blobContainerUri, new AzureSasCredential(sasToken));
+                }
+
+                throw new Exception("Missing configuration for blob storage.");
             });
         }))
     .UseDefaults()
