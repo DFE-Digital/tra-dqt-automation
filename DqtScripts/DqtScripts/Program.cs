@@ -102,7 +102,9 @@ static void AddBackupHusidsCommand(RootCommand rootCommand)
             var serviceClient = host.Services.GetRequiredService<ServiceClient>();
             var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
 
+#if DEBUG
             await blobContainerClient.CreateIfNotExistsAsync();
+#endif
 
             var backupBlobName = $"backup-husids/backup_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
