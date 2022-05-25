@@ -3,6 +3,7 @@ using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using System.Text.RegularExpressions;
 using Azure;
 using Azure.Storage.Blobs;
 using CsvHelper;
@@ -73,6 +74,7 @@ static RootCommand CreateRootCommand()
 
     AddWhoAmICommand(rootCommand);
     AddBackupHusidsCommand(rootCommand);
+    AddCleanseHusidCommand(rootCommand);
 
     return rootCommand;
 }
@@ -92,6 +94,93 @@ static void AddWhoAmICommand(RootCommand rootCommand)
 
     rootCommand.Add(command);
 }
+
+static void AddCleanseHusidCommand(RootCommand rootCommand)
+{
+    var command = new Command("cleanse-husids", description: "Nulls out HusId where Husid field contains DttpId or DmsId")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+
+            var backupBlobName = $"cleanse-husids/cleanse-husids_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+            var validHusidPattern = @"^\d{13}$";
+
+            // https://github.com/Azure/azure-sdk-for-net/pull/28148 - we have to pass options
+            using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("contactid");
+                csvWriter.WriteField("dfeta_husid");
+                csvWriter.WriteField("dfeta_trn");
+                csvWriter.NextRecord();
+
+                var query = new QueryExpression("contact");
+                query.Criteria.AddCondition("dfeta_husid", ConditionOperator.NotNull);
+                query.ColumnSet = new ColumnSet("contactid", "dfeta_husid", "dfeta_trn");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+
+                EntityCollection result;
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+
+
+                    foreach (var record in result.Entities)
+                    {
+                        var husId = record.GetAttributeValue<string>("dfeta_husid");
+
+                        if (!Regex.IsMatch(husId, validHusidPattern))
+                        {
+
+                            Console.WriteLine(husId);
+
+                            if(commit == true)
+                            {
+                                //clear husid
+                                var contact = new Entity("contact");
+                                contact.Id = record.Id;
+                                contact["dfeta_husid"] = null;
+                                await serviceClient.UpdateAsync(contact);
+                            }
+
+                            //always write csv file
+                            csvWriter.WriteField(record.GetAttributeValue<Guid>("contactid"));
+                            csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_husid"));
+                            csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_trn"));
+                            csvWriter.NextRecord();
+                        }
+
+                    }
+
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                }
+                while (result.MoreRecords);
+
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+
+
+    rootCommand.Add(command);
+}
+
+
 
 static void AddBackupHusidsCommand(RootCommand rootCommand)
 {
