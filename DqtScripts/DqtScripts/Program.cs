@@ -109,7 +109,6 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
             await blobContainerClient.CreateIfNotExistsAsync();
 #endif
 
-
             var backupBlobName = $"cleanse-husids/cleanse-husids_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
             var validHusidPattern = @"^\d{13}$";
@@ -139,17 +138,17 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
                 {
                     result = await serviceClient.RetrieveMultipleAsync(query);
 
-
                     foreach (var record in result.Entities)
                     {
                         var husId = record.GetAttributeValue<string>("dfeta_husid");
 
                         if (!Regex.IsMatch(husId, validHusidPattern))
                         {
-
+#if DEBUG
                             Console.WriteLine(husId);
+#endif
 
-                            if(commit == true)
+                            if (commit == true)
                             {
                                 //clear husid
                                 var contact = new Entity("contact");
@@ -164,19 +163,17 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
                             csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_trn"));
                             csvWriter.NextRecord();
                         }
-
                     }
 
                     query.PageInfo.PageNumber++;
                     query.PageInfo.PagingCookie = result.PagingCookie;
                 }
                 while (result.MoreRecords);
-
             }
         })
     };
-    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
     rootCommand.Add(command);
 }
@@ -193,7 +190,6 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
 #if DEBUG
             await blobContainerClient.CreateIfNotExistsAsync();
 #endif
-
 
             var backupBlobName = $"cleanse-traineeids/cleanse-traineeids_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
@@ -224,14 +220,15 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
                 {
                     result = await serviceClient.RetrieveMultipleAsync(query);
 
-
                     foreach (var record in result.Entities)
                     {
                         var traineeid = record.GetAttributeValue<string>("dfeta_traineeid");
 
                         if (!Regex.IsMatch(traineeid, validHusidPattern))
                         {
+#if DEBUG
                             Console.WriteLine(traineeid);
+#endif
 
                             if (commit == true)
                             {
@@ -248,24 +245,20 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
                             csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_traineeid"));
                             csvWriter.NextRecord();
                         }
-
                     }
 
                     query.PageInfo.PageNumber++;
                     query.PageInfo.PagingCookie = result.PagingCookie;
                 }
                 while (result.MoreRecords);
-
             }
         })
     };
-    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
     rootCommand.Add(command);
 }
-
-
 
 static void AddBackupHusidsCommand(RootCommand rootCommand)
 {
