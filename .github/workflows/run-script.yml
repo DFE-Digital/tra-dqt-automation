@@ -15,7 +15,7 @@ jobs:
     name: Run script
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    concurrency: run-script
+    concurrency: run-script-${{ github.event.inputs.environment }}
 
     steps:
     - uses: actions/checkout@v2

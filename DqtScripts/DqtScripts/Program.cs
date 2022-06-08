@@ -3,6 +3,8 @@ using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Text.RegularExpressions;
 using Azure;
 using Azure.Storage.Blobs;
@@ -13,7 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+using Polly;
 
 var result = await CreateCommandLineBuilder()
     .UseHost((IHostBuilder host) => host
@@ -109,10 +113,43 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
             await blobContainerClient.CreateIfNotExistsAsync();
 #endif
 
-
             var backupBlobName = $"cleanse-husids/cleanse-husids_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
             var validHusidPattern = @"^\d{13}$";
+
+            var idsToBeCleansed = new Subject<Guid>();
+
+            // Batch Update requests in chunks of 10 and retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+
+            var batchSubscription = idsToBeCleansed.Buffer(10).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var id in batch)
+                {
+                    var update = new Entity("contact")
+                    {
+                        Id = id
+                    };
+                    update["dfeta_husid"] = null;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = update
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+            });
 
             // https://github.com/Azure/azure-sdk-for-net/pull/28148 - we have to pass options
             using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
@@ -139,23 +176,19 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
                 {
                     result = await serviceClient.RetrieveMultipleAsync(query);
 
-
                     foreach (var record in result.Entities)
                     {
                         var husId = record.GetAttributeValue<string>("dfeta_husid");
 
                         if (!Regex.IsMatch(husId, validHusidPattern))
                         {
-
+#if DEBUG
                             Console.WriteLine(husId);
+#endif
 
-                            if(commit == true)
+                            if (commit == true)
                             {
-                                //clear husid
-                                var contact = new Entity("contact");
-                                contact.Id = record.Id;
-                                contact["dfeta_husid"] = null;
-                                await serviceClient.UpdateAsync(contact);
+                                idsToBeCleansed.OnNext(record.Id);
                             }
 
                             //always write csv file
@@ -164,19 +197,21 @@ static void AddCleanseHusidCommand(RootCommand rootCommand)
                             csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_trn"));
                             csvWriter.NextRecord();
                         }
-
                     }
 
                     query.PageInfo.PageNumber++;
                     query.PageInfo.PagingCookie = result.PagingCookie;
                 }
                 while (result.MoreRecords);
-
             }
+
+            idsToBeCleansed.OnCompleted();
+
+            batchSubscription.Dispose();
         })
     };
-    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
     rootCommand.Add(command);
 }
@@ -194,10 +229,43 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
             await blobContainerClient.CreateIfNotExistsAsync();
 #endif
 
-
             var backupBlobName = $"cleanse-traineeids/cleanse-traineeids_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
             var validHusidPattern = @"^\d{13}$";
+
+            var idsToBeCleansed = new Subject<Guid>();
+
+            // Batch Update requests in chunks of 10 and retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+
+            var batchSubscription = idsToBeCleansed.Buffer(10).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var id in batch)
+                {
+                    var update = new Entity("dfeta_initialteachertraining")
+                    {
+                        Id = id
+                    };
+                    update["dfeta_traineeid"] = null;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = update
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+            });
 
             // https://github.com/Azure/azure-sdk-for-net/pull/28148 - we have to pass options
             using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
@@ -224,22 +292,19 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
                 {
                     result = await serviceClient.RetrieveMultipleAsync(query);
 
-
                     foreach (var record in result.Entities)
                     {
                         var traineeid = record.GetAttributeValue<string>("dfeta_traineeid");
 
                         if (!Regex.IsMatch(traineeid, validHusidPattern))
                         {
+#if DEBUG
                             Console.WriteLine(traineeid);
+#endif
 
                             if (commit == true)
                             {
-                                //clear non-husids
-                                var itt = new Entity("dfeta_initialteachertraining");
-                                itt.Id = record.Id;
-                                itt["dfeta_traineeid"] = null;
-                                await serviceClient.UpdateAsync(itt);
+                                idsToBeCleansed.OnNext(record.Id);
                             }
 
                             //always write csv file
@@ -248,7 +313,6 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
                             csvWriter.WriteField(record.GetAttributeValue<string>("dfeta_traineeid"));
                             csvWriter.NextRecord();
                         }
-
                     }
 
                     query.PageInfo.PageNumber++;
@@ -256,16 +320,17 @@ static void AddCleanseTraineeIdCommand(RootCommand rootCommand)
                 }
                 while (result.MoreRecords);
 
+                idsToBeCleansed.OnCompleted();
+
+                batchSubscription.Dispose();
             }
         })
     };
-    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
 
     rootCommand.Add(command);
 }
-
-
 
 static void AddBackupHusidsCommand(RootCommand rootCommand)
 {
