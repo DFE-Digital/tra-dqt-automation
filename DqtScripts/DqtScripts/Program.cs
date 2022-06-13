@@ -80,6 +80,8 @@ static RootCommand CreateRootCommand()
     AddBackupHusidsCommand(rootCommand);
     AddCleanseHusidCommand(rootCommand);
     AddCleanseTraineeIdCommand(rootCommand);
+    AddCombineHesaAndDmsTeacherStatusesCommand(rootCommand);
+    AddCombineRenameDMSTraineeTeacherStatusCommand(rootCommand);
 
     return rootCommand;
 }
@@ -99,6 +101,188 @@ static void AddWhoAmICommand(RootCommand rootCommand)
 
     rootCommand.Add(command);
 }
+
+static void AddCombineRenameDMSTraineeTeacherStatusCommand(RootCommand rootCommand)
+{
+    var command = new Command("rename-dms-traineeteacher", description: "Renames DMS Trainee Teacher Status (211) to Trainee Teacher")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backupBlobName = $"renameddmstraineeteacher/renamedteacherstatuses_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+
+            // https://github.com/Azure/azure-sdk-for-net/pull/28148 - we have to pass options
+            using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("id");
+                csvWriter.WriteField("dfeta_name");
+                csvWriter.NextRecord();
+
+                //get only active statuses with dfeta_value of 211 (Hesa Trainee Teacher)
+                var statusQuery = new QueryExpression("dfeta_teacherstatus");
+                statusQuery.Criteria.AddCondition("dfeta_value", ConditionOperator.Equal, "211");
+                statusQuery.ColumnSet = new ColumnSet("dfeta_value", "dfeta_name");
+                statusQuery.PageInfo = new PagingInfo()
+                {
+                    Count = 2,
+                    PageNumber = 1
+                };
+                var results = await serviceClient.RetrieveMultipleAsync(statusQuery);
+
+                foreach (var record in results.Entities)
+                {
+                    //always write csv file
+                    csvWriter.WriteField(record.Id);
+                    csvWriter.WriteField(record["dfeta_name"]);
+                    csvWriter.NextRecord();
+
+                    if (commit == true)
+                    {
+                        var teacherstatus = new Entity("dfeta_teacherstatus");
+                        teacherstatus.Id = record.Id;
+                        teacherstatus["dfeta_name"] = "Trainee Teacher";
+                        await serviceClient.UpdateAsync(teacherstatus);
+                    }
+                }
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
+}
+
+static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
+{
+    var command = new Command("combine-teacherstatuses", description: "Combines Trainee Teacher - DMS (211) & Trainee Teacher - Hesa (211) statuses into one status Trainee Teacher (211)")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backupBlobName = $"combine-hesa-dms-ids/combined-hesa-dms-teacherstatuses_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+            var idsToBeCleansed = new Subject<Guid>();
+
+            //fetch 210,211 statuses
+            var statusQuery = new QueryExpression("dfeta_teacherstatus");
+            statusQuery.Criteria.AddCondition("dfeta_value", ConditionOperator.In, new string[] { "211", "210" });
+            statusQuery.ColumnSet = new ColumnSet("dfeta_value", "dfeta_name");
+            statusQuery.PageInfo = new PagingInfo()
+            {
+                Count = 2,
+                PageNumber = 1
+            };
+            var statusResults = await serviceClient.RetrieveMultipleAsync(statusQuery);
+            var traineeTeacherHESA = statusResults.Entities.SingleOrDefault(x => x["dfeta_value"].ToString() == "210");
+            var traineeTeacherDMS = statusResults.Entities.SingleOrDefault(x => x["dfeta_value"].ToString() == "211");
+
+            //return if status 210 or 211 is not found
+            if (traineeTeacherHESA?.Id == null || traineeTeacherDMS?.Id == null)
+                throw new Exception("No trainee teacher status ids found.");
+
+
+            // Batch Update requests in chunks of 10 and retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+
+            var batchSubscription = idsToBeCleansed.Buffer(10).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var id in batch)
+                {
+                    var update = new Entity("dfeta_qtsregistration")
+                    {
+                        Id = id
+                    };
+                    update["dfeta_teacherstatusid"] = traineeTeacherDMS.Id;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = update
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            // https://github.com/Azure/azure-sdk-for-net/pull/28148 - we have to pass options
+            using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("qtsregistrationid");
+                csvWriter.WriteField("personid");
+                csvWriter.WriteField("dfeta_teacherstatusid");
+                csvWriter.NextRecord();
+
+                //Fetch qts records with trainee teacher status : Hesa
+                var query = new QueryExpression("dfeta_qtsregistration");
+                query.Criteria.AddCondition("dfeta_teacherstatusid", ConditionOperator.Equal, traineeTeacherHESA?.Id);
+                query.ColumnSet = new ColumnSet("dfeta_personid", "dfeta_qtsregistrationid", "dfeta_teacherstatusid");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+
+                EntityCollection result;
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        //always write csv file
+                        csvWriter.WriteField(record.GetAttributeValue<Guid>("dfeta_qtsregistrationid"));
+                        csvWriter.WriteField(record.GetAttributeValue<EntityReference>("dfeta_personid").Id);
+                        csvWriter.WriteField(record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id);
+                        csvWriter.NextRecord();
+
+                        Console.WriteLine($"{record["dfeta_qtsregistrationid"]} - {record.GetAttributeValue<EntityReference>("dfeta_personid").Id} - {record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id} ");
+
+                        if (commit == true)
+                        {
+                            idsToBeCleansed.OnNext(record.Id);
+                        }
+                    }
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                }
+                while (result.MoreRecords);
+            }
+            idsToBeCleansed.OnCompleted();
+            batchSubscription.Dispose();
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+
+    rootCommand.Add(command);
+}
+
 
 static void AddCleanseHusidCommand(RootCommand rootCommand)
 {
