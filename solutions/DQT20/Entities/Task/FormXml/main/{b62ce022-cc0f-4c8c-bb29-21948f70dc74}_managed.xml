@@ -96,23 +96,12 @@
             </column>
           </columns>
         </tab>
-        <tab name="notes" id="{D87E07A3-11DA-4b8e-A8CC-F069EBC43FD4}" IsUserDefined="0" expanded="false" ordinalvalue="1">
-          <columns>
-            <column width="100%" id="0">
-              <sections>
-                <section name="notes" showlabel="false" showbar="false" id="{81A8A668-2716-4129-846D-E663546EC4FE}" IsUserDefined="0" height="auto" ordinalvalue="0">
-                  <rows />
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
       </tabs>
       <events solutionaction="Removed" />
       <clientresources solutionaction="Removed" />
       <DisplayConditions FallbackForm="true" Order="2" solutionaction="Removed" />
       <Navigation solutionaction="Added">
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
