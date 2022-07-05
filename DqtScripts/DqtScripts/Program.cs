@@ -214,7 +214,7 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                     {
                         Id = id
                     };
-                    update["dfeta_teacherstatusid"] = traineeTeacherDMS.Id;
+                    update["dfeta_teacherstatusid"] = new EntityReference("dfeta_teacherstatus", traineeTeacherDMS.Id);
 
                     request.Requests.Add(new UpdateRequest()
                     {
