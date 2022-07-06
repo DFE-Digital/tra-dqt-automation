@@ -262,7 +262,9 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                         csvWriter.WriteField(record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id);
                         csvWriter.NextRecord();
 
+#if DEBUG
                         Console.WriteLine($"{record["dfeta_qtsregistrationid"]} - {record.GetAttributeValue<EntityReference>("dfeta_personid").Id} - {record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id} ");
+#endif
 
                         if (commit == true)
                         {
