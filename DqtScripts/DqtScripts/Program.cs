@@ -222,7 +222,7 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                     });
                 }
 
-                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
             },
             onError: ex =>
             {
