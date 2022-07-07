@@ -214,7 +214,7 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                     {
                         Id = id
                     };
-                    update["dfeta_teacherstatusid"] = traineeTeacherDMS.Id;
+                    update["dfeta_teacherstatusid"] = new EntityReference("dfeta_teacherstatus", traineeTeacherDMS.Id);
 
                     request.Requests.Add(new UpdateRequest()
                     {
@@ -222,7 +222,7 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                     });
                 }
 
-                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
             },
             onError: ex =>
             {
@@ -262,7 +262,9 @@ static void AddCombineHesaAndDmsTeacherStatusesCommand(RootCommand rootCommand)
                         csvWriter.WriteField(record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id);
                         csvWriter.NextRecord();
 
+#if DEBUG
                         Console.WriteLine($"{record["dfeta_qtsregistrationid"]} - {record.GetAttributeValue<EntityReference>("dfeta_personid").Id} - {record.GetAttributeValue<EntityReference>("dfeta_teacherstatusid").Id} ");
+#endif
 
                         if (commit == true)
                         {
