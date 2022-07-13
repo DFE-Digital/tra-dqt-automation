@@ -1,34 +1,24 @@
 name: Import DQT20 solution
 
 on:
-  push:
-    branches:
-    - main
-    paths:
-    - 'solutions/DQT20/**'
   workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
 
 jobs:
   import:
-    name: Import to ${{ matrix.environment }}
+    name: Import to ${{ github.event.inputs.environment }}
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-#        environment: [test, preprod, prod]
-        environment: [test]
-    env:
-      SOLUTION_NAME: DQT20
-      SOLUTION_ZIP: out/exported/DQT20.zip
-    environment: ${{ matrix.environment }}
-    concurrency: dqt20-${{ matrix.environment }}
+    environment: ${{ github.event.inputs.environment }}
+    concurrency: import-dqt20-${{ github.event.inputs.environment }}
 
     steps:
     - uses: actions/checkout@v2
 
     - uses: Azure/login@v1
       with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
       id: CRM
@@ -37,18 +27,22 @@ jobs:
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - name: Pack solution
-      uses: microsoft/powerplatform-actions/pack-solution@v0
-      with:
-        solution-file: ${{ env.SOLUTION_ZIP }}
-        solution-folder: solutions/${{ env.SOLUTION_NAME }}
-        solution-type: Managed
+    - run: |
+        # Install PAC CLI
+        wget https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI.Core.linux-x64 -P ~ \
+        && unzip ~/Microsoft.PowerApps.CLI.Core.linux-x64 -d ~/pac \
+        && chmod +x ~/pac/tools/pac \
+        && export PATH=~/pac/tools:$PATH
 
-    - name: Import managed solution
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-file: ${{ env.SOLUTION_ZIP }}
+        # Authenticate
+        pac auth create --name ${{ github.event.inputs.environment }} \
+        --url ${{ steps.CRM.outputs.CRM_URL }} \
+        -id ${{ steps.CRM.outputs.CRM_APP_ID }} \
+        -cs ${{ steps.CRM.outputs.CRM_APP_SECRET }} \
+        -t ${{ steps.CRM.outputs.CRM_TENANT_ID }}
+
+        # Pack solution
+        pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
+
+        # Import solution
+        pac solution import --path dqt20.zip
