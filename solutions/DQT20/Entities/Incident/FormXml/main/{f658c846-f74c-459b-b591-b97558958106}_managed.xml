@@ -275,7 +275,6 @@
               </sections>
             </column>
           </columns>
-          <!--<events>    <event name="tabstatechange" application="false" active="false">      <Handlers>        <Handler functionName="ActivityFeeds.Form.CustomizationUtils.updateRecordWallRenderingState" libraryName="msdyn_/ActivityFeeds.Form.js" handlerUniqueId="{9beb6ce6-2666-8033-a406-3d68d44b9592}" enabled="true" parameters="" passExecutionContext="true" />      </Handlers>    </event>  </events>-->
         </tab>
       </tabs>
       <events>
@@ -334,7 +333,6 @@
       </Navigation>
       <DisplayConditions FallbackForm="true" Order="3" solutionaction="Removed" />
       <formLibraries solutionaction="Added">
-        <!--<Library name="msdyn_/ActivityFeeds.Form.js" libraryUniqueId="{4181da4c-6d13-ba3c-c859-be404e4ee2e3}" />-->
         <Library name="dfeta_Case" libraryUniqueId="{de9b46cb-b363-a1e0-78b0-1cb0d8281702}" />
         <Library name="msdyn_/ActivityFeeds.Form.js" libraryUniqueId="{d6e36ae9-3451-6b15-4318-9ce26e20e047}" />
       </formLibraries>

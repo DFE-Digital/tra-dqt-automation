@@ -322,7 +322,49 @@
                         </labels>
                         <control id="dfeta_restrict_dbs_teacherrecord_access" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_restrict_dbs_teacherrecord_access" disabled="false" />
                       </cell>
-                      <cell id="{7c770696-db0d-7962-c078-98eae502c66e}" showlabel="false" ordinalvalue="20005" solutionaction="Added">
+                      <cell id="{4dee6296-ad67-ecd4-4143-d8dd35b4b96d}" showlabel="true" locklevel="0" ordinalvalue="20005" solutionaction="Added">
+                        <labels>
+                          <label description="Access teacher search" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accessteachersearch" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accessteachersearch" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9ed1b302-3124-4497-ee87-d396397e603c}" showlabel="true" locklevel="0" ordinalvalue="10006" solutionaction="Added">
+                        <labels>
+                          <label description="Access failed induction list" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accessfailedinductionlist" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accessfailedinductionlist" disabled="false" />
+                      </cell>
+                      <cell id="{e255dcc2-db13-7382-b92d-b92ed8a92895}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Added">
+                        <labels>
+                          <label description="Access GTCE sanction list" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accessgtcesanctionlist" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accessgtcesanctionlist" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9e59333c-342b-1d4b-b9da-16e7945c3da6}" showlabel="true" locklevel="0" ordinalvalue="10008" solutionaction="Added">
+                        <labels>
+                          <label description="Access prohibited list" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accessprohibitedlist" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accessprohibitedlist" disabled="false" />
+                      </cell>
+                      <cell id="{ad8dd4e7-5ead-6c8e-0551-908eb7ee6bec}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Added">
+                        <labels>
+                          <label description="Access EAA member list" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accesseaamemberlist" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accesseaamemberlist" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0a35dc9e-b7dd-da7c-3a4c-c3255ab77e46}" showlabel="true" locklevel="0" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="Access s128 barring list" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_accesss128barringlist" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_accesss128barringlist" disabled="false" />
+                      </cell>
+                      <cell id="{d6947d72-3388-b8ca-364c-d90c2b61677a}" showlabel="false" ordinalvalue="20011" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
