@@ -14,7 +14,7 @@
                 <section name="TASK" showlabel="false" showbar="false" id="{EBB3C46D-5E9B-4EBB-A9E4-B8C25D364BB3}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelposition="Left" ordinalvalue="0">
                   <rows>
                     <row>
-                      <cell id="{5FD2BE87-C1CF-41A6-9AD9-4D273733422E}" showlabel="true" locklevel="0" colspan="2" labelid="{f670bd68-6ea9-4665-b504-834f4c254a07}" ordinalvalue="10000">
+                      <cell id="{5FD2BE87-C1CF-41A6-9AD9-4D273733422E}" showlabel="true" locklevel="0" colspan="1" labelid="{f670bd68-6ea9-4665-b504-834f4c254a07}" ordinalvalue="10000" solutionaction="Modified">
                         <labels>
                           <label description="Subject" languagecode="1033" solutionaction="Added" />
                         </labels>
@@ -48,6 +48,18 @@
                           <label description="Duration" languagecode="1033" solutionaction="Added" />
                         </labels>
                       </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section name="tab_2_section_2" showlabel="false" showbar="false" locklevel="0" id="{7a19c1aa-7ac9-5449-dcb0-208db3ecd341}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" labelid="{bb6af410-fa41-4b02-aed7-2d9c15d663d5}" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{7d876160-d484-670c-a05b-aea2bd5a292b}" showlabel="false" labelid="{c16bb453-38f2-472f-920a-648107da0c58}" ordinalvalue="10000" solutionaction="Removed" />
+                      <cell id="{2865be8d-138b-996d-6897-01ee807e1bc7}" showlabel="false" labelid="{a41321b5-ed73-4022-b3a9-2b107dd9a08e}" ordinalvalue="20001" solutionaction="Removed" />
                     </row>
                   </rows>
                 </section>

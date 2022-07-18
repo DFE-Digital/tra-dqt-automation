@@ -21,7 +21,9 @@
                   <rows>
                     <row>
                       <cell id="{8668698a-3c54-4d4d-a733-253b8c35868b}">
-                        <labels />
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
                         <control id="dfeta_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_name" />
                       </cell>
                     </row>

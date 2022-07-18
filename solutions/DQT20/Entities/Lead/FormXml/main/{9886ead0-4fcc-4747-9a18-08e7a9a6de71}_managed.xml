@@ -250,17 +250,7 @@
           </columns>
         </tab>
         <tab name="details" id="{efe71f58-9794-4dd7-a20b-1bd9b76d17fd}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
-        <tab name="notes and activities" id="{6296BEFE-3D2F-40ee-80C7-D84FB71EB13C}" IsUserDefined="0" expanded="false" ordinalvalue="1" solutionaction="Modified">
-          <columns>
-            <column width="100%" id="0">
-              <sections>
-                <section name="activities" showlabel="true" showbar="true" id="{598f3bcb-4ca1-4632-afd9-befda20904dd}" IsUserDefined="0" height="auto" ordinalvalue="0">
-                  <rows />
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
+        <tab name="notes and activities" id="{6296BEFE-3D2F-40ee-80C7-D84FB71EB13C}" IsUserDefined="0" expanded="false" ordinalvalue="1" solutionaction="Modified" />
         <tab name="administration" id="{3b298b0f-ce9e-4c1b-846e-f0da12a270c4}" IsUserDefined="0" expanded="true" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Modified">
           <labels>
             <label description="Admin" languagecode="1033" solutionaction="Modified" />
@@ -323,20 +313,7 @@
                   <labels>
                     <label description="Conflicts Section" languagecode="1033" />
                   </labels>
-                  <rows>
-                    <row>
-                      <cell id="{315d8996-5394-44f4-83a1-58ede9c7a318}" showlabel="false" ordinalvalue="10000">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell id="{869c309c-4dba-41b3-83f7-5cd57a6b9989}" showlabel="false" ordinalvalue="20001">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                  </rows>
+                  <rows />
                 </section>
               </sections>
             </column>

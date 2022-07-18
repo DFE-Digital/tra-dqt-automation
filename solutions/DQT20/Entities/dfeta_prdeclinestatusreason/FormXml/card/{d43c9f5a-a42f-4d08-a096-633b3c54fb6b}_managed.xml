@@ -30,7 +30,9 @@
                   <rows>
                     <row>
                       <cell id="{d1e6c8bf-98e6-4230-9932-843780439b73}" showlabel="true" locklevel="0">
-                        <labels />
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
                         <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
                       </cell>
                       <cell id="{3292ca2b-8a26-4642-99a3-4d54b3147113}" showlabel="true" locklevel="0">
@@ -53,7 +55,9 @@
                   <rows>
                     <row>
                       <cell id="{e0b1a20c-403c-4216-94a0-6b721ae9c4c2}" showlabel="true" locklevel="0">
-                        <labels />
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
                         <control id="dfeta_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_name" disabled="false" />
                       </cell>
                     </row>
@@ -66,7 +70,9 @@
                   <rows>
                     <row>
                       <cell id="{dd5dbc8e-dc17-4ed5-a63f-7c4adfd413b0}" showlabel="true" locklevel="0">
-                        <labels />
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                        </labels>
                         <control id="createdon" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdon" disabled="false" />
                       </cell>
                       <cell id="{6a2cc7af-2cab-49de-9233-7a40cda92e4d}" showlabel="true" locklevel="0">
