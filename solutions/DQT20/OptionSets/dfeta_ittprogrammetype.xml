@@ -174,7 +174,7 @@
     </option>
     <option value="389040021" ExternalValue="" Color="#0000ff">
       <labels>
-        <label description="Provider Led Graduate" languagecode="1033" />
+        <label description="Provider-led (postgrad)" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -182,7 +182,7 @@
     </option>
     <option value="389040022" ExternalValue="" Color="#0000ff">
       <labels>
-        <label description="Provider Led Undergraduate" languagecode="1033" />
+        <label description="Provider-led (undergrad)" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
