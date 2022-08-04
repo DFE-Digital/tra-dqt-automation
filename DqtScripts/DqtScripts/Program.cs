@@ -82,8 +82,67 @@ static RootCommand CreateRootCommand()
     AddCleanseTraineeIdCommand(rootCommand);
     AddCombineHesaAndDmsTeacherStatusesCommand(rootCommand);
     AddCombineRenameDMSTraineeTeacherStatusCommand(rootCommand);
+    AddMasterChemistryMasterPhysicsQualifications(rootCommand);
 
     return rootCommand;
+}
+
+static void AddMasterChemistryMasterPhysicsQualifications(RootCommand rootCommand)
+{
+    var command = new Command("add-physics-chemistry-qualifications", description: "Adds Master Physics & Master Chemistry & Bachelor of Arts in Combined Studies HE Qualifications")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+
+            //Fetch existing
+            var qualificationsQuery = new QueryExpression("dfeta_hequalification");
+            qualificationsQuery.Criteria.AddCondition("dfeta_value", ConditionOperator.In, new string[] { "214", "215","009" });
+            qualificationsQuery.ColumnSet = new ColumnSet("dfeta_value", "dfeta_name");
+            qualificationsQuery.PageInfo = new PagingInfo()
+            {
+                Count = 3,
+                PageNumber = 1
+            };
+            var heQualifications = await serviceClient.RetrieveMultipleAsync(qualificationsQuery);
+            var existingMoChemistry = heQualifications.Entities.SingleOrDefault(x => x["dfeta_value"].ToString() == "214");
+            var existingMoPhysics = heQualifications.Entities.SingleOrDefault(x => x["dfeta_value"].ToString() == "215");
+            var existingBoArts = heQualifications.Entities.SingleOrDefault(x => x["dfeta_value"].ToString() == "009");
+
+
+            //Master of Chemistry
+            if (existingMoChemistry?.Id == null)
+            {
+                var MoChemistry = new Entity("dfeta_hequalification");
+                MoChemistry["dfeta_name"] = "Master of Chemistry";
+                MoChemistry["dfeta_value"] = "214";
+                MoChemistry.Id = Guid.Parse("abad6e0f-8315-410c-a9bc-b3b984030526");
+                await serviceClient.CreateAsync(MoChemistry);
+            }
+
+            //Master of Physics
+            if (existingMoPhysics?.Id == null)
+            {
+                var MoPhysics = new Entity("dfeta_hequalification");
+                MoPhysics["dfeta_name"] = "Master of Physics";
+                MoPhysics["dfeta_value"] = "215";
+                MoPhysics.Id = Guid.Parse("ef7db3fb-e855-466d-bea5-d4b95a77b51b");
+                await serviceClient.CreateAsync(MoPhysics);
+            }
+
+            //Bachelor of Arts in Combined Studies / Education of the Deaf
+            if (existingBoArts?.Id == null)
+            {
+                var BoArts = new Entity("dfeta_hequalification");
+                BoArts["dfeta_name"] = "Bachelor of Arts in Combined Studies / Education of the Deaf";
+                BoArts["dfeta_value"] = "009";
+                BoArts.Id = Guid.Parse("5b2d3d73-243a-4ecb-a719-525d298d3971");
+                await serviceClient.CreateAsync(BoArts);
+            }
+
+        })
+    };
+    rootCommand.Add(command);
 }
 
 static void AddWhoAmICommand(RootCommand rootCommand)
