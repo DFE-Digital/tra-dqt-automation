@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using Azure;
 using Azure.Storage.Blobs;
 using CsvHelper;
+using CsvHelper.Configuration.Attributes;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -83,8 +84,109 @@ static RootCommand CreateRootCommand()
     AddCombineHesaAndDmsTeacherStatusesCommand(rootCommand);
     AddCombineRenameDMSTraineeTeacherStatusCommand(rootCommand);
     AddMasterChemistryMasterPhysicsQualifications(rootCommand);
+    AddBulkUpdateIttProvidersCommand(rootCommand);
 
     return rootCommand;
+}
+
+static void AddBulkUpdateIttProvidersCommand(RootCommand rootCommand)
+{
+    var command = new Command("bulk-rename-itt-accounts", description: "Bulk renames Itt Provider details from an csv file")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backupBlobName = $"renameaccounts/renamedaccounts_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var accountsToUpdate = new Subject<BulkUpdateIttProvider>();
+
+            // update 10 records at a time
+            var batchSubscription = accountsToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var provider = new Entity("account");
+                    provider.Id = record.Id;
+                    provider["name"] = record.NewName;
+                    provider["dfeta_ukprn"] = record.NewUkPrn;
+                    provider["dfeta_urn"] = record.NewUrn;
+                    provider["dfeta_laschoolcode"] = record.NewLaSchoolCode;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = provider
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using(var blob = await blobContainerClient.GetBlobClient("accounts_to_rename.csv").OpenReadAsync())
+            using (var reader = new StreamReader(blob))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+
+                var records = csv.GetRecords<BulkUpdateIttProvider>();
+                foreach (var record in records)
+                {
+                    //fetch old values & write to csv file
+                    var statusQuery = new QueryExpression("account");
+                    statusQuery.Criteria.AddCondition("accountid", ConditionOperator.Equal, record.Id);
+                    statusQuery.ColumnSet = new ColumnSet("dfeta_ukprn", "dfeta_urn", "name", "dfeta_laschoolcode");
+                    statusQuery.PageInfo = new PagingInfo()
+                    {
+                        Count = 1,
+                        PageNumber = 1
+                    };
+                    var prevRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    foreach (var prevRecord in prevRecords.Entities)
+                    {
+                        //always write csv file
+                        csvWriter.WriteField(prevRecord.Id);
+                        csvWriter.WriteField(prevRecord.Contains("dfeta_ukprn") ? prevRecord["dfeta_ukprn"] : string.Empty);
+                        csvWriter.WriteField(prevRecord.Contains("dfeta_urn") ? prevRecord["dfeta_urn"] : string.Empty);
+                        csvWriter.WriteField(prevRecord.Contains("name") ? prevRecord["name"] : string.Empty);
+                        csvWriter.WriteField(prevRecord.Contains("dfeta_laschoolcode") ? prevRecord["dfeta_laschoolcode"] : string.Empty);
+                        csvWriter.NextRecord();
+                    }
+
+                    //Update with new values
+                    if (commit == true)
+                    {
+                        accountsToUpdate.OnNext(record);
+                    }
+                }
+                accountsToUpdate.OnCompleted();
+                batchSubscription.Dispose();
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void AddMasterChemistryMasterPhysicsQualifications(RootCommand rootCommand)
@@ -97,7 +199,7 @@ static void AddMasterChemistryMasterPhysicsQualifications(RootCommand rootComman
 
             //Fetch existing
             var qualificationsQuery = new QueryExpression("dfeta_hequalification");
-            qualificationsQuery.Criteria.AddCondition("dfeta_value", ConditionOperator.In, new string[] { "214", "215","009" });
+            qualificationsQuery.Criteria.AddCondition("dfeta_value", ConditionOperator.In, new string[] { "214", "215", "009" });
             qualificationsQuery.ColumnSet = new ColumnSet("dfeta_value", "dfeta_name");
             qualificationsQuery.PageInfo = new PagingInfo()
             {
@@ -635,4 +737,23 @@ static void AddBackupHusidsCommand(RootCommand rootCommand)
     };
 
     rootCommand.Add(command);
+}
+
+public class BulkUpdateIttProvider
+{
+    [Name("guid")]
+    public Guid Id { get; set; }
+
+    [Name("new_name")]
+    public string NewName { get; set; }
+
+    [Name("new_la_school_code")]
+    public string NewLaSchoolCode { get; set; }
+
+    [Name("new_ukprn")]
+    public string NewUkPrn { get; set; }
+
+    [Name("new_urn")]
+    public string NewUrn { get; set; }
+
 }
