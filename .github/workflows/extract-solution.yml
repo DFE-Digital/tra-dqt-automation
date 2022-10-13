@@ -37,23 +37,25 @@ jobs:
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - name: Export solution
-      uses: microsoft/powerplatform-actions/export-solution@v0
-      with:
-        environment-url: ${{ steps.CRM.outputs.CRM_URL }}
-        app-id: ${{ steps.CRM.outputs.CRM_APP_ID  }}
-        client-secret: ${{ steps.CRM.outputs.CRM_APP_SECRET  }}
-        tenant-id: ${{ steps.CRM.outputs.CRM_TENANT_ID  }}
-        solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ env.EXPORTED_SOLUTION_ZIP }}
-        managed: true
+    - run: |
+        # Install PAC CLI
+        wget https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI.Core.linux-x64 -P ~ \
+        && unzip ~/Microsoft.PowerApps.CLI.Core.linux-x64 -d ~/pac \
+        && chmod +x ~/pac/tools/pac \
+        && export PATH=~/pac/tools:$PATH
 
-    - name: Unpack solution
-      uses: microsoft/powerplatform-actions/unpack-solution@v0
-      with:
-        solution-file: ${{ env.EXPORTED_SOLUTION_ZIP }}
-        solution-folder: ${{ env.SOLUTION_PATH }}
-        solution-type: Managed
+        # Authenticate
+        pac auth create --name build \
+        --url ${{ steps.CRM.outputs.CRM_URL }} \
+        -id ${{ steps.CRM.outputs.CRM_APP_ID }} \
+        -cs ${{ steps.CRM.outputs.CRM_APP_SECRET }} \
+        -t ${{ steps.CRM.outputs.CRM_TENANT_ID }}
+
+        # Export solution
+        pac solution export --path solution.zip --name ${{ github.event.inputs.solution_name }} --managed
+
+        # Unpack solution
+        pac solution unpack --zipfile solution.zip --packagetype managed --folder ${{ env.SOLUTION_PATH }}
 
     - name: Read solution version
       id: version
