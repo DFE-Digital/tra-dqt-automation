@@ -53,4 +53,4 @@ jobs:
         pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
 
         # Import solution
-        pac solution import --path dqt20.zip
+        pac solution import --path dqt20.zip --async
