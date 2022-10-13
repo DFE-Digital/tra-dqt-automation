@@ -5,7 +5,7 @@
     <IntroducedVersion>5.0.0.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form enablerelatedinformation="false" shownavigationbar="true" hasmargin="false">
       <tabs showlabels="true">
         <tab name="general" verticallayout="true" id="{564b9a08-4626-46f5-8bd8-3d31e17a8873}" IsUserDefined="0" ordinalvalue="0">
           <columns>
@@ -363,7 +363,7 @@
       <events solutionaction="Removed" />
       <clientresources solutionaction="Removed" />
       <controlDescriptions>
-        <controlDescription forControl="{3ff9a528-dd50-4aca-8f10-2e5ed73513ad}" solutionaction="Removed" />
+        <controlDescription forControl="{3FF9A528-DD50-4ACA-8F10-2E5ED73513AD}" solutionaction="Removed" />
       </controlDescriptions>
     </form>
     <LocalizedNames>
