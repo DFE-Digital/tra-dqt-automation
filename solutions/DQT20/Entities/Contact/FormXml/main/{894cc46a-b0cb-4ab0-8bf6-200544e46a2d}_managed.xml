@@ -115,7 +115,7 @@
                         <labels>
                           <label description="TRN Required" languagecode="1033" />
                         </labels>
-                        <control id="dfeta_trnrequired" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="dfeta_trnrequired" disabled="false" uniqueid="{65fa6f23-b951-4784-ab79-0c5b2d00fdfa}" />
+                        <control id="dfeta_trnrequired" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="dfeta_trnrequired" disabled="false" uniqueid="{65FA6F23-B951-4784-AB79-0C5B2D00FDFA}" />
                       </cell>
                     </row>
                   </rows>
@@ -417,7 +417,7 @@
             </column>
           </columns>
         </tab>
-        <tab id="{730cd6db-52aa-4f53-b9b3-3f80f6c60a41}" name="conflictstab" group="solutionconflictstab" ordinalvalue="4" solutionaction="Removed" />
+        <tab id="{a60cf9c8-c914-4462-a1d4-86185b114ea8}" name="conflictstab" group="solutionconflictstab" ordinalvalue="4" solutionaction="Removed" />
         <tab id="{51425da9-546f-4254-8bcd-fc484752739e}" name="conflictstab" group="solutionconflictstab" ordinalvalue="3" solutionaction="Added">
           <labels>
             <label description="Conflicts Tab" languagecode="1033" />
@@ -777,7 +777,7 @@
         <dependency id="dfeta_ninumber" />
       </externaldependencies>
       <controlDescriptions solutionaction="Added">
-        <controlDescription forControl="{65fa6f23-b951-4784-ab79-0c5b2d00fdfa}">
+        <controlDescription forControl="{65FA6F23-B951-4784-AB79-0C5B2D00FDFA}">
           <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
             <parameters>
               <datafieldname>dfeta_trnrequired</datafieldname>

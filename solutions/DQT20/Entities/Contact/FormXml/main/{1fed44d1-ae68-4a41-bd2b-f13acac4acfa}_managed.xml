@@ -667,9 +667,9 @@
         <NavBarAreas solutionaction="Removed" />
       </Navigation>
       <controlDescriptions>
-        <controlDescription forControl="{3ff9a528-dd50-4aca-8f10-2e5ed73513ad}" solutionaction="Removed" />
-        <controlDescription forControl="{69d839e7-9935-3a7e-d978-85a1cdb50323}" solutionaction="Removed" />
-        <controlDescription forControl="{5ca8c570-a541-4cf4-9209-99406ba7cbdf}" solutionaction="Removed" />
+        <controlDescription forControl="{3FF9A528-DD50-4ACA-8F10-2E5ED73513AD}" solutionaction="Removed" />
+        <controlDescription forControl="{69D839E7-9935-3A7E-D978-85A1CDB50323}" solutionaction="Removed" />
+        <controlDescription forControl="{5CA8C570-A541-4CF4-9209-99406BA7CBDF}" solutionaction="Removed" />
       </controlDescriptions>
       <DisplayConditions FallbackForm="true" Order="4" solutionaction="Modified" />
       <formLibraries solutionaction="Removed" />

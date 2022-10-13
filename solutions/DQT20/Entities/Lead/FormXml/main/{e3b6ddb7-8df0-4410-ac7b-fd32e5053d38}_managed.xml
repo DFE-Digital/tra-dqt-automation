@@ -17,44 +17,9 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell colspan="1" id="{26e6720b-6c8c-4848-a8c1-4b8c8abe59f2}" showlabel="true" locklevel="0" ordinalvalue="10000">
-                        <labels>
-                          <label description="Topic" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{deccc6b6-e5ce-6ca2-d683-16a58247e459}" showlabel="true" locklevel="0" ordinalvalue="10001">
-                        <labels>
-                          <label description="Name" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{b8afa97d-100e-4f46-8ee8-38081d8a4404}" ordinalvalue="10002">
-                        <labels>
-                          <label description="Job Title" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{4c5c04eb-beea-433f-994a-5b3ddde2b924}" ordinalvalue="10003">
                         <labels>
-                          <label description="Telephone" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{4622149f-38d7-4ea6-b305-f2cb7be244d0}" ordinalvalue="10004">
-                        <labels>
-                          <label description="Mobile Phone" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{a4d6539c-ac0b-4006-a423-72e898ad65ad}" ordinalvalue="10005">
-                        <labels>
-                          <label description="Email" languagecode="1033" solutionaction="Added" />
+                          <label description="Telephone" languagecode="1033" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
@@ -64,15 +29,6 @@
                   <labels>
                     <label description="COMPANY" languagecode="1033" solutionaction="Modified" />
                   </labels>
-                  <rows>
-                    <row>
-                      <cell id="{582ca22b-95e3-4d0e-9d81-e29bc8100e7a}" ordinalvalue="10001">
-                        <labels>
-                          <label description="Website" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                  </rows>
                 </section>
                 <section name="MapSection" showlabel="false" showbar="false" id="{2f19ca26-1948-46ea-8a85-3b152fdac3da}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelposition="Left" ordinalvalue="2">
                   <rows>
@@ -138,50 +94,6 @@
                   <labels>
                     <label description="Lead Information" languagecode="1033" solutionaction="Modified" />
                   </labels>
-                  <rows>
-                    <row>
-                      <cell id="{10b75e6c-54f9-4c13-8850-5b90cad35c6f}" showlabel="true" locklevel="0" rowspan="2" ordinalvalue="10000">
-                        <labels>
-                          <label description="Description" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{9769aa55-a1d0-43d7-9d89-9dfccb1efd0d}" showlabel="true" locklevel="0" ordinalvalue="10001">
-                        <labels>
-                          <label description="Industry" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{3cc2bc3f-03a3-47f6-a011-e217dd56ff8d}" ordinalvalue="10002">
-                        <labels>
-                          <label description="Annual Revenue" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{05a0b7d9-b602-493b-a773-e0c34e44be3c}" ordinalvalue="10003">
-                        <labels>
-                          <label description="No. of Employees" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{aee93c8c-a239-4a6d-bb9b-6962c20dc8a9}" ordinalvalue="10004">
-                        <labels>
-                          <label description="SIC Code" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{8f704a5d-5f33-462d-b07b-3c29ddacea29}" ordinalvalue="10005">
-                        <labels>
-                          <label description="Currency" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                  </rows>
                 </section>
               </sections>
             </column>
@@ -193,23 +105,9 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell showlabel="true" locklevel="0" id="{09513d13-bb7d-43b6-ad5c-9598b82b099e}" ordinalvalue="10000">
-                        <labels>
-                          <label description="Source Campaign" languagecode="1033" solutionaction="Added" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
                       <cell showlabel="true" locklevel="0" id="{d3a5f17c-30bb-4d2b-bb7f-4ef968727df7}" ordinalvalue="10001">
                         <labels>
                           <label description="Marketing Materials" languagecode="1033" solutionaction="Modified" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell showlabel="true" locklevel="0" id="{a5b3e9c6-2cc7-4273-bd86-12fca3a85e4a}" ordinalvalue="10002">
-                        <labels>
-                          <label description="Last Campaign Date" languagecode="1033" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>
@@ -264,27 +162,6 @@
         <tab name="documents_sharepoint" id="{581F1058-2723-4ECA-9D4B-3EB7800EFF85}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="2" solutionaction="Removed" />
       </tabs>
       <events solutionaction="Removed" />
-      <header id="{af5017db-93b9-4316-8323-de1d83b41d58}" celllabelposition="Top" columns="1111">
-        <rows>
-          <row>
-            <cell id="{f026324b-8bf6-4273-8c3c-a54975ea8836}" ordinalvalue="10000">
-              <labels>
-                <label description="Lead Source" languagecode="1033" solutionaction="Added" />
-              </labels>
-            </cell>
-            <cell id="{278d1b6f-44fe-4478-b51b-cfc90eab2ed5}" ordinalvalue="20001">
-              <labels>
-                <label description="Rating" languagecode="1033" solutionaction="Added" />
-              </labels>
-            </cell>
-            <cell id="{7da0c9b6-8289-4b50-ab33-b5f0568cadb9}" ordinalvalue="40003">
-              <labels>
-                <label description="Owner" languagecode="1033" solutionaction="Added" />
-              </labels>
-            </cell>
-          </row>
-        </rows>
-      </header>
       <clientresources solutionaction="Removed" />
       <Navigation>
         <NavBar>
@@ -917,8 +794,8 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions>
-        <controlDescription forControl="{3ff9a528-dd50-4aca-8f10-2e5ed73513ad}" solutionaction="Removed" />
-        <controlDescription forControl="{e1a0eed7-7d87-4446-a2ed-3fea375b4403}" solutionaction="Removed" />
+        <controlDescription forControl="{3FF9A528-DD50-4ACA-8F10-2E5ED73513AD}" solutionaction="Removed" />
+        <controlDescription forControl="{E1A0EED7-7D87-4446-A2ED-3FEA375B4403}" solutionaction="Removed" />
         <controlDescription forControl="{BD9B755F-E836-430C-9898-C9F80E3FA8AB}" solutionaction="Removed" />
       </controlDescriptions>
     </form>
