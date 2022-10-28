@@ -37,6 +37,14 @@ jobs:
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
+    - name: Read existing solution version
+      id: existing-version
+      shell: pwsh
+      run: |
+        [xml]$solution = Get-Content (Join-Path $env:SOLUTION_PATH Other Solution.xml)
+        $version = $solution.ImportExportXml.SolutionManifest.Version
+        Write-Output "::set-output name=number::$version"
+
     - run: |
         # Install PAC CLI
         wget https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI.Core.linux-x64 -P ~ \
@@ -57,18 +65,26 @@ jobs:
         # Unpack solution
         pac solution unpack --zipfile solution.zip --packagetype managed --folder ${{ env.SOLUTION_PATH }}
 
-    - name: Read solution version
-      id: version
+    - name: Read new solution version
+      id: new-version
       shell: pwsh
       run: |
         [xml]$solution = Get-Content (Join-Path $env:SOLUTION_PATH Other Solution.xml)
         $version = $solution.ImportExportXml.SolutionManifest.Version
         Write-Output "::set-output name=number::$version"
 
+        # Check that the extracted version is greater than the current version
+        if ([System.Version]$env:EXISTING_VERSION -ge [System.Version]$version) {
+          Write-Output "::error ::Solution version must be incremented"
+          Exit 1
+        }
+      env:
+        EXISTING_VERSION: ${{ steps.existing-version.outputs.number }}
+
     - name: Create pull request for changes
       uses: peter-evans/create-pull-request@v4
       with:
-        branch: "v${{ steps.version.outputs.number }}"
+        branch: "v${{ steps.new-version.outputs.number }}"
         commit-message: ${{ github.event.inputs.pr_title }}
         delete-branch: true
         title: ${{ github.event.inputs.pr_title }}
