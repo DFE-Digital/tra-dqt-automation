@@ -85,8 +85,105 @@ static RootCommand CreateRootCommand()
     AddCombineRenameDMSTraineeTeacherStatusCommand(rootCommand);
     AddMasterChemistryMasterPhysicsQualifications(rootCommand);
     AddBulkUpdateIttProvidersCommand(rootCommand);
+    AddMoveIttRecordsToNewOrganisation(rootCommand);
 
     return rootCommand;
+}
+
+static void AddMoveIttRecordsToNewOrganisation(RootCommand rootCommand)
+{
+    var command = new Command("move-itt-records-to-provider", description: "Change account that an itt record is associated with")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backupBlobName = $"ittrecordsmovedorgs/ittrecordsmovedorgs{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var IttRecordsToUpdate = new Subject<Tuple<Guid, Guid>>(); //dfeta_establishmentid,IttId
+
+            // update 10 records at a time
+            var batchSubscription = IttRecordsToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var provider = new Entity("dfeta_initialteachertraining");
+                    provider["dfeta_establishmentid"] = new EntityReference("account", record.Item1);
+                    provider.Id = record.Item2;
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = provider
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using (var blob = await blobContainerClient.GetBlobClient("itt_records_to_change_accounts.csv").OpenReadAsync())
+            using (var reader = new StreamReader(blob))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var records = csv.GetRecords<MoveIttRecord>();
+                foreach (var record in records)
+                {
+                    //fetch old values & write to csv file
+                    var statusQuery = new QueryExpression("dfeta_initialteachertraining");
+                    statusQuery.Criteria.AddCondition("dfeta_establishmentid", ConditionOperator.Equal, record.FromAccountId);
+                    statusQuery.ColumnSet = new ColumnSet("dfeta_establishmentid");
+                    statusQuery.PageInfo = new PagingInfo()
+                    {
+                        Count = 1000,
+                        PageNumber = 1
+                    };
+                    var prevRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    foreach (var prevRecord in prevRecords.Entities)
+                    {
+                        //always write csv file
+#if DEBUG
+                        Console.WriteLine(((EntityReference)prevRecord["dfeta_establishmentid"]).Id.ToString());
+#endif
+                        csvWriter.WriteField(prevRecord.Id);
+                        csvWriter.WriteField(prevRecord.Contains("dfeta_establishmentid") ? ((EntityReference)prevRecord["dfeta_establishmentid"]).Id.ToString() : string.Empty);
+                        csvWriter.NextRecord();
+
+                        //Update with new values
+                        if (commit == true)
+                        {
+                            IttRecordsToUpdate.OnNext(Tuple.Create(record.ToAccountId, prevRecord.Id));
+                        }
+                    }
+                }
+
+                IttRecordsToUpdate.OnCompleted();
+                batchSubscription.Dispose();
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void AddBulkUpdateIttProvidersCommand(RootCommand rootCommand)
@@ -142,7 +239,7 @@ static void AddBulkUpdateIttProvidersCommand(RootCommand rootCommand)
                 Environment.Exit(1);
             });
 
-            using(var blob = await blobContainerClient.GetBlobClient("accounts_to_rename.csv").OpenReadAsync())
+            using (var blob = await blobContainerClient.GetBlobClient("accounts_to_rename.csv").OpenReadAsync())
             using (var reader = new StreamReader(blob))
             using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
             using (var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
@@ -756,4 +853,12 @@ public class BulkUpdateIttProvider
     [Name("new_urn")]
     public string NewUrn { get; set; }
 
+}
+
+public class MoveIttRecord
+{
+    [Name("FromAccountId")]
+    public Guid FromAccountId { get; set; }
+    [Name("ToAccountId")]
+    public Guid ToAccountId { get; set; }
 }
