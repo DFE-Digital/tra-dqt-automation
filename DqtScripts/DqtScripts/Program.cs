@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text.RegularExpressions;
 using Azure;
+using Azure.Core;
 using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
@@ -86,9 +87,117 @@ static RootCommand CreateRootCommand()
     AddMasterChemistryMasterPhysicsQualifications(rootCommand);
     AddBulkUpdateIttProvidersCommand(rootCommand);
     AddMoveIttRecordsToNewOrganisation(rootCommand);
+    CreateTestUsers(rootCommand);
 
     return rootCommand;
 }
+
+static void CreateTestUsers(RootCommand rootCommand)
+{
+    var command = new Command("create-test-users", description: "Create Test user data")
+    {
+        Handler = CommandHandler.Create<IHost, int?>(async (host, users) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var createUsersBlobName = $"testusers/testusers{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var createUsersBlobClient = blobContainerClient.GetBlobClient(createUsersBlobName);
+
+            using (var blobStream = await createUsersBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                for (var user = 0; user < users; user++)
+                {
+                    var firstName = Faker.Name.First();
+                    var lastName = Faker.Name.Last();
+                    var dob = Faker.DateOfBirth.Next();
+                    var nino = GenerateValidNino();
+                    var email = Faker.Internet.Email();
+
+                    //Create contact request
+                    var contactId = Guid.NewGuid();
+                    var contact = new Entity("contact");
+                    contact.Id = contactId;
+                    contact["firstname"] = firstName;
+                    contact["lastname"] = lastName;
+                    contact["birthdate"] = dob;
+                    contact["dfeta_ninumber"] = nino;
+                    contact["emailaddress1"] = email;
+                    var request = new ExecuteTransactionRequest()
+                    {
+                        Requests = new OrganizationRequestCollection()
+                    };
+                    request.Requests.Add(new CreateRequest()
+                    {
+                        Target = contact
+                    });
+
+                    //Allocate TRN request
+                    var updatedContact = new Entity("contact");
+                    updatedContact.Id = contactId;
+                    updatedContact["dfeta_trnallocaterequest"] = DateTime.Now;
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = updatedContact
+                    });
+
+                    //ITT Record
+                    var createITT = new Entity("dfeta_initialteachertraining");
+                    createITT.Id = Guid.NewGuid();
+                    createITT["dfeta_personid"] = new EntityReference("contact", contactId); ;
+                    createITT["dfeta_countryid"] = new EntityReference("dfeta_country", Guid.Parse("e2ebefd4-c73b-e311-82ec-005056b1356a")); //uk
+                    createITT["dfeta_cohortyear"] = "2021";
+                    createITT["dfeta_establishmentid"] = new EntityReference("account", Guid.Parse("55948edc-c2ae-e311-b8ed-005056822391")); //Earl Spencer Primary School
+                    createITT["dfeta_programmestartdate"] = DateTime.Now.AddYears(-1);
+                    createITT["dfeta_programmeenddate"] = DateTime.Now.AddMonths(-1);
+                    createITT["dfeta_subject1id"] = new EntityReference("dfeta_ittsubject", Guid.Parse("403c95fe-d9a3-e911-a963-000d3a28efb4")); //business studies
+                    createITT["dfeta_result"] = new OptionSetValue(389040000); //pass
+                    request.Requests.Add(new CreateRequest()
+                    {
+                        Target = createITT
+                    });
+
+                    // Retrieve the generated TRN
+                    request.Requests.Add(new RetrieveRequest()
+                    {
+                        Target = new EntityReference("contact", contactId),
+                        ColumnSet = new ColumnSet("dfeta_trn")
+                    });
+
+                    var txnResponse = (ExecuteTransactionResponse)await serviceClient.ExecuteAsync(request);
+                    string trn = (string)((RetrieveResponse)txnResponse.Responses.Last()).Entity["dfeta_trn"];
+
+                    //write csv
+                    csvWriter.WriteField(firstName);
+                    csvWriter.WriteField(lastName);
+                    csvWriter.WriteField(dob);
+                    csvWriter.WriteField(nino);
+                    csvWriter.WriteField(email);
+                    csvWriter.WriteField(trn);
+                    csvWriter.NextRecord();
+                }
+            }
+        })
+    };
+    command.AddOption(new Option<int?>(new[] { "--users", "-u" }, description: "number of users to create", getDefaultValue: () => { return 10; }));
+    rootCommand.Add(command);
+
+    string GenerateValidNino()
+    {
+        var nino = "";
+        Regex regex = new Regex("^[ABCEGHJKLMNOPRSTWXYZ][ABCEGHJKLMNPRSTWXYZ][0-9]{6}[A-D ]$");
+        while(!regex.IsMatch(nino))
+        {
+            nino = Faker.Identification.UKNationalInsuranceNumber();
+        }
+        return nino;
+    }
+}
+
 
 static void AddMoveIttRecordsToNewOrganisation(RootCommand rootCommand)
 {
