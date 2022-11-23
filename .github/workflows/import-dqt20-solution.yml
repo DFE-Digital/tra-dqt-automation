@@ -28,29 +28,41 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+    - name: "Retrieve CRM secret"
+      uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
       id: CRM
       with:
         keyvault: ${{ secrets.KEYVAULT_NAME }}
         secret: CRM
         key: CRM_URL, CRM_APP_ID, CRM_APP_SECRET, CRM_TENANT_ID
 
-    - run: |
-        # Install PAC CLI
+    - name: "Retrieve PLUGIN-CONFIG secret"
+      uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      id: PLUGIN_CONFIG
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: PLUGIN-CONFIG
+        key: TRN_GENERATION
+
+    - name: "Import solution & configure"
+      run: |
         wget https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI.Core.linux-x64 -P ~ \
-        && unzip ~/Microsoft.PowerApps.CLI.Core.linux-x64 -d ~/pac \
-        && chmod +x ~/pac/tools/pac \
-        && export PATH=~/pac/tools:$PATH
+          && unzip ~/Microsoft.PowerApps.CLI.Core.linux-x64 -d ~/pac \
+          && chmod +x ~/pac/tools/pac \
+          && export PATH=~/pac/tools:$PATH
 
-        # Authenticate
-        pac auth create --name ${{ github.event.inputs.environment }} \
-        --url ${{ steps.CRM.outputs.CRM_URL }} \
-        -id ${{ steps.CRM.outputs.CRM_APP_ID }} \
-        -cs ${{ steps.CRM.outputs.CRM_APP_SECRET }} \
-        -t ${{ steps.CRM.outputs.CRM_TENANT_ID }}
+        pac auth create --name $Environment --url $CrmUrl -id $CrmClientId -cs $CrmClientSecret -t $CrmTenantId
 
-        # Pack solution
         pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
 
-        # Import solution
         pac solution import --path dqt20.zip --async
+
+        dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
+          --plugin-type Dqt.Dynamics.plugins.TrnGenerationPlugin --secure-config "$TrnGenerationPluginConfig"
+      env:
+        Environment: ${{ github.event.inputs.environment }}
+        CrmUrl: ${{ steps.CRM.outputs.CRM_URL }}
+        CrmClientId: ${{ steps.CRM.outputs.CRM_APP_ID }}
+        CrmClientSecret: ${{ steps.CRM.outputs.CRM_APP_SECRET }}
+        CrmTenantId: ${{ steps.CRM.outputs.CRM_TENANT_ID }}
+        TrnGenerationPluginConfig: ${{ steps.PLUGIN_CONFIG.outputs.TRN_GENERATION }}
