@@ -1931,37 +1931,52 @@
               <displayname description="Type" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040000" Color="">
+              <option value="389040007" ExternalValue="" Color="#0000ff">
+                <labels>
+                  <label description="NPQLT" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="389040008" ExternalValue="" Color="#0000ff">
+                <labels>
+                  <label description="NPQLTD" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="389040009" ExternalValue="" Color="#0000ff">
+                <labels>
+                  <label description="NPQLBC" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="389040000" ExternalValue="" Color="">
                 <labels>
                   <label description="Higher Education" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001" Color="">
+              <option value="389040001" ExternalValue="" Color="">
                 <labels>
                   <label description="NPQH" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002" Color="">
+              <option value="389040002" ExternalValue="" Color="">
                 <labels>
                   <label description="Mandatory Qualification" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040003" Color="">
+              <option value="389040003" ExternalValue="" Color="">
                 <labels>
                   <label description="HLTA" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040005" Color="">
+              <option value="389040005" ExternalValue="" Color="">
                 <labels>
                   <label description="NPQML" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040004" Color="">
+              <option value="389040004" ExternalValue="" Color="">
                 <labels>
                   <label description="NPQSL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040006" Color="#0000ff">
+              <option value="389040006" ExternalValue="" Color="#0000ff">
                 <labels>
                   <label description="NPQEL" languagecode="1033" />
                 </labels>
