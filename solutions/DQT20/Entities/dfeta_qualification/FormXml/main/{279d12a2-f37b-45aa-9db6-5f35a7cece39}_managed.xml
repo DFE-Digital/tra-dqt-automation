@@ -468,6 +468,69 @@
                     </row>
                   </rows>
                 </section>
+                <section name="section_NPQLTD" showlabel="true" showbar="true" locklevel="0" id="{329b2736-3d35-71b5-3816-4d17b06aae31}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
+                  <labels>
+                    <label description="NPQLTD" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{685eb429-dc25-99a7-c0b3-1d7a2885265a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLTD Awarded" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqltd_awarded" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_npqltd_awarded" disabled="false" uniqueid="{ae09d97d-4c1a-d789-5ebc-84b35b0cb9b1}" />
+                      </cell>
+                      <cell id="{aab36511-b8b2-ca80-a282-105814271b91}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLTD Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqltd_date" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_npqltd_date" disabled="false" uniqueid="{0b3d6cd9-10d3-3719-1ad7-83c2b88ed815}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="section_NPQLT" showlabel="true" showbar="true" locklevel="0" id="{82d3694e-005b-2d02-8648-0634454b305e}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
+                  <labels>
+                    <label description="NPQLT" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{42cc8d96-1db1-681b-0d61-1079196d7bc7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLT Awarded" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqlt_awarded" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_npqlt_awarded" disabled="false" uniqueid="{951dca0b-a689-5ed7-0bc3-ecd69bd2ba4b}" />
+                      </cell>
+                      <cell id="{66ea883e-b938-88a5-9c67-a2d422a39170}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLT Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqlt_date" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_npqlt_date" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="section_NPQLBC" showlabel="false" showbar="false" locklevel="0" id="{7d255433-2d3b-24c0-69dc-5891ae087265}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="NPQLBC" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b1d95c9b-d5b0-1423-3202-81cde48c896d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLBC Awarded" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqlbc_awarded" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_npqlbc_awarded" disabled="false" uniqueid="{47cd0764-2c95-306d-7d30-de7c5852c764}" />
+                      </cell>
+                      <cell id="{b8d72019-0b6c-e65a-8354-bb0bc7d6e9e8}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NPQLBC Date" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_npqlbc_date" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_npqlbc_date" disabled="false" uniqueid="{3a2493b9-8199-2546-2180-106c21c59843}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
               </sections>
             </column>
           </columns>
@@ -597,6 +660,16 @@
         <event name="onchange" application="false" active="false" attribute="dfeta_npqel_date">
           <Handlers>
             <Handler handlerUniqueId="{3b3619dd-9d63-d068-72a0-ee92a2c49edb}" functionName="DFE.Dqt.WebResources.Qualification.Date_OnChange" libraryName="dfeta_Qualification" enabled="true" passExecutionContext="true" parameters="'dfeta_npqel_date'" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="dfeta_npqltd_date">
+          <Handlers>
+            <Handler functionName="DFE.Dqt.WebResources.Qualification.Date_OnChange" libraryName="dfeta_Qualification" handlerUniqueId="{ca43139d-4078-bc3e-de16-3ccb775b6a26}" enabled="true" parameters="'dfeta_npqltd_date'" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="dfeta_npqlbc_date">
+          <Handlers>
+            <Handler functionName="DFE.Dqt.WebResources.Qualification.Date_OnChange" libraryName="dfeta_Qualification" handlerUniqueId="{ac320801-a5da-8566-53e9-61bbedddba29}" enabled="true" parameters="'dfeta_npqlbc_date'" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
