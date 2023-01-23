@@ -1,5 +1,3 @@
-
-
 /* Uses Common.js javascript file*/
 var DFE;
 (function (dfe) {
@@ -14,7 +12,12 @@ var DFE;
                     HLTA: 389040003,
                     NPQSL: 389040004,
                     NPQML: 389040005,
-                    NPQEL: 389040006
+                    NPQEL: 389040006,
+                    NPQLT: 389040007,
+                    NPQLTD: 389040008,
+                    NPQLBC: 389040009,
+                    NPQEYL: 389040010,
+                    NPQLL:  389040011
                 }
 
                 qualification.Date_OnChange = function (executionContext, fieldName) {
@@ -55,10 +58,35 @@ var DFE;
                         DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQSL', false);
                         DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQML', false);
                         DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQEL', false);
-
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLTD', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLT', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLBC', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLL', false);
+                        DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQEYL', false);
 
                         var type = formContext.getAttribute('dfeta_type').getValue();
                         switch (type) {
+
+                            case QualificationType.NPQLL:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLL', true);
+                                break;
+
+                            case QualificationType.NPQEYL:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQEYL', true);
+                                break;
+
+                            case QualificationType.NPQLBC:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLBC', true);
+                                break;
+
+                            case QualificationType.NPQLT:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLT', true);
+                                break;
+
+                            case QualificationType.NPQLTD:
+                                DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_NPQLTD', true);
+                                break;
+
                             case QualificationType.HE:
                                 DFE.Dqt.WebResources.Common.SectionVisibility(executionContext, 'tab_general', 'section_HE', true);
                                 break;
@@ -113,7 +141,11 @@ var DFE;
                             DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqml_');
                             DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqsl_');
                             DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqel_');
-
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqltd_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqlt_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqlbc_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqeyl_');
+                            DFE.Dqt.WebResources.Common.ClearDataFields(executionContext, 'dfeta_npqll_');
                         }
                     }
                 }
