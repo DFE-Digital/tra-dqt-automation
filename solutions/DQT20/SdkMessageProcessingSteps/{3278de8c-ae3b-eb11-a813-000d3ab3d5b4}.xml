@@ -15,6 +15,11 @@
     &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqml_date" /&gt;
     &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqsl_date" /&gt;
     &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqel_date" /&gt;
+    &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqlbc_date" /&gt;
+    &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqlt_date" /&gt;
+    &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqltd_date" /&gt;
+    &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqll_date" /&gt;
+    &lt;Attribute xsi:type="DateTimeAttribute" name="dfeta_npqeyl_date" /&gt;
   &lt;/InputAttributes&gt;
   &lt;OutputAttribute xsi:type='DateTimeAttribute' name='dfeta_completionorawarddate' /&gt;
 &lt;/AutoFillPluginConfiguration&gt;</Configuration>
