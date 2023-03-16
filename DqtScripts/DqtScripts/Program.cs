@@ -3,8 +3,10 @@ using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using System.Formats.Asn1;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using Azure;
 using Azure.Core;
@@ -88,8 +90,272 @@ static RootCommand CreateRootCommand()
     AddBulkUpdateIttProvidersCommand(rootCommand);
     AddMoveIttRecordsToNewOrganisation(rootCommand);
     CreateTestUsers(rootCommand);
+    CleanEarlyYearsTeacherStatuses(rootCommand);
+    CleanQtsTeacherStatuses(rootCommand);
 
     return rootCommand;
+}
+
+static void CleanQtsTeacherStatuses(RootCommand rootCommand)
+{
+    var command = new Command("clean-qts-teacher-statuses", description: "Removes duplicate qts teacher statuses and cleans dfeta_qtsregistration records that reference it")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+            //Duplicate EYTS Id, Correct EYTS Id, Description
+            var statusesToRemove = new List<Tuple<Guid, Guid, string>>();
+
+            //duplicate teacher statuses
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("665f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("ebdf0cf3-c83b-e311-82ec-005056b1356a"), "AOR Candidate"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("445f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("c9df0cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher: Assessment Only Route"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("4a5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("cfdf0cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher By Virtue of overseas qualifications"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("5a5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("dfdf0cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher: Temporary Provision"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("645f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("e9df0cf3-c83b-e311-82ec-005056b1356a"), "Trainee Teacher"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("da5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("5fe00cf3-c83b-e311-82ec-005056b1356a"), "Qaulified Teacher: QTS awarded in wales"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("9c59427b-2c9c-e611-b753-005056822b0d"), Guid.Parse("0aa5c024-51e1-e511-9f73-00505682090b"), "Partial Qualified Teacher: Qualified To teach in SEN Establishments"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("6c5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("f1df0cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher: Teacher trained/registered in scotland"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("845f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("09e00cf3-c83b-e311-82ec-005056b1356a"), "Person not qualified for employment as regular teacher"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("a65f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("2be00cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher: Under EC Directive"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("a85f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("2de00cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher: Teachers Trained/registered in scotland"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("aa5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("2fe00cf3-c83b-e311-82ec-005056b1356a"), "Quafied Teacher: Teachers trained/recognised by Department of education of Northern ireland"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("d85f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("5de00cf3-c83b-e311-82ec-005056b1356a"), "QTS Awarded in Error"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("ca5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("4fe00cf3-c83b-e311-82ec-005056b1356a"), "Qualified teacher (under the EC Directive) further qualified to teach the deaf or partially hearing under Regulation 15"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("ae5f5db5-dcbd-e411-8ce9-005056822b0d"), Guid.Parse("33e00cf3-c83b-e311-82ec-005056b1356a"), "Qualified Teacher (Trained)"));
+            var createUsersBlobName = $"teacherstatuses/qts{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var createUsersBlobClient = blobContainerClient.GetBlobClient(createUsersBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var qtsregistrationToUpdate = new Subject<Tuple<Guid, Guid>>(); //qtsregistration.Id, Eyts Id
+
+            // update 10 records at a time
+            var batchSubscription = qtsregistrationToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var updateqts = new Entity("dfeta_qtsregistration");
+                    updateqts.Id = record.Item1;
+                    updateqts["dfeta_teacherstatusid"] = new EntityReference("dfeta_teacherstatus", record.Item2);
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = updateqts
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using (var blobStream = await createUsersBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                foreach (var status in statusesToRemove)
+                {
+                    var statusQuery = new QueryExpression("dfeta_qtsregistration");
+                    statusQuery.Criteria.AddCondition("dfeta_teacherstatusid", ConditionOperator.Equal, status.Item1);
+                    statusQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                    statusQuery.ColumnSet = new ColumnSet("dfeta_personid", "dfeta_earlyyearsstatusid", "dfeta_teacherstatusid");
+                    statusQuery.PageInfo = new PagingInfo()
+                    {
+                        Count = 100000,
+                        PageNumber = 1
+                    };
+                    var prevRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    Console.WriteLine(prevRecords.Entities.Count);
+                    foreach (var prevRecord in prevRecords.Entities)
+                    {
+                        csvWriter.WriteField(prevRecord.Id);
+                        csvWriter.WriteField(((EntityReference)prevRecord["dfeta_personid"]).Id.ToString());
+                        csvWriter.WriteField((prevRecord.Contains("dfeta_earlyyearsstatusid") ? ((EntityReference)prevRecord["dfeta_earlyyearsstatusid"]).Id.ToString() : ""));
+                        csvWriter.WriteField((prevRecord.Contains("dfeta_teacherstatusid") ? ((EntityReference)prevRecord["dfeta_teacherstatusid"]).Id.ToString() : ""));
+                        csvWriter.WriteField(status.Item1); //old reference
+                        csvWriter.WriteField(status.Item2); //new reference
+                        csvWriter.WriteField(status.Item3); //status description
+                        csvWriter.NextRecord();
+                    }
+                    csvWriter.Flush();
+
+                    if (commit == true)
+                    {
+                        // stop dfeta_qtsregistration record from referencing incorrect eyts status (duplicate)
+                        // and replacing it with correct status, before deactivating duplicate status.
+                        //
+                        // Note that this has a dependency of manually deactivating the CRM QTSRregistrationValidation
+                        // plugin temporarilly.
+                        foreach (var prevRecord in prevRecords.Entities)
+                        {
+                            qtsregistrationToUpdate.OnNext(Tuple.Create(prevRecord.Id, status.Item2));
+                        }
+
+                        // Deactivate EYTS duplicate status
+                        var deactivateeytsrequest = new ExecuteTransactionRequest()
+                        {
+                            Requests = new OrganizationRequestCollection()
+                        };
+
+                        var updateteacherstatus = new Entity("dfeta_teacherstatus");
+                        updateteacherstatus.Id = status.Item1;
+                        updateteacherstatus["statecode"] = new OptionSetValue(1);
+                        deactivateeytsrequest.Requests.Add(new UpdateRequest()
+                        {
+                            Target = updateteacherstatus
+                        });
+                        await serviceClient.ExecuteAsync(deactivateeytsrequest);
+                    }
+                }
+            }
+            qtsregistrationToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
+}
+
+static void CleanEarlyYearsTeacherStatuses(RootCommand rootCommand)
+{
+    var command = new Command("clean-eyts-teacher-statuses", description: "Removes duplicate eyts teacher statuses and cleans itt & qualifications that references")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+            //Duplicate EYTS Id, Correct EYTS Id, Description
+            var statusesToRemove = new List<Tuple<Guid, Guid, string>>(); 
+
+            //3 duplicate statuses
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("728c91a6-1fb4-e711-ab89-000d3a259ae8"), Guid.Parse("8844e68d-eed5-e711-92b9-000d3a269589"), "Early Years Professional Status"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("6a7c7e9e-1fb4-e711-ab89-000d3a259ae8"), Guid.Parse("4ee19781-eed5-e711-92b9-000d3a269589"), "Early Years Teacher Status"));
+            statusesToRemove.Add(Tuple.Create(Guid.Parse("8272ef95-1fb4-e711-ab89-000d3a259ae8"), Guid.Parse("d6a36574-eed5-e711-92b9-000d3a269589"), "Early Years Trainee"));
+            var createUsersBlobName = $"teacherstatuses/eyts{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var createUsersBlobClient = blobContainerClient.GetBlobClient(createUsersBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var qtsregistrationToUpdate = new Subject<Tuple<Guid, Guid>>(); //qtsregistration.Id, Eyts Id
+
+            // update 10 records at a time
+            var batchSubscription = qtsregistrationToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var updateqts = new Entity("dfeta_qtsregistration");
+                    updateqts.Id = record.Item1;
+                    updateqts["dfeta_earlyyearsstatusid"] = new EntityReference("dfeta_earlyyearsstatus", record.Item2);
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = updateqts
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using (var blobStream = await createUsersBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                foreach (var status in statusesToRemove)
+                {
+                    var statusQuery = new QueryExpression("dfeta_qtsregistration");
+                    statusQuery.Criteria.AddCondition("dfeta_earlyyearsstatusid", ConditionOperator.Equal, status.Item1);
+                    statusQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                    statusQuery.ColumnSet = new ColumnSet("dfeta_personid", "dfeta_earlyyearsstatusid", "dfeta_teacherstatusid");
+                    statusQuery.PageInfo = new PagingInfo()
+                    {
+                        Count = 100000,
+                        PageNumber = 1
+                    };
+                    var prevRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    Console.WriteLine(prevRecords.Entities.Count);
+                    foreach (var prevRecord in prevRecords.Entities)
+                    {
+                        csvWriter.WriteField(prevRecord.Id);
+                        csvWriter.WriteField(((EntityReference)prevRecord["dfeta_personid"]).Id.ToString());
+                        csvWriter.WriteField(((EntityReference)prevRecord["dfeta_earlyyearsstatusid"]).Id.ToString());
+                        csvWriter.WriteField((prevRecord.Contains("dfeta_teacherstatusid") ? ((EntityReference)prevRecord["dfeta_teacherstatusid"]).Id.ToString() : ""));
+                        csvWriter.WriteField(status.Item1); //old reference
+                        csvWriter.WriteField(status.Item2); //new reference
+                        csvWriter.WriteField(status.Item3); //status description
+                        csvWriter.NextRecord();
+                    }
+                    csvWriter.Flush();
+
+                    if(commit == true)
+                    {
+                        // stop dfeta_qtsregistration record from referencing incorrect eyts status (duplicate)
+                        // and replacing it with correct status, before deactivating duplicate status.
+                        //
+                        // Note that this has a dependency of manually deactivating the CRM QTSRregistrationValidation
+                        // plugin temporarilly.
+                        foreach (var prevRecord in prevRecords.Entities)
+                        {
+                            qtsregistrationToUpdate.OnNext(Tuple.Create(prevRecord.Id, status.Item2));
+                        }
+
+                        // Deactivate EYTS duplicate status
+                        var deactivateeytsrequest = new ExecuteTransactionRequest()
+                        {
+                            Requests = new OrganizationRequestCollection()
+                        };
+
+                        var updateeyts = new Entity("dfeta_earlyyearsstatus");
+                        updateeyts.Id = status.Item1;
+                        updateeyts["statecode"] = new OptionSetValue(1);
+                        deactivateeytsrequest.Requests.Add(new UpdateRequest()
+                        {
+                            Target = updateeyts
+                        });
+                        await serviceClient.ExecuteAsync(deactivateeytsrequest);
+                    }
+                }
+            }
+            qtsregistrationToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void CreateTestUsers(RootCommand rootCommand)
@@ -369,6 +635,7 @@ static void AddBulkUpdateIttProvidersCommand(RootCommand rootCommand)
                         PageNumber = 1
                     };
                     var prevRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    Console.WriteLine(prevRecords.Entities.Count);
                     foreach (var prevRecord in prevRecords.Entities)
                     {
                         //always write csv file
