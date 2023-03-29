@@ -5,7 +5,7 @@
   <PluginTypeId>1a37e16d-2271-4bfb-92fa-273e9ab27364</PluginTypeId>
   <PrimaryEntity>contact</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>
-  <FilteringAttributes>birthdate,dfeta_dateofdeath,dfeta_ninumber,dfeta_trn,dfeta_trnallocaterequest</FilteringAttributes>
+  <FilteringAttributes>birthdate,dfeta_dateofdeath,emailaddress1,mobilephone,dfeta_ninumber,dfeta_trn,dfeta_trnallocaterequest,dfeta_tspersonid</FilteringAttributes>
   <InvocationSource>0</InvocationSource>
   <Mode>0</Mode>
   <Rank>1</Rank>
@@ -18,7 +18,7 @@
   <SdkMessageProcessingStepImages>
     <SdkMessageProcessingStepImage Name="preImage">
       <SdkMessageProcessingStepImageId>{8260a7c8-8bdc-ea11-a816-000d3aba3433}</SdkMessageProcessingStepImageId>
-      <Attributes>dfeta_trn</Attributes>
+      <Attributes>emailaddress1,mobilephone,dfeta_trn,dfeta_tspersonid</Attributes>
       <EntityAlias>preImage</EntityAlias>
       <ImageType>0</ImageType>
       <MessagePropertyName>Target</MessagePropertyName>
