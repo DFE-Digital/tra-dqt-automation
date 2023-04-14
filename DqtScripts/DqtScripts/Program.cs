@@ -7,10 +7,10 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text.RegularExpressions;
 using Azure;
-using Azure.Core;
 using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
+using Dapper;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +19,7 @@ using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+using Npgsql;
 using Polly;
 
 var result = await CreateCommandLineBuilder()
@@ -88,8 +89,145 @@ static RootCommand CreateRootCommand()
     AddBulkUpdateIttProvidersCommand(rootCommand);
     AddMoveIttRecordsToNewOrganisation(rootCommand);
     CreateTestUsers(rootCommand);
+    AddBackfillIdentityAccountDataCommand(rootCommand);
 
     return rootCommand;
+}
+
+static void AddBackfillIdentityAccountDataCommand(RootCommand rootCommand)
+{
+    var command = new Command("backfill-id-account-data", description: "Backfill data in DQT for contacts owned by identity")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var configuration = host.Services.GetRequiredService<IConfiguration>();
+            var identityConnectingString = configuration["IdentityConnectionString"];
+            if (string.IsNullOrEmpty(identityConnectingString))
+            {
+                throw new Exception("Missing IdentityConnectionString configuration.");
+            }
+
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backupBlobName = $"backfill-id-account-data/backfill-id-account-data_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
+
+            var contactsToUpdate = new Subject<(Guid ContactId, Guid IdentityUserId, string EmailAddress)>();
+
+            // Batch Update requests in chunks of 10 and retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+
+            var batchSubscription = contactsToUpdate.Buffer(10).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var contact in batch)
+                {
+                    var update = new Entity("contact")
+                    {
+                        Id = contact.ContactId
+                    };
+                    update["dfeta_tspersonid"] = contact.IdentityUserId.ToString();
+                    update["emailaddress1"] = contact.EmailAddress;
+                    update["dfeta_lastidentityupdate"] = DateTime.UtcNow;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = update
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using var blobStream = await backupBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions());
+            using var streamWriter = new StreamWriter(blobStream);
+            using var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture);
+
+            csvWriter.WriteField("contactid");
+            csvWriter.WriteField("dfeta_trn");
+            csvWriter.WriteField("emailaddress1");
+            csvWriter.NextRecord();
+
+            var con = new NpgsqlConnection(identityConnectingString);
+            con.Open();
+            var usersWithTrns = await con.QueryAsync<IdentityUser>(
+@"
+SELECT
+    user_id as UserId,
+    email_address as EmailAddress,
+    trn as Trn
+FROM
+    users
+WHERE
+    trn IS NOT NULL
+");
+
+            foreach (var user in usersWithTrns)
+            {
+                var filter = new FilterExpression(LogicalOperator.And);
+                filter.AddCondition("dfeta_trn", ConditionOperator.Equal, user.Trn);
+                filter.AddCondition("dfeta_tspersonid", ConditionOperator.Null);
+
+                var query = new QueryExpression("contact")
+                {
+                    ColumnSet = new ColumnSet("contactid", "emailaddress1", "dfeta_trn", "dfeta_tspersonid"),
+                    Criteria = filter
+                };
+
+                var result = await serviceClient.RetrieveMultipleAsync(query);
+                var existingContact = result.Entities.FirstOrDefault();
+                if (existingContact != null)
+                {
+                    csvWriter.WriteField(existingContact.Id);
+                    csvWriter.WriteField(existingContact["dfeta_trn"]);
+                    csvWriter.WriteField(existingContact.Contains("emailaddress1") ? existingContact["emailaddress1"] : string.Empty);
+                    csvWriter.NextRecord();
+
+                    // Update with new values
+                    if (commit == true)
+                    {
+                        contactsToUpdate.OnNext((existingContact.Id, user.UserId, user.EmailAddress));
+                    }
+                    else
+                    {
+#if DEBUG
+                        Console.WriteLine($"DQT record for TRN {user.Trn} would get Email Address updated to {user.EmailAddress} if commit flag was set");
+#endif
+                    }
+                }
+                else
+                {
+#if DEBUG
+                    Console.WriteLine($"No record without identity user id in DQT for TRN {user.Trn}");
+#endif
+                }
+            }
+
+            contactsToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+        })
+    };
+
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void CreateTestUsers(RootCommand rootCommand)
@@ -970,4 +1108,13 @@ public class MoveIttRecord
     public Guid FromAccountId { get; set; }
     [Name("ToAccountId")]
     public Guid ToAccountId { get; set; }
+}
+
+public class IdentityUser
+{
+    public Guid UserId { get; set; }
+
+    public string EmailAddress { get; set; } = null!;
+
+    public string? Trn { get; set; }
 }
