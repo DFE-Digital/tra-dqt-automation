@@ -2,27 +2,44 @@
 <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" name="DfE DQT App Access" isinherited="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
+    <RolePrivilege name="prvAppendmsdyn_salesocmessage" level="Basic" />
     <RolePrivilege name="prvAppendmsdyn_salestag" level="Local" />
     <RolePrivilege name="prvAppendmsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvAppendmsdyn_transcript" level="Basic" />
+    <RolePrivilege name="prvAppendTomsdyn_ChannelInstance" level="Basic" />
     <RolePrivilege name="prvAppendTomsdyn_salestag" level="Local" />
     <RolePrivilege name="prvAppendTomsdyn_sequencetarget" level="Local" />
+    <RolePrivilege name="prvAppendTomsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvAssignConnection" level="Local" />
     <RolePrivilege name="prvAssignmsdyn_sequencetarget" level="Local" />
     <RolePrivilege name="prvAssignmsdyn_sequencetargetstep" level="Local" />
     <RolePrivilege name="prvCreatemsdyn_extendedusersetting" level="Basic" />
+    <RolePrivilege name="prvCreatemsdyn_salesocmessage" level="Basic" />
+    <RolePrivilege name="prvCreatemsdyn_salesocsmstemplate" level="Local" />
     <RolePrivilege name="prvCreatemsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvCreatemsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvCreatemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvCreatemsdyn_workqueueusersetting" level="Basic" />
     <RolePrivilege name="prvCreateSharePointData" level="Global" />
+    <RolePrivilege name="prvDeletemsdyn_salesocmessage" level="Basic" />
+    <RolePrivilege name="prvDeletemsdyn_salesocsmstemplate" level="Local" />
+    <RolePrivilege name="prvDeletemsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvDeletemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvReadConnection" level="Local" />
     <RolePrivilege name="prvReadConnectionRole" level="Global" />
+    <RolePrivilege name="prvReadmsdyn_ChannelDefinition" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_ChannelInstance" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_ChannelInstanceAccount" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_ConsumingApplication" level="Local" />
     <RolePrivilege name="prvReadmsdyn_extendedusersetting" level="Basic" />
     <RolePrivilege name="prvReadmsdyn_salesaccelerationsettings" level="Global" />
+    <RolePrivilege name="prvReadmsdyn_salesocmessage" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_salesocsmstemplate" level="Local" />
     <RolePrivilege name="prvReadmsdyn_salestag" level="Local" />
     <RolePrivilege name="prvReadmsdyn_sequence" level="Local" />
     <RolePrivilege name="prvReadmsdyn_sequencetarget" level="Local" />
     <RolePrivilege name="prvReadmsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvReadmsdyn_transcript" level="Local" />
     <RolePrivilege name="prvReadmsdyn_workqueuerecord" level="Global" />
     <RolePrivilege name="prvReadmsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvReadmsdyn_workqueueusersetting" level="Basic" />
@@ -35,8 +52,11 @@
     <RolePrivilege name="prvReadSharePointDocument" level="Global" />
     <RolePrivilege name="prvWriteConnection" level="Local" />
     <RolePrivilege name="prvWritemsdyn_extendedusersetting" level="Basic" />
+    <RolePrivilege name="prvWritemsdyn_salesocmessage" level="Basic" />
+    <RolePrivilege name="prvWritemsdyn_salesocsmstemplate" level="Local" />
     <RolePrivilege name="prvWritemsdyn_sequencetarget" level="Local" />
     <RolePrivilege name="prvWritemsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvWritemsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvWritemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvWritemsdyn_workqueueusersetting" level="Basic" />
     <RolePrivilege name="prvWriteSharePointData" level="Global" />
