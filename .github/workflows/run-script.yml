@@ -38,6 +38,13 @@ jobs:
         secret: DQT-SCRIPTS-STORAGE-SECRET
         key: BLOB_URI, CONTAINER_NAME, SAS_TOKEN
 
+    - id: identity
+      uses: DfE-Digital/keyvault-yaml-secret@v1.0.1
+      with:
+        keyvault: ${{ secrets.KEYVAULT_NAME }}
+        secret: GET-AN-IDENTITY-SECRET
+        key: CONNECTION_STRING
+
     - uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
@@ -50,4 +57,5 @@ jobs:
         BlobUri: ${{ steps.storage.outputs.BLOB_URI }}
         BlobContainerName: ${{ steps.storage.outputs.CONTAINER_NAME }}
         BlobSasToken: ${{ steps.storage.outputs.SAS_TOKEN }}
+        IdentityConnectionString: ${{ steps.identity.outputs.CONNECTION_STRING }}
       working-directory: DqtScripts/DqtScripts
