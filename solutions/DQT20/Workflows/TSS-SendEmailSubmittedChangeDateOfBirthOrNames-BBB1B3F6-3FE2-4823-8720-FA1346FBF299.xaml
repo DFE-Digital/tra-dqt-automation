@@ -11,7 +11,7 @@
   </this:XrmWorkflowbbb1b3f63fe248238720fa1346fbf299.CreatedEntities>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
-    <Sequence DisplayName="SendEmailStep1: Send e-mail to confirm change of names or date of birth">
+    <Sequence DisplayName="SendEmailStep1: Send e-mail to confirm Change of Name or Date of Birth">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Object" Name="SendEmailStep1_1" />
         <Variable x:TypeArguments="x:Object" Name="SendEmailStep1_2" />
@@ -274,7 +274,7 @@
           </InArgument>
         </mxswa:SetEntityProperty.TargetType>
       </mxswa:SetEntityProperty>
-      <mxswa:SendEmail EntityId="{x:Null}" DisplayName="SendEmailStep1: Send e-mail to confirm change of names or date of birth" Entity="[CreatedEntities(&quot;SendEmailStep1_localParameter#Temp&quot;)]" />
+      <mxswa:SendEmail EntityId="{x:Null}" DisplayName="SendEmailStep1: Send e-mail to confirm Change of Name or Date of Birth" Entity="[CreatedEntities(&quot;SendEmailStep1_localParameter#Temp&quot;)]" />
       <Persist />
     </Sequence>
   </mxswa:Workflow>
