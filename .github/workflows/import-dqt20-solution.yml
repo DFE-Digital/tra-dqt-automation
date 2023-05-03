@@ -55,7 +55,7 @@ jobs:
 
         pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
 
-        pac solution import --path dqt20.zip --import-as-holding --async
+        pac solution import --path dqt20.zip --import-as-holding --async --activate-plugins
 
         pac solution upgrade --solution-name DQT20 --async
 
