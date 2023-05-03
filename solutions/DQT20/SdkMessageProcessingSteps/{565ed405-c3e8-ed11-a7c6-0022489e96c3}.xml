@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin: Update of incident" SdkMessageProcessingStepId="{565ed405-c3e8-ed11-a7c6-0022489e96c3}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>fbf27da8-526a-459d-af3f-b72627e2e6e6</PluginTypeId>
+  <PrimaryEntity>incident</PrimaryEntity>
+  <AsyncAutoDelete>1</AsyncAutoDelete>
+  <Description>Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin: Update of incident</Description>
+  <FilteringAttributes>customerid,statecode,statuscode,subjectid</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>1</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>40</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages>
+    <SdkMessageProcessingStepImage Name="preImage">
+      <SdkMessageProcessingStepImageId>{741a7b1e-1ae9-ed11-a7c6-000d3adf7abc}</SdkMessageProcessingStepImageId>
+      <Attributes>customerid,dfeta_fromidentity,statuscode,subjectid</Attributes>
+      <EntityAlias>preImage</EntityAlias>
+      <ImageType>0</ImageType>
+      <MessagePropertyName>Target</MessagePropertyName>
+      <IsCustomizable>1</IsCustomizable>
+    </SdkMessageProcessingStepImage>
+  </SdkMessageProcessingStepImages>
+</SdkMessageProcessingStep>

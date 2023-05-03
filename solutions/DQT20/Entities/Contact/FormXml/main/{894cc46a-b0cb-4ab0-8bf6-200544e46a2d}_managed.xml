@@ -801,7 +801,25 @@
         </controlDescription>
       </controlDescriptions>
       <footer id="{ec646743-9c53-4423-97ca-9251dfac80bb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows>
+          <row>
+            <cell id="{bd47f6ce-a3b1-49b4-945f-9c1a028d2c49}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{245ec4d2-0ef9-4796-80df-812a4a3e0c39}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5effa96b-4319-480a-91f9-1de7973bf736}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </footer>
       <DisplayConditions FallbackForm="true" Order="2" solutionaction="Added">
         <Everyone />

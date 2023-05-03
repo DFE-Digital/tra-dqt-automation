@@ -71,12 +71,10 @@
     <AppModuleComponent type="60" id="{d5b4a1b2-de4f-4f86-8768-b0730001e7d1}" solutionaction="Removed" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
-    <Role id="{3dac4d9e-568c-e611-80d4-00155d42a122}" />
+    <Role id="{3dac4d9e-568c-e611-80d4-00155d42a122}" solutionaction="Added" />
     <Role id="{350d0832-8e1b-ea11-a81d-000d3a6d6cdc}" solutionaction="Removed" />
-    <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" />
-    <Role id="{669f83dd-db08-e311-8cce-000c29770442}" />
-    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
-    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+    <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" solutionaction="Added" />
+    <Role id="{669f83dd-db08-e311-8cce-000c29770442}" solutionaction="Added" />
   </AppModuleRoleMaps>
   <LocalizedNames>
     <LocalizedName description="DQT Team Member" languagecode="1033" />

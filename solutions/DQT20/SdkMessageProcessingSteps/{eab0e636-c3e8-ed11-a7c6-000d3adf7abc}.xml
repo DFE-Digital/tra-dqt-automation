@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.CaseApprovedUpdatePersonPlugin: Update of incident" SdkMessageProcessingStepId="{eab0e636-c3e8-ed11-a7c6-000d3adf7abc}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.CaseApprovedUpdatePersonPlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>c081b805-41d0-47f3-8534-b7b33b865104</PluginTypeId>
+  <PrimaryEntity>incident</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Description>Dqt.Dynamics.plugins.CaseApprovedUpdatePersonPlugin: Update of incident</Description>
+  <FilteringAttributes>customerid,dfeta_fromidentity,dfeta_newdateofbirth,dfeta_newfirstname,dfeta_newlastname,dfeta_newmiddlename,dfeta_newtitle,dfeta_statedfirstname,dfeta_statedlastname,dfeta_statedmiddlename,statuscode,subjectid</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>40</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages>
+    <SdkMessageProcessingStepImage Name="preImage">
+      <SdkMessageProcessingStepImageId>{dd9c772a-1ae9-ed11-a7c6-000d3adf7abc}</SdkMessageProcessingStepImageId>
+      <Attributes>customerid,dfeta_fromidentity,dfeta_newdateofbirth,dfeta_newfirstname,dfeta_newlastname,dfeta_newmiddlename,dfeta_newtitle,dfeta_statedfirstname,dfeta_statedlastname,dfeta_statedmiddlename,statuscode,subjectid</Attributes>
+      <EntityAlias>preImage</EntityAlias>
+      <ImageType>0</ImageType>
+      <MessagePropertyName>Target</MessagePropertyName>
+      <IsCustomizable>1</IsCustomizable>
+    </SdkMessageProcessingStepImage>
+  </SdkMessageProcessingStepImages>
+</SdkMessageProcessingStep>
