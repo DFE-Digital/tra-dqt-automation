@@ -42,7 +42,7 @@ jobs:
       with:
         keyvault: ${{ secrets.KEYVAULT_NAME }}
         secret: PLUGIN-CONFIG
-        key: TRN_GENERATION
+        key: TRN_GENERATION, INCIDENT
 
     - name: "Import solution & configure"
       run: |
@@ -61,6 +61,13 @@ jobs:
 
         dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
           --plugin-type Dqt.Dynamics.plugins.TrnGenerationPlugin --secure-config "$TrnGenerationPluginConfig"
+
+        dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
+          --plugin-type Dqt.Dynamics.plugins.CaseCreatedSendEmailPlugin --secure-config "$IncidentPluginsConfig"
+
+        dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
+          --plugin-type Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin --secure-config "$IncidentPluginsConfig"
+
       env:
         Environment: ${{ github.event.inputs.environment }}
         CrmUrl: ${{ steps.CRM.outputs.CRM_URL }}
@@ -68,3 +75,4 @@ jobs:
         CrmClientSecret: ${{ steps.CRM.outputs.CRM_APP_SECRET }}
         CrmTenantId: ${{ steps.CRM.outputs.CRM_TENANT_ID }}
         TrnGenerationPluginConfig: ${{ steps.PLUGIN_CONFIG.outputs.TRN_GENERATION }}
+        IncidentPluginsConfig: ${{ steps.PLUGIN_CONFIG.outputs.INCIDENT }}
