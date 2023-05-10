@@ -251,6 +251,7 @@
     <RolePrivilege name="prvReadAttribute" level="Global" />
     <RolePrivilege name="prvReadAttributeMap" level="Global" />
     <RolePrivilege name="prvReadBusinessUnit" level="Global" />
+    <RolePrivilege name="prvReadCampaign" level="Global" />
     <RolePrivilege name="prvReadComplexControl" level="Global" />
     <RolePrivilege name="prvReadConnection" level="Global" />
     <RolePrivilege name="prvReadConnectionRole" level="Global" />
@@ -286,6 +287,7 @@
     <RolePrivilege name="prvReaddfeta_mrtraining" level="Global" />
     <RolePrivilege name="prvReaddfeta_optionsetmapping" level="Global" />
     <RolePrivilege name="prvReaddfeta_organisationcategory" level="Global" />
+    <RolePrivilege name="prvReaddfeta_prdeclinestatusreason" level="Global" />
     <RolePrivilege name="prvReaddfeta_previousname" level="Global" />
     <RolePrivilege name="prvReaddfeta_profileamendrequest" level="Global" />
     <RolePrivilege name="prvReaddfeta_qtsregistration" level="Global" />
@@ -296,6 +298,7 @@
     <RolePrivilege name="prvReaddfeta_serviceannouncement" level="Global" />
     <RolePrivilege name="prvReaddfeta_specialism" level="Global" />
     <RolePrivilege name="prvReaddfeta_teacherstatus" level="Global" />
+    <RolePrivilege name="prvReaddfeta_temporaryqueries" level="Global" />
     <RolePrivilege name="prvReaddfeta_tsstcohorts" level="Global" />
     <RolePrivilege name="prvReaddfeta_tsstsubjects" level="Global" />
     <RolePrivilege name="prvReaddfeta_webactivitylog" level="Global" />
