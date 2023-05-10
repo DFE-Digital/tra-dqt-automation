@@ -6,7 +6,7 @@
   <PrimaryEntity>contact</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>
   <Description>PersonNameChangedPlugin: Update of contact</Description>
-  <FilteringAttributes>firstname,lastname,middlename,dfeta_title</FilteringAttributes>
+  <FilteringAttributes>firstname,lastname,middlename,dfeta_statedfirstname,dfeta_statedlastname,dfeta_statedmiddlename,dfeta_title</FilteringAttributes>
   <InvocationSource>1</InvocationSource>
   <Mode>0</Mode>
   <Rank>1</Rank>
