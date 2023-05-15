@@ -5,6 +5,13 @@ on:
     inputs:
       environment:
         type: environment
+      deployment_type:
+        required: true
+        type: choice
+        default: 'update'
+        options:
+          - update
+          - upgrade
 
 jobs:
   import:
@@ -55,9 +62,12 @@ jobs:
 
         pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
 
-        pac solution import --path dqt20.zip --import-as-holding --async --activate-plugins
+        IMPORT_FLAGS=""
+        if [ "$DeploymentType" -eq "upgrade" ]; then
+          IMPORT_FLAGS="--import-as-holding"
+        fi
 
-        pac solution upgrade --solution-name DQT20 --async
+        pac solution import --path dqt20.zip --async --activate-plugins $IMPORT_FLAGS
 
         dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
           --plugin-type Dqt.Dynamics.plugins.TrnGenerationPlugin --secure-config "$TrnGenerationPluginConfig"
@@ -68,7 +78,15 @@ jobs:
         dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
           --plugin-type Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin --secure-config "$IncidentPluginsConfig"
 
+        if [ "$DeploymentType" -eq "upgrade" ]; then
+          # Reauthenticate - token may time out during upgrade otherwise
+          pac auth create --name $Environment --url $CrmUrl -id $CrmClientId -cs $CrmClientSecret -t $CrmTenantId
+
+          pac solution upgrade --solution-name DQT20 --async
+        fi
+
       env:
+        DeploymentType: ${{ github.event.inputs.deployment_type }}
         Environment: ${{ github.event.inputs.environment }}
         CrmUrl: ${{ steps.CRM.outputs.CRM_URL }}
         CrmClientId: ${{ steps.CRM.outputs.CRM_APP_ID }}
