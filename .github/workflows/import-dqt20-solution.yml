@@ -53,6 +53,8 @@ jobs:
 
     - name: "Import solution & configure"
       run: |
+        set -e
+
         wget https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI.Core.linux-x64 -P ~ \
           && unzip ~/Microsoft.PowerApps.CLI.Core.linux-x64 -d ~/pac \
           && chmod +x ~/pac/tools/pac \
@@ -63,7 +65,7 @@ jobs:
         pac solution pack --zipfile dqt20.zip --folder ./solutions/DQT20/ --packagetype Managed
 
         IMPORT_FLAGS=""
-        if [ "$DeploymentType" -eq "upgrade" ]; then
+        if [ "$DeploymentType" == "upgrade" ]; then
           IMPORT_FLAGS="--import-as-holding"
         fi
 
@@ -78,7 +80,7 @@ jobs:
         dotnet run --project ./SetPluginSecureConfigTool/SetPluginSecureConfigTool.csproj -c Release -- \
           --plugin-type Dqt.Dynamics.plugins.CaseApprovedSendEmailPlugin --secure-config "$IncidentPluginsConfig"
 
-        if [ "$DeploymentType" -eq "upgrade" ]; then
+        if [ "$DeploymentType" == "upgrade" ]; then
           # Reauthenticate - token may time out during upgrade otherwise
           pac auth create --name $Environment --url $CrmUrl -id $CrmClientId -cs $CrmClientSecret -t $CrmTenantId
 
