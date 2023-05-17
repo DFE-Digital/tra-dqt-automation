@@ -240,7 +240,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{571a66d4-c221-289c-b934-22915dda546a}" showlabel="false" ordinalvalue="10014" solutionaction="Added">
+                      <cell id="{6cd2b530-3a17-a23b-68e6-6c69478de334}" showlabel="false" ordinalvalue="10014" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -253,7 +253,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{6cd2b530-3a17-a23b-68e6-6c69478de334}" showlabel="false" ordinalvalue="10016" solutionaction="Added">
+                      <cell id="{be1c6474-599a-da4c-a15b-3c092936611a}" showlabel="false" ordinalvalue="10016" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -363,10 +363,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{e58022ac-5bc5-3817-3bed-5505096e88e6}" showlabel="false" ordinalvalue="10008" solutionaction="Added">
+                      <cell id="{62c6210e-1303-3b75-2114-28c55e8b0c8c}" showlabel="true" locklevel="0" ordinalvalue="10008" solutionaction="Added">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="SlugId" languagecode="1033" />
                         </labels>
+                        <control id="dfeta_slugid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_slugid" disabled="false" />
                       </cell>
                       <cell id="{b456d8c0-9d2c-38e1-5795-79a9725653d3}" showlabel="true" locklevel="0" visible="false" ordinalvalue="20009" solutionaction="Added">
                         <labels>
