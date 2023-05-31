@@ -514,6 +514,19 @@
                         </control>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{86b90474-cc15-a837-da89-0bcbc1d063c9}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="SlugId" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_slugid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_slugid" disabled="false" />
+                      </cell>
+                      <cell id="{883ea4cb-e660-e754-aece-1292423db2d1}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
