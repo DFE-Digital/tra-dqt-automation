@@ -116,7 +116,7 @@ static void AddBackfillIdentityAccountDataCommand(RootCommand rootCommand)
             var backupBlobName = $"backfill-id-account-data/backfill-id-account-data_{DateTime.Now:yyyyMMddHHmmss}.csv";
             var backupBlobClient = blobContainerClient.GetBlobClient(backupBlobName);
 
-            var contactsToUpdate = new Subject<(Guid ContactId, Guid IdentityUserId, string EmailAddress)>();
+            var contactsToUpdate = new Subject<(Guid ContactId, Guid IdentityUserId, string EmailAddress, DateTime IdentityUpdatedUtc)>();
 
             // Batch Update requests in chunks of 10 and retry on failure
             var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
@@ -141,7 +141,7 @@ static void AddBackfillIdentityAccountDataCommand(RootCommand rootCommand)
                     };
                     update["dfeta_tspersonid"] = contact.IdentityUserId.ToString();
                     update["emailaddress1"] = contact.EmailAddress;
-                    update["dfeta_lastidentityupdate"] = DateTime.UtcNow;
+                    update["dfeta_lastidentityupdate"] = contact.IdentityUpdatedUtc;
 
                     request.Requests.Add(new UpdateRequest()
                     {
@@ -173,7 +173,8 @@ static void AddBackfillIdentityAccountDataCommand(RootCommand rootCommand)
 SELECT
     user_id as UserId,
     email_address as EmailAddress,
-    trn as Trn
+    trn as Trn,
+    updated as Updated
 FROM
     users
 WHERE
@@ -204,7 +205,7 @@ WHERE
                     // Update with new values
                     if (commit == true)
                     {
-                        contactsToUpdate.OnNext((existingContact.Id, user.UserId, user.EmailAddress));
+                        contactsToUpdate.OnNext((existingContact.Id, user.UserId, user.EmailAddress, user.Updated));
                     }
                     else
                     {
@@ -1117,4 +1118,6 @@ public class IdentityUser
     public string EmailAddress { get; set; } = null!;
 
     public string? Trn { get; set; }
+
+    public DateTime Updated { get; set; }
 }
