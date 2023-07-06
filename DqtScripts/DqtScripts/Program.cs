@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text.RegularExpressions;
 using Azure;
+using Azure.Core;
 using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
@@ -90,6 +91,7 @@ static RootCommand CreateRootCommand()
     AddMoveIttRecordsToNewOrganisation(rootCommand);
     CreateTestUsers(rootCommand);
     AddBackfillIdentityAccountDataCommand(rootCommand);
+    AddUpdateTeacherEmailAddress(rootCommand);
 
     return rootCommand;
 }
@@ -1082,6 +1084,130 @@ static void AddBackupHusidsCommand(RootCommand rootCommand)
 
     rootCommand.Add(command);
 }
+
+static void AddUpdateTeacherEmailAddress(RootCommand rootCommand)
+{
+    var command = new Command("update-email-addresses", description: "Updates teacher email addresses from register, by providing a file")
+    {
+        Handler = CommandHandler.Create<IHost, bool?, string>(async (host, commit, filename) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+            if (string.IsNullOrEmpty(filename))
+            {
+                Console.Error.WriteLine("--filename parameter missing");
+                Environment.Exit(1);
+            }
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+            var logBlobName = $"register-email-updates/log-{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var logBlobClient = blobContainerClient.GetBlobClient(logBlobName);
+
+            var contactsToUpdate = new Subject<(Guid ContactId, string EmailAddress)>();
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var batchSubscription = contactsToUpdate.Buffer(10).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var id in batch)
+                {
+                    var update = new Entity("contact")
+                    {
+                        Id = id.ContactId
+                    };
+                    update["emailaddress1"] = id.EmailAddress;
+
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = update
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+
+            using (var blob = await blobContainerClient.GetBlobClient(filename).OpenReadAsync())
+            using (var reader = new StreamReader(blob))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var blobStream = await logBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var records = csv.GetRecords<UpdateEmailAddress>();
+                foreach (var record in records)
+                {
+                    //fetch ids of contacts to change email
+                    var query = new QueryExpression("contact");
+                    query.ColumnSet = new ColumnSet("contactid", "emailaddress1", "dfeta_trn", "dfeta_tspersonid");
+                    query.Criteria.AddCondition("dfeta_trn", ConditionOperator.Equal, record.TRN);
+                    query.PageInfo = new PagingInfo()
+                    {
+                        Count = 1,
+                        PageNumber = 1
+                    };
+
+                    EntityCollection result;
+                    do
+                    {
+                        result = await serviceClient.RetrieveMultipleAsync(query);
+                        foreach (var entity in result.Entities)
+                        {
+                            //batch updates
+                            var id = entity.GetAttributeValue<Guid>("contactid");
+                            var tspersonid = entity.GetAttributeValue<string>("dfeta_tspersonid");
+                            var email = entity.GetAttributeValue<string>("emailaddress1");
+                            if (commit == true && string.IsNullOrEmpty(tspersonid) && !record.EmailAddress.Equals(email, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                contactsToUpdate.OnNext((id, record.EmailAddress));
+                            }
+
+                            //write records that have been updated to csv
+                            csvWriter.WriteField(id);
+                            csvWriter.WriteField(record.TRN);
+                            csvWriter.WriteField(record.EmailAddress);
+                            csvWriter.NextRecord();
+                        }
+
+                        query.PageInfo.PageNumber++;
+                        query.PageInfo.PagingCookie = result.PagingCookie;
+                    }
+                    while (result.MoreRecords);
+                }
+                contactsToUpdate.OnCompleted();
+                contactsToUpdate.Dispose();
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    command.AddOption(new Option<string>("--filename", "File that contains email updates"));
+    rootCommand.Add(command);
+}
+
+public class UpdateEmailAddress
+{
+    [Name("TRN")]
+    public string TRN { get; set; }
+    [Name("EmailAddress")]
+    public string EmailAddress { get; set; }
+}
+
 
 public class BulkUpdateIttProvider
 {
