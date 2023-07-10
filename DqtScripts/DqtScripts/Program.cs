@@ -1157,6 +1157,7 @@ static void AddUpdateTeacherEmailAddress(RootCommand rootCommand)
                     var query = new QueryExpression("contact");
                     query.ColumnSet = new ColumnSet("contactid", "emailaddress1", "dfeta_trn", "dfeta_tspersonid");
                     query.Criteria.AddCondition("dfeta_trn", ConditionOperator.Equal, record.TRN);
+                    query.Criteria.AddCondition("contactid", ConditionOperator.Equal, record.ContactId);
                     query.PageInfo = new PagingInfo()
                     {
                         Count = 1,
@@ -1206,6 +1207,9 @@ public class UpdateEmailAddress
     public string TRN { get; set; }
     [Name("EmailAddress")]
     public string EmailAddress { get; set; }
+
+    [Name("ContactId")]
+    public string ContactId { get; set; }
 }
 
 
