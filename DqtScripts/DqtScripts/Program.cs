@@ -1174,7 +1174,7 @@ static void AddUpdateTeacherEmailAddress(RootCommand rootCommand)
                             var id = entity.GetAttributeValue<Guid>("contactid");
                             var tspersonid = entity.GetAttributeValue<string>("dfeta_tspersonid");
                             var email = entity.GetAttributeValue<string>("emailaddress1");
-                            if (commit == true && string.IsNullOrEmpty(tspersonid) && !record.EmailAddress.Equals(email, StringComparison.InvariantCultureIgnoreCase))
+                            if (commit == true && string.IsNullOrEmpty(tspersonid) && (!record.EmailAddress.Equals(email, StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrEmpty(email)))
                             {
                                 contactsToUpdate.OnNext((id, record.EmailAddress));
                             }
@@ -1182,7 +1182,7 @@ static void AddUpdateTeacherEmailAddress(RootCommand rootCommand)
                             //write records that have been updated to csv
                             csvWriter.WriteField(id);
                             csvWriter.WriteField(record.TRN);
-                            csvWriter.WriteField(record.EmailAddress);
+                            csvWriter.WriteField(email);
                             csvWriter.NextRecord();
                         }
 
