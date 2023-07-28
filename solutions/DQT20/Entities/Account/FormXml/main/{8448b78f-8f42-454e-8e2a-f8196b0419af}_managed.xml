@@ -194,98 +194,98 @@
         <NavBar>
           <NavBarByRelationshipItem RelationshipName="Account_CustomerAddress" Id="navAddresses" Sequence="10" Area="Info" Show="false">
             <Titles>
-              <Title LCID="1025" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1026" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1027" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1029" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1030" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1031" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1032" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="3082" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1061" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1069" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1035" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1036" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1110" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1037" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1081" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1050" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1038" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1057" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1040" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1041" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1087" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1042" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1063" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1062" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1086" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1044" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1043" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1045" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1046" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="2070" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1048" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1049" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1051" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1060" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1053" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1054" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1055" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1058" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1066" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="2052" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="3076" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="1028" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="3098" Text="Addresses" solutionaction="Removed" />
-              <Title LCID="2074" Text="Addresses" solutionaction="Removed" />
+              <Title LCID="1025" Text="العناوين" solutionaction="Removed" />
+              <Title LCID="1026" Text="Адреси" solutionaction="Removed" />
+              <Title LCID="1027" Text="Adreces" solutionaction="Removed" />
+              <Title LCID="1029" Text="Adresy" solutionaction="Removed" />
+              <Title LCID="1030" Text="Adresser" solutionaction="Removed" />
+              <Title LCID="1031" Text="Adressen" solutionaction="Removed" />
+              <Title LCID="1032" Text="Διευθύνσεις" solutionaction="Removed" />
+              <Title LCID="3082" Text="Direcciones" solutionaction="Removed" />
+              <Title LCID="1061" Text="Aadressid" solutionaction="Removed" />
+              <Title LCID="1069" Text="Helbideak" solutionaction="Removed" />
+              <Title LCID="1035" Text="Osoitteet" solutionaction="Removed" />
+              <Title LCID="1036" Text="Adresses" solutionaction="Removed" />
+              <Title LCID="1110" Text="Enderezos" solutionaction="Removed" />
+              <Title LCID="1037" Text="כתובות" solutionaction="Removed" />
+              <Title LCID="1081" Text="पते" solutionaction="Removed" />
+              <Title LCID="1050" Text="Adrese" solutionaction="Removed" />
+              <Title LCID="1038" Text="Címek" solutionaction="Removed" />
+              <Title LCID="1057" Text="Alamat" solutionaction="Removed" />
+              <Title LCID="1040" Text="Indirizzi" solutionaction="Removed" />
+              <Title LCID="1041" Text="住所" solutionaction="Removed" />
+              <Title LCID="1087" Text="Мекенжайлар" solutionaction="Removed" />
+              <Title LCID="1042" Text="주소" solutionaction="Removed" />
+              <Title LCID="1063" Text="Adresai" solutionaction="Removed" />
+              <Title LCID="1062" Text="Adreses" solutionaction="Removed" />
+              <Title LCID="1086" Text="Alamat" solutionaction="Removed" />
+              <Title LCID="1044" Text="Adresser" solutionaction="Removed" />
+              <Title LCID="1043" Text="Adressen" solutionaction="Removed" />
+              <Title LCID="1045" Text="Adresy" solutionaction="Removed" />
+              <Title LCID="1046" Text="Endereços" solutionaction="Removed" />
+              <Title LCID="2070" Text="Endereços" solutionaction="Removed" />
+              <Title LCID="1048" Text="Adrese" solutionaction="Removed" />
+              <Title LCID="1049" Text="Адреса" solutionaction="Removed" />
+              <Title LCID="1051" Text="Adresy" solutionaction="Removed" />
+              <Title LCID="1060" Text="Naslovi" solutionaction="Removed" />
+              <Title LCID="1053" Text="Adresser" solutionaction="Removed" />
+              <Title LCID="1054" Text="ที่อยู่" solutionaction="Removed" />
+              <Title LCID="1055" Text="Adresler" solutionaction="Removed" />
+              <Title LCID="1058" Text="Адреси" solutionaction="Removed" />
+              <Title LCID="1066" Text="Địa chỉ" solutionaction="Removed" />
+              <Title LCID="2052" Text="地址" solutionaction="Removed" />
+              <Title LCID="3076" Text="地址" solutionaction="Removed" />
+              <Title LCID="1028" Text="地址" solutionaction="Removed" />
+              <Title LCID="3098" Text="Адресе" solutionaction="Removed" />
+              <Title LCID="2074" Text="Adrese" solutionaction="Removed" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="account_parent_account" Id="navSubAccts" TitleResourceId="Label_SubAccounts" Sequence="10" Area="Info" Show="false">
             <Titles>
-              <Title LCID="1025" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1026" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1027" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1029" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1030" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1031" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1032" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="3082" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1061" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1069" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1035" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1036" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1110" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1037" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1081" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1050" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1038" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1057" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1040" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1041" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1087" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1042" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1063" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1062" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1086" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1044" Text="Accounts" solutionaction="Removed" />
+              <Title LCID="1025" Text="الحسابات" solutionaction="Removed" />
+              <Title LCID="1026" Text="Акаунти" solutionaction="Removed" />
+              <Title LCID="1027" Text="Comptes" solutionaction="Removed" />
+              <Title LCID="1029" Text="Obchodní vztahy" solutionaction="Removed" />
+              <Title LCID="1030" Text="Firmaer" solutionaction="Removed" />
+              <Title LCID="1031" Text="Firmen" solutionaction="Removed" />
+              <Title LCID="1032" Text="Λογαριασμοί" solutionaction="Removed" />
+              <Title LCID="3082" Text="Cuentas" solutionaction="Removed" />
+              <Title LCID="1061" Text="Kontod" solutionaction="Removed" />
+              <Title LCID="1069" Text="Kontuak" solutionaction="Removed" />
+              <Title LCID="1035" Text="Asiakkaat" solutionaction="Removed" />
+              <Title LCID="1036" Text="Comptes" solutionaction="Removed" />
+              <Title LCID="1110" Text="Contas" solutionaction="Removed" />
+              <Title LCID="1037" Text="תיקי לקוחות" solutionaction="Removed" />
+              <Title LCID="1081" Text="खाते" solutionaction="Removed" />
+              <Title LCID="1050" Text="Kupci" solutionaction="Removed" />
+              <Title LCID="1038" Text="Partnerek" solutionaction="Removed" />
+              <Title LCID="1057" Text="Akun" solutionaction="Removed" />
+              <Title LCID="1040" Text="Account" solutionaction="Removed" />
+              <Title LCID="1041" Text="取引先企業" solutionaction="Removed" />
+              <Title LCID="1087" Text="Тіркелгілер" solutionaction="Removed" />
+              <Title LCID="1042" Text="거래처" solutionaction="Removed" />
+              <Title LCID="1063" Text="Klientai" solutionaction="Removed" />
+              <Title LCID="1062" Text="Uzņēmumi" solutionaction="Removed" />
+              <Title LCID="1086" Text="Akaun" solutionaction="Removed" />
+              <Title LCID="1044" Text="Forretningsforbindelser" solutionaction="Removed" />
               <Title LCID="1043" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1045" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1046" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="2070" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1048" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1049" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1051" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1060" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1053" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1054" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1055" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1058" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1066" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="2052" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="3076" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="1028" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="3098" Text="Accounts" solutionaction="Removed" />
-              <Title LCID="2074" Text="Accounts" solutionaction="Removed" />
+              <Title LCID="1045" Text="Klienci" solutionaction="Removed" />
+              <Title LCID="1046" Text="Contas" solutionaction="Removed" />
+              <Title LCID="2070" Text="Contas" solutionaction="Removed" />
+              <Title LCID="1048" Text="Conturi" solutionaction="Removed" />
+              <Title LCID="1049" Text="Организации" solutionaction="Removed" />
+              <Title LCID="1051" Text="Obchodné vzťahy" solutionaction="Removed" />
+              <Title LCID="1060" Text="Računi" solutionaction="Removed" />
+              <Title LCID="1053" Text="Konton" solutionaction="Removed" />
+              <Title LCID="1054" Text="บัญชี" solutionaction="Removed" />
+              <Title LCID="1055" Text="Firmalar" solutionaction="Removed" />
+              <Title LCID="1058" Text="Бізнес-партнери" solutionaction="Removed" />
+              <Title LCID="1066" Text="Khách hàng" solutionaction="Removed" />
+              <Title LCID="2052" Text="帐户" solutionaction="Removed" />
+              <Title LCID="3076" Text="客戶" solutionaction="Removed" />
+              <Title LCID="1028" Text="客戶" solutionaction="Removed" />
+              <Title LCID="3098" Text="Пословни контакти" solutionaction="Removed" />
+              <Title LCID="2074" Text="Poslovni kontakti" solutionaction="Removed" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="account_customer_relationship_customer" Id="navRelationships" TitleResourceId="Left_Nav_Area_Relationships" Sequence="10" Area="Info" Show="false">
@@ -338,98 +338,98 @@
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navProcessSessions" Sequence="9700" Area="ProcessCenter" Id="navProcessSessions" Show="false">
             <Titles>
-              <Title LCID="1025" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1026" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1027" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1029" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1030" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1031" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1032" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="3082" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1061" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1069" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1035" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1036" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1110" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1037" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1081" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1050" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1038" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1057" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1040" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1041" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1087" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1042" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1063" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1062" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1086" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1044" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1043" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1045" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1046" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="2070" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1048" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1049" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1051" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1060" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1053" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1054" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1055" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1058" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1066" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="2052" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="3076" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="1028" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="3098" Text="Dialog Sessions" solutionaction="Removed" />
-              <Title LCID="2074" Text="Dialog Sessions" solutionaction="Removed" />
+              <Title LCID="1025" Text="جلسات عمل الحوار" solutionaction="Removed" />
+              <Title LCID="1026" Text="Диалогови сесии" solutionaction="Removed" />
+              <Title LCID="1027" Text="Sessions del diàleg" solutionaction="Removed" />
+              <Title LCID="1029" Text="Relace dialogů" solutionaction="Removed" />
+              <Title LCID="1030" Text="Dialogsessioner" solutionaction="Removed" />
+              <Title LCID="1031" Text="Dialogsitzungen" solutionaction="Removed" />
+              <Title LCID="1032" Text="Περίοδοι λειτουργίας παραθύρου διαλόγου" solutionaction="Removed" />
+              <Title LCID="3082" Text="Sesiones de diálogo" solutionaction="Removed" />
+              <Title LCID="1061" Text="Dialoogiseansid" solutionaction="Removed" />
+              <Title LCID="1069" Text="Elkarrizketa-saioak" solutionaction="Removed" />
+              <Title LCID="1035" Text="Dialogi-istunnot" solutionaction="Removed" />
+              <Title LCID="1036" Text="Sessions de dialogue" solutionaction="Removed" />
+              <Title LCID="1110" Text="Sesións de diálogo" solutionaction="Removed" />
+              <Title LCID="1037" Text="הפעלות דו-שיח" solutionaction="Removed" />
+              <Title LCID="1081" Text="संवाद सत्र" solutionaction="Removed" />
+              <Title LCID="1050" Text="Sesije dijaloga" solutionaction="Removed" />
+              <Title LCID="1038" Text="Párbeszéd-munkamenetek" solutionaction="Removed" />
+              <Title LCID="1057" Text="Sesi Dialog" solutionaction="Removed" />
+              <Title LCID="1040" Text="Sessioni di interazione" solutionaction="Removed" />
+              <Title LCID="1041" Text="ダイアログ セッション" solutionaction="Removed" />
+              <Title LCID="1087" Text="Диалог сеанстары" solutionaction="Removed" />
+              <Title LCID="1042" Text="대화 세션" solutionaction="Removed" />
+              <Title LCID="1063" Text="Dialogo seansai" solutionaction="Removed" />
+              <Title LCID="1062" Text="Dialogu sesijas" solutionaction="Removed" />
+              <Title LCID="1086" Text="Sesi Dialog" solutionaction="Removed" />
+              <Title LCID="1044" Text="Dialogøkter" solutionaction="Removed" />
+              <Title LCID="1043" Text="Dialoogvenstersessies" solutionaction="Removed" />
+              <Title LCID="1045" Text="Sesje dialogowe" solutionaction="Removed" />
+              <Title LCID="1046" Text="Sessões de Diálogo" solutionaction="Removed" />
+              <Title LCID="2070" Text="Sessões de Diálogo" solutionaction="Removed" />
+              <Title LCID="1048" Text="Sesiuni de dialog" solutionaction="Removed" />
+              <Title LCID="1049" Text="Сеансы диалогового окна" solutionaction="Removed" />
+              <Title LCID="1051" Text="Relácie dialógového okna" solutionaction="Removed" />
+              <Title LCID="1060" Text="Seje dialoga" solutionaction="Removed" />
+              <Title LCID="1053" Text="Dialogsessioner" solutionaction="Removed" />
+              <Title LCID="1054" Text="เซสชันของกล่องโต้ตอบ" solutionaction="Removed" />
+              <Title LCID="1055" Text="Diyalog Oturumları" solutionaction="Removed" />
+              <Title LCID="1058" Text="Сеанси діалогу" solutionaction="Removed" />
+              <Title LCID="1066" Text="Phiên hộp thoại" solutionaction="Removed" />
+              <Title LCID="2052" Text="对话会话" solutionaction="Removed" />
+              <Title LCID="3076" Text="對話方塊工作階段" solutionaction="Removed" />
+              <Title LCID="1028" Text="對話方塊工作階段" solutionaction="Removed" />
+              <Title LCID="3098" Text="Сесије дијалога" solutionaction="Removed" />
+              <Title LCID="2074" Text="Sesije dijaloga" solutionaction="Removed" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navAsyncOperations" Sequence="9500" Area="ProcessCenter" Id="navAsyncOperations" Show="false">
             <Titles>
-              <Title LCID="1025" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1026" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1027" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1029" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1030" Text="Workflows" solutionaction="Removed" />
+              <Title LCID="1025" Text="عمليات سير العمل" solutionaction="Removed" />
+              <Title LCID="1026" Text="Работни потоци" solutionaction="Removed" />
+              <Title LCID="1027" Text="Fluxos de treball" solutionaction="Removed" />
+              <Title LCID="1029" Text="Pracovní postupy" solutionaction="Removed" />
+              <Title LCID="1030" Text="Arbejdsprocesser" solutionaction="Removed" />
               <Title LCID="1031" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1032" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="3082" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1061" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1069" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1035" Text="Workflows" solutionaction="Removed" />
+              <Title LCID="1032" Text="Ροές εργασιών" solutionaction="Removed" />
+              <Title LCID="3082" Text="Flujos de trabajo" solutionaction="Removed" />
+              <Title LCID="1061" Text="Töövood" solutionaction="Removed" />
+              <Title LCID="1069" Text="Lan-fluxuak" solutionaction="Removed" />
+              <Title LCID="1035" Text="Työnkulut" solutionaction="Removed" />
               <Title LCID="1036" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1110" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1037" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1081" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1050" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1038" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1057" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1040" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1041" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1087" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1042" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1063" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1062" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1086" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1044" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1043" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1045" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1046" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="2070" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1048" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1049" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1051" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1060" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1053" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1054" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1055" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1058" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1066" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="2052" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="3076" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="1028" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="3098" Text="Workflows" solutionaction="Removed" />
-              <Title LCID="2074" Text="Workflows" solutionaction="Removed" />
+              <Title LCID="1110" Text="Fluxos de traballo" solutionaction="Removed" />
+              <Title LCID="1037" Text="זרימות עבודה" solutionaction="Removed" />
+              <Title LCID="1081" Text="कार्य प्रवाह" solutionaction="Removed" />
+              <Title LCID="1050" Text="Tjekovi rada" solutionaction="Removed" />
+              <Title LCID="1038" Text="Munkafolyamatok" solutionaction="Removed" />
+              <Title LCID="1057" Text="Alur Kerja" solutionaction="Removed" />
+              <Title LCID="1040" Text="Flussi di lavoro" solutionaction="Removed" />
+              <Title LCID="1041" Text="ワークフロー" solutionaction="Removed" />
+              <Title LCID="1087" Text="Жұмыс ағындары" solutionaction="Removed" />
+              <Title LCID="1042" Text="워크플로" solutionaction="Removed" />
+              <Title LCID="1063" Text="Darbo eigos" solutionaction="Removed" />
+              <Title LCID="1062" Text="Darbplūsmas" solutionaction="Removed" />
+              <Title LCID="1086" Text="Aliran Kerja" solutionaction="Removed" />
+              <Title LCID="1044" Text="Arbeidsflyter" solutionaction="Removed" />
+              <Title LCID="1043" Text="Werkstromen" solutionaction="Removed" />
+              <Title LCID="1045" Text="Przepływy pracy" solutionaction="Removed" />
+              <Title LCID="1046" Text="Fluxos de Trabalho" solutionaction="Removed" />
+              <Title LCID="2070" Text="Fluxos de Trabalho" solutionaction="Removed" />
+              <Title LCID="1048" Text="Fluxuri de lucru" solutionaction="Removed" />
+              <Title LCID="1049" Text="Бизнес-процессы" solutionaction="Removed" />
+              <Title LCID="1051" Text="Pracovné postupy" solutionaction="Removed" />
+              <Title LCID="1060" Text="Poteki dela" solutionaction="Removed" />
+              <Title LCID="1053" Text="Arbetsflöden" solutionaction="Removed" />
+              <Title LCID="1054" Text="เวิร์กโฟลว์" solutionaction="Removed" />
+              <Title LCID="1055" Text="İş Akışları" solutionaction="Removed" />
+              <Title LCID="1058" Text="Робочі цикли" solutionaction="Removed" />
+              <Title LCID="1066" Text="Quy trình làm việc" solutionaction="Removed" />
+              <Title LCID="2052" Text="工作流" solutionaction="Removed" />
+              <Title LCID="3076" Text="工作流程" solutionaction="Removed" />
+              <Title LCID="1028" Text="工作流程" solutionaction="Removed" />
+              <Title LCID="3098" Text="Токови посла" solutionaction="Removed" />
+              <Title LCID="2074" Text="Tokovi posla" solutionaction="Removed" />
             </Titles>
           </NavBarByRelationshipItem>
         </NavBar>
