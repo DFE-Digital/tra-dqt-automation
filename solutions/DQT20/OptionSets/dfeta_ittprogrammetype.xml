@@ -140,6 +140,14 @@
         <Description description="EYITTGE" languagecode="1033" />
       </Descriptions>
     </option>
+    <option value="389040024" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="High potential ITT" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
     <option value="389040016" ExternalValue="" Color="">
       <labels>
         <label description="EYITT - Graduate Employment Based" languagecode="1033" />
