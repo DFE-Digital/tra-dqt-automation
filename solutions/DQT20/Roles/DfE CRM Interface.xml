@@ -2,6 +2,7 @@
 <Role id="{23691a70-d908-e311-8cce-000c29770442}" name="DfE CRM Interface" isinherited="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
+    <RolePrivilege name="prvActOnBehalfOfAnotherUser" level="Global" />
     <RolePrivilege name="prvAddressBook" level="Global" />
     <RolePrivilege name="prvAppendAccount" level="Global" />
     <RolePrivilege name="prvAppendActivity" level="Global" />
