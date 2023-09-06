@@ -2827,7 +2827,7 @@
             </options>
           </optionset>
           <displaynames>
-            <displayname description="AllowPiiUpdatesFromRegister" languagecode="1033" />
+            <displayname description="Allow PII Updates from Register" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />

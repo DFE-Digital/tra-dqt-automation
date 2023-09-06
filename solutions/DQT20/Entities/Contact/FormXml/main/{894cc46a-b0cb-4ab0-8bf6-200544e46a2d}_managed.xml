@@ -376,6 +376,19 @@
                         <control id="dfeta_activesanctions" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_activesanctions" disabled="false" uniqueid="{3d5c732b-ceab-1ca9-132c-9004519650ab}" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{b464d507-6374-d333-d800-33637b90806e}" showlabel="true" locklevel="0" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_allowpiiupdatesfromregister" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_allowpiiupdatesfromregister" disabled="false" />
+                      </cell>
+                      <cell id="{7c4b90ee-c78d-bb48-beb5-bb1cc7582ba0}" showlabel="false" ordinalvalue="20011" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="billing information" showlabel="true" showbar="true" id="{0738bc1c-9226-486d-9258-9b6fc75cbaa7}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
