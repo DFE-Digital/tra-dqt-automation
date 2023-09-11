@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.OtherPlugins.PersonPiiUpdatedPlugin: Update of contact" SdkMessageProcessingStepId="{cc396ba0-0240-ee11-bdf3-000d3adea4bc}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.OtherPlugins.PersonPiiUpdatedPlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>de6c0c41-1f4c-4d0d-aa6c-26941740cbd0</PluginTypeId>
+  <PrimaryEntity>contact</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Description>Dqt.Dynamics.plugins.OtherPlugins.PersonPiiUpdatedPlugin: Update of contact</Description>
+  <FilteringAttributes>birthdate,emailaddress1,firstname,gendercode,lastname,middlename,dfeta_tspersonid</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>20</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages>
+    <SdkMessageProcessingStepImage Name="preImage">
+      <SdkMessageProcessingStepImageId>{adcdb120-0340-ee11-bdf3-000d3adf7fa3}</SdkMessageProcessingStepImageId>
+      <Attributes></Attributes>
+      <EntityAlias>preImage</EntityAlias>
+      <ImageType>0</ImageType>
+      <MessagePropertyName>Target</MessagePropertyName>
+      <IsCustomizable>1</IsCustomizable>
+    </SdkMessageProcessingStepImage>
+  </SdkMessageProcessingStepImages>
+</SdkMessageProcessingStep>
