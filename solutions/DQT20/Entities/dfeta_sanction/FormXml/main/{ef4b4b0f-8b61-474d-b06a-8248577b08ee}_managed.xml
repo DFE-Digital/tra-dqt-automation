@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>0</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form shownavigationbar="true" showImage="false" maxWidth="1900">
+    <form shownavigationbar="true" showImage="false" maxWidth="1900" headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{66563a55-c527-4b43-9be5-1028266ef6a4}" IsUserDefined="1" name="{66563a55-c527-4b43-9be5-1028266ef6a4}" locklevel="0" expanded="true" showlabel="true">
           <labels>
@@ -60,7 +60,7 @@
                         </labels>
                         <control id="dfeta_startdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_startdate" disabled="false" uniqueid="{c9d8aac2-389c-4ae1-828e-3b8ac8a38ca7}" />
                       </cell>
-                      <cell id="{4592a92d-b71a-50ee-37b1-43145cbe7db5}" showlabel="false">
+                      <cell id="{e648a0fc-dea2-40a2-8b1c-e1fc7bac1def}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -107,10 +107,10 @@
                         <control id="dfeta_sanctiondetails" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="dfeta_sanctiondetails" disabled="false" />
                       </cell>
                     </row>
-                    <row></row>
-                    <row></row>
-                    <row></row>
-                    <row></row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -315,6 +315,9 @@
         </event>
       </events>
       <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
