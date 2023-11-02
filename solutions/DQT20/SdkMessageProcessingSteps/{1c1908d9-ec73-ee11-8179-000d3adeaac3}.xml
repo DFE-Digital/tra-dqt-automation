@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.OtherPlugins.PersonPreventDeActivatingLinkedIdAccount: Merge of contact" SdkMessageProcessingStepId="{1c1908d9-ec73-ee11-8179-000d3adeaac3}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Dqt.Dynamics.plugins.OtherPlugins.PersonPreventDeActivatingLinkedIdAccount, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
+  <PluginTypeId>8f7e19a3-c46f-4469-b0ed-2949348a75ee</PluginTypeId>
+  <PrimaryEntity>contact</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Description>Dqt.Dynamics.plugins.OtherPlugins.PersonPreventDeActivatingLinkedIdAccount: Merge of contact</Description>
+  <FilteringAttributes>statecode,statuscode</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>20</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages>
+    <SdkMessageProcessingStepImage Name="preImage">
+      <SdkMessageProcessingStepImageId>{f89ff34e-ef73-ee11-8178-0022489e96c3}</SdkMessageProcessingStepImageId>
+      <Attributes>dfeta_dateofdeath,statecode,statuscode,dfeta_tspersonid</Attributes>
+      <EntityAlias>preImage</EntityAlias>
+      <ImageType>0</ImageType>
+      <MessagePropertyName>Target</MessagePropertyName>
+      <IsCustomizable>1</IsCustomizable>
+    </SdkMessageProcessingStepImage>
+  </SdkMessageProcessingStepImages>
+</SdkMessageProcessingStep>
