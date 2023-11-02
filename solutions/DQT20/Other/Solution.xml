@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.23091.190" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.23092.206" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>DQT20</UniqueName>
     <LocalizedNames>
       <LocalizedName description="DQT2.0" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>2.0.2.31</Version>
+    <Version>2.0.2.32</Version>
     <Managed>1</Managed>
     <Publisher>
       <UniqueName>DefaultPublisherTeacherServices</UniqueName>
@@ -3675,15 +3675,15 @@
         <Dependent type="62" schemaName="CustomerServiceTeamMember" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Person" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="60" displayName="Account" parentDisplayName="Organisation" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="60" displayName="Lead" parentDisplayName="Applicant" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
@@ -3700,139 +3700,139 @@
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Person" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.23091.00190)" />
+        <Required type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.23092.00206)" />
         <Dependent type="60" displayName="Lead" parentDisplayName="Applicant" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{00689326-0346-4bc5-9aa3-8b3086ae90eb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{24a42d61-fa50-4e15-ba17-30becce60ffe}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{29e229d4-7fb5-4b03-967d-5f6203872b64}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{2e578b98-c618-4d2d-8e6c-8c5f663a03af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{37f4e468-30f1-4125-9541-29735f86cd0c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{3e569502-daeb-4921-9a64-5bbf63bc8160}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{4cb91cc7-8e7a-4060-a402-1eb3b2c2a98d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{556afe08-d433-4648-ba20-8160aead070e}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{648f8832-ed2a-44a9-b2cc-d3ce47979409}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{65f568a4-71a4-4da0-bcf0-5262b08138f3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{66da70e5-5647-4778-89c9-4cebc6a582db}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{68096544-7afd-46aa-a6e3-8c699d43f418}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{71d4ca4f-bd1e-426a-a25d-50a18b19c566}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{73b97aba-6263-4f76-8663-c934176ff5cb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{896eadea-e923-4351-9b40-e76b7a48dfcf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{8b3d9e0d-f4cc-4739-ba59-2be381980c00}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{92d64f34-5040-43ca-9a5b-e097498375a8}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{92e8b703-9fd6-4c06-8191-486c1c33acfe}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{969e1f8f-e209-4079-a175-a7fa761d3a6f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{9d9df69b-fe96-4624-a26c-103580ce7db0}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{b8068465-5fa9-42a6-9f83-bb2c855014bb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{baa5a21e-a1cf-4993-a224-d9a927ecd354}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{bc2b1a9d-7909-4277-826e-8e41228bef27}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{bf4485ce-40a8-46b5-8960-1131fd499b0f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{c17ceafe-6654-4c9a-95e4-ff33f88009a2}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{c2f31349-8c89-4e60-ad50-7304593da676}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{de4a4758-b6f2-43ff-b9e1-ab032ea98a19}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{e1782cb9-c839-4570-a121-a7174fd7be32}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{e378c5be-01eb-4e21-ba63-d975f44047ae}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{fabfd9d6-238e-4ab0-ae95-b3db24d31819}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{fc45e182-63bf-4c3c-90f1-4d441f3e6c46}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.1015)" />
+        <Required type="66" schemaName="MscrmControls.Grid.PCFGridControl" displayName="MscrmControls.Grid.PCFGridControl" solution="BaseCustomControlsCore (9.0.2309.2011)" />
         <Dependent type="68" id="{fd8688a9-8daf-465d-bd1d-f9f992a3eeaf}" />
       </MissingDependency>
       <MissingDependency>
