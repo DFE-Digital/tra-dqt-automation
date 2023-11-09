@@ -369,11 +369,11 @@
                         </labels>
                         <control id="dfeta_slugid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_slugid" disabled="false" />
                       </cell>
-                      <cell id="{b456d8c0-9d2c-38e1-5795-79a9725653d3}" showlabel="true" locklevel="0" visible="false" ordinalvalue="20009" solutionaction="Added">
+                      <cell id="{3dd63f85-6c40-4234-bd94-9a20fddc3b8b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20009" solutionaction="Added">
                         <labels>
-                          <label description="Active Sanctions" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="dfeta_activesanctions" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_activesanctions" disabled="false" uniqueid="{3d5c732b-ceab-1ca9-132c-9004519650ab}" />
+                        <control id="dfeta_allowidsigninwithprohibitions" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_allowidsigninwithprohibitions" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -383,10 +383,11 @@
                         </labels>
                         <control id="dfeta_allowpiiupdatesfromregister" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_allowpiiupdatesfromregister" disabled="false" />
                       </cell>
-                      <cell id="{7c4b90ee-c78d-bb48-beb5-bb1cc7582ba0}" showlabel="false" ordinalvalue="20011" solutionaction="Added">
+                      <cell id="{b456d8c0-9d2c-38e1-5795-79a9725653d3}" showlabel="true" locklevel="0" visible="false" ordinalvalue="20011" solutionaction="Added">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Active Sanctions" languagecode="1033" />
                         </labels>
+                        <control id="dfeta_activesanctions" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_activesanctions" disabled="false" uniqueid="{3d5c732b-ceab-1ca9-132c-9004519650ab}" />
                       </cell>
                     </row>
                   </rows>
