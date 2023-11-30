@@ -4,6 +4,7 @@
   <IsGlobal>1</IsGlobal>
   <IntroducedVersion>1.5.1.57</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
   <displaynames>
     <displayname description="Class / Division" languagecode="1033" />
   </displaynames>
@@ -11,7 +12,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" ExternalValue="" Color="">
       <labels>
         <label description="First class honours" languagecode="1033" />
       </labels>
@@ -19,7 +20,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" ExternalValue="" Color="">
       <labels>
         <label description="Upper second class honours" languagecode="1033" />
       </labels>
@@ -27,7 +28,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002">
+    <option value="389040002" ExternalValue="" Color="">
       <labels>
         <label description="Lower second class honours" languagecode="1033" />
       </labels>
@@ -35,7 +36,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003">
+    <option value="389040003" ExternalValue="" Color="">
       <labels>
         <label description="Undivided second class honours" languagecode="1033" />
       </labels>
@@ -43,7 +44,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040004">
+    <option value="389040004" ExternalValue="" Color="">
       <labels>
         <label description="Third class honours" languagecode="1033" />
       </labels>
@@ -51,7 +52,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040005">
+    <option value="389040005" ExternalValue="" Color="">
       <labels>
         <label description="Fourth class honours" languagecode="1033" />
       </labels>
@@ -59,7 +60,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040006">
+    <option value="389040006" ExternalValue="" Color="">
       <labels>
         <label description="Unclassified honours" languagecode="1033" />
       </labels>
@@ -67,7 +68,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040007">
+    <option value="389040007" ExternalValue="" Color="">
       <labels>
         <label description="Aegrotat (whether to honours or pass)" languagecode="1033" />
       </labels>
@@ -75,7 +76,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040008">
+    <option value="389040008" ExternalValue="" Color="">
       <labels>
         <label description="Pass - degree awarded without honours following an honours course" languagecode="1033" />
       </labels>
@@ -83,7 +84,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040009">
+    <option value="389040009" ExternalValue="" Color="">
       <labels>
         <label description="Ordinary (including divisions of ordinary, if any) degree awarded after following a non-honours course" languagecode="1033" />
       </labels>
@@ -91,7 +92,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040010">
+    <option value="389040010" ExternalValue="" Color="">
       <labels>
         <label description="General Degree - degree awarded after following a non-honours course/degree that was not available to be classified" languagecode="1033" />
       </labels>
@@ -99,7 +100,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040011">
+    <option value="389040011" ExternalValue="" Color="">
       <labels>
         <label description="Distinction" languagecode="1033" />
       </labels>
@@ -107,7 +108,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040012">
+    <option value="389040012" ExternalValue="" Color="">
       <labels>
         <label description="Merit" languagecode="1033" />
       </labels>
@@ -115,7 +116,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040013">
+    <option value="389040013" ExternalValue="" Color="">
       <labels>
         <label description="Pass" languagecode="1033" />
       </labels>
@@ -123,7 +124,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040014">
+    <option value="389040014" ExternalValue="" Color="">
       <labels>
         <label description="Not applicable" languagecode="1033" />
       </labels>
@@ -131,7 +132,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040015">
+    <option value="389040015" ExternalValue="" Color="">
       <labels>
         <label description="Not Known" languagecode="1033" />
       </labels>
@@ -139,9 +140,17 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040016">
+    <option value="389040016" ExternalValue="" Color="">
       <labels>
         <label description="Higher Degree" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="389040017" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Other" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
