@@ -251,6 +251,7 @@
     <RolePrivilege name="prvReadAsyncOperation" level="Basic" />
     <RolePrivilege name="prvReadAttribute" level="Global" />
     <RolePrivilege name="prvReadAttributeMap" level="Global" />
+    <RolePrivilege name="prvReadAuditSummary" level="Global" />
     <RolePrivilege name="prvReadBusinessUnit" level="Global" />
     <RolePrivilege name="prvReadCampaign" level="Global" />
     <RolePrivilege name="prvReadComplexControl" level="Global" />
@@ -343,6 +344,7 @@
     <RolePrivilege name="prvReadPluginType" level="Global" />
     <RolePrivilege name="prvReadQuery" level="Global" />
     <RolePrivilege name="prvReadQueue" level="Global" />
+    <RolePrivilege name="prvReadRecordAuditHistory" level="Global" />
     <RolePrivilege name="prvReadRelationship" level="Global" />
     <RolePrivilege name="prvReadReport" level="Global" />
     <RolePrivilege name="prvReadRole" level="Local" />
