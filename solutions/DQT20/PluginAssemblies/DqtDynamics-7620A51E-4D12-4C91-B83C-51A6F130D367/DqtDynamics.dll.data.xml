@@ -6,7 +6,7 @@
   <FileName>/PluginAssemblies/DqtDynamics-7620A51E-4D12-4C91-B83C-51A6F130D367/DqtDynamics.dll</FileName>
   <PluginTypes>
     <PluginType AssemblyQualifiedName="Capgemini.DfE.Evolved.CRM.SendEmailToPreviousAddress, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="37d030e9-ab83-41e6-bd14-dfb1ca27d682" Name="Capgemini.DfE.Evolved.CRM.SendEmailToPreviousAddress">
-      <FriendlyName>faaa7d2b-f296-4f66-b023-24a611f8505a</FriendlyName>
+      <FriendlyName>935c538f-318b-4ec1-a474-5658b5cffa3d</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.plugins.ApplicantDeletePlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="3631e27e-3d59-4640-8f78-e34eeb779ad5" Name="Dqt.Dynamics.plugins.ApplicantDeletePlugin">
@@ -66,6 +66,9 @@
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.plugins.OtherPlugins.PersonPreventDeActivatingLinkedIdAccount, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="8f7e19a3-c46f-4469-b0ed-2949348a75ee" Name="Dqt.Dynamics.plugins.OtherPlugins.PersonPreventDeActivatingLinkedIdAccount">
       <FriendlyName>8cee26a6-d352-44b4-95bc-2326b91e81f8</FriendlyName>
     </PluginType>
+    <PluginType AssemblyQualifiedName="Dqt.Dynamics.plugins.OtherPlugins.PreventReactivatingDeletedMandatoryQualificationPlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="86435f0d-2c83-4ca5-a1cb-21c70d097b45" Name="Dqt.Dynamics.plugins.OtherPlugins.PreventReactivatingDeletedMandatoryQualificationPlugin">
+      <FriendlyName>e4c01a05-0677-481d-8ab0-65002cef8e85</FriendlyName>
+    </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.plugins.PersonMergePlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="ef44683f-9ba2-4971-aed7-2c1bebd65f6b" Name="Dqt.Dynamics.plugins.PersonMergePlugin">
       <FriendlyName>3244ab50-a075-4085-ad34-72ef0a623e69</FriendlyName>
     </PluginType>
@@ -112,23 +115,23 @@
       <FriendlyName>041614e6-d132-4166-8546-f7b33461d04a</FriendlyName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.workflows.ABEmail, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="ff8687f0-27ba-46f1-a04a-b60b038e3a15" Name="Dqt.Dynamics.workflows.ABEmail">
-      <FriendlyName>a81d7374-7d40-4051-b73d-4fc2b6c72cbd</FriendlyName>
+      <FriendlyName>490bc666-5b45-4e66-93aa-9398a74566c7</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.workflows.ArchiveDocuments, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="1060a3c1-6821-4950-b779-d23d02afeed3" Name="Dqt.Dynamics.workflows.ArchiveDocuments">
-      <FriendlyName>526ac856-7c89-4b05-9c5a-46cde24faa6e</FriendlyName>
+      <FriendlyName>576e53eb-1e9a-4838-8ba7-c9deb660b1fd</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.workflows.ImportResultEmail, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="5fcb4010-b797-4c87-8c5f-134c94b894b3" Name="Dqt.Dynamics.workflows.ImportResultEmail">
-      <FriendlyName>f9b8ed8b-1bf3-48ac-b33d-2f2994de9377</FriendlyName>
+      <FriendlyName>48c8487a-bf24-453a-959f-b28c4f00569e</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.workflows.RemoveItemFromQueue, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="772ce3b1-665e-4709-a991-e5b862a8379a" Name="Dqt.Dynamics.workflows.RemoveItemFromQueue">
-      <FriendlyName>e38c9f63-bff9-4975-99f2-2c912dd6b21f</FriendlyName>
+      <FriendlyName>22f43edb-16e0-43b5-bd5b-d3ff4825f97d</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Dqt.Dynamics.workflows.ResolveDuplicates, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837" PluginTypeId="6ab28c34-4b3d-4783-b5df-7e652f50fe3e" Name="Dqt.Dynamics.workflows.ResolveDuplicates">
-      <FriendlyName>a32bc4c5-b0ba-481b-a0c2-763561721847</FriendlyName>
+      <FriendlyName>0a17f66a-a660-4088-9627-3e9c81b4e09a</FriendlyName>
       <WorkflowActivityGroupName>Dqt.Dynamics (1.0.0.0)</WorkflowActivityGroupName>
     </PluginType>
   </PluginTypes>
