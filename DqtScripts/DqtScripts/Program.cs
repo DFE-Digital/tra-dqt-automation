@@ -5,6 +5,7 @@ using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.ServiceModel.Channels;
 using System.Text.RegularExpressions;
 using Azure;
 using Azure.Core;
@@ -22,6 +23,7 @@ using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using Npgsql;
 using Polly;
+using static Dapper.SqlMapper;
 
 var result = await CreateCommandLineBuilder()
     .UseHost((IHostBuilder host) => host
@@ -92,6 +94,7 @@ static RootCommand CreateRootCommand()
     CreateTestUsers(rootCommand);
     AddBackfillIdentityAccountDataCommand(rootCommand);
     AddUpdateTeacherEmailAddress(rootCommand);
+    AddCleanTeacherStatuses(rootCommand);
 
     return rootCommand;
 }
@@ -330,7 +333,7 @@ static void CreateTestUsers(RootCommand rootCommand)
     {
         var nino = "";
         Regex regex = new Regex("^[ABCEGHJKLMNOPRSTWXYZ][ABCEGHJKLMNPRSTWXYZ][0-9]{6}[A-D ]$");
-        while(!regex.IsMatch(nino))
+        while (!regex.IsMatch(nino))
         {
             nino = Faker.Identification.UKNationalInsuranceNumber();
         }
@@ -1200,6 +1203,131 @@ static void AddUpdateTeacherEmailAddress(RootCommand rootCommand)
     command.AddOption(new Option<string>("--filename", "File that contains email updates"));
     rootCommand.Add(command);
 }
+
+static void AddCleanTeacherStatuses(RootCommand rootCommand)
+{
+    var command = new Command("clean-teacher-statuses", description: "De-duplicate teacher statuses in non-production environments")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+            var logBlobName = $"clean-teacher-statuses/log-{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var logBlobClient = blobContainerClient.GetBlobClient(logBlobName);
+
+
+            var qtsToRemoveTeacherStatus = new Subject<(Guid, string?)>();
+            // Batch Update requests in chunks of 10 and retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var batchSubscription = qtsToRemoveTeacherStatus.Buffer(50).Subscribe(async batch =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var qts in batch)
+                {
+                    request.Requests.Add(new DeleteRequest()
+                    {
+                        Target = new EntityReference("dfeta_qtsregistration", qts.Item1)
+                    });
+                }
+
+                await retryPolicy.ExecuteAsync(() => serviceClient.ExecuteAsync(request));
+            },
+          onError: ex =>
+          {
+              Console.Error.WriteLine(ex);
+              Environment.Exit(1);
+          });
+
+
+            using (var blobStream = await logBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var teacherStatusQuery = new QueryExpression("dfeta_teacherstatus"); ;
+                teacherStatusQuery.ColumnSet = new ColumnSet("dfeta_name", "dfeta_value", "statecode");
+                teacherStatusQuery.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+
+                var teacherStatusResults = await serviceClient.RetrieveMultipleAsync(teacherStatusQuery);
+
+                var activeStatuses = new Dictionary<string, string>();
+                List<(string, string)> inActiveStatuses = new List<(string, string)>();
+
+                foreach (var status in teacherStatusResults.Entities)
+                {
+                    var state = ((OptionSetValue)status["statecode"]).Value;
+                    var val = status.GetAttributeValue<string>("dfeta_value");
+
+                    if (state == 0)
+                        activeStatuses.Add(val, status.Id.ToString());
+                    else
+                    {
+                        inActiveStatuses.Add((val, status.Id.ToString()));
+                    }
+                }
+
+                foreach (var inactive in inActiveStatuses)
+                {
+                    EntityCollection result;
+                    var getTeacherQualifications = new QueryExpression("dfeta_qtsregistration"); ;
+                    getTeacherQualifications.ColumnSet = new ColumnSet("statecode");
+                    getTeacherQualifications.Criteria.AddCondition("dfeta_teacherstatusid", ConditionOperator.Equal, inactive.Item2);
+                    getTeacherQualifications.PageInfo = new PagingInfo()
+                    {
+                        Count = 1000,
+                        PageNumber = 1
+                    };
+
+                    do
+                    {
+                        result = await serviceClient.RetrieveMultipleAsync(getTeacherQualifications);
+                        activeStatuses.TryGetValue(inactive.Item1, out string? activeStatusId);
+
+                        foreach (var record in result.Entities)
+                        {
+                            if (commit == true)
+                            {
+                                qtsToRemoveTeacherStatus.OnNext((record.Id, activeStatusId));
+                            }
+
+                            csvWriter.WriteField(record.Id);
+                            csvWriter.WriteField(inactive.Item1);
+                            csvWriter.WriteField(inactive.Item2);
+                            csvWriter.WriteField(activeStatusId ?? "");
+                            csvWriter.NextRecord();
+                        }
+
+                        getTeacherQualifications.PageInfo.PageNumber++;
+                        getTeacherQualifications.PageInfo.PagingCookie = result.PagingCookie;
+                    }
+                    while (result.MoreRecords);
+                }
+                qtsToRemoveTeacherStatus.OnCompleted();
+                qtsToRemoveTeacherStatus.Dispose();
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
+}
+
 
 public class UpdateEmailAddress
 {
