@@ -390,6 +390,20 @@
                         <control id="dfeta_activesanctions" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_activesanctions" disabled="false" uniqueid="{3d5c732b-ceab-1ca9-132c-9004519650ab}" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{ae0417a0-3771-7790-3c90-ca843657c385}" showlabel="true" locklevel="0" ordinalvalue="10012" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_qtlsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_qtlsdate" disabled="false" uniqueid="{83e2cbdb-00c9-801d-900e-aa43be8999ac}" />
+                      </cell>
+                      <cell id="{b2752c07-4061-4a1c-9915-806044570083}" showlabel="true" locklevel="0" ordinalvalue="20013" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_qtlsdatehasbeenset" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_qtlsdatehasbeenset" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="billing information" showlabel="true" showbar="true" id="{0738bc1c-9226-486d-9258-9b6fc75cbaa7}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
@@ -818,17 +832,17 @@
       <footer id="{ec646743-9c53-4423-97ca-9251dfac80bb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
           <row>
-            <cell id="{bd47f6ce-a3b1-49b4-945f-9c1a028d2c49}" showlabel="false" ordinalvalue="10000">
+            <cell id="{4ca7c4a3-c9bc-497c-ae3f-589517c8d575}" ordinalvalue="10000">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{245ec4d2-0ef9-4796-80df-812a4a3e0c39}" showlabel="false" ordinalvalue="20001">
+            <cell id="{d8ec8b9d-e4dd-4462-874b-288f4c0e3b94}" ordinalvalue="20001">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{5effa96b-4319-480a-91f9-1de7973bf736}" showlabel="false" ordinalvalue="30002">
+            <cell id="{a49edcf5-c617-4681-b8a7-954fb96d314f}" ordinalvalue="30002">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>

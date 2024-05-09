@@ -5,10 +5,10 @@
   <PluginTypeId>7b7515ed-3cdb-43e6-9bd5-c67d369b8cb9</PluginTypeId>
   <PrimaryEntity>dfeta_induction</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>
-  <FilteringAttributes>statecode</FilteringAttributes>
+  <FilteringAttributes>dfeta_inductionstatus,statecode</FilteringAttributes>
   <InvocationSource>1</InvocationSource>
   <Mode>0</Mode>
-  <Rank>1</Rank>
+  <Rank>5</Rank>
   <EventHandlerTypeCode>4602</EventHandlerTypeCode>
   <Stage>40</Stage>
   <IsCustomizable>1</IsCustomizable>
