@@ -63,6 +63,7 @@ jobs:
         pac solution export --path solution.zip --name ${{ github.event.inputs.solution_name }} --managed
 
         # Unpack solution
+        rm -rf ${{ env.SOLUTION_PATH }}/*
         pac solution unpack --zipfile solution.zip --packagetype managed --folder ${{ env.SOLUTION_PATH }}
 
     - name: Read new solution version
