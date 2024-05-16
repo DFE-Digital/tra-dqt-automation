@@ -421,7 +421,7 @@
           <Name>entityimage</Name>
           <LogicalName>entityimage</LogicalName>
           <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>DenormalizedChild|PrimaryImage</DisplayMask>
+          <DisplayMask>DenormalizedChild</DisplayMask>
           <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
