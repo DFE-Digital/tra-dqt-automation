@@ -92,8 +92,119 @@ static RootCommand CreateRootCommand()
     CreateTestUsers(rootCommand);
     AddBackfillIdentityAccountDataCommand(rootCommand);
     AddUpdateTeacherEmailAddress(rootCommand);
+    SplitFirstname(rootCommand);
 
     return rootCommand;
+}
+
+static void SplitFirstname(RootCommand rootCommand)
+{
+    var command = new Command("split-first-name", description: "Cleans firstname into firstname and middlename where the api has not split it correctly")
+    {
+        Handler = CommandHandler.Create<IHost, bool?, Guid>(async (host, commit, apiUserId) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var cleanContactsBlobName = $"splitfirstname/splitfirstname_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var cleanContactsBlobClient = blobContainerClient.GetBlobClient(cleanContactsBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var contactsToUpdate = new Subject<SplitFirstName>();
+
+            // update 10 records at a time
+            var batchSubscription = contactsToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var contact = new Entity("contact");
+                    contact.Id = record.ContactId;
+                    contact["firstname"] = record.FirstName;
+                    contact["middlename"] = record.MiddleName;
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = contact
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            using (var blobStream = await cleanContactsBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var query = new QueryExpression("contact");
+                query.Criteria.AddCondition("ownerid", ConditionOperator.Equal, apiUserId);
+                query.ColumnSet = new ColumnSet("contactid", "firstname", "middlename");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+
+                EntityCollection result;
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        var contactId = record.Id;
+                        var firstname = record.GetAttributeValue<string>("firstname");
+                        var middlename = record.GetAttributeValue<string>("middlename");
+
+                        var firstAndMiddleNames = $"{firstname} {middlename ?? ""}".Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                        var updatedFirstName = firstAndMiddleNames.FirstOrDefault();
+                        var updatedMiddleName = string.Join(" ", firstAndMiddleNames.Skip(1));
+
+                        if (!updatedFirstName.Equals(firstname, StringComparison.OrdinalIgnoreCase))
+                        {
+                            csvWriter.WriteField(contactId);
+                            csvWriter.WriteField(firstname);
+                            csvWriter.WriteField(middlename);
+                            csvWriter.WriteField(updatedFirstName);
+                            csvWriter.WriteField(updatedMiddleName);
+                            csvWriter.NextRecord();
+
+                            if (commit == true)
+                            {
+                                var updateContact = new SplitFirstName() { ContactId = contactId, FirstName = updatedFirstName, MiddleName = updatedMiddleName };
+                                contactsToUpdate.OnNext(updateContact);
+                            }
+                        }
+                    }
+
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                }
+                while (result.MoreRecords);
+            }
+
+            contactsToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    command.AddOption(new Option<Guid>("--apiuserid", "Id of user that owns the record"));
+    rootCommand.Add(command);
 }
 
 static void AddBackfillIdentityAccountDataCommand(RootCommand rootCommand)
@@ -330,7 +441,7 @@ static void CreateTestUsers(RootCommand rootCommand)
     {
         var nino = "";
         Regex regex = new Regex("^[ABCEGHJKLMNOPRSTWXYZ][ABCEGHJKLMNPRSTWXYZ][0-9]{6}[A-D ]$");
-        while(!regex.IsMatch(nino))
+        while (!regex.IsMatch(nino))
         {
             nino = Faker.Identification.UKNationalInsuranceNumber();
         }
@@ -1238,6 +1349,13 @@ public class MoveIttRecord
     public Guid FromAccountId { get; set; }
     [Name("ToAccountId")]
     public Guid ToAccountId { get; set; }
+}
+
+public class SplitFirstName
+{
+    public string FirstName { get; set; }
+    public string MiddleName { get; set; }
+    public Guid ContactId { get; set; }
 }
 
 public class IdentityUser
