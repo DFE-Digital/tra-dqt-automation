@@ -175,7 +175,7 @@ static void SplitFirstname(RootCommand rootCommand)
                         var updatedFirstName = firstAndMiddleNames.FirstOrDefault();
                         var updatedMiddleName = string.Join(" ", firstAndMiddleNames.Skip(1));
 
-                        if (!updatedFirstName.Equals(firstname, StringComparison.OrdinalIgnoreCase))
+                        if (!string.IsNullOrEmpty(updatedFirstName) && !updatedFirstName.Equals(firstname, StringComparison.OrdinalIgnoreCase))
                         {
                             csvWriter.WriteField(contactId);
                             csvWriter.WriteField(firstname);
