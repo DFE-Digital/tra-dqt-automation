@@ -70,7 +70,6 @@
   <EntityRelationship Name="dfeta_contact_dfeta_qtsregistration1" />
   <EntityRelationship Name="dfeta_contact_dfeta_qualification" />
   <EntityRelationship Name="dfeta_contact_dfeta_sanction" />
-  <EntityRelationship Name="dfeta_contact_task_potentialduplicateid" />
   <EntityRelationship Name="dfeta_dfeta_country_contact1" />
   <EntityRelationship Name="dfeta_dfeta_country_dfeta_countrystate" />
   <EntityRelationship Name="dfeta_dfeta_country_dfeta_initialteachertrainin" />
