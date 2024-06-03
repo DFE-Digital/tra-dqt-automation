@@ -7,7 +7,6 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text.RegularExpressions;
 using Azure;
-using Azure.Core;
 using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
@@ -93,8 +92,122 @@ static RootCommand CreateRootCommand()
     AddBackfillIdentityAccountDataCommand(rootCommand);
     AddUpdateTeacherEmailAddress(rootCommand);
     SplitFirstname(rootCommand);
+    RevertAllowPiiUpdates(rootCommand);
 
     return rootCommand;
+}
+
+static void RevertAllowPiiUpdates(RootCommand rootCommand)
+{
+    var command = new Command("revert-allow-pii-updates", description: "Reverts pii update field to the last audit records value")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var cleanContactsBlobName = $"revert-allowpiiupdates/revert-allow-pii-updates_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var cleanContactsBlobClient = blobContainerClient.GetBlobClient(cleanContactsBlobName);
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var contactsToUpdate = new Subject<RevertAllowPiiUpdates>();
+
+            // update 10 records at a time
+            var batchSubscription = contactsToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var contact = new Entity("contact");
+                    contact.Id = record.ContactId;
+                    contact["dfeta_allowpiiupdatesfromregister"] = record.AllowPiiUpdates;
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = contact
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+            // Step 1: Create a CancellationTokenSource
+            var cts = new CancellationTokenSource();
+
+            // Step 2: Obtain the CancellationToken
+            CancellationToken token = cts.Token;
+            using (var blob = await blobContainerClient.GetBlobClient("contacts_to_revert_allowpiiupdatesfromregister.csv").OpenReadAsync())
+            using (var reader = new StreamReader(blob))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var blobStream = await cleanContactsBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var records = csv.GetRecords<RevertAllowPiiUpdates>();
+                var ids = records.Select(x => x.ContactId).ToArray();
+
+                foreach (var id in ids)
+                {
+                    var response = (RetrieveRecordChangeHistoryResponse)await serviceClient.ExecuteAsync(new RetrieveRecordChangeHistoryRequest()
+                    {
+                        Target = new EntityReference("contact", id)
+                    });
+                    var auditRows = ((RetrieveRecordChangeHistoryResponse)response).AuditDetailCollection; //serviceClient.RetrieveMultipleAsync(query);
+
+                    // Retrieve the contact
+                    ColumnSet columns = new ColumnSet(new string[] { "dfeta_allowpiiupdatesfromregister" });
+                    Entity contact = serviceClient.Retrieve("contact", id, columns);
+                    var ordered = auditRows.AuditDetails
+                        .OfType<AttributeAuditDetail>()
+                        .Select(a => (AuditDetail: a, AuditRecord: a.AuditRecord.ToEntity<Audit>()))
+                        .OrderByDescending(a => a.AuditRecord.CreatedOn)
+                        .Where(ad => ad.AuditDetail.OldValue.Contains("dfeta_allowpiiupdatesfromregister") && ad.AuditRecord?.CreatedOn?.Date == new DateTime(2024, 05, 31))
+                        .Select(ad => ad.AuditDetail.OldValue["dfeta_allowpiiupdatesfromregister"].ToString())
+                        .ToArray();
+
+                    //prevent updates if no audit record was found for the date above
+                    if (ordered.Length > 0)
+                    {
+                        var allowPiiUpdates = default(bool?);
+                        if (bool.TryParse(ordered.FirstOrDefault(), out bool result))
+                        {
+                            allowPiiUpdates = result;
+                        }
+
+                        csvWriter.WriteField(id);
+                        csvWriter.WriteField(contact.Contains("dfeta_allowpiiupdatesfromregister") ? contact["dfeta_allowpiiupdatesfromregister"] : ""); //current AllowPiiUpdates
+                        csvWriter.WriteField($"{allowPiiUpdates}");  //what it will be reverted to
+                        csvWriter.NextRecord();
+
+                        if (commit == true)
+                        {
+                            var updateContact = new RevertAllowPiiUpdates() { ContactId = id, AllowPiiUpdates = allowPiiUpdates };
+                            contactsToUpdate.OnNext(updateContact);
+                        }
+                    }
+                }
+            }
+            contactsToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void SplitFirstname(RootCommand rootCommand)
@@ -448,7 +561,6 @@ static void CreateTestUsers(RootCommand rootCommand)
         return nino;
     }
 }
-
 
 static void AddMoveIttRecordsToNewOrganisation(RootCommand rootCommand)
 {
@@ -1365,4 +1477,223 @@ public class IdentityUser
     public string EmailAddress { get; set; } = null!;
 
     public string? Trn { get; set; }
+}
+
+public class RevertAllowPiiUpdates
+{
+    public Guid ContactId { get; set; }
+    public bool? AllowPiiUpdates { get; set; }
+}
+
+/// <summary>
+/// Track changes to records for analysis, record keeping, and compliance.
+/// </summary>
+[System.Runtime.Serialization.DataContractAttribute()]
+[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("audit")]
+public partial class Audit : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+{
+
+    /// <summary>
+    /// Available fields, a the time of codegen, for the audit entity
+    /// </summary>
+    public static class Fields
+    {
+        public const string Action = "action";
+        public const string AuditId = "auditid";
+        public const string Id = "auditid";
+        public const string CallingUserId = "callinguserid";
+        public const string CreatedOn = "createdon";
+        public const string ObjectId = "objectid";
+        public const string ObjectTypeCode = "objecttypecode";
+        public const string Operation = "operation";
+        public const string UserId = "userid";
+        public const string lk_audit_callinguserid = "lk_audit_callinguserid";
+        public const string lk_audit_userid = "lk_audit_userid";
+    }
+
+    /// <summary>
+    /// Default Constructor.
+    /// </summary>
+    [System.Diagnostics.DebuggerNonUserCode()]
+    public Audit() :
+            base(EntityLogicalName)
+    {
+    }
+
+    public const string EntitySchemaName = "Audit";
+
+    public const string PrimaryIdAttribute = "auditid";
+
+    public const string EntityLogicalName = "audit";
+
+    public const string EntityLogicalCollectionName = "audits";
+
+    public const string EntitySetName = "audits";
+
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+    public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+
+    [System.Diagnostics.DebuggerNonUserCode()]
+    private void OnPropertyChanged(string propertyName)
+    {
+        if ((this.PropertyChanged != null))
+        {
+            this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    [System.Diagnostics.DebuggerNonUserCode()]
+    private void OnPropertyChanging(string propertyName)
+    {
+        if ((this.PropertyChanging != null))
+        {
+            this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+        }
+    }
+
+
+
+    /// <summary>
+    /// Unique identifier of the auditing instance
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("auditid")]
+    public System.Nullable<System.Guid> AuditId
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<System.Nullable<System.Guid>>("auditid");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("AuditId");
+            this.SetAttributeValue("auditid", value);
+            if (value.HasValue)
+            {
+                base.Id = value.Value;
+            }
+            else
+            {
+                base.Id = System.Guid.Empty;
+            }
+            this.OnPropertyChanged("AuditId");
+        }
+    }
+
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("auditid")]
+    public override System.Guid Id
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return base.Id;
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.AuditId = value;
+        }
+    }
+
+    /// <summary>
+    /// Unique identifier of the calling user in case of an impersonated call
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("callinguserid")]
+    public Microsoft.Xrm.Sdk.EntityReference CallingUserId
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("callinguserid");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("CallingUserId");
+            this.SetAttributeValue("callinguserid", value);
+            this.OnPropertyChanged("CallingUserId");
+        }
+    }
+
+    /// <summary>
+    /// Date and time when the audit record was created.
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+    public System.Nullable<System.DateTime> CreatedOn
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("CreatedOn");
+            this.SetAttributeValue("createdon", value);
+            this.OnPropertyChanged("CreatedOn");
+        }
+    }
+
+    /// <summary>
+    /// Unique identifier of the record that is being audited
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+    public Microsoft.Xrm.Sdk.EntityReference ObjectId
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("objectid");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("ObjectId");
+            this.SetAttributeValue("objectid", value);
+            this.OnPropertyChanged("ObjectId");
+        }
+    }
+
+    /// <summary>
+    /// Unique identifier of the entity that is being audited
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objecttypecode")]
+    public string ObjectTypeCode
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<string>("objecttypecode");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("ObjectTypeCode");
+            this.SetAttributeValue("objecttypecode", value);
+            this.OnPropertyChanged("ObjectTypeCode");
+        }
+    }
+
+    /// <summary>
+    /// Unique identifier of the user who caused a change
+    /// </summary>
+    [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("userid")]
+    public Microsoft.Xrm.Sdk.EntityReference UserId
+    {
+        [System.Diagnostics.DebuggerNonUserCode()]
+        get
+        {
+            return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("userid");
+        }
+        [System.Diagnostics.DebuggerNonUserCode()]
+        set
+        {
+            this.OnPropertyChanging("UserId");
+            this.SetAttributeValue("userid", value);
+            this.OnPropertyChanged("UserId");
+        }
+    }
 }
