@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.QTSRegistrationDeletePlugin: Update of dfeta_qtsregistration" SdkMessageProcessingStepId="{eb82e516-d7db-ea11-a816-000d3aba3433}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="Dqt.Dynamics.plugins.QTSRegistrationDeletePlugin: Update of contact" SdkMessageProcessingStepId="{626c73aa-1bf7-ee11-a1fd-000d3ab3e1fb}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
   <PluginTypeName>Dqt.Dynamics.plugins.QTSRegistrationDeletePlugin, Dqt.Dynamics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1cabf3a9eed1c837</PluginTypeName>
   <PluginTypeId>d08dc444-9a1d-493c-94f2-c9404a65e95e</PluginTypeId>
-  <PrimaryEntity>dfeta_qtsregistration</PrimaryEntity>
+  <PrimaryEntity>contact</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>
-  <Description>trigger when statecode is changed</Description>
-  <FilteringAttributes>dfeta_qtsdate,statecode</FilteringAttributes>
+  <Description>Dqt.Dynamics.plugins.QTSRegistrationDeletePlugin: Update of contact</Description>
+  <FilteringAttributes>dfeta_qtlsdate</FilteringAttributes>
   <InvocationSource>1</InvocationSource>
   <Mode>0</Mode>
   <Rank>1</Rank>
@@ -17,10 +17,10 @@
   <SupportedDeployment>0</SupportedDeployment>
   <IntroducedVersion>1.0</IntroducedVersion>
   <SdkMessageProcessingStepImages>
-    <SdkMessageProcessingStepImage Name="PreQTSRegistrationImage">
-      <SdkMessageProcessingStepImageId>{a5c8282c-d7db-ea11-a816-000d3aba3433}</SdkMessageProcessingStepImageId>
-      <Attributes>dfeta_eytsdate,dfeta_qtsdate,dfeta_personid</Attributes>
-      <EntityAlias>PreQTSRegistrationImage</EntityAlias>
+    <SdkMessageProcessingStepImage Name="PreContactImage">
+      <SdkMessageProcessingStepImageId>{d27e5010-1cf7-ee11-a1fd-002248a1283e}</SdkMessageProcessingStepImageId>
+      <Attributes>contactid,dfeta_qtlsdate,dfeta_qtsdate</Attributes>
+      <EntityAlias>PreContactImage</EntityAlias>
       <ImageType>0</ImageType>
       <MessagePropertyName>Target</MessagePropertyName>
       <IsCustomizable>1</IsCustomizable>
