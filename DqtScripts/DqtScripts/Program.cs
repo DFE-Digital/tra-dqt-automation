@@ -126,17 +126,13 @@ static void FetchOrganisationsByDsiLegacyId(RootCommand rootCommand)
             {
                 var records = csv.GetRecords<DsiOrganisation>();
 
-                foreach (var org in records)
+                foreach (var org in records.Chunk(50))
                 {
                     //fetch old values & write to csv file
+                    var saIds = org.Select(x => x.SaOrgId).ToArray();
                     var statusQuery = new QueryExpression("account");
-                    statusQuery.Criteria.AddCondition("dfeta_saorgid", ConditionOperator.Equal, org.SaOrgId);
+                    statusQuery.Criteria.AddCondition("dfeta_saorgid", ConditionOperator.In, saIds);
                     statusQuery.ColumnSet = new ColumnSet("dfeta_ukprn", "name", "dfeta_saorgid");
-                    statusQuery.PageInfo = new PagingInfo()
-                    {
-                        Count = 1,
-                        PageNumber = 1
-                    };
                     var orgRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
                     foreach (var orgRecord in orgRecords.Entities)
                     {
@@ -145,8 +141,6 @@ static void FetchOrganisationsByDsiLegacyId(RootCommand rootCommand)
                         csvWriter.WriteField(orgRecord.Contains("dfeta_saorgid") ? orgRecord["dfeta_saorgid"] : string.Empty);
                         csvWriter.WriteField(orgRecord.Contains("dfeta_ukprn") ? orgRecord["dfeta_ukprn"] : string.Empty);
                         csvWriter.WriteField(orgRecord.Contains("name") ? orgRecord["name"] : string.Empty);
-                        csvWriter.WriteField(org.DsiOrgId);
-                        csvWriter.WriteField(org.DsiOrgName);
                         csvWriter.NextRecord();
                     }
                 }
