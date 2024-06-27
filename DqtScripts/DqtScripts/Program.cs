@@ -93,8 +93,67 @@ static RootCommand CreateRootCommand()
     AddUpdateTeacherEmailAddress(rootCommand);
     SplitFirstname(rootCommand);
     RevertAllowPiiUpdates(rootCommand);
+    FetchOrganisationsByDsiLegacyId(rootCommand);
 
     return rootCommand;
+}
+
+static void FetchOrganisationsByDsiLegacyId(RootCommand rootCommand)
+{
+    var command = new Command("fetch-organisations-by-legacyid", description: "fetch organisations by legacy sa org id")
+    {
+        Handler = CommandHandler.Create<IHost>(async (host) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var crmOrgsBlobName = $"dsi-organisations/crm-organisations_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var crmOrgsBlobNameClient = blobContainerClient.GetBlobClient(crmOrgsBlobName);
+
+            // Step 1: Create a CancellationTokenSource
+            var cts = new CancellationTokenSource();
+
+            // Step 2: Obtain the CancellationToken
+            CancellationToken token = cts.Token;
+            using (var blob = await blobContainerClient.GetBlobClient("dsi-organisations.csv").OpenReadAsync())
+            using (var reader = new StreamReader(blob))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var blobStream = await crmOrgsBlobNameClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                var records = csv.GetRecords<DsiOrganisation>();
+
+                foreach (var org in records)
+                {
+                    //fetch old values & write to csv file
+                    var statusQuery = new QueryExpression("account");
+                    statusQuery.Criteria.AddCondition("dfeta_saorgid", ConditionOperator.Equal, org.SaOrgId);
+                    statusQuery.ColumnSet = new ColumnSet("dfeta_ukprn", "name", "dfeta_saorgid");
+                    statusQuery.PageInfo = new PagingInfo()
+                    {
+                        Count = 1,
+                        PageNumber = 1
+                    };
+                    var orgRecords = await serviceClient.RetrieveMultipleAsync(statusQuery);
+                    foreach (var orgRecord in orgRecords.Entities)
+                    {
+                        //always write csv file
+                        csvWriter.WriteField(orgRecord.Id);
+                        csvWriter.WriteField(orgRecord.Contains("dfeta_saorgid") ? orgRecord["dfeta_laschoolcode"] : string.Empty);
+                        csvWriter.WriteField(orgRecord.Contains("dfeta_ukprn") ? orgRecord["dfeta_ukprn"] : string.Empty);
+                        csvWriter.WriteField(orgRecord.Contains("name") ? orgRecord["name"] : string.Empty);
+                        csvWriter.WriteField(org.DsiOrgId);
+                        csvWriter.WriteField(org.DsiOrgName);
+                        csvWriter.NextRecord();
+                    }
+                }
+            }
+        })
+    };
+    rootCommand.Add(command);
 }
 
 static void RevertAllowPiiUpdates(RootCommand rootCommand)
@@ -1483,6 +1542,14 @@ public class RevertAllowPiiUpdates
 {
     public Guid ContactId { get; set; }
     public bool? AllowPiiUpdates { get; set; }
+}
+
+public class DsiOrganisation
+{
+    public string DsiOrgId { get; set; }
+
+    public string DsiOrgName { get; set; }
+    public string SaOrgId { get; set; }
 }
 
 /// <summary>
