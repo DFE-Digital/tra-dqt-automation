@@ -117,7 +117,7 @@ static void FetchOrganisationsByDsiLegacyId(RootCommand rootCommand)
 
             // Step 2: Obtain the CancellationToken
             CancellationToken token = cts.Token;
-            using (var blob = await blobContainerClient.GetBlobClient("dsi-organisations.csv").OpenReadAsync())
+            using (var blob = await blobContainerClient.GetBlobClient("dsi-organisations/dsi-organisations.csv").OpenReadAsync())
             using (var reader = new StreamReader(blob))
             using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
             using (var blobStream = await crmOrgsBlobNameClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
@@ -142,7 +142,7 @@ static void FetchOrganisationsByDsiLegacyId(RootCommand rootCommand)
                     {
                         //always write csv file
                         csvWriter.WriteField(orgRecord.Id);
-                        csvWriter.WriteField(orgRecord.Contains("dfeta_saorgid") ? orgRecord["dfeta_laschoolcode"] : string.Empty);
+                        csvWriter.WriteField(orgRecord.Contains("dfeta_saorgid") ? orgRecord["dfeta_saorgid"] : string.Empty);
                         csvWriter.WriteField(orgRecord.Contains("dfeta_ukprn") ? orgRecord["dfeta_ukprn"] : string.Empty);
                         csvWriter.WriteField(orgRecord.Contains("name") ? orgRecord["name"] : string.Empty);
                         csvWriter.WriteField(org.DsiOrgId);
