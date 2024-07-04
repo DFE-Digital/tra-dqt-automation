@@ -19,7 +19,7 @@
   <SdkMessageProcessingStepImages>
     <SdkMessageProcessingStepImage Name="preImage">
       <SdkMessageProcessingStepImageId>{dd9c772a-1ae9-ed11-a7c6-000d3adf7abc}</SdkMessageProcessingStepImageId>
-      <Attributes>customerid,dfeta_fromidentity,dfeta_newdateofbirth,dfeta_newfirstname,dfeta_newlastname,dfeta_newmiddlename,dfeta_newtitle,dfeta_statedfirstname,dfeta_statedlastname,dfeta_statedmiddlename,statuscode,subjectid</Attributes>
+      <Attributes>customerid,dfeta_emailaddress,dfeta_fromidentity,dfeta_newdateofbirth,dfeta_newfirstname,dfeta_newlastname,dfeta_newmiddlename,dfeta_newtitle,dfeta_statedfirstname,dfeta_statedlastname,dfeta_statedmiddlename,statuscode,subjectid</Attributes>
       <EntityAlias>preImage</EntityAlias>
       <ImageType>0</ImageType>
       <MessagePropertyName>Target</MessagePropertyName>

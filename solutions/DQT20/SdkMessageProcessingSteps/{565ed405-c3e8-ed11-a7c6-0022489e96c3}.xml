@@ -19,7 +19,7 @@
   <SdkMessageProcessingStepImages>
     <SdkMessageProcessingStepImage Name="preImage">
       <SdkMessageProcessingStepImageId>{741a7b1e-1ae9-ed11-a7c6-000d3adf7abc}</SdkMessageProcessingStepImageId>
-      <Attributes>customerid,dfeta_fromidentity,statuscode,subjectid</Attributes>
+      <Attributes>customerid,dfeta_emailaddress,dfeta_fromidentity,statuscode,subjectid</Attributes>
       <EntityAlias>preImage</EntityAlias>
       <ImageType>0</ImageType>
       <MessagePropertyName>Target</MessagePropertyName>
