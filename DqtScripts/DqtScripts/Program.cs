@@ -93,8 +93,138 @@ static RootCommand CreateRootCommand()
     AddUpdateTeacherEmailAddress(rootCommand);
     SplitFirstname(rootCommand);
     RevertAllowPiiUpdates(rootCommand);
+    CorrectInductionStartDates(rootCommand);
 
     return rootCommand;
+}
+
+static void CorrectInductionStartDates(RootCommand rootCommand)
+{
+    var command = new Command("correct-induction-startdates", description: "corrects start date of inductions that were not set to the earliest induction period start date")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+            
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var inductionBlobName = $"correct-induction-startdates/correct-induction-startdates_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var inductionBloblient = blobContainerClient.GetBlobClient(inductionBlobName);
+
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var inductionsToUpdate = new Subject<CorrectInductionStartDate>();
+
+            // update 10 records at a time
+            var batchSubscription = inductionsToUpdate.Buffer(10).Subscribe(async recordList =>
+            {
+                var request = new ExecuteMultipleRequest()
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings()
+                    {
+                        ContinueOnError = false,
+                        ReturnResponses = false
+                    }
+                };
+
+                foreach (var record in recordList)
+                {
+                    var induction = new Entity("dfeta_induction");
+                    induction.Id = record.InductionId;
+                    induction["dfeta_startdate"] = record.StartDate;
+                    request.Requests.Add(new UpdateRequest()
+                    {
+                        Target = induction
+                    });
+                }
+                await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+            },
+            onError: ex =>
+            {
+                Console.Error.WriteLine(ex);
+                Environment.Exit(1);
+            });
+
+
+            //fetch all inductions
+            var query = new QueryExpression("dfeta_induction");
+            query.Criteria.AddCondition("dfeta_startdate", ConditionOperator.NotNull);
+            query.ColumnSet = new ColumnSet("dfeta_startdate");
+            query.PageInfo = new PagingInfo()
+            {
+                Count = 1000,
+                PageNumber = 1
+            };
+            EntityCollection result;
+            var inductions = new List<(Guid inductionId, DateTime? inductionStartDate)>(); 
+            do
+            {
+                result = await serviceClient.RetrieveMultipleAsync(query);
+                foreach (var record in result.Entities)
+                {
+                    var existingStartDate = record.GetAttributeValue<DateTime?>("dfeta_startdate");
+                    inductions.Add((record.Id, existingStartDate));
+                }
+                query.PageInfo.PageNumber++;
+                query.PageInfo.PagingCookie = result.PagingCookie;
+            }
+            while (result.MoreRecords);
+
+
+            using (var blobStream = await inductionBloblient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("inductionid");
+                csvWriter.WriteField("current_startdate");
+                csvWriter.WriteField("target_startdate");
+                csvWriter.NextRecord();
+
+                foreach (var induction in inductions)
+                {
+                    var inductionPeriodQuery = new QueryExpression("dfeta_inductionperiod");
+                    inductionPeriodQuery.Criteria.AddCondition("dfeta_inductionid", ConditionOperator.Equal, induction.inductionId);
+                    inductionPeriodQuery.ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate");
+                    var inductionPeriodResults = await serviceClient.RetrieveMultipleAsync(inductionPeriodQuery);
+                    
+                    //only if there are inductionperiods for an induction
+                    if (inductionPeriodResults.Entities.Count > 0)
+                    {
+                        var ordered = inductionPeriodResults.Entities.Where(x=>x.Contains("dfeta_startdate")).OrderBy(x => x["dfeta_startdate"]).ToList();
+                        var startDate = default(DateTime?);
+                        var firstDate = ordered.First().Attributes["dfeta_startdate"] as DateTime?;
+                        if (firstDate != null)
+                        {
+                            startDate = firstDate;
+                        }
+
+                        //only update induction startdate if current induction startdate is not the same as 
+                        if (!induction.inductionStartDate.Equals(startDate))
+                        {
+                            csvWriter.WriteField(induction.inductionId);
+                            csvWriter.WriteField(induction.inductionStartDate); //current startdate
+                            csvWriter.WriteField($"{startDate}");  //what it will be reverted to
+                            csvWriter.NextRecord();
+
+                            if (commit == true)
+                            {
+                                var updateInduction = new CorrectInductionStartDate() { InductionId = induction.inductionId, StartDate = startDate };
+                                inductionsToUpdate.OnNext(updateInduction);
+                            }
+                        }
+                    }
+                }
+            }
+            inductionsToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void RevertAllowPiiUpdates(RootCommand rootCommand)
@@ -1484,6 +1614,13 @@ public class RevertAllowPiiUpdates
     public Guid ContactId { get; set; }
     public bool? AllowPiiUpdates { get; set; }
 }
+
+public class CorrectInductionStartDate
+{
+    public Guid InductionId { get; set; }
+    public DateTime? StartDate { get; set; }
+}
+
 
 /// <summary>
 /// Track changes to records for analysis, record keeping, and compliance.
