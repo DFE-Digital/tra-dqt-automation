@@ -83,9 +83,10 @@ jobs:
         EXISTING_VERSION: ${{ steps.existing-version.outputs.number }}
 
     - name: Create pull request for changes
-      uses: peter-evans/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v6
       with:
         branch: "v${{ steps.new-version.outputs.number }}"
+        base: "main"
         commit-message: ${{ github.event.inputs.pr_title }}
         delete-branch: true
         title: ${{ github.event.inputs.pr_title }}
