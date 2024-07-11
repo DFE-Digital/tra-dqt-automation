@@ -232,6 +232,7 @@
     <RolePrivilege name="prvDeletemsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvDeletemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvDeleteNewProcess" level="Global" />
+    <RolePrivilege name="prvDeleteNote" level="Global" />
     <RolePrivilege name="prvDeleteOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvDeletePhoneToCaseProcess" level="Global" />
     <RolePrivilege name="prvDeleteReport" level="Basic" />
