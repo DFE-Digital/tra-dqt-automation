@@ -149,8 +149,7 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
                 Environment.Exit(1);
             });
 
-
-            //fetch all inductions
+            //fetch all inductions with induction periods
             var query = new QueryExpression("dfeta_induction");
             query.Criteria.AddCondition("dfeta_startdate", ConditionOperator.NotNull);
             query.ColumnSet = new ColumnSet("dfeta_startdate");
@@ -159,21 +158,57 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
                 Count = 1000,
                 PageNumber = 1
             };
+
+            // Subquery to get the earliest start date for each induction
+            var subquery = new QueryExpression("dfeta_inductionperiod")
+            {
+                ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate"),
+                Orders = { new OrderExpression("dfeta_startdate", OrderType.Ascending) },
+                TopCount = 1
+            };
+
+            //link to active dfeta_inductionperiod
+            var linkEntity = new LinkEntity(
+                "dfeta_induction",
+                "dfeta_inductionperiod",
+                "dfeta_inductionid",
+                "dfeta_inductionid",
+                JoinOperator.Inner)
+            {
+                Columns = new ColumnSet("dfeta_startdate"),
+                EntityAlias = "dfeta_inductionperiod",
+                LinkCriteria = new FilterExpression
+                {
+                    FilterOperator = LogicalOperator.And,
+                    Conditions =
+                    {
+                        new ConditionExpression("dfeta_startdate", ConditionOperator.NotNull),
+                        new ConditionExpression("statecode", ConditionOperator.Equal, 0)
+                    }
+                }
+            };
+            query.LinkEntities.Add(linkEntity);
+
             EntityCollection result;
-            var inductions = new List<Entity>();
+            var inductions = new List<(Guid inductionId, DateTime currentStartDate, DateTime targetStartDate)>();
             do
             {
                 result = await serviceClient.RetrieveMultipleAsync(query);
-                foreach (var record in result.Entities)
-                {
-                    var existingStartDate = record.GetAttributeValue<DateTime?>("dfeta_startdate");
-                    inductions.Add(record);
-                }
+                var grouped = result.Entities
+                    .GroupBy(e => e.GetAttributeValue<Guid>("dfeta_inductionid"))
+                    .Select(g =>
+                    (
+                        g.Key,
+                        g.First().GetAttributeValue<DateTime>("dfeta_startdate"),
+                        g.Min(e => (DateTime)e.GetAttributeValue<AliasedValue>("dfeta_inductionperiod.dfeta_startdate").Value)
+                    ))
+                    .ToList();
+                inductions.AddRange(grouped);
+
                 query.PageInfo.PageNumber++;
                 query.PageInfo.PagingCookie = result.PagingCookie;
             }
             while (result.MoreRecords);
-
 
             using (var blobStream = await inductionBloblient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
             using (var streamWriter = new StreamWriter(blobStream))
@@ -184,52 +219,19 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
                 csvWriter.WriteField("target_startdate");
                 csvWriter.NextRecord();
 
-                var batchSize = 20;
-                var inductionPeriodEntitiesByGroup = new Dictionary<Guid, List<Entity>>();
-
-                //iterate through inductions in batches to prevent timeouts in production
-                foreach (var batch in inductions.Chunk(batchSize))
+                foreach (var induction in inductions)
                 {
-                    //get induction periods in batches
-                    var ids = batch.Select(x => x.Id.ToString()).ToArray();
-                    var inductionPeriodQuery = new QueryExpression("dfeta_inductionperiod");
-                    inductionPeriodQuery.Criteria.AddCondition("dfeta_inductionid", ConditionOperator.In, ids);
-                    inductionPeriodQuery.ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate");
-                    var inductionPeriodResults = await serviceClient.RetrieveMultipleAsync(inductionPeriodQuery);
-
-                    foreach (var entity in inductionPeriodResults.Entities)
+                    if (!induction.currentStartDate.Equals(induction.targetStartDate))
                     {
-                        var inductionId = entity.GetAttributeValue<EntityReference>("dfeta_inductionid").Id;
-                        if (!inductionPeriodEntitiesByGroup.ContainsKey(inductionId))
-                        {
-                            inductionPeriodEntitiesByGroup[inductionId] = new List<Entity>();
-                        }
-                        inductionPeriodEntitiesByGroup[inductionId].Add(entity);
-                    }
+                        csvWriter.WriteField(induction.inductionId);
+                        csvWriter.WriteField(induction.currentStartDate); //current startdate
+                        csvWriter.WriteField($"{induction.targetStartDate}");  //what it will be reverted to
+                        csvWriter.NextRecord();
 
-                    foreach (var induction in batch)
-                    {
-                        if (inductionPeriodEntitiesByGroup.ContainsKey(induction.Id))
+                        if (commit == true)
                         {
-                            var inductionPeriods = inductionPeriodEntitiesByGroup[induction.Id];
-                            var ordered = inductionPeriods.Where(x => x.Contains("dfeta_startdate")).OrderBy(x => x["dfeta_startdate"]).ToList();
-                            var firstDate = ordered.First().GetAttributeValue<DateTime>("dfeta_startdate");
-                            var inductionStartDate = induction.GetAttributeValue<DateTime?>("dfeta_startdate");
-   
-                            //only update induction startdate if current induction startdate is not the same as 
-                            if (!firstDate.Equals(inductionStartDate))
-                            {
-                                csvWriter.WriteField(induction.Id);
-                                csvWriter.WriteField(inductionStartDate); //current startdate
-                                csvWriter.WriteField($"{firstDate}");  //what it will be reverted to
-                                csvWriter.NextRecord();
-
-                                if (commit == true)
-                                {
-                                    var updateInduction = new CorrectInductionStartDate() { InductionId = induction.Id, StartDate = firstDate };
-                                    inductionsToUpdate.OnNext(updateInduction);
-                                }
-                            }
+                            var updateInduction = new CorrectInductionStartDate() { InductionId = induction.inductionId, StartDate = induction.targetStartDate };
+                            inductionsToUpdate.OnNext(updateInduction);
                         }
                     }
                 }
