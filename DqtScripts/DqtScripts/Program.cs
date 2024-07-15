@@ -11,6 +11,7 @@ using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using Dapper;
+using DqtScripts;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -93,8 +94,155 @@ static RootCommand CreateRootCommand()
     AddUpdateTeacherEmailAddress(rootCommand);
     SplitFirstname(rootCommand);
     RevertAllowPiiUpdates(rootCommand);
+    CorrectInductionStartDates(rootCommand);
 
     return rootCommand;
+}
+
+static void CorrectInductionStartDates(RootCommand rootCommand)
+{
+    var command = new Command("correct-induction-startdates", description: "corrects start date of inductions that were not set to the earliest induction period start date")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var inductionBlobName = $"correct-induction-startdates/correct-induction-startdates_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var inductionBloblient = blobContainerClient.GetBlobClient(inductionBlobName);
+
+
+            // retry on failure
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retryCount: 5);
+            var inductionsToUpdate = new Subject<CorrectInductionStartDate>();
+
+            // update 10 records at a time
+            var batchSubscription = inductionsToUpdate.Buffer(10).Subscribe(async recordList =>
+                    {
+                        var request = new ExecuteMultipleRequest()
+                        {
+                            Requests = new OrganizationRequestCollection(),
+                            Settings = new ExecuteMultipleSettings()
+                            {
+                                ContinueOnError = false,
+                                ReturnResponses = false
+                            }
+                        };
+
+                        foreach (var record in recordList)
+                        {
+                            var induction = new Entity("dfeta_induction");
+                            induction.Id = record.InductionId;
+                            induction["dfeta_startdate"] = record.StartDate!.Value.ToLocal();
+                            request.Requests.Add(new UpdateRequest()
+                            {
+                                Target = induction
+                            });
+                        }
+                        await retryPolicy.ExecuteAsync(async () => await serviceClient.ExecuteAsync(request));
+                    },
+                    onError: ex =>
+                    {
+                        Console.Error.WriteLine(ex);
+                        Environment.Exit(1);
+                    });
+
+    //fetch all inductions with induction periods
+    var query = new QueryExpression("dfeta_induction");
+    query.Criteria.AddCondition("dfeta_startdate", ConditionOperator.NotNull);
+    query.ColumnSet = new ColumnSet("dfeta_startdate");
+    query.PageInfo = new PagingInfo()
+    {
+        Count = 1000,
+        PageNumber = 1
+    };
+
+    // Subquery to get the earliest start date for each induction
+    var subquery = new QueryExpression("dfeta_inductionperiod")
+    {
+        ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate"),
+        Orders = { new OrderExpression("dfeta_startdate", OrderType.Ascending) },
+        TopCount = 1
+    };
+
+    //link to active dfeta_inductionperiod
+    var linkEntity = new LinkEntity(
+        "dfeta_induction",
+        "dfeta_inductionperiod",
+        "dfeta_inductionid",
+        "dfeta_inductionid",
+        JoinOperator.Inner)
+    {
+        Columns = new ColumnSet("dfeta_startdate"),
+        EntityAlias = "dfeta_inductionperiod",
+        LinkCriteria = new FilterExpression
+        {
+            FilterOperator = LogicalOperator.And,
+            Conditions =
+                    {
+                        new ConditionExpression("dfeta_startdate", ConditionOperator.NotNull),
+                        new ConditionExpression("statecode", ConditionOperator.Equal, 0)
+                    }
+        }
+    };
+    query.LinkEntities.Add(linkEntity);
+
+    EntityCollection result;
+    var inductions = new List<(Guid inductionId, DateTime currentStartDate, DateTime targetStartDate)>();
+    do
+    {
+        result = await serviceClient.RetrieveMultipleAsync(query);
+        var grouped = result.Entities
+            .GroupBy(e => e.GetAttributeValue<Guid>("dfeta_inductionid"))
+            .Select(g =>
+            (
+                g.Key,
+                g.First().GetAttributeValue<DateTime>("dfeta_startdate"),
+                g.Min(e => (DateTime)e.GetAttributeValue<AliasedValue>("dfeta_inductionperiod.dfeta_startdate").Value)
+            ))
+            .ToList();
+        inductions.AddRange(grouped);
+
+        query.PageInfo.PageNumber++;
+        query.PageInfo.PagingCookie = result.PagingCookie;
+    }
+    while (result.MoreRecords);
+
+    using (var blobStream = await inductionBloblient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+    using (var streamWriter = new StreamWriter(blobStream))
+    using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+    {
+        csvWriter.WriteField("inductionid");
+        csvWriter.WriteField("current_startdate");
+        csvWriter.WriteField("target_startdate");
+        csvWriter.NextRecord();
+
+        foreach (var induction in inductions)
+        {
+            if (!induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true).Equals(induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)))
+            {
+                csvWriter.WriteField(induction.inductionId);
+                csvWriter.WriteField(induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)); //current startdate
+                csvWriter.WriteField($"{induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)}");  //what it will be reverted to
+                csvWriter.NextRecord();
+
+                if (commit == true)
+                {
+                    var updateInduction = new CorrectInductionStartDate() { InductionId = induction.inductionId, StartDate = induction.targetStartDate };
+                    inductionsToUpdate.OnNext(updateInduction);
+                }
+            }
+        }
+    }
+    inductionsToUpdate.OnCompleted();
+    batchSubscription.Dispose();
+})
+    };
+command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+rootCommand.Add(command);
 }
 
 static void RevertAllowPiiUpdates(RootCommand rootCommand)
@@ -1484,6 +1632,13 @@ public class RevertAllowPiiUpdates
     public Guid ContactId { get; set; }
     public bool? AllowPiiUpdates { get; set; }
 }
+
+public class CorrectInductionStartDate
+{
+    public Guid InductionId { get; set; }
+    public DateTime? StartDate { get; set; }
+}
+
 
 /// <summary>
 /// Track changes to records for analysis, record keeping, and compliance.
