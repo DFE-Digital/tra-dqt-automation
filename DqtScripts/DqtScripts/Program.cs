@@ -11,6 +11,7 @@ using Azure.Storage.Blobs;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using Dapper;
+using DqtScripts;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -135,7 +136,7 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
                 {
                     var induction = new Entity("dfeta_induction");
                     induction.Id = record.InductionId;
-                    induction["dfeta_startdate"] = record.StartDate;
+                    induction["dfeta_startdate"] = record.StartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true);
                     request.Requests.Add(new UpdateRequest()
                     {
                         Target = induction
@@ -221,11 +222,11 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
 
                 foreach (var induction in inductions)
                 {
-                    if (!induction.currentStartDate.Equals(induction.targetStartDate))
+                    if (!induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true).Equals(induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)))
                     {
                         csvWriter.WriteField(induction.inductionId);
-                        csvWriter.WriteField(induction.currentStartDate); //current startdate
-                        csvWriter.WriteField($"{induction.targetStartDate}");  //what it will be reverted to
+                        csvWriter.WriteField(induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)); //current startdate
+                        csvWriter.WriteField($"{induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)}");  //what it will be reverted to
                         csvWriter.NextRecord();
 
                         if (commit == true)
