@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Role id="{23691a70-d908-e311-8cce-000c29770442}" name="DfE CRM Interface" isinherited="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Role id="{23691a70-d908-e311-8cce-000c29770442}" name="DfE CRM Interface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
     <RolePrivilege name="prvActOnBehalfOfAnotherUser" level="Global" />
@@ -232,6 +232,7 @@
     <RolePrivilege name="prvDeletemsdyn_transcript" level="Basic" />
     <RolePrivilege name="prvDeletemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvDeleteNewProcess" level="Global" />
+    <RolePrivilege name="prvDeleteNote" level="Global" />
     <RolePrivilege name="prvDeleteOpportunitySalesProcess" level="Global" />
     <RolePrivilege name="prvDeletePhoneToCaseProcess" level="Global" />
     <RolePrivilege name="prvDeleteReport" level="Basic" />
