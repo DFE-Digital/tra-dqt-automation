@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Role id="{69be6d25-fe32-ea11-a9b4-000d3a26b1a0}" name="DfE QTS User Administrator" isinherited="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Role id="{69be6d25-fe32-ea11-a9b4-000d3a26b1a0}" name="DfE QTS User Administrator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
     <RolePrivilege name="prvAppendActionCard" level="Global" />
