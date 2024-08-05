@@ -90,6 +90,19 @@
                         </control>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{7db3b38e-d8d7-7610-da77-28763151c13c}" showlabel="true" locklevel="0" ordinalvalue="10009" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_onhold" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_onhold" disabled="false" />
+                      </cell>
+                      <cell id="{4805a7d3-6b43-3445-7dd6-cc01078a55c1}" showlabel="false" ordinalvalue="20010" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -101,7 +114,7 @@
       <clientresources solutionaction="Removed" />
       <DisplayConditions FallbackForm="true" Order="2" solutionaction="Removed" />
       <Navigation solutionaction="Added">
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

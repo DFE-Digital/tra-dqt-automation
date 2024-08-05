@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Role id="{43b00042-ad50-e511-a164-005056822b0d}" name="DfE QTS Helpdesk" isinherited="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Role id="{43b00042-ad50-e511-a164-005056822b0d}" name="DfE QTS Helpdesk" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
     <RolePrivilege name="prvAddressBook" level="Global" />

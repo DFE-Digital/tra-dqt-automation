@@ -212,5 +212,21 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
+    <option value="389040025" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Primary and secondary undergraduate fee funded" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="389040026" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Primary and secondary postgraduate fee funded" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
   </options>
 </optionset>
