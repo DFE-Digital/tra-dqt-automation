@@ -95,8 +95,90 @@ static RootCommand CreateRootCommand()
     SplitFirstname(rootCommand);
     RevertAllowPiiUpdates(rootCommand);
     CorrectInductionStartDates(rootCommand);
+    BackfillTrnRequestEmails(rootCommand);
 
     return rootCommand;
+}
+
+
+static void BackfillTrnRequestEmails(RootCommand rootCommand)
+{
+    var command = new Command("backfill-trn-request-emails", description: "Iterate open trn request tasks and set email address to the one listed in the description ")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var backfillBlobname = $"backfill-trn-request-emails/backfill_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var backfillBlobClient = blobContainerClient.GetBlobClient(backfillBlobname);
+
+            using (var blobStream = await backfillBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("taskid");
+                csvWriter.WriteField("target_email");
+                csvWriter.NextRecord();
+
+                var query = new QueryExpression("task");
+                query.Criteria.AddCondition("dfeta_emailaddress", ConditionOperator.Null);
+                query.Criteria.AddCondition("subject", ConditionOperator.Equal, "Notification for TRA Support Team - TRN request");
+                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                query.ColumnSet = new ColumnSet("dfeta_emailaddress", "description");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+                EntityCollection result;
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        var description = record.GetAttributeValue<string>("description");
+                        var email = description.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(line => line.Contains("Email:"))
+                            .Select(line => line.Substring("Email:".Length))
+                            .FirstOrDefault();
+
+                        if (!string.IsNullOrEmpty(email))
+                        {
+                            csvWriter.WriteField(record.Id);
+                            csvWriter.WriteField(email);
+                            csvWriter.NextRecord();
+
+                            if (commit == true)
+                            {
+                                var request = new ExecuteTransactionRequest()
+                                {
+                                    Requests = new OrganizationRequestCollection()
+                                };
+
+                                var task = new Entity("task");
+                                task.Id = record.Id;
+                                task["dfeta_emailaddress"] = email;
+                                request.Requests.Add(new UpdateRequest()
+                                {
+                                    Target = task
+                                });
+
+                                await serviceClient.ExecuteAsync(request);
+                            }
+                        }
+
+                    }
+                } while (result.MoreRecords);
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void CorrectInductionStartDates(RootCommand rootCommand)
