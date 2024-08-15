@@ -150,7 +150,7 @@ static void BackfillTrnRequestEmails(RootCommand rootCommand)
                         if (!string.IsNullOrEmpty(email))
                         {
                             csvWriter.WriteField(record.Id);
-                            csvWriter.WriteField(email);
+                            csvWriter.WriteField(email.Trim());
                             csvWriter.NextRecord();
 
                             if (commit == true)
@@ -162,7 +162,7 @@ static void BackfillTrnRequestEmails(RootCommand rootCommand)
 
                                 var task = new Entity("task");
                                 task.Id = record.Id;
-                                task["dfeta_emailaddress"] = email;
+                                task["dfeta_emailaddress"] = email.Trim();
                                 request.Requests.Add(new UpdateRequest()
                                 {
                                     Target = task
