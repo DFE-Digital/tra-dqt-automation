@@ -19,6 +19,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using Npgsql;
 using Polly;
@@ -96,9 +97,229 @@ static RootCommand CreateRootCommand()
     RevertAllowPiiUpdates(rootCommand);
     CorrectInductionStartDates(rootCommand);
     BackfillTrnRequestEmails(rootCommand);
+    ExportInductionPeriods(rootCommand);
 
     return rootCommand;
 }
+
+static void ExportInductionPeriods(RootCommand rootCommand)
+{
+    var command = new Command("export-induction-periods", description: "Exports induction periods, person & Appropriate bodies.")
+    {
+        Handler = CommandHandler.Create<IHost>(async (host) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+
+            var now = $"{DateTime.Now:yyyyMMddHHmmss}";
+            var inductionPeriodsFileName = $"induction-periods/inductionperiods_{now}.csv";
+            var teachersFileName = $"induction-periods/teachers_{now}.csv";
+            var abFileName = $"induction-periods/appropriatebody_{now}.csv";
+            var abBlobClient = blobContainerClient.GetBlobClient(abFileName);
+            var teachersBlobClient = blobContainerClient.GetBlobClient(teachersFileName);
+            var inductionPeriodsClient = blobContainerClient.GetBlobClient(inductionPeriodsFileName);
+
+            //optionsets
+            RetrieveAttributeRequest programmeTypesRequest = new RetrieveAttributeRequest
+            {
+                EntityLogicalName = "dfeta_inductionperiod",
+                LogicalName = "dfeta_inductionprogrammetype",
+                RetrieveAsIfPublished = true
+            };
+
+            RetrieveAttributeResponse programmeTypesResponse = (RetrieveAttributeResponse)serviceClient.Execute(programmeTypesRequest);
+            var programmeTypesResponseMetadata = (PicklistAttributeMetadata)programmeTypesResponse.AttributeMetadata;
+            Dictionary<int, string> inductionProgrammeTypes = new Dictionary<int, string>();
+            foreach (var option in programmeTypesResponseMetadata.OptionSet.Options)
+            {
+                inductionProgrammeTypes[option.Value.Value] = option.Label.UserLocalizedLabel.Label;
+            }
+
+            RetrieveAttributeRequest extensionLengthUnitRequest = new RetrieveAttributeRequest
+            {
+                EntityLogicalName = "dfeta_induction",
+                LogicalName = "dfeta_extensionlengthunit",
+                RetrieveAsIfPublished = true
+            };
+            RetrieveAttributeResponse extensionLengthUnitResponse = (RetrieveAttributeResponse)serviceClient.Execute(extensionLengthUnitRequest);
+            var extensionLengthUnitOptionSetMetadata = (PicklistAttributeMetadata)extensionLengthUnitResponse.AttributeMetadata;
+            Dictionary<int, string> extensionLengthUnits = new Dictionary<int, string>();
+            foreach (var option in extensionLengthUnitOptionSetMetadata.OptionSet.Options)
+            {
+                extensionLengthUnits[option.Value.Value] = option.Label.UserLocalizedLabel.Label;
+            }
+
+            //induction periods
+            using (var inductionPeriodsStream = await inductionPeriodsClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var inductionPeriodsStreamWriter = new StreamWriter(inductionPeriodsStream))
+            using (var csvWriter = new CsvWriter(inductionPeriodsStreamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("appropriate_body_id");
+                csvWriter.WriteField("started_on");
+                csvWriter.WriteField("finished_on");
+                csvWriter.WriteField("induction_programme_choice");
+                csvWriter.WriteField("number_of_terms");
+                csvWriter.NextRecord();
+
+                var query = new QueryExpression("dfeta_inductionperiod");
+                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                query.ColumnSet = new ColumnSet("dfeta_appropriatebodyid", "dfeta_startdate", "dfeta_enddate", "dfeta_inductionprogrammetype", "dfeta_numberofterms");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+                EntityCollection result;
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        var appropriateBodyId = record.Contains("dfeta_appropriatebodyid") ? ((EntityReference)record["dfeta_appropriatebodyid"]).Id.ToString() : "";
+                        var startedOn = record.GetAttributeValue<DateTime>("dfeta_startdate");
+                        var finishedOn = record.GetAttributeValue<DateTime?>("dfeta_enddate");
+                        var inductionProgrammeChoice = "";
+                        if (record.Contains("dfeta_inductionprogrammetype") && inductionProgrammeTypes.ContainsKey(record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value))
+                        {
+                            inductionProgrammeChoice = inductionProgrammeTypes[record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value];
+                        }
+                        var numberOfTerms = record.GetAttributeValue<int>("dfeta_numberofterms");
+
+                        csvWriter.WriteField(appropriateBodyId);
+                        csvWriter.WriteField(startedOn);
+                        csvWriter.WriteField(finishedOn);
+                        csvWriter.WriteField(inductionProgrammeChoice);
+                        csvWriter.WriteField(numberOfTerms);
+                        csvWriter.NextRecord();
+                    }
+
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                } while (result.MoreRecords);
+            }
+
+            //persons linked to an induction period
+            using (var personsStream = await teachersBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var personsStreamWriter = new StreamWriter(personsStream))
+            using (var csvWriter = new CsvWriter(personsStreamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("trn");
+                csvWriter.WriteField("first_name");
+                csvWriter.WriteField("last_name");
+                csvWriter.WriteField("extension_length");
+                csvWriter.WriteField("extension_length_unit");
+                csvWriter.NextRecord();
+
+                var query = new QueryExpression("contact");
+                query.ColumnSet = new ColumnSet("dfeta_trn", "firstname", "lastname", "contactid");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+                EntityCollection result;
+                var linkInductionEntity = new LinkEntity(
+                    "contacts",
+                    "dfeta_induction",
+                    "contactid",
+                    "dfeta_personid",
+                    JoinOperator.Inner)
+                    {
+                        Columns = new ColumnSet("dfeta_extensionlength", "dfeta_extensionlengthunit"),
+                        EntityAlias = "dfeta_induction",
+                        LinkCriteria = new FilterExpression
+                        {
+                            FilterOperator = LogicalOperator.And,
+                            Conditions =
+                                {
+                                    new ConditionExpression("statecode", ConditionOperator.Equal, 0)
+                                }
+                        }
+                    };
+                query.LinkEntities.Add(linkInductionEntity);
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        var trn = record.GetAttributeValue<string>("dfeta_trn") ?? "";
+                        var firstname = record.GetAttributeValue<string>("firstname") ?? "";
+                        var lastname = record.GetAttributeValue<string>("lastnasme") ?? "";
+                        var extensionLength = record.GetAttributeValue<AliasedValue?>("dfeta_induction.dfeta_extensionlength")?.Value;
+                        var extensionLengthUnit = "";
+                        if (record.Contains("dfeta_induction.dfeta_extensionlengthunit") && extensionLengthUnits.ContainsKey(((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction.dfeta_extensionlengthunit").Value).Value))
+                        {
+                            extensionLengthUnit = extensionLengthUnits[((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction.dfeta_extensionlengthunit").Value).Value];
+                        }
+
+                        csvWriter.WriteField(trn);
+                        csvWriter.WriteField(firstname);
+                        csvWriter.WriteField(lastname);
+                        csvWriter.WriteField(extensionLength);
+                        csvWriter.WriteField(extensionLengthUnit);
+                        csvWriter.NextRecord();
+                    }
+
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                } while (result.MoreRecords);
+            }
+
+            //appropriatebodies
+            using (var appropriatebodyStream = await abBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var appropriateBodyStreamWriter = new StreamWriter(appropriatebodyStream))
+            using (var csvWriter = new CsvWriter(appropriateBodyStreamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("id");
+                csvWriter.WriteField("name");
+                csvWriter.WriteField("dfe_sign_in_organisation_id");
+                csvWriter.WriteField("local_authority_code");
+                csvWriter.WriteField("establishment_number");
+                csvWriter.NextRecord();
+
+                var query = new QueryExpression("account");
+                query.ColumnSet = new ColumnSet("accountid", "name", "dfeta_saorgid", "dfeta_laschoolcode", "dfeta_establishmentcode");
+                query.PageInfo = new PagingInfo()
+                {
+                    Count = 1000,
+                    PageNumber = 1
+                };
+                EntityCollection result;
+
+                do
+                {
+                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    foreach (var record in result.Entities)
+                    {
+                        var id = record["accountid"];
+                        var name = record.Contains("name") ? record["name"] : "";
+                        var signinId = record.Contains("dfeta_saorgid") ? record["dfeta_saorgid"] : "";
+                        var laCode = record.Contains("dfeta_laschoolcode") ? record["dfeta_laschoolcode"] : "";
+                        var establishmentNumber = record.Contains("dfeta_establishmentcode") ? record["dfeta_establishmentcode"] : "";
+
+                        csvWriter.WriteField(id);
+                        csvWriter.WriteField(name);
+                        csvWriter.WriteField(signinId);
+                        csvWriter.WriteField(laCode);
+                        csvWriter.WriteField(establishmentNumber);
+                        csvWriter.NextRecord();
+                    }
+
+                    query.PageInfo.PageNumber++;
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                } while (result.MoreRecords);
+            }
+        })
+    };
+    rootCommand.Add(command);
+}
+
 
 
 static void BackfillTrnRequestEmails(RootCommand rootCommand)
@@ -232,99 +453,99 @@ static void CorrectInductionStartDates(RootCommand rootCommand)
                         Environment.Exit(1);
                     });
 
-    //fetch all inductions with induction periods
-    var query = new QueryExpression("dfeta_induction");
-    query.Criteria.AddCondition("dfeta_startdate", ConditionOperator.NotNull);
-    query.ColumnSet = new ColumnSet("dfeta_startdate");
-    query.PageInfo = new PagingInfo()
-    {
-        Count = 1000,
-        PageNumber = 1
-    };
+            //fetch all inductions with induction periods
+            var query = new QueryExpression("dfeta_induction");
+            query.Criteria.AddCondition("dfeta_startdate", ConditionOperator.NotNull);
+            query.ColumnSet = new ColumnSet("dfeta_startdate");
+            query.PageInfo = new PagingInfo()
+            {
+                Count = 1000,
+                PageNumber = 1
+            };
 
-    // Subquery to get the earliest start date for each induction
-    var subquery = new QueryExpression("dfeta_inductionperiod")
-    {
-        ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate"),
-        Orders = { new OrderExpression("dfeta_startdate", OrderType.Ascending) },
-        TopCount = 1
-    };
+            // Subquery to get the earliest start date for each induction
+            var subquery = new QueryExpression("dfeta_inductionperiod")
+            {
+                ColumnSet = new ColumnSet("dfeta_inductionid", "dfeta_startdate"),
+                Orders = { new OrderExpression("dfeta_startdate", OrderType.Ascending) },
+                TopCount = 1
+            };
 
-    //link to active dfeta_inductionperiod
-    var linkEntity = new LinkEntity(
-        "dfeta_induction",
-        "dfeta_inductionperiod",
-        "dfeta_inductionid",
-        "dfeta_inductionid",
-        JoinOperator.Inner)
-    {
-        Columns = new ColumnSet("dfeta_startdate"),
-        EntityAlias = "dfeta_inductionperiod",
-        LinkCriteria = new FilterExpression
-        {
-            FilterOperator = LogicalOperator.And,
-            Conditions =
+            //link to active dfeta_inductionperiod
+            var linkEntity = new LinkEntity(
+                "dfeta_induction",
+                "dfeta_inductionperiod",
+                "dfeta_inductionid",
+                "dfeta_inductionid",
+                JoinOperator.Inner)
+            {
+                Columns = new ColumnSet("dfeta_startdate"),
+                EntityAlias = "dfeta_inductionperiod",
+                LinkCriteria = new FilterExpression
+                {
+                    FilterOperator = LogicalOperator.And,
+                    Conditions =
                     {
                         new ConditionExpression("dfeta_startdate", ConditionOperator.NotNull),
                         new ConditionExpression("statecode", ConditionOperator.Equal, 0)
                     }
-        }
-    };
-    query.LinkEntities.Add(linkEntity);
+                }
+            };
+            query.LinkEntities.Add(linkEntity);
 
-    EntityCollection result;
-    var inductions = new List<(Guid inductionId, DateTime currentStartDate, DateTime targetStartDate)>();
-    do
-    {
-        result = await serviceClient.RetrieveMultipleAsync(query);
-        var grouped = result.Entities
-            .GroupBy(e => e.GetAttributeValue<Guid>("dfeta_inductionid"))
-            .Select(g =>
-            (
-                g.Key,
-                g.First().GetAttributeValue<DateTime>("dfeta_startdate"),
-                g.Min(e => (DateTime)e.GetAttributeValue<AliasedValue>("dfeta_inductionperiod.dfeta_startdate").Value)
-            ))
-            .ToList();
-        inductions.AddRange(grouped);
-
-        query.PageInfo.PageNumber++;
-        query.PageInfo.PagingCookie = result.PagingCookie;
-    }
-    while (result.MoreRecords);
-
-    using (var blobStream = await inductionBloblient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
-    using (var streamWriter = new StreamWriter(blobStream))
-    using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
-    {
-        csvWriter.WriteField("inductionid");
-        csvWriter.WriteField("current_startdate");
-        csvWriter.WriteField("target_startdate");
-        csvWriter.NextRecord();
-
-        foreach (var induction in inductions)
-        {
-            if (!induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true).Equals(induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)))
+            EntityCollection result;
+            var inductions = new List<(Guid inductionId, DateTime currentStartDate, DateTime targetStartDate)>();
+            do
             {
-                csvWriter.WriteField(induction.inductionId);
-                csvWriter.WriteField(induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)); //current startdate
-                csvWriter.WriteField($"{induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)}");  //what it will be reverted to
+                result = await serviceClient.RetrieveMultipleAsync(query);
+                var grouped = result.Entities
+                    .GroupBy(e => e.GetAttributeValue<Guid>("dfeta_inductionid"))
+                    .Select(g =>
+                    (
+                        g.Key,
+                        g.First().GetAttributeValue<DateTime>("dfeta_startdate"),
+                        g.Min(e => (DateTime)e.GetAttributeValue<AliasedValue>("dfeta_inductionperiod.dfeta_startdate").Value)
+                    ))
+                    .ToList();
+                inductions.AddRange(grouped);
+
+                query.PageInfo.PageNumber++;
+                query.PageInfo.PagingCookie = result.PagingCookie;
+            }
+            while (result.MoreRecords);
+
+            using (var blobStream = await inductionBloblient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var streamWriter = new StreamWriter(blobStream))
+            using (var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("inductionid");
+                csvWriter.WriteField("current_startdate");
+                csvWriter.WriteField("target_startdate");
                 csvWriter.NextRecord();
 
-                if (commit == true)
+                foreach (var induction in inductions)
                 {
-                    var updateInduction = new CorrectInductionStartDate() { InductionId = induction.inductionId, StartDate = induction.targetStartDate };
-                    inductionsToUpdate.OnNext(updateInduction);
+                    if (!induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true).Equals(induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)))
+                    {
+                        csvWriter.WriteField(induction.inductionId);
+                        csvWriter.WriteField(induction.currentStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)); //current startdate
+                        csvWriter.WriteField($"{induction.targetStartDate.ToDateOnlyWithDqtBstFix(isLocalTime: true)}");  //what it will be reverted to
+                        csvWriter.NextRecord();
+
+                        if (commit == true)
+                        {
+                            var updateInduction = new CorrectInductionStartDate() { InductionId = induction.inductionId, StartDate = induction.targetStartDate };
+                            inductionsToUpdate.OnNext(updateInduction);
+                        }
+                    }
                 }
             }
-        }
-    }
-    inductionsToUpdate.OnCompleted();
-    batchSubscription.Dispose();
-})
+            inductionsToUpdate.OnCompleted();
+            batchSubscription.Dispose();
+        })
     };
-command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
-rootCommand.Add(command);
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
 }
 
 static void RevertAllowPiiUpdates(RootCommand rootCommand)
