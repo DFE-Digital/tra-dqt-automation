@@ -167,6 +167,8 @@ static void ExportInductionPeriods(RootCommand rootCommand)
 
                 var query = new QueryExpression("dfeta_inductionperiod");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                query.Criteria.AddCondition("dfeta_appropriatebody", ConditionOperator.Equal, 1);
+
                 query.ColumnSet = new ColumnSet("dfeta_appropriatebodyid", "dfeta_startdate", "dfeta_enddate", "dfeta_inductionprogrammetype", "dfeta_numberofterms");
                 query.PageInfo = new PagingInfo()
                 {
