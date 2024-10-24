@@ -116,9 +116,9 @@ static void ExportInductionPeriods(RootCommand rootCommand)
 #endif
 
             var now = $"{DateTime.Now:yyyyMMddHHmmss}";
-            var inductionPeriodsFileName = $"induction-periods/inductionperiods_{now}.csv";
-            var teachersFileName = $"induction-periods/teachers_{now}.csv";
-            var abFileName = $"induction-periods/appropriatebody_{now}.csv";
+            var inductionPeriodsFileName = $"induction-periods/{now}/inductionperiods.csv";
+            var teachersFileName = $"induction-periods/{now}/teachers.csv";
+            var abFileName = $"induction-periods/{now}/appropriatebody.csv";
             var abBlobClient = blobContainerClient.GetBlobClient(abFileName);
             var teachersBlobClient = blobContainerClient.GetBlobClient(teachersFileName);
             var inductionPeriodsClient = blobContainerClient.GetBlobClient(inductionPeriodsFileName);
@@ -216,47 +216,46 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                 csvWriter.WriteField("extension_length_unit");
                 csvWriter.NextRecord();
 
-                var query = new QueryExpression("contact");
-                query.ColumnSet = new ColumnSet("dfeta_trn", "firstname", "lastname", "contactid");
-                query.PageInfo = new PagingInfo()
-                {
-                    Count = 1000,
-                    PageNumber = 1
-                };
-                EntityCollection result;
-                var linkInductionEntity = new LinkEntity(
-                    "contacts",
-                    "dfeta_induction",
-                    "contactid",
-                    "dfeta_personid",
-                    JoinOperator.Inner)
-                    {
-                        Columns = new ColumnSet("dfeta_extensionlength", "dfeta_extensionlengthunit"),
-                        EntityAlias = "dfeta_induction",
-                        LinkCriteria = new FilterExpression
-                        {
-                            FilterOperator = LogicalOperator.And,
-                            Conditions =
-                                {
-                                    new ConditionExpression("statecode", ConditionOperator.Equal, 0)
-                                }
-                        }
-                    };
-                query.LinkEntities.Add(linkInductionEntity);
+                int pageNumber = 1;
+                int fetchCount = 1000;
+                string pagingCookie = null;
+                bool moreRecords = true;
 
                 do
                 {
-                    result = await serviceClient.RetrieveMultipleAsync(query);
+                    // Properly encode the paging cookie if it's not null
+                    string pagingCookieXml = string.IsNullOrEmpty(pagingCookie) ? "" : $"paging-cookie='{System.Security.SecurityElement.Escape(pagingCookie)}'";
+                    string fetchXml = $@"
+                        <fetch distinct='true' count='{fetchCount}' page='{pageNumber}' {pagingCookieXml} no-lock='true'>
+                          <entity name='contact'>
+                            <attribute name='dfeta_trn' />
+                            <attribute name='firstname' />
+                            <attribute name='lastname' />
+                            <attribute name='contactid' />
+                            <link-entity name='dfeta_induction' from='dfeta_personid' to='contactid' link-type='inner'>
+                              <attribute name='dfeta_extensionlength' />
+                              <attribute name='dfeta_extensionlengthunit' />
+                            <filter>
+                                <condition attribute='statecode' operator='eq' value='0' />
+                            </filter>
+                            </link-entity>
+                          </entity>
+                        </fetch>";
+
+                    // Retrieve multiple records using FetchXML
+                    var fetchExpression = new FetchExpression(fetchXml);
+                    var result = await serviceClient.RetrieveMultipleAsync(fetchExpression);
+
                     foreach (var record in result.Entities)
                     {
                         var trn = record.GetAttributeValue<string>("dfeta_trn") ?? "";
                         var firstname = record.GetAttributeValue<string>("firstname") ?? "";
-                        var lastname = record.GetAttributeValue<string>("lastnasme") ?? "";
-                        var extensionLength = record.GetAttributeValue<AliasedValue?>("dfeta_induction.dfeta_extensionlength")?.Value;
+                        var lastname = record.GetAttributeValue<string>("lastname") ?? "";
+                        var extensionLength = record.GetAttributeValue<AliasedValue?>("dfeta_induction1.dfeta_extensionlength")?.Value;
                         var extensionLengthUnit = "";
-                        if (record.Contains("dfeta_induction.dfeta_extensionlengthunit") && extensionLengthUnits.ContainsKey(((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction.dfeta_extensionlengthunit").Value).Value))
+                        if (record.Contains("dfeta_induction1.dfeta_extensionlengthunit") && extensionLengthUnits.ContainsKey(((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction1.dfeta_extensionlengthunit").Value).Value))
                         {
-                            extensionLengthUnit = extensionLengthUnits[((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction.dfeta_extensionlengthunit").Value).Value];
+                            extensionLengthUnit = extensionLengthUnits[((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction1.dfeta_extensionlengthunit").Value).Value];
                         }
 
                         csvWriter.WriteField(trn);
@@ -267,9 +266,10 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         csvWriter.NextRecord();
                     }
 
-                    query.PageInfo.PageNumber++;
-                    query.PageInfo.PagingCookie = result.PagingCookie;
-                } while (result.MoreRecords);
+                    pagingCookie = result.PagingCookie;
+                    moreRecords = result.MoreRecords;
+                    pageNumber++;
+                } while (moreRecords);
             }
 
             //appropriatebodies
