@@ -170,21 +170,29 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
                 query.ColumnSet = new ColumnSet("dfeta_appropriatebodyid", "dfeta_startdate", "dfeta_enddate", "dfeta_inductionprogrammetype", "dfeta_numberofterms");
 
-                //link to active dfeta_inductionperiod
-                var linkEntity = new LinkEntity(
-                    "dfeta_inductionperiod",
-                    "contact",
-                    "dfeta_personid",
-                    "contactid",
-                    JoinOperator.Inner)
+                //link to active dfeta_induction
+                var linkEntity = new LinkEntity
+                {
+                    LinkFromEntityName = "dfeta_inductionperiod",
+                    LinkToEntityName = "dfeta_induction",
+                    LinkFromAttributeName = "dfeta_inductionid",
+                    LinkToAttributeName = "dfeta_inductionid",
+                    JoinOperator = JoinOperator.Inner,
+                    Columns = new ColumnSet("dfeta_inductionid"),
+                    LinkEntities =
                     {
-                        Columns = new ColumnSet("dfeta_trn"),
-                        EntityAlias = "contact",
-                    };
+                        new LinkEntity
+                        {
+                            LinkFromEntityName = "dfeta_induction",
+                            LinkToEntityName = "contact",
+                            LinkFromAttributeName = "dfeta_personid",
+                            LinkToAttributeName = "contactid",
+                            JoinOperator = JoinOperator.Inner,
+                            Columns = new ColumnSet("dfeta_trn"),
+                        }
+                    }
+                };
                 query.LinkEntities.Add(linkEntity);
-
-
-
                 query.PageInfo = new PagingInfo()
                 {
                     Count = 1000,
@@ -201,7 +209,7 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         var startedOn = record.GetAttributeValue<DateTime>("dfeta_startdate");
                         var finishedOn = record.GetAttributeValue<DateTime?>("dfeta_enddate");
                         var inductionProgrammeChoice = "";
-                        var trn = record.GetAttributeValue<AliasedValue?>("contact.dfeta_trn")?.Value;
+                        var trn = record.GetAttributeValue<AliasedValue?>("contact2.dfeta_trn")?.Value;
                         if (record.Contains("dfeta_inductionprogrammetype") && inductionProgrammeTypes.ContainsKey(record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value))
                         {
                             inductionProgrammeChoice = inductionProgrammeTypes[record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value];
