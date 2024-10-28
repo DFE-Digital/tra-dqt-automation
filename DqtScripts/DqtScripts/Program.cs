@@ -163,12 +163,28 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                 csvWriter.WriteField("finished_on");
                 csvWriter.WriteField("induction_programme_choice");
                 csvWriter.WriteField("number_of_terms");
+                csvWriter.WriteField("trn");
                 csvWriter.NextRecord();
 
                 var query = new QueryExpression("dfeta_inductionperiod");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
-
                 query.ColumnSet = new ColumnSet("dfeta_appropriatebodyid", "dfeta_startdate", "dfeta_enddate", "dfeta_inductionprogrammetype", "dfeta_numberofterms");
+
+                //link to active dfeta_inductionperiod
+                var linkEntity = new LinkEntity(
+                    "dfeta_inductionperiod",
+                    "contact",
+                    "dfeta_personid",
+                    "contactid",
+                    JoinOperator.Inner)
+                    {
+                        Columns = new ColumnSet("dfeta_trn"),
+                        EntityAlias = "contact",
+                    };
+                query.LinkEntities.Add(linkEntity);
+
+
+
                 query.PageInfo = new PagingInfo()
                 {
                     Count = 1000,
@@ -185,6 +201,7 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         var startedOn = record.GetAttributeValue<DateTime>("dfeta_startdate");
                         var finishedOn = record.GetAttributeValue<DateTime?>("dfeta_enddate");
                         var inductionProgrammeChoice = "";
+                        var trn = record.GetAttributeValue<AliasedValue?>("contact.dfeta_trn")?.Value;
                         if (record.Contains("dfeta_inductionprogrammetype") && inductionProgrammeTypes.ContainsKey(record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value))
                         {
                             inductionProgrammeChoice = inductionProgrammeTypes[record.GetAttributeValue<OptionSetValue>("dfeta_inductionprogrammetype").Value];
@@ -196,6 +213,7 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         csvWriter.WriteField(finishedOn);
                         csvWriter.WriteField(inductionProgrammeChoice);
                         csvWriter.WriteField(numberOfTerms);
+                        csvWriter.WriteField(trn);
                         csvWriter.NextRecord();
                     }
 
