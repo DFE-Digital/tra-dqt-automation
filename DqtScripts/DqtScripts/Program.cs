@@ -217,8 +217,8 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         var numberOfTerms = record.GetAttributeValue<int>("dfeta_numberofterms");
 
                         csvWriter.WriteField(appropriateBodyId);
-                        csvWriter.WriteField(startedOn);
-                        csvWriter.WriteField(finishedOn);
+                        csvWriter.WriteField(startedOn.ToDateOnlyWithDqtBstFix(isLocalTime: true));
+                        csvWriter.WriteField(finishedOn.ToDateOnlyWithDqtBstFix(isLocalTime: true));
                         csvWriter.WriteField(inductionProgrammeChoice);
                         csvWriter.WriteField(numberOfTerms);
                         csvWriter.WriteField(trn);
