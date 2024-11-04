@@ -1,0 +1,54 @@
+<html><head>
+    <style>
+        .banner {
+            background-color: #fef4cc;
+            padding: 5px;
+            border: 2px solid #d8d8d8;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+    <script type="text/javascript">       
+        function redirectToTRS() {
+            var link = document.getElementById('trsUrl');
+            var targetUrl = link.href;
+            
+            // Use window.location.replace to bypass proxy interference
+            window.top.location.replace(targetUrl);
+        }
+
+ function getRecordId() {
+            var recordId = null;
+
+            // Get the current Dynamics environment URL
+            var currentUrl = window.location.hostname;
+            var DEFAULT_URL = "ent-dqt-prod.crm4.dynamics.com.mcas.ms";
+
+            // Define URLs based on the environment
+            var environmentUrls = {
+                "ent-dqt-prod.crm4.dynamics.com" : "trs-production-ui.teacherservices.cloud/persons/",
+                "ent-dqt-preprod.crm4.dynamics.com": "pre-production-ui.test.teacherservices.cloud/persons/",
+                "ent-dqt-test.crm4.dynamics.com": "trs-test-ui.test.teacherservices.cloud/persons/",
+                "ent-dqt-build.crm4.dynamics.com": "trs-dev-ui.test.teacherservices.cloud/persons/",
+            };
+
+            var trsUrl = environmentUrls[currentUrl] || DEFAULT_URL;
+            var link = document.getElementById('trsUrl');
+
+            if (window.parent.Xrm) {
+                // Use the Unified Interface API to get the record ID
+                recordId = window.parent.Xrm.Page.data.entity.getId(); // For legacy interface
+                if (recordId) {
+                    recordId = recordId.replace('{', '').replace('}', '');
+                    link.href = "https://" + trsUrl + recordId;
+                }
+            }
+        }
+    </script>
+<meta><meta><meta></head>
+<body onload="getRecordId()" onfocusout="parent.setEmailRange();" style="overflow-wrap: break-word;">
+    <div class="banner">
+        Check for alerts in <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
+    </div>
+
+</body></html>

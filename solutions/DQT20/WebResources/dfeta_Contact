@@ -17,7 +17,9 @@ var DFE;
                         formContext.getAttribute('birthdate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'birthdate'); });
                         formContext.getAttribute('dfeta_dateofdeath').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_dateofdeath'); });
 
-                        this.CheckTotalActiveSanctions(executionContext);
+                        //this.CheckTotalActiveSanctions(executionContext);
+                        this.DisplayAlertsMovedToTRS(executionContext);
+
                     }
                 }
 
@@ -52,6 +54,16 @@ var DFE;
                         }
                     }
                 }
+
+                contact.DisplayAlertsMovedToTRS= function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var currentUrl = window.location.hostname;
+                        var trsLink = '<a href="https://trs-dev-ui.test.teacherservices.cloud/persons/df536962-a612-ef11-9f89-0022489c3ab7">TRS Console</a>'
+                            formContext.ui.setFormNotification(`Alerts have been migrated to the TRS Console`, "WARNING", "infoNotification");
+                    }
+                }
+
 
                 contact.OnChangeTownCity = function (executionContext) {
                     if (executionContext != null) {

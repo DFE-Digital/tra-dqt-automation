@@ -606,6 +606,11 @@
               <Title LCID="1033" Text="Campaigns" />
             </Titles>
           </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="dfeta_contact_dfeta_sanction" Id="nav_dfeta_contact_dfeta_sanction" Sequence="9018" solutionaction="Added">
+            <Titles>
+              <Title Text="Alerts" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
         </NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
@@ -857,6 +862,9 @@
       </controlDescriptions>
       <DisplayConditions FallbackForm="true" Order="4" solutionaction="Modified" />
       <formLibraries solutionaction="Removed" />
+      <footer id="{f34742a4-c586-4270-a15d-e097a7da1537}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows></rows>
+      </footer>
     </form>
     <LocalizedNames>
       <LocalizedName description="Contact" languagecode="1033" />
