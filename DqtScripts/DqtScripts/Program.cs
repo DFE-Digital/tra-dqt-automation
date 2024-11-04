@@ -162,7 +162,7 @@ static void ExportNPQS(RootCommand rootCommand)
                         var type = record.GetAttributeValue<OptionSetValue>("dfeta_type").Value;
                         csvWriter.WriteField(trn);
                         csvWriter.WriteField(type);
-                        csvWriter.WriteField(completiondate);
+                        csvWriter.WriteField(completiondate.ToDateOnlyWithDqtBstFix(isLocalTime: true));
                         csvWriter.NextRecord();
                     }
 
