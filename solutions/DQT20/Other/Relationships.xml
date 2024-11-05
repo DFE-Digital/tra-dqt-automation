@@ -28,6 +28,7 @@
   <EntityRelationship Name="business_unit_dfeta_qualification" />
   <EntityRelationship Name="business_unit_dfeta_sanction" />
   <EntityRelationship Name="business_unit_dfeta_trsevent" />
+  <EntityRelationship Name="business_unit_dfeta_trsoutboxmessage" />
   <EntityRelationship Name="business_unit_dfeta_webactivitylog" />
   <EntityRelationship Name="business_unit_incidents" />
   <EntityRelationship Name="business_unit_leads" />
@@ -248,6 +249,8 @@
   <EntityRelationship Name="lk_dfeta_temporaryqueries_modifiedby" />
   <EntityRelationship Name="lk_dfeta_trsevent_createdby" />
   <EntityRelationship Name="lk_dfeta_trsevent_modifiedby" />
+  <EntityRelationship Name="lk_dfeta_trsoutboxmessage_createdby" />
+  <EntityRelationship Name="lk_dfeta_trsoutboxmessage_modifiedby" />
   <EntityRelationship Name="lk_dfeta_tsstcohorts_createdby" />
   <EntityRelationship Name="lk_dfeta_tsstcohorts_modifiedby" />
   <EntityRelationship Name="lk_dfeta_tsstsubjects_createdby" />
@@ -323,6 +326,7 @@
   <EntityRelationship Name="owner_dfeta_qualification" />
   <EntityRelationship Name="owner_dfeta_sanction" />
   <EntityRelationship Name="owner_dfeta_trsevent" />
+  <EntityRelationship Name="owner_dfeta_trsoutboxmessage" />
   <EntityRelationship Name="owner_dfeta_webactivitylog" />
   <EntityRelationship Name="price_level_accounts" />
   <EntityRelationship Name="price_level_contacts" />
@@ -363,6 +367,7 @@
   <EntityRelationship Name="team_dfeta_qualification" />
   <EntityRelationship Name="team_dfeta_sanction" />
   <EntityRelationship Name="team_dfeta_trsevent" />
+  <EntityRelationship Name="team_dfeta_trsoutboxmessage" />
   <EntityRelationship Name="team_dfeta_webactivitylog" />
   <EntityRelationship Name="team_incidents" />
   <EntityRelationship Name="team_task" />
@@ -388,6 +393,7 @@
   <EntityRelationship Name="user_dfeta_qualification" />
   <EntityRelationship Name="user_dfeta_sanction" />
   <EntityRelationship Name="user_dfeta_trsevent" />
+  <EntityRelationship Name="user_dfeta_trsoutboxmessage" />
   <EntityRelationship Name="user_dfeta_webactivitylog" />
   <EntityRelationship Name="user_task" />
 </EntityRelationships>

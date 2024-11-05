@@ -191,6 +191,7 @@
     <RolePrivilege name="prvCreatedfeta_qualification" level="Local" />
     <RolePrivilege name="prvCreatedfeta_sanction" level="Local" />
     <RolePrivilege name="prvCreatedfeta_TRSEvent" level="Global" />
+    <RolePrivilege name="prvCreatedfeta_TrsOutboxMessage" level="Global" />
     <RolePrivilege name="prvCreatedfeta_webactivitylog" level="Global" />
     <RolePrivilege name="prvCreateExpiredProcess" level="Global" />
     <RolePrivilege name="prvCreateImportFile" level="Basic" />
@@ -304,6 +305,7 @@
     <RolePrivilege name="prvReaddfeta_teacherstatus" level="Global" />
     <RolePrivilege name="prvReaddfeta_temporaryqueries" level="Global" />
     <RolePrivilege name="prvReaddfeta_TRSEvent" level="Global" />
+    <RolePrivilege name="prvReaddfeta_TrsOutboxMessage" level="Global" />
     <RolePrivilege name="prvReaddfeta_tsstcohorts" level="Global" />
     <RolePrivilege name="prvReaddfeta_tsstsubjects" level="Global" />
     <RolePrivilege name="prvReaddfeta_webactivitylog" level="Global" />
@@ -432,6 +434,7 @@
     <RolePrivilege name="prvWritedfeta_qualification" level="Local" />
     <RolePrivilege name="prvWritedfeta_sanction" level="Local" />
     <RolePrivilege name="prvWritedfeta_TRSEvent" level="Global" />
+    <RolePrivilege name="prvWritedfeta_TrsOutboxMessage" level="Global" />
     <RolePrivilege name="prvWritedfeta_webactivitylog" level="Global" />
     <RolePrivilege name="prvWriteExpiredProcess" level="Global" />
     <RolePrivilege name="prvWriteImportFile" level="Basic" />

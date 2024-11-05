@@ -21,7 +21,7 @@
                       <cell id="{f3eec8ff-7b5a-43af-92c4-1a41adaf4b50}" ordinalvalue="20001" solutionaction="Removed" />
                     </row>
                     <row>
-                      <cell id="{478c8803-2686-4d10-8cf0-e6e5b3b6007f}" ordinalvalue="10002">
+                      <cell id="{478c8803-2686-4d10-8cf0-e6e5b3b6007f}" ordinalvalue="10003" solutionaction="Modified">
                         <labels>
                           <label description="First Name" languagecode="1033" solutionaction="Added" />
                         </labels>
@@ -29,7 +29,7 @@
                       <cell id="{0304f83d-bb05-4e72-bf12-c9bfa8a8e152}" ordinalvalue="20003" solutionaction="Removed" />
                     </row>
                     <row>
-                      <cell id="{8097efd5-8af7-4944-b7a5-42ece196e23d}" ordinalvalue="10004">
+                      <cell id="{8097efd5-8af7-4944-b7a5-42ece196e23d}" ordinalvalue="10005" solutionaction="Modified">
                         <labels>
                           <label description="Middle Name" languagecode="1033" solutionaction="Added" />
                         </labels>
@@ -37,7 +37,7 @@
                       <cell id="{70d9cd8f-142b-4a88-bf82-4d2bc2972140}" ordinalvalue="20005" solutionaction="Removed" />
                     </row>
                     <row>
-                      <cell id="{4fde05d9-89b1-4acf-a98f-13159f1bdcc8}" ordinalvalue="10006">
+                      <cell id="{4fde05d9-89b1-4acf-a98f-13159f1bdcc8}" ordinalvalue="10007" solutionaction="Modified">
                         <labels>
                           <label description="Last Name" languagecode="1033" solutionaction="Added" />
                         </labels>
@@ -53,13 +53,36 @@
                       <cell id="{bbe0ad95-9a47-4fff-92db-8165face5f49}" ordinalvalue="20011" solutionaction="Removed" />
                     </row>
                     <row>
-                      <cell id="{6ea99198-686a-709b-0ed9-b0e7628b6681}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+                      <cell id="{0d080278-0e7a-61d9-62db-9150c4d8608a}" showlabel="false" colspan="2" auto="false" rowspan="1" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="TRSBanner" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_TRSBanner" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>dfeta_TRSBanner</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{F31BC976-BC8B-EF11-AC20-6045BDE07057}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6ea99198-686a-709b-0ed9-b0e7628b6681}" showlabel="true" locklevel="0" ordinalvalue="10001" solutionaction="Added">
                         <labels>
                           <label description="Title" languagecode="1033" />
                         </labels>
                         <control id="dfeta_title" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_title" disabled="false" />
                       </cell>
-                      <cell id="{7607642b-1b71-4623-9cd7-891cec12470a}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
+                      <cell id="{7607642b-1b71-4623-9cd7-891cec12470a}" showlabel="true" locklevel="0" ordinalvalue="20002" solutionaction="Added">
                         <labels>
                           <label description="TRN" languagecode="1033" />
                         </labels>
@@ -67,7 +90,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{5c1e7695-8b08-529d-d226-67009e34d835}" showlabel="true" locklevel="0" ordinalvalue="20003" solutionaction="Added">
+                      <cell id="{5c1e7695-8b08-529d-d226-67009e34d835}" showlabel="true" locklevel="0" ordinalvalue="20004" solutionaction="Added">
                         <labels>
                           <label description="Party ID" languagecode="1033" />
                         </labels>
@@ -75,7 +98,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{60087ee2-4b58-9bee-1992-dbda0abe9ab3}" showlabel="true" locklevel="1" ordinalvalue="20005" solutionaction="Added">
+                      <cell id="{60087ee2-4b58-9bee-1992-dbda0abe9ab3}" showlabel="true" locklevel="1" ordinalvalue="20006" solutionaction="Added">
                         <labels>
                           <label description="NI Number" languagecode="1033" />
                         </labels>
@@ -83,7 +106,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{7187390a-acbb-2a6e-8e92-0636e1c03be9}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Added">
+                      <cell id="{7187390a-acbb-2a6e-8e92-0636e1c03be9}" showlabel="true" locklevel="0" ordinalvalue="20008" solutionaction="Added">
                         <labels>
                           <label description="Date of Death" languagecode="1033" />
                         </labels>
@@ -91,13 +114,13 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{9748b178-14ab-49af-8985-c02de8892720}" ordinalvalue="10008" solutionaction="Added">
+                      <cell id="{9748b178-14ab-49af-8985-c02de8892720}" ordinalvalue="10009" solutionaction="Added">
                         <labels>
                           <label description="Gender" languagecode="1033" />
                         </labels>
                         <control id="gendercode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="gendercode" />
                       </cell>
-                      <cell id="{43eaad1b-51c3-a5b6-d54e-338e5d2d21b2}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Added">
+                      <cell id="{43eaad1b-51c3-a5b6-d54e-338e5d2d21b2}" showlabel="true" locklevel="0" ordinalvalue="20010" solutionaction="Added">
                         <labels>
                           <label description="Nationality" languagecode="1033" />
                         </labels>
@@ -105,13 +128,13 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{b2adc634-723e-4e87-b8f1-b62e3cf1fad1}" showlabel="true" locklevel="0" ordinalvalue="10010" solutionaction="Added">
+                      <cell id="{b2adc634-723e-4e87-b8f1-b62e3cf1fad1}" showlabel="true" locklevel="0" ordinalvalue="10011" solutionaction="Added">
                         <labels>
                           <label description="Date of Birth" languagecode="1033" />
                         </labels>
                         <control id="birthdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="birthdate" disabled="false" />
                       </cell>
-                      <cell id="{d495b21a-f38e-4f02-8d03-918bae63a6c0}" showlabel="true" locklevel="0" ordinalvalue="20011" solutionaction="Added">
+                      <cell id="{d495b21a-f38e-4f02-8d03-918bae63a6c0}" showlabel="true" locklevel="0" ordinalvalue="20012" solutionaction="Added">
                         <labels>
                           <label description="TRN Required" languagecode="1033" />
                         </labels>
@@ -669,11 +692,10 @@
             <cell id="{6eb10c6b-c25e-a2ea-b4c1-b3d4a075d081}" ordinalvalue="30002" solutionaction="Removed" />
           </row>
           <row>
-            <cell id="{98729bb7-1e22-e00b-0c4c-d4325204de68}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+            <cell id="{b1ae6474-b29d-7ab6-c826-cca280905bec}" showlabel="false" ordinalvalue="10000" solutionaction="Added">
               <labels>
-                <label description="Active Alerts" languagecode="1033" />
+                <label description="" languagecode="1033" />
               </labels>
-              <control id="header_dfeta_activesanctions" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_activesanctions" disabled="true" />
             </cell>
             <cell id="{d5d8de28-b83e-045b-c608-b787d6c1e6b6}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
               <labels>
@@ -699,7 +721,7 @@
       <clientresources solutionaction="Removed" />
       <Navigation>
         <NavBar>
-          <NavBarByRelationshipItem RelationshipName="Contact_CustomerAddress" Id="navAddresses" TitleResourceId="Tab_Label_MoreAddresses" Sequence="10" Area="Info" solutionaction="Modified">
+          <NavBarByRelationshipItem RelationshipName="Contact_CustomerAddress" Id="navAddresses" TitleResourceId="Tab_Label_MoreAddresses" Sequence="9001" Area="Info" solutionaction="Modified">
             <Titles solutionaction="Added">
               <Title LCID="1033" Text="More Addresses" />
             </Titles>
@@ -709,12 +731,12 @@
               <Title LCID="1033" Text="Sub-Contacts" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="Contact_ActivityPointers" Id="navActivities" Icon="/_imgs/ico_18_act.gif" Sequence="21" Area="Info" solutionaction="Modified">
+          <NavBarByRelationshipItem RelationshipName="Contact_ActivityPointers" Id="navActivities" Icon="/_imgs/ico_18_act.gif" Sequence="9002" Area="Info" solutionaction="Modified">
             <Titles solutionaction="Added">
               <Title LCID="1033" Text="Activities" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="Contact_ActivityPointers" Id="navActivityHistory" TitleResourceId="Tab_Label_History" Icon="/_imgs/ico_18_history.gif" ViewId="21E2B905-6FDB-470d-8517-AD69B4C01268" Area="Info" Sequence="22" solutionaction="Modified">
+          <NavBarByRelationshipItem RelationshipName="Contact_ActivityPointers" Id="navActivityHistory" TitleResourceId="Tab_Label_History" Icon="/_imgs/ico_18_history.gif" ViewId="21E2B905-6FDB-470d-8517-AD69B4C01268" Area="Info" Sequence="9003" solutionaction="Modified">
             <Titles solutionaction="Added">
               <Title LCID="1033" Text="Closed Activities" />
             </Titles>
@@ -722,11 +744,6 @@
           <NavBarByRelationshipItem RelationshipName="contact_customer_relationship_customer" Id="navRelationships" TitleResourceId="Left_Nav_Area_Relationships" Sequence="50" Area="Info" Show="false" solutionaction="Modified">
             <Titles solutionaction="Added">
               <Title LCID="1033" Text="Relationships" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="contact_SharePointDocuments" Sequence="1" Area="Info" Id="navSPDocuments" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Documents" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="opportunity_customer_contacts" Area="Sales" Id="navOpps" Show="false" Sequence="12" solutionaction="Added">
@@ -739,14 +756,14 @@
               <Title LCID="1033" Text="Marketing Lists" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="contract_customer_contacts" Area="Service" Id="navContracts" Show="false" Sequence="23" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Contracts" />
-            </Titles>
-          </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="quote_customer_contacts" Area="Sales" Id="navQuotes" Show="false" Sequence="23" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Quotes" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="contract_customer_contacts" Area="Service" Id="navContracts" Show="false" Sequence="23" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Contracts" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navCampaignsInSFA" Area="Marketing" Id="navCampaignsInSFA" Show="false" Sequence="23" solutionaction="Added">
@@ -759,7 +776,7 @@
               <Title LCID="1033" Text="Orders" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="invoice_customer_contacts" Sequence="41" Area="Sales" Id="navInvoices" Show="false" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="invoice_customer_contacts" Sequence="42" Area="Sales" Id="navInvoices" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Invoices" />
             </Titles>
@@ -794,24 +811,89 @@
               <Title LCID="1033" Text="Induction Periods" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_sanction" Id="nav_dfeta_contact_dfeta_sanction" Area="Sales" Sequence="1008" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Alerts" />
-            </Titles>
-          </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_confirmationletter" Id="nav_dfeta_contact_dfeta_confirmationletter" Area="Sales" Sequence="1009" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Confirmation Letters" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navConnections" Id="navConnections" Show="true" Sequence="9601" Area="Info" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="contact_SharePointDocuments" Sequence="9000" Area="Info" Id="navSPDocuments" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Documents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="true" RelationshipName="contact_entitlement_Customer" Id="navEntitlement" Sequence="9004" solutionaction="Added">
+            <Titles>
+              <Title Text="Entitlements" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="true" RelationshipName="Socialprofile_customer_contacts" Id="navSocialprofile" Sequence="9005" solutionaction="Added">
+            <Titles>
+              <Title Text="Social Profiles" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="true" RelationshipName="msdyn_playbookinstance_contact" Id="navPlaybooks" Sequence="9008" solutionaction="Added">
+            <Titles>
+              <Title Text="Playbooks" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navConnections" Id="navConnections" Show="true" Sequence="9009" Area="Info" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Connections" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navAudit" Area="Info" Id="navAudit" Sequence="9602" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navAudit" Area="Info" Id="navAudit" Sequence="9010" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Audit History" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="msdyn_contact_msdyn_ocliveworkitem_Customer" Sequence="9011" Area="Info" Id="nav_msdyn_contact_msdyn_ocliveworkitem_Customer" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Conversations" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="msdyn_contact_msdyn_liveconversation_Customer" Sequence="9012" Area="Info" Id="nav_msdyn_contact_msdyn_liveconversation_Customer" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Ongoing conversations (Deprecated)" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="msdyn_contact_dailycontactkpiitem_entityid" Sequence="9013" Area="Info" Id="nav_msdyn_contact_dailycontactkpiitem_entityid" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="dailycontactkpiitems" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="contact_msdyn_orgchartnode_msdyn_noderecord" Sequence="9014" Area="Info" Id="nav_contact_msdyn_orgchartnode_msdyn_noderecord" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Unique indentifier for the contact entity record" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="adx_contact_externalidentity" Sequence="9015" Area="Info" Id="nav_adx_contact_externalidentity" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="External Identities" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="msdyn_msdyn_conversationparticipantinsights_contact_msdyn_User" Sequence="9016" Area="Info" Id="nav_msdyn_msdyn_conversationparticipantinsights_contact_msdyn_User" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Conversation Participant Insights" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_document" Id="nav_dfeta_contact_dfeta_document" Area="Info" Sequence="9017" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Documents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_previousname" Id="nav_dfeta_contact_dfeta_previousname" Area="Info" Sequence="9018" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Previous Names" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_employment" Id="nav_dfeta_contact_dfeta_employment" Area="Info" Sequence="9019" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Employment History" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="incident_customer_contacts" Id="navService" Show="true" Area="Info" Sequence="9020" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Cases" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="dfeta_contact_task_potentialduplicateid" Sequence="9959" Area="Info" Id="nav_dfeta_contact_task_potentialduplicateid" Show="false" solutionaction="Added">
@@ -819,59 +901,19 @@
               <Title LCID="1033" Text="Tasks" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="msdyn_contact_msdyn_ocliveworkitem_Customer" Sequence="10001" Area="Info" Id="nav_msdyn_contact_msdyn_ocliveworkitem_Customer" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="PowerPagesSiteAIFeedback_Contact_Contact" Sequence="10001" Area="Info" Id="nav_PowerPagesSiteAIFeedback_Contact_Contact" solutionaction="Added">
             <Titles>
-              <Title LCID="1033" Text="Conversations" />
+              <Title LCID="1033" Text="Power Pages Site AI Feedbacks" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="msdyn_contact_msdyn_liveconversation_Customer" Sequence="10002" Area="Info" Id="nav_msdyn_contact_msdyn_liveconversation_Customer" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_sanction" Id="nav_dfeta_contact_dfeta_sanction" Show="false" Sequence="10002" Area="Info" solutionaction="Added">
             <Titles>
-              <Title LCID="1033" Text="Ongoing conversations (Deprecated)" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="msdyn_contact_dailycontactkpiitem_entityid" Sequence="10003" Area="Info" Id="nav_msdyn_contact_dailycontactkpiitem_entityid" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="dailycontactkpiitems" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="contact_msdyn_orgchartnode_msdyn_noderecord" Sequence="10004" Area="Info" Id="nav_contact_msdyn_orgchartnode_msdyn_noderecord" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Unique indentifier for the contact entity record" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="adx_contact_externalidentity" Sequence="10005" Area="Info" Id="nav_adx_contact_externalidentity" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="External Identities" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="msdyn_msdyn_conversationparticipantinsights_contact_msdyn_User" Sequence="10006" Area="Info" Id="nav_msdyn_msdyn_conversationparticipantinsights_contact_msdyn_User" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Conversation Participant Insights" />
+              <Title LCID="1033" Text="Alerts" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_businesseventaudit_Person" Sequence="10007" Area="Info" Id="nav_dfeta_contact_dfeta_businesseventaudit_Person" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Business Events Audit" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_document" Id="nav_dfeta_contact_dfeta_document" Area="Info" Sequence="10008" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Documents" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_previousname" Id="nav_dfeta_contact_dfeta_previousname" Area="Info" Sequence="10009" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Previous Names" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_employment" Id="nav_dfeta_contact_dfeta_employment" Area="Info" Sequence="10010" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Employment History" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="incident_customer_contacts" Id="navService" Show="true" Area="Info" Sequence="10011" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Cases" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_profileamendrequest" Id="nav_dfeta_contact_dfeta_profileamendrequest" Area="Info" Show="false" Sequence="10012" solutionaction="Added">

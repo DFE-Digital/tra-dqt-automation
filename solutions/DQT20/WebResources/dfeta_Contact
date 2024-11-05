@@ -17,7 +17,8 @@ var DFE;
                         formContext.getAttribute('birthdate').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'birthdate'); });
                         formContext.getAttribute('dfeta_dateofdeath').addOnChange(function () { return DFE.Dqt.WebResources.Common.DisableFutureDate(executionContext,'dfeta_dateofdeath'); });
 
-                        this.CheckTotalActiveSanctions(executionContext);
+                        this.DisplayAlertsMovedToTRS(executionContext);
+
                     }
                 }
 
@@ -52,6 +53,15 @@ var DFE;
                         }
                     }
                 }
+
+                contact.DisplayAlertsMovedToTRS= function (executionContext) {
+                    if (executionContext != null) {
+                        var formContext = executionContext.getFormContext();
+                        var currentUrl = window.location.hostname;
+                         formContext.ui.setFormNotification(`Alerts have been migrated to the TRS Console`, "WARNING", "infoNotification");
+                    }
+                }
+
 
                 contact.OnChangeTownCity = function (executionContext) {
                     if (executionContext != null) {
