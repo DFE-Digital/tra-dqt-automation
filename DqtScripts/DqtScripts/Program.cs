@@ -143,6 +143,7 @@ static void ExportNPQS(RootCommand rootCommand)
                     JoinOperator = JoinOperator.Inner,
                     Columns = new ColumnSet("dfeta_trn")
                 };
+                linkEntity.LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, 0);
                 query.LinkEntities.Add(linkEntity);
 
                 query.PageInfo = new PagingInfo()
