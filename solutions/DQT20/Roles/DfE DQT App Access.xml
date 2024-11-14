@@ -2,10 +2,12 @@
 <Role id="{c5313f17-74e0-ea11-a817-000d3aba3433}" name="DfE DQT App Access" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
+    <RolePrivilege name="prvAppenddfeta_qtls" level="Global" />
     <RolePrivilege name="prvAppendmsdyn_salesocmessage" level="Basic" />
     <RolePrivilege name="prvAppendmsdyn_salestag" level="Local" />
     <RolePrivilege name="prvAppendmsdyn_sequencetargetstep" level="Local" />
     <RolePrivilege name="prvAppendmsdyn_transcript" level="Basic" />
+    <RolePrivilege name="prvAppendTodfeta_qtls" level="Global" />
     <RolePrivilege name="prvAppendTomsdyn_ChannelInstance" level="Basic" />
     <RolePrivilege name="prvAppendTomsdyn_salestag" level="Local" />
     <RolePrivilege name="prvAppendTomsdyn_sequencetarget" level="Local" />
@@ -13,6 +15,7 @@
     <RolePrivilege name="prvAssignConnection" level="Local" />
     <RolePrivilege name="prvAssignmsdyn_sequencetarget" level="Local" />
     <RolePrivilege name="prvAssignmsdyn_sequencetargetstep" level="Local" />
+    <RolePrivilege name="prvCreatedfeta_qtls" level="Basic" />
     <RolePrivilege name="prvCreatemsdyn_extendedusersetting" level="Basic" />
     <RolePrivilege name="prvCreatemsdyn_salesocmessage" level="Basic" />
     <RolePrivilege name="prvCreatemsdyn_salesocsmstemplate" level="Local" />
@@ -27,6 +30,7 @@
     <RolePrivilege name="prvDeletemsdyn_workqueuestate" level="Basic" />
     <RolePrivilege name="prvReadConnection" level="Local" />
     <RolePrivilege name="prvReadConnectionRole" level="Global" />
+    <RolePrivilege name="prvReaddfeta_qtls" level="Global" />
     <RolePrivilege name="prvReadmsdyn_ChannelDefinition" level="Local" />
     <RolePrivilege name="prvReadmsdyn_ChannelInstance" level="Local" />
     <RolePrivilege name="prvReadmsdyn_ChannelInstanceAccount" level="Local" />
@@ -51,6 +55,7 @@
     <RolePrivilege name="prvReadSharePointData" level="Global" />
     <RolePrivilege name="prvReadSharePointDocument" level="Global" />
     <RolePrivilege name="prvWriteConnection" level="Local" />
+    <RolePrivilege name="prvWritedfeta_qtls" level="Local" />
     <RolePrivilege name="prvWritemsdyn_extendedusersetting" level="Basic" />
     <RolePrivilege name="prvWritemsdyn_salesocmessage" level="Basic" />
     <RolePrivilege name="prvWritemsdyn_salesocsmstemplate" level="Local" />

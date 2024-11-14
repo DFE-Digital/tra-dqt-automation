@@ -24,6 +24,7 @@
   <EntityRelationship Name="business_unit_dfeta_mrtraining" />
   <EntityRelationship Name="business_unit_dfeta_previousname" />
   <EntityRelationship Name="business_unit_dfeta_profileamendrequest" />
+  <EntityRelationship Name="business_unit_dfeta_qtls" />
   <EntityRelationship Name="business_unit_dfeta_qtsregistration" />
   <EntityRelationship Name="business_unit_dfeta_qualification" />
   <EntityRelationship Name="business_unit_dfeta_sanction" />
@@ -68,6 +69,7 @@
   <EntityRelationship Name="dfeta_contact_dfeta_mrapplication" />
   <EntityRelationship Name="dfeta_contact_dfeta_previousname" />
   <EntityRelationship Name="dfeta_contact_dfeta_profileamendrequest" />
+  <EntityRelationship Name="dfeta_contact_dfeta_qtls_PersonId" />
   <EntityRelationship Name="dfeta_contact_dfeta_qtsregistration" />
   <EntityRelationship Name="dfeta_contact_dfeta_qtsregistration1" />
   <EntityRelationship Name="dfeta_contact_dfeta_qualification" />
@@ -229,6 +231,8 @@
   <EntityRelationship Name="lk_dfeta_previousname_modifiedby" />
   <EntityRelationship Name="lk_dfeta_profileamendrequest_createdby" />
   <EntityRelationship Name="lk_dfeta_profileamendrequest_modifiedby" />
+  <EntityRelationship Name="lk_dfeta_qtls_createdby" />
+  <EntityRelationship Name="lk_dfeta_qtls_modifiedby" />
   <EntityRelationship Name="lk_dfeta_qtsregistration_createdby" />
   <EntityRelationship Name="lk_dfeta_qtsregistration_modifiedby" />
   <EntityRelationship Name="lk_dfeta_qualification_createdby" />
@@ -322,6 +326,7 @@
   <EntityRelationship Name="owner_dfeta_mrtraining" />
   <EntityRelationship Name="owner_dfeta_previousname" />
   <EntityRelationship Name="owner_dfeta_profileamendrequest" />
+  <EntityRelationship Name="owner_dfeta_qtls" />
   <EntityRelationship Name="owner_dfeta_qtsregistration" />
   <EntityRelationship Name="owner_dfeta_qualification" />
   <EntityRelationship Name="owner_dfeta_sanction" />
@@ -363,6 +368,7 @@
   <EntityRelationship Name="team_dfeta_mrtraining" />
   <EntityRelationship Name="team_dfeta_previousname" />
   <EntityRelationship Name="team_dfeta_profileamendrequest" />
+  <EntityRelationship Name="team_dfeta_qtls" />
   <EntityRelationship Name="team_dfeta_qtsregistration" />
   <EntityRelationship Name="team_dfeta_qualification" />
   <EntityRelationship Name="team_dfeta_sanction" />
@@ -389,6 +395,7 @@
   <EntityRelationship Name="user_dfeta_mrtraining" />
   <EntityRelationship Name="user_dfeta_previousname" />
   <EntityRelationship Name="user_dfeta_profileamendrequest" />
+  <EntityRelationship Name="user_dfeta_qtls" />
   <EntityRelationship Name="user_dfeta_qtsregistration" />
   <EntityRelationship Name="user_dfeta_qualification" />
   <EntityRelationship Name="user_dfeta_sanction" />

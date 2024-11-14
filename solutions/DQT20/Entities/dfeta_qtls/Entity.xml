@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name LocalizedName="TRS outbox message" OriginalName="TRS outbox message">dfeta_TrsOutboxMessage</Name>
+  <Name LocalizedName="qtls" OriginalName="qtls">dfeta_qtls</Name>
   <EntityInfo>
-    <entity Name="dfeta_TrsOutboxMessage">
+    <entity Name="dfeta_qtls">
       <LocalizedNames>
-        <LocalizedName description="TRS outbox message" languagecode="1033" />
+        <LocalizedName description="qtls" languagecode="1033" />
       </LocalizedNames>
       <LocalizedCollectionNames>
-        <LocalizedCollectionName description="TRS outbox messages" languagecode="1033" />
+        <LocalizedCollectionName description="qtls" languagecode="1033" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -26,7 +26,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -65,7 +65,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -105,7 +105,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -131,10 +131,10 @@
             <Description description="Unique identifier of the delegate user who created the record." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="dfeta_MessageName">
+        <attribute PhysicalName="dfeta_name">
           <Type>nvarchar</Type>
-          <Name>dfeta_messagename</Name>
-          <LogicalName>dfeta_messagename</LogicalName>
+          <Name>dfeta_name</Name>
+          <LogicalName>dfeta_name</LogicalName>
           <RequiredLevel>required</RequiredLevel>
           <DisplayMask>PrimaryName|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -144,7 +144,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -165,16 +165,16 @@
           <MaxLength>100</MaxLength>
           <Length>200</Length>
           <displaynames>
-            <displayname description="Message name" languagecode="1033" />
+            <displayname description="Name" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="The name of the custom entity." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="dfeta_Payload">
-          <Type>ntext</Type>
-          <Name>dfeta_payload</Name>
-          <LogicalName>dfeta_payload</LogicalName>
+        <attribute PhysicalName="dfeta_PersonId">
+          <Type>lookup</Type>
+          <Name>dfeta_personid</Name>
+          <LogicalName>dfeta_personid</LogicalName>
           <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -182,9 +182,9 @@
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -201,19 +201,59 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>4000</MaxLength>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
           <displaynames>
-            <displayname description="Payload" languagecode="1033" />
+            <displayname description="PersonId" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="dfeta_TrsOutboxMessageId">
+        <attribute PhysicalName="dfeta_qtls_date">
+          <Type>datetime</Type>
+          <Name>dfeta_qtls_date</Name>
+          <LogicalName>dfeta_qtls_date</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>date</Format>
+          <CanChangeDateTimeBehavior>1</CanChangeDateTimeBehavior>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="qtls_date" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="dfeta_qtlsId">
           <Type>primarykey</Type>
-          <Name>dfeta_trsoutboxmessageid</Name>
-          <LogicalName>dfeta_trsoutboxmessageid</LogicalName>
+          <Name>dfeta_qtlsid</Name>
+          <LogicalName>dfeta_qtlsid</LogicalName>
           <RequiredLevel>systemrequired</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -223,7 +263,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -241,7 +281,7 @@
           <IsRetrievable>1</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <displaynames>
-            <displayname description="TRS outbox message" languagecode="1033" />
+            <displayname description="qtls" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier for entity instances" languagecode="1033" />
@@ -260,7 +300,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -300,7 +340,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -339,7 +379,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -379,7 +419,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -418,7 +458,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -458,7 +498,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -491,16 +531,16 @@
           <Type>lookup</Type>
           <Name>owningbusinessunit</Name>
           <LogicalName>owningbusinessunit</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>systemrequired</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>0</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>0</ValidForCreateApi>
           <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -539,7 +579,7 @@
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsLogical>1</IsLogical>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -578,7 +618,7 @@
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsLogical>1</IsLogical>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -617,7 +657,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -634,15 +674,15 @@
           <IsFilterable>1</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="dfeta_trsoutboxmessage_statecode">
+          <optionset Name="dfeta_qtls_statecode">
             <OptionSetType>state</OptionSetType>
-            <IntroducedVersion>1.0</IntroducedVersion>
+            <IntroducedVersion>2.0.2.64</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
             <displaynames>
               <displayname description="Status" languagecode="1033" />
             </displaynames>
             <Descriptions>
-              <Description description="Status of the TRS outbox message" languagecode="1033" />
+              <Description description="Status of the qtls" languagecode="1033" />
             </Descriptions>
             <states>
               <state value="0" defaultstatus="1" invariantname="Active">
@@ -661,7 +701,7 @@
             <displayname description="Status" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="Status of the TRS outbox message" languagecode="1033" />
+            <Description description="Status of the qtls" languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="statuscode">
@@ -677,7 +717,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -694,15 +734,15 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="dfeta_trsoutboxmessage_statuscode">
+          <optionset Name="dfeta_qtls_statuscode">
             <OptionSetType>status</OptionSetType>
-            <IntroducedVersion>1.0</IntroducedVersion>
+            <IntroducedVersion>2.0.2.64</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
             <displaynames>
               <displayname description="Status Reason" languagecode="1033" />
             </displaynames>
             <Descriptions>
-              <Description description="Reason for the status of the TRS outbox message" languagecode="1033" />
+              <Description description="Reason for the status of the qtls" languagecode="1033" />
             </Descriptions>
             <statuses>
               <status value="1" state="0">
@@ -721,7 +761,7 @@
             <displayname description="Status Reason" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="Reason for the status of the TRS outbox message" languagecode="1033" />
+            <Description description="Reason for the status of the qtls" languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="TimeZoneRuleVersionNumber">
@@ -736,7 +776,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -775,7 +815,7 @@
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>2.0.2.64</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -803,8 +843,8 @@
           </Descriptions>
         </attribute>
       </attributes>
-      <EntitySetName>dfeta_trsoutboxmessages</EntitySetName>
-      <IsDuplicateCheckSupported>0</IsDuplicateCheckSupported>
+      <EntitySetName>dfeta_qtlses</EntitySetName>
+      <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
       <IsRequiredOffline>0</IsRequiredOffline>
       <IsInteractionCentricEnabled>0</IsInteractionCentricEnabled>
@@ -820,7 +860,7 @@
       <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
       <IsBPFEntity>0</IsBPFEntity>
       <OwnershipTypeMask>UserOwned</OwnershipTypeMask>
-      <IsAuditEnabled>0</IsAuditEnabled>
+      <IsAuditEnabled>1</IsAuditEnabled>
       <IsRetrieveAuditEnabled>0</IsRetrieveAuditEnabled>
       <IsRetrieveMultipleAuditEnabled>0</IsRetrieveMultipleAuditEnabled>
       <IsActivity>0</IsActivity>
@@ -828,7 +868,7 @@
       <IsActivityParty>0</IsActivityParty>
       <IsReplicated>0</IsReplicated>
       <IsReplicationUserFiltered>0</IsReplicationUserFiltered>
-      <IsMailMergeEnabled>0</IsMailMergeEnabled>
+      <IsMailMergeEnabled>1</IsMailMergeEnabled>
       <IsVisibleInMobile>0</IsVisibleInMobile>
       <IsVisibleInMobileClient>0</IsVisibleInMobileClient>
       <IsReadOnlyInMobileClient>0</IsReadOnlyInMobileClient>
@@ -839,7 +879,7 @@
       <IsReadingPaneEnabled>1</IsReadingPaneEnabled>
       <IsQuickCreateEnabled>0</IsQuickCreateEnabled>
       <SyncToExternalSearchIndex>0</SyncToExternalSearchIndex>
-      <IntroducedVersion>1.0</IntroducedVersion>
+      <IntroducedVersion>2.0.2.64</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>
       <IsRenameable>1</IsRenameable>
       <IsMappable>1</IsMappable>
@@ -858,7 +898,6 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
-      <IconVectorName></IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
       <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>
