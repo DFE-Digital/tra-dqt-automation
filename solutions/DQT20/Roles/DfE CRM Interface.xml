@@ -37,6 +37,7 @@
     <RolePrivilege name="prvAppenddfeta_organisationcategory" level="Global" />
     <RolePrivilege name="prvAppenddfeta_previousname" level="Global" />
     <RolePrivilege name="prvAppenddfeta_profileamendrequest" level="Global" />
+    <RolePrivilege name="prvAppenddfeta_qtls" level="Global" />
     <RolePrivilege name="prvAppenddfeta_qtsregistration" level="Global" />
     <RolePrivilege name="prvAppenddfeta_qualification" level="Global" />
     <RolePrivilege name="prvAppenddfeta_sanction" level="Global" />
@@ -96,6 +97,7 @@
     <RolePrivilege name="prvAppendTodfeta_organisationcategory" level="Global" />
     <RolePrivilege name="prvAppendTodfeta_previousname" level="Global" />
     <RolePrivilege name="prvAppendTodfeta_profileamendrequest" level="Global" />
+    <RolePrivilege name="prvAppendTodfeta_qtls" level="Global" />
     <RolePrivilege name="prvAppendTodfeta_qtsregistration" level="Global" />
     <RolePrivilege name="prvAppendTodfeta_qualification" level="Global" />
     <RolePrivilege name="prvAppendTodfeta_sanction" level="Global" />
@@ -153,6 +155,7 @@
     <RolePrivilege name="prvAssigndfeta_mrtraining" level="Local" />
     <RolePrivilege name="prvAssigndfeta_previousname" level="Local" />
     <RolePrivilege name="prvAssigndfeta_profileamendrequest" level="Local" />
+    <RolePrivilege name="prvAssigndfeta_qtls" level="Local" />
     <RolePrivilege name="prvAssigndfeta_qtsregistration" level="Local" />
     <RolePrivilege name="prvAssigndfeta_qualification" level="Local" />
     <RolePrivilege name="prvAssigndfeta_sanction" level="Local" />
@@ -187,6 +190,7 @@
     <RolePrivilege name="prvCreatedfeta_mrtraining" level="Local" />
     <RolePrivilege name="prvCreatedfeta_previousname" level="Local" />
     <RolePrivilege name="prvCreatedfeta_profileamendrequest" level="Local" />
+    <RolePrivilege name="prvCreatedfeta_qtls" level="Basic" />
     <RolePrivilege name="prvCreatedfeta_qtsregistration" level="Local" />
     <RolePrivilege name="prvCreatedfeta_qualification" level="Local" />
     <RolePrivilege name="prvCreatedfeta_sanction" level="Local" />
@@ -295,6 +299,7 @@
     <RolePrivilege name="prvReaddfeta_prdeclinestatusreason" level="Global" />
     <RolePrivilege name="prvReaddfeta_previousname" level="Global" />
     <RolePrivilege name="prvReaddfeta_profileamendrequest" level="Global" />
+    <RolePrivilege name="prvReaddfeta_qtls" level="Global" />
     <RolePrivilege name="prvReaddfeta_qtsregistration" level="Global" />
     <RolePrivilege name="prvReaddfeta_qualification" level="Global" />
     <RolePrivilege name="prvReaddfeta_sanction" level="Global" />
@@ -395,6 +400,7 @@
     <RolePrivilege name="prvSharedfeta_mrtraining" level="Local" />
     <RolePrivilege name="prvSharedfeta_previousname" level="Local" />
     <RolePrivilege name="prvSharedfeta_profileamendrequest" level="Local" />
+    <RolePrivilege name="prvSharedfeta_qtls" level="Local" />
     <RolePrivilege name="prvSharedfeta_qtsregistration" level="Local" />
     <RolePrivilege name="prvSharedfeta_qualification" level="Local" />
     <RolePrivilege name="prvSharedfeta_sanction" level="Local" />
@@ -430,6 +436,7 @@
     <RolePrivilege name="prvWritedfeta_mrtraining" level="Local" />
     <RolePrivilege name="prvWritedfeta_previousname" level="Local" />
     <RolePrivilege name="prvWritedfeta_profileamendrequest" level="Local" />
+    <RolePrivilege name="prvWritedfeta_qtls" level="Local" />
     <RolePrivilege name="prvWritedfeta_qtsregistration" level="Local" />
     <RolePrivilege name="prvWritedfeta_qualification" level="Local" />
     <RolePrivilege name="prvWritedfeta_sanction" level="Local" />
