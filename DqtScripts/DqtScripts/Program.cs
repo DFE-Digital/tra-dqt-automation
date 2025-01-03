@@ -97,9 +97,155 @@ static RootCommand CreateRootCommand()
     CorrectInductionStartDates(rootCommand);
     BackfillTrnRequestEmails(rootCommand);
     ExportNPQS(rootCommand);
+    SetSlugId(rootCommand);
 
     return rootCommand;
 }
+
+static void SetSlugId(RootCommand rootCommand)
+{
+    var command = new Command("set-slugid", description: "Updates slugid on contact and itt")
+    {
+        Handler = CommandHandler.Create<IHost, bool?>(async (host, commit) =>
+        {
+            var serviceClient = host.Services.GetRequiredService<ServiceClient>();
+            var blobContainerClient = host.Services.GetRequiredService<BlobContainerClient>();
+
+#if DEBUG
+            await blobContainerClient.CreateIfNotExistsAsync();
+#endif
+            var now = $"{DateTime.Now:yyyyMMddHHmmss}";
+            var ittslugsonly = $"setslugids/{now}/updateittslugs.csv";
+            var contactandittslugs = $"setslugids/{now}/updatecontactandittslugs.csv";
+            var ittslugsonlyClient = blobContainerClient.GetBlobClient(ittslugsonly);
+            var contactandittslugsClient = blobContainerClient.GetBlobClient(contactandittslugs);
+
+            //update itt slugid and contact slugid
+            using (var ittAndContactSlugblob = await blobContainerClient.GetBlobClient("set-itt-slug-contact-and-itt.csv").OpenReadAsync())
+            using (var ittAndContactSlugReader = new StreamReader(ittAndContactSlugblob))
+            using (var ittAndContactSlugcsvReader = new CsvReader(ittAndContactSlugReader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var ittAndContactslugStream = await contactandittslugsClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var ittAndContactSlugStreadWriter = new StreamWriter(ittAndContactslugStream))
+            using (var csvWriter = new CsvWriter(ittAndContactSlugStreadWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("contactid");
+                csvWriter.WriteField("existing_contactslugid");
+                csvWriter.WriteField("ittid");
+                csvWriter.WriteField("existing_ittslugid");
+                csvWriter.WriteField("updated_slug");
+                csvWriter.NextRecord();
+
+                var records = ittAndContactSlugcsvReader.GetRecords<SetITTSlug>().ToArray();
+
+                foreach (var record in records)
+                {
+                    //retrieve contact to get existing slug
+                    var contact = await serviceClient.RetrieveAsync("contact", record.contact_id, new ColumnSet(new[] { "dfeta_slugid", "contactid", "dfeta_trn" }));
+                    var itt = await serviceClient.RetrieveAsync("dfeta_initialteachertraining", record.itt_id, new ColumnSet(new[] { "dfeta_slugid" }));
+
+                    //existing slugid
+                    var contactSlugId = contact.GetAttributeValue<string?>("dfeta_slugid");
+                    var ittSlugId = itt.GetAttributeValue<string?>("dfeta_slugid");
+
+                    csvWriter.WriteField(record.contact_id.ToString());
+                    csvWriter.WriteField(contactSlugId);
+                    csvWriter.WriteField(record.itt_id.ToString());
+                    csvWriter.WriteField(ittSlugId);
+                    csvWriter.WriteField(record.slug);
+                    csvWriter.NextRecord();
+
+                    if (commit == true)
+                    {
+                        var request = new ExecuteTransactionRequest()
+                        {
+                            Requests = new OrganizationRequestCollection()
+                        };
+
+                        if (string.IsNullOrEmpty(contactSlugId))
+                        {
+                            var contactEntity = new Entity("contact");
+                            contactEntity.Id = record.contact_id;
+                            contactEntity["dfeta_slugid"] = record.slug;
+
+                            request.Requests.Add(new UpdateRequest()
+                            {
+                                Target = contactEntity
+                            });
+                        }
+
+                        if (string.IsNullOrEmpty(ittSlugId))
+                        {
+                            var ittEntity = new Entity("dfeta_initialteachertraining");
+                            ittEntity.Id = record.itt_id;
+                            ittEntity["dfeta_slugid"] = record.slug;
+
+                            request.Requests.Add(new UpdateRequest()
+                            {
+                                Target = ittEntity
+                            });
+                        }
+
+                        if(request.Requests.Count() > 0)
+                        {
+                            await serviceClient.ExecuteAsync(request);
+                        }     
+                    }
+                }
+            }
+
+            //update only itt slugids
+            using (var ittOnlySlugblob = await blobContainerClient.GetBlobClient("set-slugid-ittonly.csv").OpenReadAsync())
+            using (var ittOnlySlugReader = new StreamReader(ittOnlySlugblob))
+            using (var ittOnlySlugcsvReader = new CsvReader(ittOnlySlugReader, System.Globalization.CultureInfo.CurrentCulture))
+            using (var ittOnlyslugStream = await ittslugsonlyClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
+            using (var ittOnlySlugStreadWriter = new StreamWriter(ittOnlyslugStream))
+            using (var csvWriter = new CsvWriter(ittOnlySlugStreadWriter, System.Globalization.CultureInfo.CurrentCulture))
+            {
+                csvWriter.WriteField("ittid");
+                csvWriter.WriteField("existing_ittslugid");
+                csvWriter.WriteField("updated_slug");
+                csvWriter.NextRecord();
+
+                var records = ittOnlySlugcsvReader.GetRecords<SetITTSlug>().ToArray();
+
+                foreach (var record in records)
+                {
+                    var itt = await serviceClient.RetrieveAsync("dfeta_initialteachertraining", record.itt_id, new ColumnSet(new[] { "dfeta_slugid" }));
+                    var ittSlugId = itt.GetAttributeValue<string?>("dfeta_slugid");
+
+                    csvWriter.WriteField(record.itt_id.ToString());
+                    csvWriter.WriteField(ittSlugId);
+                    csvWriter.WriteField(record.slug);
+                    csvWriter.NextRecord();
+
+                    if (commit == true)
+                    {
+                        if (string.IsNullOrEmpty(ittSlugId))
+                        {
+                            var entity = new Entity("dfeta_initialteachertraining");
+                            entity.Id = record.itt_id;
+                            entity["dfeta_slugid"] = record.slug;
+
+                            var request = new ExecuteTransactionRequest()
+                            {
+                                Requests = new OrganizationRequestCollection()
+                            };
+                            request.Requests.Add(new UpdateRequest()
+                            {
+                                Target = entity
+                            });
+
+                            await serviceClient.ExecuteAsync(request);
+                        }
+                    }
+                }
+            }
+        })
+    };
+    command.AddOption(new Option<bool>("--commit", "Commits changes to database"));
+    rootCommand.Add(command);
+}
+
 
 static void ExportNPQS(RootCommand rootCommand)
 {
@@ -1797,6 +1943,13 @@ public class CorrectInductionStartDate
     public DateTime? StartDate { get; set; }
 }
 
+public class SetITTSlug
+{
+    public string slug { get; set; }
+    public string trn { get; set; }
+    public Guid contact_id { get; set; }
+    public Guid itt_id { get; set; }
+}
 
 /// <summary>
 /// Track changes to records for analysis, record keeping, and compliance.
