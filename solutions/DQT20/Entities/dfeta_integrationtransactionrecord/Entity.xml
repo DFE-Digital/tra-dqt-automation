@@ -170,22 +170,22 @@
               <displayname description="Duplicate Status" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="Duplicate" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002">
+              <option value="389040002" IsHidden="0">
                 <labels>
                   <label description="Duplicate Resolved" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001">
+              <option value="389040001" IsHidden="0">
                 <labels>
                   <label description="Third Party Notified" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040003">
+              <option value="389040003" IsHidden="0">
                 <labels>
                   <label description="Not Applicable" languagecode="1033" />
                 </labels>

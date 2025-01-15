@@ -472,22 +472,22 @@
               <displayname description="Request Type" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="Change of Date of Birth" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001">
+              <option value="389040001" IsHidden="0">
                 <labels>
                   <label description="Change of First Name" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002">
+              <option value="389040002" IsHidden="0">
                 <labels>
                   <label description="Change of Middle Name" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040003">
+              <option value="389040003" IsHidden="0">
                 <labels>
                   <label description="Change of Last Name" languagecode="1033" />
                 </labels>

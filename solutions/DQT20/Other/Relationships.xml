@@ -128,6 +128,7 @@
   <EntityRelationship Name="dfeta_dfeta_prdeclinestatusreason_dfeta_mrapplication_declinereason2" />
   <EntityRelationship Name="dfeta_dfeta_profileamendrequest_dfeta_document" />
   <EntityRelationship Name="dfeta_dfeta_qtsregistration_contact" />
+  <EntityRelationship Name="dfeta_dfeta_qtsregistration_dfeta_initialteachertraining_qtsregistration" />
   <EntityRelationship Name="dfeta_dfeta_qualification_dfeta_integrationtran" />
   <EntityRelationship Name="dfeta_dfeta_sanctioncode_dfeta_sanction" />
   <EntityRelationship Name="dfeta_dfeta_schooldirectinitiative_dfeta_initia" />

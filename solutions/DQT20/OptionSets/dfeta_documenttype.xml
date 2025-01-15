@@ -11,7 +11,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="Identity" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Change of Name / DOB Evidence" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002">
+    <option value="389040002" IsHidden="0">
       <labels>
         <label description="MR ITT quals, transcripts, and translations" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003">
+    <option value="389040003" IsHidden="0">
       <labels>
         <label description="MR HE Quals and Translations" languagecode="1033" />
       </labels>
@@ -43,7 +43,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040004">
+    <option value="389040004" IsHidden="0">
       <labels>
         <label description="MR OTT supporting letter" languagecode="1033" />
       </labels>
@@ -51,7 +51,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040005">
+    <option value="389040005" IsHidden="0">
       <labels>
         <label description="MR Additional Training evidence" languagecode="1033" />
       </labels>
@@ -59,7 +59,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040006">
+    <option value="389040006" IsHidden="0">
       <labels>
         <label description="Letter" languagecode="1033" />
       </labels>
@@ -67,7 +67,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040007">
+    <option value="389040007" IsHidden="0">
       <labels>
         <label description="Email" languagecode="1033" />
       </labels>

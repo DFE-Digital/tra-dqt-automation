@@ -11,7 +11,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000" Color="#0000ff">
+    <option value="389040000" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Not known" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001" Color="#0000ff">
+    <option value="389040001" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Trainee has NOT LEFT full time employment in the British Army, Royal Air Force or Royal Navy in the past 5 years" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002" Color="#0000ff">
+    <option value="389040002" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Trainee has left full time employment in the British Army, Royal Air Force or Royal Navy in the past 5 years" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003" Color="#0000ff">
+    <option value="389040003" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Information refused" languagecode="1033" />
       </labels>

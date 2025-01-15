@@ -358,12 +358,12 @@
               <displayname description="Operation" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="When record is created" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001">
+              <option value="389040001" IsHidden="0">
                 <labels>
                   <label description="When attribute is updated" languagecode="1033" />
                 </labels>
@@ -413,12 +413,12 @@
               <displayname description="Override Existing Number" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>

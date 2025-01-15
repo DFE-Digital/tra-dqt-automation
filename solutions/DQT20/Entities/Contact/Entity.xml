@@ -47,17 +47,17 @@
               <Description description="Account role of the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Decision Maker" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Employee" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Influencer" languagecode="1033" />
                 </labels>
@@ -106,22 +106,22 @@
               <Description description="Type of address for address 1, such as billing, shipping, or primary address." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Bill To" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Ship To" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Primary" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
@@ -306,12 +306,12 @@
               <Description description="Freight terms for address 1." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="FOB" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="No Charge" languagecode="1033" />
                 </labels>
@@ -666,37 +666,37 @@
               <Description description="Method of shipment for address 1." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Airborne" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="DHL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="FedEx" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="UPS" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Postal Mail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Full Load" languagecode="1033" />
                 </labels>
               </option>
-              <option value="7">
+              <option value="7" IsHidden="0">
                 <labels>
                   <label description="Will Call" languagecode="1033" />
                 </labels>
@@ -949,7 +949,7 @@
               <Description description="Type of address for address 2, such as billing, shipping, or primary address." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -1134,7 +1134,7 @@
               <Description description="Freight terms for address 2." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -1489,7 +1489,7 @@
               <Description description="Method of shipment for address 2." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2376,12 +2376,12 @@
               <Description description="Information about whether credit for the contact is on hold." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -2429,7 +2429,7 @@
               <Description description="Size of the contact's business." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2477,7 +2477,7 @@
               <Description description="Type of business associated with the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2595,12 +2595,12 @@
               <displayname description="Active Sanctions" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2653,12 +2653,12 @@
               <Description description="Consent for Research Purposes" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2751,17 +2751,17 @@
               <displayname description="Address Verification Flag" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Verified" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Failed" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Customer Preferred" languagecode="1033" />
                 </labels>
@@ -2815,12 +2815,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1" ExternalValue="">
+              <option value="1" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0" ExternalValue="">
+              <option value="0" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -2876,12 +2876,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3122,12 +3122,12 @@
               <displayname description="Disability" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3452,7 +3452,7 @@
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
           <IntroducedVersion>1.5.1.57</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
@@ -3476,6 +3476,9 @@
           <displaynames>
             <displayname description="Induction Status" languagecode="1033" />
           </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
         </attribute>
         <attribute PhysicalName="dfeta_LastIdentityUpdate">
           <Type>datetime</Type>
@@ -3900,12 +3903,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -4348,12 +4351,12 @@
               <displayname description="Suppression Flag" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Deceased" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Goneaway" languagecode="1033" />
                 </labels>
@@ -4559,12 +4562,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -4729,12 +4732,12 @@
               <Description description="Information about whether to allow sending direct e-mail to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -4782,12 +4785,12 @@
               <Description description="Information about whether to allow sending bulk-rate postal mail to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -4835,12 +4838,12 @@
               <Description description="Information about whether to allow sending e-mail to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -4888,12 +4891,12 @@
               <Description description="Information about whether to allow sending fax transmittals to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -4941,12 +4944,12 @@
               <Description description="Information about whether to allow phone calls to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -4994,12 +4997,12 @@
               <Description description="Information about whether to allow sending postal mail to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -5047,12 +5050,12 @@
               <Description description="Information regarding whether to allow sending marketing mail to the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Send" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Send" languagecode="1033" />
                 </labels>
@@ -5100,7 +5103,7 @@
               <Description description="Formal education level that the contact has attained." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -5313,22 +5316,22 @@
               <Description description="Marital status of the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Single" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Married" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Divorced" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Widowed" languagecode="1033" />
                 </labels>
@@ -5508,27 +5511,27 @@
               <Description description="Gender of the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1" ExternalValue="" Color="">
+              <option value="1" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="Male" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2" ExternalValue="" Color="">
+              <option value="2" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="Female" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040000" ExternalValue="" Color="">
+              <option value="389040000" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001" ExternalValue="" Color="#0000ff">
+              <option value="389040001" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Not provided" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002" ExternalValue="" Color="#0000ff">
+              <option value="389040002" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Not available" languagecode="1033" />
                 </labels>
@@ -5609,7 +5612,7 @@
               <Description description="Information about whether the contact has children." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -5690,12 +5693,12 @@
               <Description description="Information about whether the contact is in an associated Microsoft Great Plains database." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -5840,7 +5843,7 @@
               <Description description="Source of the lead of the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -6284,22 +6287,22 @@
               <Description description="Payment terms for the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Net 30" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="2% 10, Net 30" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Net 45" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Net 60" languagecode="1033" />
                 </labels>
@@ -6347,37 +6350,37 @@
               <Description description="Day of the week that the contact prefers for scheduling service activities." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Sunday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Monday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Tuesday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Wednesday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Thursday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Friday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Saturday" languagecode="1033" />
                 </labels>
@@ -6425,17 +6428,17 @@
               <Description description="Time of day that the contact prefers for scheduling service activities." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Morning" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Afternoon" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Evening" languagecode="1033" />
                 </labels>
@@ -6483,27 +6486,27 @@
               <Description description="Preferred contact method for the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Any" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="E-mail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Mobile Phone" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Home Phone" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Work Phone" languagecode="1033" />
                 </labels>
@@ -6584,7 +6587,7 @@
               <Description description="Method of shipping for the contact." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -6906,7 +6909,7 @@
               <Description description="Unique identifier of the territory to which the contact is assigned." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>

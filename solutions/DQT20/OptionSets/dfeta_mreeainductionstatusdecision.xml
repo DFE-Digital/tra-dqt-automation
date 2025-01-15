@@ -11,7 +11,7 @@
     <Description description="Mutual Recognition - EEA Induction Status Decision" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="QTS" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Further Information" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002">
+    <option value="389040002" IsHidden="0">
       <labels>
         <label description="Decline" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003">
+    <option value="389040003" IsHidden="0">
       <labels>
         <label description="IMI" languagecode="1033" />
       </labels>
@@ -43,7 +43,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040004">
+    <option value="389040004" IsHidden="0">
       <labels>
         <label description="Query" languagecode="1033" />
       </labels>
@@ -51,7 +51,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040005">
+    <option value="389040005" IsHidden="0">
       <labels>
         <label description="Second Assessment Required" languagecode="1033" />
       </labels>
@@ -59,7 +59,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040006">
+    <option value="389040006" IsHidden="0">
       <labels>
         <label description="Incomplete Action" languagecode="1033" />
       </labels>
@@ -67,7 +67,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040007">
+    <option value="389040007" IsHidden="0">
       <labels>
         <label description="Partial QTS" languagecode="1033" />
       </labels>

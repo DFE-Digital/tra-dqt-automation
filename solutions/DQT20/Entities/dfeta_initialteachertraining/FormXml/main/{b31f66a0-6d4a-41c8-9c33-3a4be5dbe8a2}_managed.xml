@@ -521,10 +521,23 @@
                         </labels>
                         <control id="dfeta_slugid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dfeta_slugid" disabled="false" />
                       </cell>
-                      <cell id="{883ea4cb-e660-e754-aece-1292423db2d1}" showlabel="false">
+                      <cell id="{226cad25-8483-8b3e-569c-8e8b96bc8d96}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="QTS registration" languagecode="1033" />
                         </labels>
+                        <control id="dfeta_qtsregistration" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_qtsregistration" disabled="false" uniqueid="{75ed2cc2-2aab-3828-bb42-63027dedc555}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{5C22EBF5-3414-475E-A781-596007C4FD6B}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <FilterRelationshipName>dfeta_contact_dfeta_qtsregistration</FilterRelationshipName>
+                            <DependentAttributeName>dfeta_initialteachertraining.dfeta_personid</DependentAttributeName>
+                            <DependentAttributeType>contact</DependentAttributeType>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>

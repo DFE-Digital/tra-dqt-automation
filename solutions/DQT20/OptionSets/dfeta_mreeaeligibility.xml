@@ -11,7 +11,7 @@
     <Description description="Mutual Recognition - EEA Eligibility" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="You have successfully completed a course of post-secondary higher education of at least three years' duration, as well as the professional training which may be required in addition to that post secondary course." languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="In a Member state where post-secondary higher education of at least three years is the normal requirement,  you are recognised and permitted to practise as a qualified school teacher, having undertaken some lesser education and training in such a State (" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002">
+    <option value="389040002" IsHidden="0">
       <labels>
         <label description="You are recognised in an EEA state by virtue of qualifications obtained outside of the EEA and have three years' certified professional experience in that state." languagecode="1033" />
       </labels>

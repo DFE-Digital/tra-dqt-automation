@@ -210,12 +210,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -833,7 +833,7 @@
               <displayname description="HLTA Moderation Outcome" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="TBD" languagecode="1033" />
                 </labels>
@@ -1372,7 +1372,7 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="389040000" ExternalValue="">
+              <option value="389040000" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="In Progress" languagecode="1033" />
                 </labels>
@@ -1380,7 +1380,7 @@
                   <Description description="" languagecode="1033" />
                 </Descriptions>
               </option>
-              <option value="389040001" ExternalValue="">
+              <option value="389040001" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Deferred" languagecode="1033" />
                 </labels>
@@ -1388,7 +1388,7 @@
                   <Description description="" languagecode="1033" />
                 </Descriptions>
               </option>
-              <option value="389040002" ExternalValue="">
+              <option value="389040002" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Extended" languagecode="1033" />
                 </labels>
@@ -1396,7 +1396,7 @@
                   <Description description="" languagecode="1033" />
                 </Descriptions>
               </option>
-              <option value="389040003" ExternalValue="">
+              <option value="389040003" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Failed" languagecode="1033" />
                 </labels>
@@ -1404,7 +1404,7 @@
                   <Description description="" languagecode="1033" />
                 </Descriptions>
               </option>
-              <option value="389040004" ExternalValue="">
+              <option value="389040004" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Passed" languagecode="1033" />
                 </labels>
@@ -1412,7 +1412,7 @@
                   <Description description="" languagecode="1033" />
                 </Descriptions>
               </option>
-              <option value="389040005" ExternalValue="">
+              <option value="389040005" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Withdrawn" languagecode="1033" />
                 </labels>
@@ -1587,12 +1587,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -1688,12 +1688,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -1786,12 +1786,12 @@
               <displayname description="NPQH Awarded" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -1881,12 +1881,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -1982,12 +1982,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2083,12 +2083,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2184,12 +2184,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2285,12 +2285,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -2386,12 +2386,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -2677,62 +2677,62 @@
               <displayname description="Type" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="389040010" ExternalValue="" Color="#0000ff">
+              <option value="389040010" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQEYL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040011" ExternalValue="" Color="#0000ff">
+              <option value="389040011" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQLL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040007" ExternalValue="" Color="#0000ff">
+              <option value="389040007" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQLT" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040008" ExternalValue="" Color="#0000ff">
+              <option value="389040008" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQLTD" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040009" ExternalValue="" Color="#0000ff">
+              <option value="389040009" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQLBC" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040000" ExternalValue="" Color="">
+              <option value="389040000" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="Higher Education" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001" ExternalValue="" Color="">
+              <option value="389040001" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="NPQH" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002" ExternalValue="" Color="">
+              <option value="389040002" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="Mandatory Qualification" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040003" ExternalValue="" Color="">
+              <option value="389040003" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="HLTA" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040005" ExternalValue="" Color="">
+              <option value="389040005" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="NPQML" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040004" ExternalValue="" Color="">
+              <option value="389040004" ExternalValue="" Color="" IsHidden="0">
                 <labels>
                   <label description="NPQSL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040006" ExternalValue="" Color="#0000ff">
+              <option value="389040006" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="NPQEL" languagecode="1033" />
                 </labels>

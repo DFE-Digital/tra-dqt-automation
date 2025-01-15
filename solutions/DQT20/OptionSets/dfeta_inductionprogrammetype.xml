@@ -12,7 +12,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000" ExternalValue="" Color="#0000ff">
+    <option value="389040000" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Full Induction Programme" languagecode="1033" />
       </labels>
@@ -20,7 +20,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001" ExternalValue="" Color="#0000ff">
+    <option value="389040001" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Core Induction Programme" languagecode="1033" />
       </labels>
@@ -28,7 +28,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002" ExternalValue="" Color="#0000ff">
+    <option value="389040002" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="School-based Induction Programme" languagecode="1033" />
       </labels>

@@ -47,32 +47,32 @@
               <Description description="Drop-down list for selecting the category of the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="School" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Employment Agency" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="College" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001">
+              <option value="389040001" IsHidden="0">
                 <labels>
                   <label description="HEI" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040002">
+              <option value="389040002" IsHidden="0">
                 <labels>
                   <label description="Local Authority" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040003">
+              <option value="389040003" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
@@ -120,7 +120,7 @@
               <Description description="Drop-down list for classifying an account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -231,7 +231,7 @@
               <Description description="Drop-down list for selecting account ratings." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -280,22 +280,22 @@
               <Description description="Type of address for address 1, such as billing, shipping, or primary address." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Bill To" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Ship To" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Primary" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
@@ -480,12 +480,12 @@
               <Description description="Freight terms for address 1." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="FOB" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="No Charge" languagecode="1033" />
                 </labels>
@@ -840,37 +840,37 @@
               <Description description="Method of shipment for address 1." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Airborne" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="DHL" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="FedEx" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="UPS" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Postal Mail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Full Load" languagecode="1033" />
                 </labels>
               </option>
-              <option value="7">
+              <option value="7" IsHidden="0">
                 <labels>
                   <label description="Will Call" languagecode="1033" />
                 </labels>
@@ -1123,7 +1123,7 @@
               <Description description="Type of address for address 2, such as billing, shipping, or primary address." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -1308,7 +1308,7 @@
               <Description description="Freight terms for address 2." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -1663,7 +1663,7 @@
               <Description description="Method of shipment for address 2." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2122,7 +2122,7 @@
               <Description description="Type of business associated with the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2338,12 +2338,12 @@
               <Description description="Information about whether credit for the account is on hold." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
@@ -2391,7 +2391,7 @@
               <Description description="Size of the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -2439,62 +2439,62 @@
               <Description description="Type of the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Competitor" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Consultant" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Customer" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Investor" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Partner" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Influencer" languagecode="1033" />
                 </labels>
               </option>
-              <option value="7">
+              <option value="7" IsHidden="0">
                 <labels>
                   <label description="Press" languagecode="1033" />
                 </labels>
               </option>
-              <option value="8">
+              <option value="8" IsHidden="0">
                 <labels>
                   <label description="Prospect" languagecode="1033" />
                 </labels>
               </option>
-              <option value="9">
+              <option value="9" IsHidden="0">
                 <labels>
                   <label description="Reseller" languagecode="1033" />
                 </labels>
               </option>
-              <option value="10">
+              <option value="10" IsHidden="0">
                 <labels>
                   <label description="Supplier" languagecode="1033" />
                 </labels>
               </option>
-              <option value="11">
+              <option value="11" IsHidden="0">
                 <labels>
                   <label description="Vendor" languagecode="1033" />
                 </labels>
               </option>
-              <option value="12">
+              <option value="12" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
@@ -2582,12 +2582,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2643,12 +2643,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2704,12 +2704,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2765,12 +2765,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2826,12 +2826,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2887,12 +2887,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -2945,12 +2945,12 @@
               <displayname description="Appropriate Body" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3079,12 +3079,12 @@
               <Description description="Can access the DBS Children's Barred List Y/N" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3288,12 +3288,12 @@
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" Color="#0000ff">
+              <option value="0" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1" Color="#0000ff">
+              <option value="1" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3383,12 +3383,12 @@
               <displayname description="Training Provider" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3507,12 +3507,12 @@
               <Description description="Information about whether to allow sending direct e-mail to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -3560,12 +3560,12 @@
               <Description description="Information about whether to allow sending bulk-rate postal mail to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -3613,12 +3613,12 @@
               <Description description="Information about whether to allow sending e-mail to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -3666,12 +3666,12 @@
               <Description description="Information about whether to allow sending faxes to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -3719,12 +3719,12 @@
               <Description description="Information about whether to allow phone calls to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -3772,12 +3772,12 @@
               <Description description="Information about whether to allow sending postal mail to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Allow" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Allow" languagecode="1033" />
                 </labels>
@@ -3825,12 +3825,12 @@
               <Description description="Information on whether to allow sending marketing mail to the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Send" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Do Not Send" languagecode="1033" />
                 </labels>
@@ -4109,167 +4109,167 @@
               <Description description="Type of industry with which the account is associated." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Accounting" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Agriculture and Non-petrol Natural Resource Extraction" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Broadcasting Printing and Publishing" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Brokers" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Building Supply Retail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Business Services" languagecode="1033" />
                 </labels>
               </option>
-              <option value="7">
+              <option value="7" IsHidden="0">
                 <labels>
                   <label description="Consulting" languagecode="1033" />
                 </labels>
               </option>
-              <option value="8">
+              <option value="8" IsHidden="0">
                 <labels>
                   <label description="Consumer Services" languagecode="1033" />
                 </labels>
               </option>
-              <option value="9">
+              <option value="9" IsHidden="0">
                 <labels>
                   <label description="Design, Direction and Creative Management" languagecode="1033" />
                 </labels>
               </option>
-              <option value="10">
+              <option value="10" IsHidden="0">
                 <labels>
                   <label description="Distributors, Dispatchers and Processors" languagecode="1033" />
                 </labels>
               </option>
-              <option value="11">
+              <option value="11" IsHidden="0">
                 <labels>
                   <label description="Doctor's Offices and Clinics" languagecode="1033" />
                 </labels>
               </option>
-              <option value="12">
+              <option value="12" IsHidden="0">
                 <labels>
                   <label description="Durable Manufacturing" languagecode="1033" />
                 </labels>
               </option>
-              <option value="13">
+              <option value="13" IsHidden="0">
                 <labels>
                   <label description="Eating and Drinking Places" languagecode="1033" />
                 </labels>
               </option>
-              <option value="14">
+              <option value="14" IsHidden="0">
                 <labels>
                   <label description="Entertainment Retail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="15">
+              <option value="15" IsHidden="0">
                 <labels>
                   <label description="Equipment Rental and Leasing" languagecode="1033" />
                 </labels>
               </option>
-              <option value="16">
+              <option value="16" IsHidden="0">
                 <labels>
                   <label description="Financial" languagecode="1033" />
                 </labels>
               </option>
-              <option value="17">
+              <option value="17" IsHidden="0">
                 <labels>
                   <label description="Food and Tobacco Processing" languagecode="1033" />
                 </labels>
               </option>
-              <option value="18">
+              <option value="18" IsHidden="0">
                 <labels>
                   <label description="Inbound Capital Intensive Processing" languagecode="1033" />
                 </labels>
               </option>
-              <option value="19">
+              <option value="19" IsHidden="0">
                 <labels>
                   <label description="Inbound Repair and Services" languagecode="1033" />
                 </labels>
               </option>
-              <option value="20">
+              <option value="20" IsHidden="0">
                 <labels>
                   <label description="Insurance" languagecode="1033" />
                 </labels>
               </option>
-              <option value="21">
+              <option value="21" IsHidden="0">
                 <labels>
                   <label description="Legal Services" languagecode="1033" />
                 </labels>
               </option>
-              <option value="22">
+              <option value="22" IsHidden="0">
                 <labels>
                   <label description="Non-Durable Merchandise Retail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="23">
+              <option value="23" IsHidden="0">
                 <labels>
                   <label description="Outbound Consumer Service" languagecode="1033" />
                 </labels>
               </option>
-              <option value="24">
+              <option value="24" IsHidden="0">
                 <labels>
                   <label description="Petrochemical Extraction and Distribution" languagecode="1033" />
                 </labels>
               </option>
-              <option value="25">
+              <option value="25" IsHidden="0">
                 <labels>
                   <label description="Service Retail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="26">
+              <option value="26" IsHidden="0">
                 <labels>
                   <label description="SIG Affiliations" languagecode="1033" />
                 </labels>
               </option>
-              <option value="27">
+              <option value="27" IsHidden="0">
                 <labels>
                   <label description="Social Services" languagecode="1033" />
                 </labels>
               </option>
-              <option value="28">
+              <option value="28" IsHidden="0">
                 <labels>
                   <label description="Special Outbound Trade Contractors" languagecode="1033" />
                 </labels>
               </option>
-              <option value="29">
+              <option value="29" IsHidden="0">
                 <labels>
                   <label description="Specialty Realty" languagecode="1033" />
                 </labels>
               </option>
-              <option value="30">
+              <option value="30" IsHidden="0">
                 <labels>
                   <label description="Transportation" languagecode="1033" />
                 </labels>
               </option>
-              <option value="31">
+              <option value="31" IsHidden="0">
                 <labels>
                   <label description="Utility Creation and Distribution" languagecode="1033" />
                 </labels>
               </option>
-              <option value="32">
+              <option value="32" IsHidden="0">
                 <labels>
                   <label description="Vehicle Retail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="33">
+              <option value="33" IsHidden="0">
                 <labels>
                   <label description="Wholesale" languagecode="1033" />
                 </labels>
@@ -4752,22 +4752,22 @@
               <Description description="Type of company ownership, such as public or private." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Public" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Private" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Subsidiary" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Other" languagecode="1033" />
                 </labels>
@@ -4815,22 +4815,22 @@
               <Description description="Payment terms for the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Net 30" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="2% 10, Net 30" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Net 45" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Net 60" languagecode="1033" />
                 </labels>
@@ -4878,37 +4878,37 @@
               <Description description="Day of the week that the account prefers for scheduling service activities." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="Sunday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Monday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Tuesday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Wednesday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Thursday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Friday" languagecode="1033" />
                 </labels>
               </option>
-              <option value="6">
+              <option value="6" IsHidden="0">
                 <labels>
                   <label description="Saturday" languagecode="1033" />
                 </labels>
@@ -4956,17 +4956,17 @@
               <Description description="Time of day that the account prefers for scheduling service activities." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Morning" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Afternoon" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Evening" languagecode="1033" />
                 </labels>
@@ -5014,27 +5014,27 @@
               <Description description="Preferred contact method for the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Any" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="E-mail" languagecode="1033" />
                 </labels>
               </option>
-              <option value="3">
+              <option value="3" IsHidden="0">
                 <labels>
                   <label description="Phone" languagecode="1033" />
                 </labels>
               </option>
-              <option value="4">
+              <option value="4" IsHidden="0">
                 <labels>
                   <label description="Fax" languagecode="1033" />
                 </labels>
               </option>
-              <option value="5">
+              <option value="5" IsHidden="0">
                 <labels>
                   <label description="Mail" languagecode="1033" />
                 </labels>
@@ -5184,7 +5184,7 @@
               <Description description="Method of shipment for the account." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>
@@ -5501,7 +5501,7 @@
               <Description description="Territory to which the account belongs." languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Default Value" languagecode="1033" />
                 </labels>

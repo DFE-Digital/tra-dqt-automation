@@ -11,7 +11,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000" Color="">
+    <option value="389040000" Color="" IsHidden="0">
       <labels>
         <label description="Extended on appeal" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001" Color="">
+    <option value="389040001" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed probationary period in Gibraltar" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002" Color="">
+    <option value="389040002" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Guernsey" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003" Color="">
+    <option value="389040003" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Isle Of Man" languagecode="1033" />
       </labels>
@@ -43,7 +43,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040004" Color="">
+    <option value="389040004" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Jersey" languagecode="1033" />
       </labels>
@@ -51,7 +51,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040005" Color="">
+    <option value="389040005" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Northern Ireland" languagecode="1033" />
       </labels>
@@ -59,7 +59,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040006" Color="">
+    <option value="389040006" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Service Children's Education schools in Germany or Cyprus" languagecode="1033" />
       </labels>
@@ -67,7 +67,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040007" Color="">
+    <option value="389040007" Color="" IsHidden="0">
       <labels>
         <label description="Successfully completed induction in Wales" languagecode="1033" />
       </labels>
@@ -75,7 +75,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040008" Color="">
+    <option value="389040008" Color="" IsHidden="0">
       <labels>
         <label description="Exempt" languagecode="1033" />
       </labels>
@@ -83,7 +83,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040009" Color="">
+    <option value="389040009" Color="" IsHidden="0">
       <labels>
         <label description="Exempt - Data Loss/Error Criteria" languagecode="1033" />
       </labels>
@@ -91,7 +91,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040010" Color="">
+    <option value="389040010" Color="" IsHidden="0">
       <labels>
         <label description="Overseas Trained Teacher" languagecode="1033" />
       </labels>
@@ -99,7 +99,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040011" Color="">
+    <option value="389040011" Color="" IsHidden="0">
       <labels>
         <label description="Qualified before 07 May 1999" languagecode="1033" />
       </labels>
@@ -107,7 +107,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040012" Color="">
+    <option value="389040012" Color="" IsHidden="0">
       <labels>
         <label description="Qualified between 07 May 1999 and 01 April 2003. First post was in Wales and lasted a minimum of two terms." languagecode="1033" />
       </labels>
@@ -115,7 +115,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040013" Color="">
+    <option value="389040013" Color="" IsHidden="0">
       <labels>
         <label description="Qualified through EEA mutual recognition route" languagecode="1033" />
       </labels>
@@ -123,7 +123,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040014" Color="">
+    <option value="389040014" Color="" IsHidden="0">
       <labels>
         <label description="Qualified through FE route between 01 Sep 2001 and 01 Sep 2004" languagecode="1033" />
       </labels>
@@ -131,7 +131,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040015" Color="">
+    <option value="389040015" Color="" IsHidden="0">
       <labels>
         <label description="Qualified through Independent route between 01 Oct 2000 and 01 Sep 2004" languagecode="1033" />
       </labels>
@@ -139,7 +139,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040016" Color="">
+    <option value="389040016" Color="" IsHidden="0">
       <labels>
         <label description="Registered Teacher (having at least two year's full time teaching experience)" languagecode="1033" />
       </labels>
@@ -147,7 +147,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040017" Color="">
+    <option value="389040017" Color="" IsHidden="0">
       <labels>
         <label description="Has, or is eligible for, full registration in Scotland" languagecode="1033" />
       </labels>
@@ -155,7 +155,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040018" Color="">
+    <option value="389040018" Color="" IsHidden="0">
       <labels>
         <label description="Teacher has been awarded QTLS and is exempt provided they maintain their membership with the Society for Education and Training" languagecode="1033" />
       </labels>

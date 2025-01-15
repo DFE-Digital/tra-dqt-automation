@@ -170,12 +170,12 @@
               <displayname description="Application Submitted" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
@@ -339,12 +339,12 @@
               <displayname description="Delete document file after 1 month" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="0">
+              <option value="0" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>
               </option>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
