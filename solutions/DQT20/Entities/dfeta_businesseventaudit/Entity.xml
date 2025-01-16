@@ -287,12 +287,12 @@
               <displayname description="Event" languagecode="1033" />
             </displaynames>
             <options>
-              <option value="1">
+              <option value="1" IsHidden="0">
                 <labels>
                   <label description="Create" languagecode="1033" />
                 </labels>
               </option>
-              <option value="2">
+              <option value="2" IsHidden="0">
                 <labels>
                   <label description="Update" languagecode="1033" />
                 </labels>

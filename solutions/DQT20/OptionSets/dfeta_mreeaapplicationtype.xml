@@ -11,7 +11,7 @@
     <Description description="Mutual Recognition - EEA Application Type" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="Establishment" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Temporary Provision" languagecode="1033" />
       </labels>

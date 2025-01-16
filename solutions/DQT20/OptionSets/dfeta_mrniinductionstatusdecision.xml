@@ -11,7 +11,7 @@
     <Description description="Mutual Recognition - NI Induction Status Decision" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="Exempt - Fully qualified in NI" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Exempt - Qualified pre 07/05/1999" languagecode="1033" />
       </labels>

@@ -11,7 +11,7 @@
     <Description description="Mutual Recognition - Route" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040002">
+    <option value="389040002" IsHidden="0">
       <labels>
         <label description="EEA" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="Scotland" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Northern Ireland" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003">
+    <option value="389040003" IsHidden="0">
       <labels>
         <label description="OTT" languagecode="1033" />
       </labels>

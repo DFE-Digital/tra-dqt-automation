@@ -12,7 +12,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040000" ExternalValue="" Color="">
+    <option value="389040000" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Core" languagecode="1033" />
       </labels>
@@ -20,7 +20,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040011" ExternalValue="" Color="">
+    <option value="389040011" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Core Flexible" languagecode="1033" />
       </labels>
@@ -28,7 +28,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001" ExternalValue="" Color="">
+    <option value="389040001" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="HEI" languagecode="1033" />
       </labels>
@@ -36,7 +36,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002" ExternalValue="" Color="">
+    <option value="389040002" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="School Direct training programme (Self funded)" languagecode="1033" />
       </labels>
@@ -44,7 +44,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040003" ExternalValue="" Color="">
+    <option value="389040003" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="School Direct training programme (Salaried)" languagecode="1033" />
       </labels>
@@ -52,7 +52,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040004" ExternalValue="" Color="">
+    <option value="389040004" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="School Direct training programme" languagecode="1033" />
       </labels>
@@ -60,7 +60,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040005" ExternalValue="" Color="">
+    <option value="389040005" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Teach First Programme (CC)" languagecode="1033" />
       </labels>
@@ -68,7 +68,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040006" ExternalValue="" Color="">
+    <option value="389040006" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Teach First Programme" languagecode="1033" />
       </labels>
@@ -76,7 +76,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040007" ExternalValue="" Color="">
+    <option value="389040007" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Overseas Trained Teacher Programme" languagecode="1033" />
       </labels>
@@ -84,7 +84,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040008" ExternalValue="" Color="">
+    <option value="389040008" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Registered Teacher Programme" languagecode="1033" />
       </labels>
@@ -92,7 +92,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040009" ExternalValue="" Color="">
+    <option value="389040009" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Graduate Teacher Programme" languagecode="1033" />
       </labels>
@@ -100,7 +100,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040010" ExternalValue="" Color="">
+    <option value="389040010" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Assessment Only Route" languagecode="1033" />
       </labels>
@@ -108,7 +108,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040012" ExternalValue="" Color="">
+    <option value="389040012" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Licensed Teacher Programme" languagecode="1033" />
       </labels>
@@ -116,7 +116,7 @@
         <Description description="Added by helpdesk call R120680" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040013" ExternalValue="" Color="">
+    <option value="389040013" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Undergraduate Opt In" languagecode="1033" />
       </labels>
@@ -124,7 +124,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040014" ExternalValue="" Color="">
+    <option value="389040014" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="EYITT - Assessment Only" languagecode="1033" />
       </labels>
@@ -132,7 +132,7 @@
         <Description description="EYITTAOR" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040015" ExternalValue="" Color="">
+    <option value="389040015" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="EYITT - Graduate Entry" languagecode="1033" />
       </labels>
@@ -140,7 +140,7 @@
         <Description description="EYITTGE" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040024" ExternalValue="" Color="#0000ff">
+    <option value="389040024" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="High potential ITT" languagecode="1033" />
       </labels>
@@ -148,7 +148,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040016" ExternalValue="" Color="">
+    <option value="389040016" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="EYITT - Graduate Employment Based" languagecode="1033" />
       </labels>
@@ -156,7 +156,7 @@
         <Description description="EYITTGEB" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040017" ExternalValue="" Color="">
+    <option value="389040017" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="EYITT - Undergraduate" languagecode="1033" />
       </labels>
@@ -164,7 +164,7 @@
         <Description description="EYITTGUR" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040018" ExternalValue="" Color="">
+    <option value="389040018" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="EYITT - School Direct (Early Years)" languagecode="1033" />
       </labels>
@@ -172,7 +172,7 @@
         <Description description="EYITTSD" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040019" ExternalValue="" Color="">
+    <option value="389040019" ExternalValue="" Color="" IsHidden="0">
       <labels>
         <label description="Apprenticeship" languagecode="1033" />
       </labels>
@@ -180,7 +180,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040021" ExternalValue="" Color="#0000ff">
+    <option value="389040021" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Provider-led (postgrad)" languagecode="1033" />
       </labels>
@@ -188,7 +188,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040022" ExternalValue="" Color="#0000ff">
+    <option value="389040022" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Provider-led (undergrad)" languagecode="1033" />
       </labels>
@@ -196,7 +196,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040020" ExternalValue="" Color="#0000ff">
+    <option value="389040020" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Future Teaching Scholars" languagecode="1033" />
       </labels>
@@ -204,7 +204,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040023" ExternalValue="" Color="#0000ff">
+    <option value="389040023" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="International qualified teacher status" languagecode="1033" />
       </labels>
@@ -212,7 +212,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040025" ExternalValue="" Color="#0000ff">
+    <option value="389040025" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Primary and secondary undergraduate fee funded" languagecode="1033" />
       </labels>
@@ -220,7 +220,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040026" ExternalValue="" Color="#0000ff">
+    <option value="389040026" ExternalValue="" Color="#0000ff" IsHidden="0">
       <labels>
         <label description="Primary and secondary postgraduate fee funded" languagecode="1033" />
       </labels>

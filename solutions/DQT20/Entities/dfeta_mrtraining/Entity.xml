@@ -550,12 +550,12 @@
               <Description description="Whether qualification is for SEN children only" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="389040000">
+              <option value="389040000" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
-              <option value="389040001">
+              <option value="389040001" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
                 </labels>

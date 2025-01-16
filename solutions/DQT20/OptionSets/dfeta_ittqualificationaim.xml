@@ -11,7 +11,7 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
-    <option value="389040003">
+    <option value="389040003" IsHidden="0">
       <labels>
         <label description="Academic award only" languagecode="1033" />
       </labels>
@@ -19,7 +19,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040000">
+    <option value="389040000" IsHidden="0">
       <labels>
         <label description="Professional status only" languagecode="1033" />
       </labels>
@@ -27,7 +27,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040001">
+    <option value="389040001" IsHidden="0">
       <labels>
         <label description="Professional status and academic award" languagecode="1033" />
       </labels>
@@ -35,7 +35,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="389040002">
+    <option value="389040002" IsHidden="0">
       <labels>
         <label description="Professional status by assessment only" languagecode="1033" />
       </labels>
