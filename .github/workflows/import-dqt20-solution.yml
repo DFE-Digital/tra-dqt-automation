@@ -28,6 +28,10 @@ jobs:
         fi
       env:
         ENVIRONMENT: ${{ github.event.inputs.environment }}
+    
+    - uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
 
     - uses: actions/checkout@v2
 
