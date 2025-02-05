@@ -22,6 +22,10 @@ jobs:
     concurrency: extract-solution
 
     steps:
+    - uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
     - run: git config --global core.longpaths true
 
     - uses: actions/checkout@v2
