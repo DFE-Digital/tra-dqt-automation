@@ -2016,6 +2016,7 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                 csvWriter.WriteField("last_name");
                 csvWriter.WriteField("extension_length");
                 csvWriter.WriteField("extension_length_unit");
+                csvWriter.WriteField("induction_status");
                 csvWriter.NextRecord();
 
                 int pageNumber = 1;
@@ -2034,6 +2035,8 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                             <attribute name='firstname' />
                             <attribute name='lastname' />
                             <attribute name='contactid' />
+                            <attribute name='dfeta_inductionstatus' />
+                            <order attribute='dfeta_trn' />
                             <link-entity name='dfeta_induction' from='dfeta_personid' to='contactid' link-type='inner'>
                               <attribute name='dfeta_extensionlength' />
                               <attribute name='dfeta_extensionlengthunit' />
@@ -2060,11 +2063,27 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                             extensionLengthUnit = extensionLengthUnits[((OptionSetValue)record.GetAttributeValue<AliasedValue>("dfeta_induction1.dfeta_extensionlengthunit").Value).Value];
                         }
 
+                        var inductionStatus = record.GetAttributeValue<OptionSetValue>("dfeta_inductionstatus");
+                        var trsInductionStatus = inductionStatus?.Value switch
+                        {
+                            389040000 => "Exempt",
+                            389040001 => "Failed",
+                            389040008 => "FailedInWales",
+                            389040006 => "InProgress",
+                            389040003 => "RequiredToComplete",
+                            389040007 => "RequiredToComplete",
+                            389040004 => "Passed",
+                            389040005 => "PassedInWales",
+                            389040002 => "InProgress",
+                            null => "None"
+                        };
+
                         csvWriter.WriteField(trn);
                         csvWriter.WriteField(firstname);
                         csvWriter.WriteField(lastname);
                         csvWriter.WriteField(extensionLength);
                         csvWriter.WriteField(extensionLengthUnit);
+                        csvWriter.WriteField(trsInductionStatus);
                         csvWriter.NextRecord();
                     }
 
