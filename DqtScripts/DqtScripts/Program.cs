@@ -2094,6 +2094,10 @@ static void ExportInductionPeriods(RootCommand rootCommand)
             }
 
             //appropriatebodies
+            int abPageNumber = 1;
+            int abFetchCount = 1000;
+            string abPagingCookie = null;
+            bool abMoreRecords = true;
             using (var appropriatebodyStream = await abBlobClient.OpenWriteAsync(overwrite: true, new Azure.Storage.Blobs.Models.BlobOpenWriteOptions()))
             using (var appropriateBodyStreamWriter = new StreamWriter(appropriatebodyStream))
             using (var csvWriter = new CsvWriter(appropriateBodyStreamWriter, System.Globalization.CultureInfo.CurrentCulture))
@@ -2105,20 +2109,28 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                 csvWriter.WriteField("establishment_number");
                 csvWriter.NextRecord();
 
-                var query = new QueryExpression("account");
-                query.Criteria.AddCondition("dfeta_appropriatebody", ConditionOperator.Equal, true);
-                query.ColumnSet = new ColumnSet("accountid", "name", "dfeta_saorgid", "dfeta_laschoolcode", "dfeta_establishmentcode");
-                query.PageInfo = new PagingInfo()
-                {
-                    Count = 1000,
-                    PageNumber = 1
-                };
-                EntityCollection result;
-
                 do
                 {
-                    result = await serviceClient.RetrieveMultipleAsync(query);
-                    foreach (var record in result.Entities)
+                    string abPagingCookieXml = string.IsNullOrEmpty(abPagingCookie) ? "" : $"paging-cookie='{System.Security.SecurityElement.Escape(abPagingCookie)}'";
+                    string abFetchXml = $@"
+                        <fetch distinct='true' count='{abFetchCount}' page='{abPageNumber}' {abPagingCookieXml} no-lock='true'>
+                          <entity name='account'>
+                            <attribute name='accountid' />
+                            <attribute name='name' />
+                            <attribute name='dfeta_saorgid' />
+                            <attribute name='dfeta_laschoolcode' />
+                            <attribute name='dfeta_establishmentcode' />
+                            <link-entity name='dfeta_inductionperiod' from='dfeta_appropriatebodyid' to='accountid' link-type='inner'>
+                              <attribute name='dfeta_appropriatebodyid' />
+                            </link-entity>
+                          </entity>
+                        </fetch>";
+
+                    // Retrieve multiple records using FetchXML
+                    var abFetchExpression = new FetchExpression(abFetchXml);
+                    var abResult = await serviceClient.RetrieveMultipleAsync(abFetchExpression);
+
+                    foreach (var record in abResult.Entities)
                     {
                         var id = record["accountid"];
                         var name = record.Contains("name") ? record["name"] : "";
@@ -2134,9 +2146,10 @@ static void ExportInductionPeriods(RootCommand rootCommand)
                         csvWriter.NextRecord();
                     }
 
-                    query.PageInfo.PageNumber++;
-                    query.PageInfo.PagingCookie = result.PagingCookie;
-                } while (result.MoreRecords);
+                    abPagingCookie = abResult.PagingCookie;
+                    abMoreRecords = abResult.MoreRecords;
+                    abPageNumber++;
+                } while (abMoreRecords);
             }
         })
     };
