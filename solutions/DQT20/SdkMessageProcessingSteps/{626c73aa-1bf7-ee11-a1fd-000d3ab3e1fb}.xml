@@ -17,11 +17,11 @@
   <SupportedDeployment>0</SupportedDeployment>
   <IntroducedVersion>1.0</IntroducedVersion>
   <SdkMessageProcessingStepImages>
-    <SdkMessageProcessingStepImage Name="PreContactImage">
-      <SdkMessageProcessingStepImageId>{d27e5010-1cf7-ee11-a1fd-002248a1283e}</SdkMessageProcessingStepImageId>
-      <Attributes>contactid,dfeta_qtlsdate,dfeta_qtsdate</Attributes>
-      <EntityAlias>PreContactImage</EntityAlias>
-      <ImageType>0</ImageType>
+    <SdkMessageProcessingStepImage Name="PostContactImage">
+      <SdkMessageProcessingStepImageId>{17caad75-5ae9-ef11-9341-000d3a67d663}</SdkMessageProcessingStepImageId>
+      <Attributes>contactid,dfeta_qtlsdate</Attributes>
+      <EntityAlias>PostContactImage</EntityAlias>
+      <ImageType>1</ImageType>
       <MessagePropertyName>Target</MessagePropertyName>
       <IsCustomizable>1</IsCustomizable>
     </SdkMessageProcessingStepImage>

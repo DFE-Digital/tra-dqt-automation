@@ -58,7 +58,7 @@ var DFE;
                     if (executionContext != null) {
                         var formContext = executionContext.getFormContext();
                         var currentUrl = window.location.hostname;
-                         formContext.ui.setFormNotification(`Alerts have been migrated to the TRS Console`, "WARNING", "infoNotification");
+                         formContext.ui.setFormNotification(`Alerts and Induction have been migrated to TRS Console`, "WARNING", "infoNotification");
                     }
                 }
 
