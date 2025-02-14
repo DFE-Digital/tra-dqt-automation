@@ -709,11 +709,10 @@
               </labels>
               <control id="header_dfeta_eytsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_eytsdate" disabled="true" />
             </cell>
-            <cell id="{950bd241-71a7-6751-586c-97b7b36cb367}" showlabel="true" locklevel="0" ordinalvalue="40003" solutionaction="Added">
+            <cell id="{0d108a44-ab34-4a62-6995-ea833cb2b613}" showlabel="false" ordinalvalue="40003" solutionaction="Added">
               <labels>
-                <label description="Induction Status" languagecode="1033" />
+                <label description="" languagecode="1033" />
               </labels>
-              <control id="header_dfeta_inductionstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="dfeta_inductionstatus" disabled="true" />
             </cell>
           </row>
         </rows>
@@ -801,12 +800,12 @@
               <Title LCID="1033" Text="Qualifications" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_induction" Id="nav_dfeta_contact_dfeta_induction" Area="Sales" Sequence="1006" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_induction" Id="nav_dfeta_contact_dfeta_induction" Area="Sales" Sequence="1006" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Induction" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_inductionperiod" Id="nav_dfeta_contact_dfeta_inductionperiod" Area="Sales" Sequence="1007" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_inductionperiod" Id="nav_dfeta_contact_dfeta_inductionperiod" Area="Sales" Sequence="1007" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Induction Periods" />
             </Titles>

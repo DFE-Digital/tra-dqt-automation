@@ -611,6 +611,16 @@
               <Title Text="Alerts" LCID="1033" />
             </Titles>
           </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_induction" Sequence="10000" Area="Info" Id="nav_dfeta_contact_dfeta_induction" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Induction" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_inductionperiod" Sequence="10000" Area="Info" Id="nav_dfeta_contact_dfeta_inductionperiod" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Induction Periods" />
+            </Titles>
+          </NavBarByRelationshipItem>
         </NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
@@ -863,7 +873,25 @@
       <DisplayConditions FallbackForm="true" Order="4" solutionaction="Modified" />
       <formLibraries solutionaction="Removed" />
       <footer id="{f34742a4-c586-4270-a15d-e097a7da1537}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows>
+          <row>
+            <cell id="{5b13d0ec-1dd8-49a2-b60c-97c06dcce267}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e940c415-1d77-4417-83b7-196a658be671}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{759cd614-b1b9-40f2-8097-1e4562bd67c7}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </footer>
     </form>
     <LocalizedNames>
