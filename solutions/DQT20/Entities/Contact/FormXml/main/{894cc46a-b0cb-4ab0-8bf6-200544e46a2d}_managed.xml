@@ -427,6 +427,19 @@
                         <control id="dfeta_qtlsdatehasbeenset" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_qtlsdatehasbeenset" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell locklevel="0" id="{63e9f1e4-ce72-4cfc-ae29-538add223a31}" ordinalvalue="10014" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{f08fc2ea-2c95-436d-8134-113e3c39db0b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20015" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dfeta_mergedwith" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dfeta_mergedwith" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="billing information" showlabel="true" showbar="true" id="{0738bc1c-9226-486d-9258-9b6fc75cbaa7}" IsUserDefined="0" ordinalvalue="1" solutionaction="Removed" />
