@@ -318,7 +318,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="administration" id="{0dd7233e-247b-4eef-a71b-0185da6d16ad}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" ordinalvalue="1" solutionaction="Modified">
+        <tab name="administration" id="{0dd7233e-247b-4eef-a71b-0185da6d16ad}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Modified">
           <labels>
             <label description="Admin" languagecode="1033" solutionaction="Modified" />
           </labels>
@@ -414,26 +414,12 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ae0417a0-3771-7790-3c90-ca843657c385}" showlabel="true" locklevel="0" ordinalvalue="10012" solutionaction="Added">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                        <control id="dfeta_qtlsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_qtlsdate" disabled="false" uniqueid="{83e2cbdb-00c9-801d-900e-aa43be8999ac}" />
-                      </cell>
-                      <cell id="{b2752c07-4061-4a1c-9915-806044570083}" showlabel="true" locklevel="0" ordinalvalue="20013" solutionaction="Added">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                        <control id="dfeta_qtlsdatehasbeenset" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="dfeta_qtlsdatehasbeenset" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell locklevel="0" id="{63e9f1e4-ce72-4cfc-ae29-538add223a31}" ordinalvalue="10014" solutionaction="Added">
+                      <cell locklevel="0" id="{63e9f1e4-ce72-4cfc-ae29-538add223a31}" showlabel="false" ordinalvalue="10012" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{f08fc2ea-2c95-436d-8134-113e3c39db0b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20015" solutionaction="Added">
+                      <cell id="{f08fc2ea-2c95-436d-8134-113e3c39db0b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20013" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -710,17 +696,15 @@
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{d5d8de28-b83e-045b-c608-b787d6c1e6b6}" showlabel="true" locklevel="0" ordinalvalue="20001" solutionaction="Added">
+            <cell id="{76089726-4b42-7baa-7eda-eb9c0a4abec2}" showlabel="false" ordinalvalue="20001" solutionaction="Added">
               <labels>
-                <label description="QTS Date" languagecode="1033" />
+                <label description="" languagecode="1033" />
               </labels>
-              <control id="header_dfeta_qtsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_qtsdate" disabled="true" />
             </cell>
-            <cell id="{2a0b46e6-4d00-d87e-311c-b0b917871906}" showlabel="true" locklevel="0" ordinalvalue="30002" solutionaction="Added">
+            <cell id="{8d521b77-0da3-c126-5485-6d94c1233ed9}" showlabel="false" ordinalvalue="30002" solutionaction="Added">
               <labels>
-                <label description="EYTS Date" languagecode="1033" />
+                <label description="" languagecode="1033" />
               </labels>
-              <control id="header_dfeta_eytsdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="dfeta_eytsdate" disabled="true" />
             </cell>
             <cell id="{0d108a44-ab34-4a62-6995-ea833cb2b613}" showlabel="false" ordinalvalue="40003" solutionaction="Added">
               <labels>
@@ -768,14 +752,14 @@
               <Title LCID="1033" Text="Marketing Lists" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="contract_customer_contacts" Area="Service" Id="navContracts" Show="false" Sequence="23" solutionaction="Added">
-            <Titles>
-              <Title LCID="1033" Text="Contracts" />
-            </Titles>
-          </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="quote_customer_contacts" Area="Sales" Id="navQuotes" Show="false" Sequence="23" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Quotes" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="contract_customer_contacts" Area="Service" Id="navContracts" Show="false" Sequence="23" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Contracts" />
             </Titles>
           </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navCampaignsInSFA" Area="Marketing" Id="navCampaignsInSFA" Show="false" Sequence="23" solutionaction="Added">
@@ -798,12 +782,12 @@
               <Title LCID="1033" Text="MR Applications" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_qtsregistration" Id="nav_dfeta_contact_dfeta_qtsregistration" Sequence="1001" Area="Sales" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_qtsregistration" Id="nav_dfeta_contact_dfeta_qtsregistration" Sequence="1001" Area="Sales" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="QTS" />
             </Titles>
           </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_initialteachertraining" Id="nav_dfeta_contact_dfeta_initialteachertraining" Area="Sales" Sequence="1003" solutionaction="Added">
+          <NavBarByRelationshipItem RelationshipName="dfeta_contact_dfeta_initialteachertraining" Id="nav_dfeta_contact_dfeta_initialteachertraining" Area="Sales" Sequence="1003" Show="false" solutionaction="Added">
             <Titles>
               <Title LCID="1033" Text="Initial Teacher Trainings" />
             </Titles>
