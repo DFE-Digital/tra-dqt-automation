@@ -48,7 +48,7 @@
 <meta><meta><meta><meta><meta></head>
 <body onload="getRecordId()" onfocusout="parent.setEmailRange();" style="overflow-wrap: break-word;">
     <div class="banner">
-        Check for alerts and induction in <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
+        Check for alerts, induction & ITT/QTS/EYTS/Routes in the <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
     </div>
 
 </body></html>
