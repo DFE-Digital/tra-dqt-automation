@@ -8,47 +8,42 @@
             font-size: 14px;
         }
     </style>
-    <script type="text/javascript">       
-        function redirectToTRS() {
-            var link = document.getElementById('trsUrl');
-            var targetUrl = link.href;
-            
-            // Use window.location.replace to bypass proxy interference
-            window.top.location.replace(targetUrl);
-        }
+    <script type="text/javascript"> if (typeof __JSWRAPPER === 'undefined' || (!__JSWRAPPER.initialized())) {
+     if ((typeof ServiceWorkerContainer !== 'undefined' && globalThis instanceof ServiceWorkerContainer) || (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope)) {
+         importScripts('https://mcas-proxyweb.mcas.ms/js-bootstrap.js?saasId=26311&type=WORKER&McasTsid=26311&origin=' + encodeURIComponent(globalThis.origin));
+     } else {
+         /* eslint-disable */
+         eval(function () {
+             const x = new XMLHttpRequest();
+             x.open('GET', 'https://mcas-proxyweb.mcas.ms/js-bootstrap.js?saasId=26311&type=WINDOW&McasTsid=26311&origin=' + encodeURIComponent(globalThis.origin), false);
+             x.withCredentials = true;
+             x.send();
+             return x.responseText;
+         }());
+         /* eslint-enable */
+     }
+}function redirectToTRS(){var link=document.getElementById('trsUrl');var targetUrl=link.href;
 
- function getRecordId() {
-            var recordId = null;
+// Use window.location.replace to bypass proxy interference
 
-            // Get the current Dynamics environment URL
-            var currentUrl = window.location.hostname;
-            var DEFAULT_URL = "ent-dqt-prod.crm4.dynamics.com.mcas.ms";
+__WRAPPED_get(window.top,'location').replace(targetUrl);}function getRecordId(){var recordId=null;
 
-            // Define URLs based on the environment
-            var environmentUrls = {
-                "ent-dqt-prod.crm4.dynamics.com" : "trs-production-ui.teacherservices.cloud/persons/",
-                "ent-dqt-preprod.crm4.dynamics.com": "trs-pre-production-ui.test.teacherservices.cloud/persons/",
-                "ent-dqt-test.crm4.dynamics.com": "trs-test-ui.test.teacherservices.cloud/persons/",
-                "ent-dqt-build.crm4.dynamics.com": "trs-dev-ui.test.teacherservices.cloud/persons/",
-            };
+// Get the current Dynamics environment URL
 
-            var trsUrl = environmentUrls[currentUrl] || DEFAULT_URL;
-            var link = document.getElementById('trsUrl');
+var currentUrl=__WRAPPED_get(window,'location').hostname;var DEFAULT_URL="ent-dqt-prod.crm4.dynamics.com.mcas.ms";
 
-            if (window.parent.Xrm) {
-                // Use the Unified Interface API to get the record ID
-                recordId = window.parent.Xrm.Page.data.entity.getId(); // For legacy interface
-                if (recordId) {
-                    recordId = recordId.replace('{', '').replace('}', '');
-                    link.href = "https://" + trsUrl + recordId;
-                }
-            }
-        }
-    </script>
-<meta><meta><meta><meta><meta></head>
+// Define URLs based on the environment
+
+var environmentUrls={"ent-dqt-prod.crm4.dynamics.com":"trs-production-ui.teacherservices.cloud/persons/","ent-dqt-preprod.crm4.dynamics.com":"trs-pre-production-ui.test.teacherservices.cloud/persons/","ent-dqt-test.crm4.dynamics.com":"trs-test-ui.test.teacherservices.cloud/persons/","ent-dqt-build.crm4.dynamics.com":"trs-dev-ui.test.teacherservices.cloud/persons/"};var trsUrl=__WRAPPED_get(environmentUrls,currentUrl)||DEFAULT_URL;var link=document.getElementById('trsUrl');if(window.parent.Xrm){
+// Use the Unified Interface API to get the record ID
+
+recordId=window.parent.Xrm.Page.data.entity.getId(); // For legacy interface
+
+if(recordId){recordId=recordId.replace('{','').replace('}','');link.href="https://"+trsUrl+recordId;}}}</script>
+<meta><meta><meta><meta><meta><meta></head>
 <body onload="getRecordId()" onfocusout="parent.setEmailRange();" style="overflow-wrap: break-word;">
-    <div class="banner">
-        Check for alerts and induction in <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
+    <div class="banner" style="font-family: undefined;">
+        Check for alerts, induction &amp; ITT/QTS/EYTS/Routes in the <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
     </div>
 
 </body></html>
