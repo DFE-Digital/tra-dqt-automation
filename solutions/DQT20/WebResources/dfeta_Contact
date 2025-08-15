@@ -58,7 +58,7 @@ var DFE;
                     if (executionContext != null) {
                         var formContext = executionContext.getFormContext();
                         var currentUrl = window.location.hostname;
-                         formContext.ui.setFormNotification(`Alerts, Induction & ITT/QTS/EYTS/Routes have migrated to the TRS console`, "WARNING", "infoNotification");
+                         formContext.ui.setFormNotification(`You can no longer change data in DQT - please use the TRS console for all activities you previously used DQT for`, "WARNING", "infoNotification");
                     }
                 }
 

@@ -1,54 +1,54 @@
 <html><head>
-    <style>
-        .banner {
-            background-color: #fef4cc;
-            padding: 5px;
-            border: 2px solid #d8d8d8;
-            text-align: center;
-            font-size: 14px;
+  <style>
+    .banner {
+      background-color: #FEF4CC;
+      padding: 5px;
+      border: 2px solid #D8D8D8;
+      text-align: center;
+      font-size: 14px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+  </style>
+<meta></head>
+<body style="overflow-wrap: break-word;">
+  <div class="banner">
+    You can no longer change data in DQT - please use the
+    <span><a id="trsUrl" href="#" onclick="openTRS(); return false;">TRS Console</a></span>
+    for all activities you previously used DQT for
+  </div>
+  <script type="text/javascript">
+    function openTRS() {
+      // Environment mapping
+      var envMap = {
+        "ent-dqt-prod.crm4.dynamics.com": "teaching-record-system.education.gov.uk/persons/",
+        "ent-dqt-preprod.crm4.dynamics.com": "preprod.teaching-record-system.education.gov.uk/persons/",
+        "ent-dqt-test.crm4.dynamics.com": "test.teaching-record-system.education.gov.uk/persons/",
+        "ent-dqt-build.crm4.dynamics.com": "dev.teaching-record-system.education.gov.uk/persons/"
+      };
+      var defaultUrl = "teaching-record-system.education.gov.uk/persons/";
+      // Get the environment-specific base URL
+      var host = window.location.hostname.replace(/\.mcas\.ms$/i, "");
+      var baseUrl = envMap[host] || defaultUrl;
+      // Get record ID
+      var recordId = null;
+      try {
+        if (window.parent && window.parent.Xrm && window.parent.Xrm.Page && window.parent.Xrm.Page.data) {
+          recordId = window.parent.Xrm.Page.data.entity.getId();
         }
-    </style>
-    <script type="text/javascript">       
-        function redirectToTRS() {
-            var link = document.getElementById('trsUrl');
-            var targetUrl = link.href;
-            
-            // Use window.location.replace to bypass proxy interference
-            window.top.location.replace(targetUrl);
-        }
-
- function getRecordId() {
-            var recordId = null;
-
-            // Get the current Dynamics environment URL
-            var currentUrl = window.location.hostname;
-            var DEFAULT_URL = "ent-dqt-prod.crm4.dynamics.com.mcas.ms";
-
-            // Define URLs based on the environment
-            var environmentUrls = {
-                "ent-dqt-prod.crm4.dynamics.com" : "trs-production-ui.teacherservices.cloud/persons/",
-                "ent-dqt-preprod.crm4.dynamics.com": "trs-pre-production-ui.test.teacherservices.cloud/persons/",
-                "ent-dqt-test.crm4.dynamics.com": "trs-test-ui.test.teacherservices.cloud/persons/",
-                "ent-dqt-build.crm4.dynamics.com": "trs-dev-ui.test.teacherservices.cloud/persons/",
-            };
-
-            var trsUrl = environmentUrls[currentUrl] || DEFAULT_URL;
-            var link = document.getElementById('trsUrl');
-
-            if (window.parent.Xrm) {
-                // Use the Unified Interface API to get the record ID
-                recordId = window.parent.Xrm.Page.data.entity.getId(); // For legacy interface
-                if (recordId) {
-                    recordId = recordId.replace('{', '').replace('}', '');
-                    link.href = "https://" + trsUrl + recordId;
-                }
-            }
-        }
-    </script>
-<meta><meta><meta><meta><meta></head>
-<body onload="getRecordId()" onfocusout="parent.setEmailRange();" style="overflow-wrap: break-word;">
-    <div class="banner">
-        Check for alerts, induction & ITT/QTS/EYTS/Routes in the <span><a id="trsUrl" onclick="redirectToTRS(); return false;">TRS Console</a></span>
-    </div>
+      } catch (e) {
+        console.log('Could not get record ID:', e);
+      }
+      // Build URL
+      var targetUrl;
+      if (recordId) {
+        recordId = recordId.replace(/[{}]/g, "");
+        targetUrl = "https://" + baseUrl + recordId;
+      } else {
+        targetUrl = "https://" + baseUrl;
+      }
+      // Open the link
+      window.open(targetUrl, '_blank');
+    }
+  </script>
 
 </body></html>
